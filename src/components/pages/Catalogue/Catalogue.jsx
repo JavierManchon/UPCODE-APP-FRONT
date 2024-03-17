@@ -30,10 +30,24 @@ const Catalogue = () => {
           defaultContent: 
             { children: "ul", items: "li", count: 3 },
           defaultStyles:["navBarHorizontalEnd", "ul", "li"]
+        },
+        {
+          name: 'FooterHorizontal',
+          elementType: 'footer',
+          defaultContent: 
+            { children: "ul", items: "li", count: 3 },
+          defaultStyles:["footerHorizontal", "ul", "li"]
+        },
+        {
+          name: 'FooterVertical',
+          elementType: 'footer',
+          defaultContent: 
+            { children: "ul", items: "li", count: 3 },
+          defaultStyles:["footerVertical", "ul", "li"]
         }
     ];
 
-    const template = templates[2];
+    const template = templates[5];
     return (
         <DesignsController template={template}/>
     )
