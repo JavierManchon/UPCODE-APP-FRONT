@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './_navComponent.scss';
+import '../../../css/app.scss';
 
 const NavComponent = ({ template }) => {
     const [liValues, setLiValues] = useState(Array.from({ length: template.defaultContent.count }, () => 'Item'));
@@ -107,7 +108,7 @@ const NavComponent = ({ template }) => {
     };
 
     return (
-        <div className='container-all'>
+        <div className='container-pages-default-styles'>
             <div className='container-editor'>
                 <p>{'<'}{template.elementType}{'>'}</p>
                 <p>{'<'}{template.defaultContent ? template.defaultContent.children : null}{'>'}</p>

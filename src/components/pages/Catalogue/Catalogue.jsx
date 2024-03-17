@@ -4,19 +4,6 @@ import DesignsController from '../../../middlewares/DesignsController/DesignsCon
 const Catalogue = () => {
     const templates = [
         {
-          name: 'Button',
-          elementType: 'button',
-          defaultContent: 'Botón',
-          defaultStyles:["clase1", "clase2"],
-          personalStyles: { backgroundColor: '', color: '#000000' }
-        },
-        {
-          name: 'Header',
-          elementType: 'header',
-          defaultContent: { title: 'Título del Encabezado', items: ['Enlace 1', 'Enlace 2'] },
-          defaultStyles: { backgroundColor: '', color: '#000000', fontSize: '24px' },
-        },
-        {
           name: 'NavBarVertical',
           elementType: 'nav',
           defaultContent: 
@@ -46,7 +33,7 @@ const Catalogue = () => {
         }
     ];
 
-    const template = templates[5];
+    const template = templates[2];
     return (
         <DesignsController template={template}/>
     )

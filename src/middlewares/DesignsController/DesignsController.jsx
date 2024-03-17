@@ -1,5 +1,4 @@
 import React from 'react';
-import './_designsController.scss';
 import NavComponent from '../../components/pages/Navs/NavComponent';
 
 const DesignsController = ({template}) => {
@@ -10,6 +9,10 @@ const DesignsController = ({template}) => {
                 return (
                     <NavComponent template={template}></NavComponent>
                 );
+            // case 'figure':
+            //     return (
+            //         <FigureComponent template={template}></FigureComponent>
+            //     );
             // case 'section':
             //     return (
             //         <SectionComponent template={template}></SectionComponent>
@@ -21,18 +24,6 @@ const DesignsController = ({template}) => {
             // case 'footer':
             // return (
             //     <FooterComponent template={template}></FooterComponent>
-            // );
-            // case 'table':
-            // return (
-            //     <TableComponent template={template}></TableComponent>
-            // );
-            // case 'div':
-            // return (
-            //     <DivComponent template={template}></DivComponent>
-            // );
-            // case 'button':
-            // return (
-            //     <ButtonComponent template={template}></ButtonComponent>
             // );
             default:
                 return null;
