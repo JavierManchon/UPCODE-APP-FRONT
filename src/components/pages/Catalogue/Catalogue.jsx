@@ -1,5 +1,5 @@
 import React from 'react'
-import DesignsController from '../DesignsController/DesignsController';
+import DesignsController from '../../../middlewares/DesignsController/DesignsController';
 
 const Catalogue = () => {
     const templates = [

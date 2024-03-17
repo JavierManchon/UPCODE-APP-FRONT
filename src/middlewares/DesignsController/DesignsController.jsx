@@ -1,6 +1,6 @@
 import React from 'react';
 import './_designsController.scss';
-import NavComponent from './Navs/NavComponent';
+import NavComponent from '../../components/pages/Navs/NavComponent';
 
 const DesignsController = ({template}) => {
 

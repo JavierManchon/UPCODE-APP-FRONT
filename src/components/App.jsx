@@ -1,6 +1,5 @@
 import React from 'react'
-import DesignsController from './DesignsController/DesignsController'
-import Catalogue from './Catalogue/Catalogue'
+import Catalogue from './pages/Catalogue/Catalogue'
 
 function App() {
   return (
