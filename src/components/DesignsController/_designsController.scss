@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.container-all {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}

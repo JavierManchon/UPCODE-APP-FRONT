@@ -1,0 +1,62 @@
+/* Estilos para el header */
+header {
+  
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  width: 20%; /* Ajusta el ancho según el tamaño de tu logotipo */
+  height: 20%;
+  border-radius: 6%;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-left: 10px;
+}
+
+nav a {
+  font-family:fantasy;
+  color: #fff;
+  text-decoration: none;
+}
+nav a:hover {
+  box-shadow: rgb(20, 28, 136) 0px 0px 0px 1px, inset white 0px 0px 0px 1px;
+  text-decoration:  underline;
+}
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#video-background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%; /* Cambiado de min-width a width */
+  height: 100%; /* Cambiado de min-height a height */
+  z-index: -1;
+  object-fit: cover; /* Para ajustar el video a la caja */
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+}
+
