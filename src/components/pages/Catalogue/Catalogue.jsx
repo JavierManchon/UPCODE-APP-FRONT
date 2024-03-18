@@ -56,10 +56,49 @@ const Catalogue = () => {
             textDecoration: 'underline',
             fontWeight: 'bold'
           }
+        },
+        {
+          name: "BtnHoverUp",
+          elementType: 'button',
+          defaultContent: {
+            children: null,
+            items: null,
+            count: null,
+            type: "submit"
+          },
+          defaultStyles:["btn-up"],
+          edit: {
+            text: [],
+            bgColor: null,
+            fontColor: null,
+            fontSize: null,
+            fontWeight: null
+          }
+        },
+        {
+          name: "BtnHoverDown",
+          elementType: 'button',
+          defaultContent: {
+            children: null,
+            items: null,
+            count: null,
+            type: "submit"
+          },
+          defaultStyles:["btn-up"],
+          edit: {
+            text: ["Enviar"],
+            bgColor: "#000",
+            fontColor: "#fff",
+            fontSize: "20px",
+            fontWeight: "bold",
+            borderRadius: "5px",
+            outline: "none",
+            border: "1px solid #000"
+          }
         }
     ];
 
-    const template = templates[5];
+    const template = templates[7];
     return (
         <DesignsController template={template}/>
     )
