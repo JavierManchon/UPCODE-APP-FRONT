@@ -41,9 +41,21 @@ const Catalogue = () => {
         {
           name: 'FooterVertical',
           elementType: 'footer',
-          defaultContent: 
-            { children: "ul", items: "li", count: 3 },
-          defaultStyles:["footerVertical", "ul", "li"]
+          defaultContent: { 
+            children: "ul", 
+            items: "li", 
+            count: 3,
+            type: null
+          },
+          defaultStyles:["footerVertical", "ul", "li"],
+          edit: {
+            text: ["Home", "Contact", "Designs"],
+            bgColor: '#000',
+            fontColor: '#fff',
+            fontSize: '40px',
+            textDecoration: 'underline',
+            fontWeight: 'bold'
+          }
         }
     ];
 
