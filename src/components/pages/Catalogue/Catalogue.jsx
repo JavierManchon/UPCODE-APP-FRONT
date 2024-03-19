@@ -110,7 +110,7 @@ const Catalogue = () => {
         }
     ];
 
-    const template = templates[4];
+    const template = templates[5];
     return (
         <DesignsController template={template}/>
     )
