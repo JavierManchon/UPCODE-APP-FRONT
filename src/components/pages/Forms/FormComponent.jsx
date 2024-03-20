@@ -4,7 +4,7 @@ import '../../../css/app.scss';
 
 const FormComponent = ({ template }) => {
     const [labelValues, setLabelValues] = useState(() => {
-        if (template.edit && template.edit.text) {
+        if (template.edit && template.edit.text > 0) {
             return [...template.edit.text];
         } else {
             return Array.from({ length: template.defaultContent.countChildren }, () =>
