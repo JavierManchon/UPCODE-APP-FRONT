@@ -5,17 +5,17 @@ import '../../../css/app.scss';
 const SectionComponent = ({ template }) => {
     console.log(template)
     const [h2Values, setH2Values] = useState(() => {
-        if(template.edit && template.edit.textTitle) {
-            return [...template.edit.textTitle];
+        if(template.edit && template.edit.textArray) {
+            return [...template.edit.textArray];
         } else {
-            return (Array.from({ length: template.defaultContent.count }, () => 'Item'));
+            return (Array.from({ length: template.defaultContent.countChildren }, () => 'Item'));
         }
     });
     const [pValues, setPValues] = useState(() => {
-        if(template.edit && template.edit.text) {
-            return [...template.edit.text];
+        if(template.edit && template.edit.textArray2) {
+            return [...template.edit.textArray2];
         } else {
-            return (Array.from({ length: template.defaultContent.count }, () => 'Item'));
+            return (Array.from({ length: template.defaultContent.countChildren }, () => 'Item'));
         }
     });
 
@@ -27,30 +27,30 @@ const SectionComponent = ({ template }) => {
 
 
     const [h2FontColor, setH2FontColor] = useState('');
-    const [h2FontColorEdit, setH2FontColorEdit] = useState(template.edit.h2FontColor);
+    const [h2FontColorEdit, setH2FontColorEdit] = useState(template.edit.colorTitle);
 
 
     const [pFontColor, setPFontColor] = useState('');
-    const [pFontColorEdit, setPFontColorEdit] = useState(template.edit.pFontColor);
+    const [pFontColorEdit, setPFontColorEdit] = useState(template.edit.colorItem);
 
 
     const [h2FontSize, setH2FontSize] = useState('');
-    const [h2FontSizeEdit, setH2FontSizeEdit] = useState(template.edit.h2FontSize);
+    const [h2FontSizeEdit, setH2FontSizeEdit] = useState(template.edit.fontSizeTitle);
 
     const [pFontSize, setPFontSize] = useState('');
-    const [pFontSizeEdit, setPFontSizeEdit] = useState(template.edit.pFontSize);
+    const [pFontSizeEdit, setPFontSizeEdit] = useState(template.edit.fontSizeItem);
 
     const [h2FontWeight, setH2FontWeight] = useState('');
-    const [h2FontWeightEdit, setH2FontWeightEdit] = useState(template.edit.h2FontWeight);
+    const [h2FontWeightEdit, setH2FontWeightEdit] = useState(template.edit.fontWeightTitle);
 
     const [pFontWeight, setPFontWeight] = useState('');
-    const [pFontWeightEdit, setPFontWeightEdit] = useState(template.edit.pFontWeight);
+    const [pFontWeightEdit, setPFontWeightEdit] = useState(template.edit.fontWeightItem);
 
     const [h2TextDecoration, setH2TextDecoration] = useState('');
-    const [h2TextDecorationEdit, setH2TextDecorationEdit] = useState(template.edit.h2TextDecoration);
+    const [h2TextDecorationEdit, setH2TextDecorationEdit] = useState(template.edit.textDecorationTitle);
 
     const [pTextDecoration, setPTextDecoration] = useState('');
-    const [pTextDecorationEdit, setPTextDecorationEdit] = useState(template.edit.pTextDecoration);
+    const [pTextDecorationEdit, setPTextDecorationEdit] = useState(template.edit.textDecorationText);
 
     const [sectionStyles, setSectionStyles] = useState([]);
     
@@ -226,21 +226,21 @@ const SectionComponent = ({ template }) => {
         <div className='container-pages-default-styles'>
 <div className='container-editor'>
     <p>{'<'}{template.elementType}{'>'}</p>
-    {Array.from({ length: template.defaultContent.count }).map((_, index) => (
+    {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
         <React.Fragment key={index}>
             {/* Asume que `children` es un array con al menos dos elementos, donde el primer elemento es tratado como un contenedor (ej. div) y el segundo como el título (ej. h2) */}
-            <div className='article'>
+            <div className= {`${template.defaultContent.children[0]}`}>
                 <p>{'<'}{template.defaultContent ? template.defaultContent.children[0] : null}{'>'}</p>
                 {/* Aquí asumimos que querías un h2 basado en tu función handleH2Change */}
-                <p className='H2'>
+                <p className= {`${template.defaultContent.children[1]}`}>
                     {'<'}{template.defaultContent ? template.defaultContent.children[1] : null}{'>'}
                     <input type='text' onChange={handleH2Change(index)} maxLength={12} placeholder='Máximo 12 caracteres'/>
                     {'</'}{template.defaultContent ? template.defaultContent.children[1] : null}{'>'}
                 </p>
-                <p>
-                            {'<'}{template.defaultContent ? template.defaultContent.items : null}{'>'}
+                <p >
+                            {'<'}{template.defaultContent ? template.defaultContent.grandson[0] : null}{'>'}
                             <input type='text' onChange={handlePChange(index)} maxLength={12} placeholder='Máximo 12 caracteres'/>
-                            {'</'}{template.defaultContent ? template.defaultContent.items : null}{'>'}
+                            {'</'}{template.defaultContent ? template.defaultContent.grandson[0] : null}{'>'}
                         </p>
             
                 <p>{'</'}{template.defaultContent ? template.defaultContent.children[0] : null}{'>'}</p>
@@ -263,73 +263,107 @@ const SectionComponent = ({ template }) => {
                         !template.edit.ArticleBgColor ? handleArticleBgColor : handleArticleBgColorEdit}/>
                 </label>
                 
-                <label htmlFor="h2FontColor">
+                <label htmlFor="colorTitle">
                     <p>Color de Letra para H2</p>
-                    <input type="color" id='h2FontColor' onChange={
-                        !template.edit.h2FontColor ? handleH2FontColor : handleH2FontColorEdit}/>
+                    <input type="color" id='colorTitle' onChange={
+                        !template.edit.colorTitle ? handleH2FontColor : handleH2FontColorEdit}/>
                 </label>
 
-                <label htmlFor="pFontColor">
+                <label htmlFor="colorItem">
                     <p>Color de Letra para P</p>
-                    <input type="color" id='pFontColor' onChange={
-                        !template.edit.pFontColor ?  handlePFontColor : handlePFontColorEdit}/>
+                    <input type="color" id='colorItem' onChange={
+                        !template.edit.colorItem ?  handlePFontColor : handlePFontColorEdit}/>
                 </label>
                 
-                <label htmlFor="h2FontSize">
+                <label htmlFor="fontSizeTitle">
                     Tamaño de Letra para H2
-                    <input type="number" id="h2FontSize" onChange={
-                        !template.edit.h2FontSize ?  handleH2FontSizeChange : handleH2FontSizeChangeEdit} />
+                    <input type="number" id="fontSizeTitle" onChange={
+                        !template.edit.fontSizeTitle ?  handleH2FontSizeChange : handleH2FontSizeChangeEdit} />
                     </label>
-                    <label htmlFor="pFontSize">
+                    <label htmlFor="fontSizeItem">
                     Tamaño de Letra para P
-                    <input type="number" id="pFontSize" onChange={
-                        !template.edit.pFontSize ? handlePFontSizeChange : handlePFontSizeChangeEdit} />
+                    <input type="number" id="fontSizeItem" onChange={
+                        !template.edit.fontSizeItem ? handlePFontSizeChange : handlePFontSizeChangeEdit} />
                 </label>
                 
-                <label htmlFor="h2fontWeight">
+                <label htmlFor="fontWeightTitle">
                     <p>Negrita H2</p>
                     <div>
-                    <input type="radio" name='fontWeight' value="bold" onChange={
-                        !template.edit.h2FontWeight ?  handleH2FontWeightChange : handleH2FontWeightChangeEdit}/>
-                    <input type="radio" name='fontWeight' value="normal" onChange={
-                        !template.edit.h2FontWeight ?  handleH2FontWeightChange : handleH2FontWeightChangeEdit }/>
-                    </div>
-                    
+                    <input   type="checkbox" 
+                        name='FontWeightTitle' 
+                        value="bold" 
+                        checked={template.edit.fontWeightTitle ? h2FontWeightEdit === "bold" : h2FontWeight === "bold"}
+                        onChange={(event) => {
+                            const isChecked = event.target.checked;
+                            const newValue = isChecked ? "bold" : "normal";
+                            if (!template.edit.fontWeighTitle) {
+                                setH2FontWeight(newValue);
+                            } else {
+                                setH2FontWeightEdit(newValue);
+                            }
+                        }}/>
+                    </div>                    
                 </label>
 
-                <label htmlFor="pfontWeight">
+                <label htmlFor="fontWeightItem">
                     <p>Negrita P</p>
                     <div>
-                    <input type="radio" name='fontWeight' value="bold" onChange={
-                        !template.edit.pFontWeight ?  handlePFontWeightChange : handlePFontWeightChangeEdit }/>
-                    <input type="radio" name='fontWeight' value="normal" onChange={
-                        !template.edit.pFontWeight ?  handlePFontWeightChange : handlePFontWeightChangeEdit }/>
+                    <input   type="checkbox" 
+                        name='FontWeightItem' 
+                        value="bold" 
+                        checked={template.edit.fontWeightItem ? pFontWeightEdit === "bold" : pFontWeight === "bold"}
+                        onChange={(event) => {
+                            const isChecked = event.target.checked;
+                            const newValue = isChecked ? "bold" : "normal";
+                            if (!template.edit.fontWeighItem) {
+                                setPFontWeight(newValue);
+                            } else {
+                                setPFontWeightEdit(newValue);
+                            }
+                        }}/>
                     </div>
                     
                 </label>
 
 
                 
-                <label htmlFor="h2TextDecoration">
+                <label htmlFor="textDecorationTitle">
                     <p>Subrayado H2</p>
                     <div>
-                    <input type="radio" name='textDecoration' value="underline" onChange={
-                        !template.edit.h2TextDecoration ?  handleH2TextDecorationChange : handleH2TextDecorationChangeEdit}/>
-                    <input type="radio" name='textDecoration' value="none" onChange={
-                        !template.edit.h2TextDecoration ?  handleH2TextDecorationChange : handleH2TextDecorationChangeEdit}/>
+                    <input   type="checkbox" 
+                        name='textDecorationTitle' 
+                        value="underline" 
+                        checked={template.edit.textDecorationTitle ? h2TextDecorationEdit === "underline" : h2TextDecoration === "underline"}
+                        onChange={(event) => {
+                            const isChecked = event.target.checked;
+                            const newValue = isChecked ? "underline" : "none";
+                            if (!template.edit.textDecorationTitle) {
+                                setH2TextDecoration(newValue);
+                            } else {
+                                setH2TextDecorationEdit(newValue);
+                            }
+                        }}/>
                     </div>
                     
                 </label>
 
-                <label htmlFor="PTextDecoration">
+                <label htmlFor="textDecorationText">
                     <p>Subrayado P</p>
                     <div>
-                    <input type="radio" name='textDecoration' value="underline" onChange={
-                        !template.edit.pTextDecoration ? handlePTextDecorationChange : handlePTextDecorationChangeEdit}/>
-                    <input type="radio" name='textDecoration' value="none" onChange={
-                        !template.edit.pTextDecoration ? handlePTextDecorationChange : handlePTextDecorationChangeEdit}/>
-                    </div>
-                    
+                    <input   type="checkbox" 
+                        name='textDecorationText' 
+                        value="underline" 
+                        checked={template.edit.textDecorationText ? pTextDecorationEdit === "underline" : pTextDecoration === "underline"}
+                        onChange={(event) => {
+                            const isChecked = event.target.checked;
+                            const newValue = isChecked ? "underline" : "none";
+                            if (!template.edit.textDecorationText) {
+                                setPTextDecoration(newValue);
+                            } else {
+                                setPTextDecorationEdit(newValue);
+                            }
+                        }}/>
+                    </div>                    
                 </label>
                 
             </div>
@@ -345,10 +379,10 @@ const SectionComponent = ({ template }) => {
 
      }} ref={visualSection}>
 
-        {Array.from({ length: template.defaultContent.count }).map((_, index) => (
+        {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
             <article className={template.defaultStyles[1]} style={{ backgroundColor:
 
-             template.edit.Article ? 
+             template.edit.bgColorArticle ? 
 
              `${ArticleBgColorEdit}`
 
@@ -357,7 +391,7 @@ const SectionComponent = ({ template }) => {
               }} key={index} ref={visualArticle}>
                 <h2 className={template.defaultStyles[2]} style={{ color:
 
-                 template.edit.h2 ?
+                 template.edit.colorTitle ?
 
                   `${h2FontColorEdit}` 
 
@@ -365,7 +399,7 @@ const SectionComponent = ({ template }) => {
                   
                    fontSize:
 
-                   template.edit.h2 ?
+                   template.edit.fontSizeTitle ?
 
                     `${h2FontSizeEdit}`
 
@@ -373,7 +407,7 @@ const SectionComponent = ({ template }) => {
                     
                      fontWeight: 
 
-                     template.edit.h2 ?
+                     template.edit.fontWeightTitle ?
 
                     `${h2FontWeightEdit}`
 
@@ -382,7 +416,7 @@ const SectionComponent = ({ template }) => {
                     
                      textDecoration:
                      
-                     template.edit.h2 ?
+                     template.edit.textDecorationTitle ?
                      
                       `${h2TextDecorationEdit}`
 
@@ -391,9 +425,9 @@ const SectionComponent = ({ template }) => {
                       
                        }}>{h2Values[index]}</h2>
 
-                {Array.from({ length: template.defaultContent.count2 }).map((_, pIndex) => (
+              
                     <p className={template.defaultStyles[3]} style={{ color:
-                    template.edit.p ? 
+                    template.edit.colorItem ? 
                     
                      `${pFontColorEdit}`
                      
@@ -401,7 +435,7 @@ const SectionComponent = ({ template }) => {
                      
                       fontSize:
                       
-                      template.edit.p ? 
+                      template.edit.fontSizeItem ? 
                       
                        `${pFontSizeEdit}`
                        
@@ -409,7 +443,7 @@ const SectionComponent = ({ template }) => {
                        
                        fontWeight:
 
-                       template.edit.p?
+                       template.edit.fontWeightItem?
                        
                         `${pFontWeightEdit}`
                         
@@ -417,16 +451,17 @@ const SectionComponent = ({ template }) => {
                         
                          textDecoration:
 
-                         template.edit.p?
+                         template.edit.textDecorationText?
                          
                           `${pTextDecoration}`
                           
                           :`${pTextDecoration}`, 
                           
-                          }} key={`${index}-${pIndex}`}>{pValues[pIndex]}</p>
-                ))}
+                          }} key={`${index}-${index}`}>{pValues[index]}</p>
             </article>
-        ))}
+                ))}
+
+
     </section>
 </div>
 
@@ -437,24 +472,23 @@ const SectionComponent = ({ template }) => {
                 </div>
                 <div id='html' className='html'>
                     <span>{'<'}{template.elementType}{'>'}</span>
-                    <span>{'<'}{template.defaultContent ? template.defaultContent.children[0] : null}{'>'}</span>
-                    {Array.from({ length: template.defaultContent.count }).map((_, index) => (
+                    {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
                     <React.Fragment key={index}>
+                    <span>{'<'}{template.defaultContent ? template.defaultContent.children[0] : null}{'>'}</span>
                         <span> 
                             {'<' + (template.defaultContent ? template.defaultContent.children[1] : null) + '>'}
                             {h2Values[index]}
                             {'</' + (template.defaultContent ? template.defaultContent.children[1] : null) + '>'}
                         </span>
                         <span> 
-                            {'<' + (template.defaultContent ? template.defaultContent.items : null) + '>'}
+                            {'<' + (template.defaultContent ? template.defaultContent.grandson[0] : null) + '>'}
                             {pValues[index]}
-                            {'</' + (template.defaultContent ? template.defaultContent.items : null) + '>'}
+                            {'</' + (template.defaultContent ? template.defaultContent.grandson[0] : null) + '>'}
                         </span>
+                        <span>{'</'}{template.defaultContent ? template.defaultContent.children[0] : null}{'>'}</span>
                     </React.Fragment>
-                    ))}            
- 
-                    <span>{'</'}{template.defaultContent ? template.defaultContent.children[0] : null}{'>'}</span>
-                    <span>{'</'}{template.elementType}{'>'}</span>
+                    ))}       
+                     <span>{'</'}{template.elementType}{'>'}</span>
                 </div>
             </div>
             <div className='container-renderized_css'>
