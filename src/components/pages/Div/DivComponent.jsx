@@ -4,12 +4,13 @@ import '../../../css/app.scss';
 
 
 const DivComponent = ({ template }) => {
+    const [numP, setNumP] = useState(template.defaultContent.countChildren);
     const [pValues, setPValues] = useState(()=>{
-        if(template.edit && template.edit.text){
-            return [...template.edit.text];
+        if(template.edit && template.edit.textArray){
+            return [...template.edit.textArray];
         }else{
             // Corrección: Asegurarse de retornar el Array.from(...)
-            return Array.from({ length: template.defaultContent.countChildren }, () => 'Item');
+            return Array.from({ length: numP }, () => 'Item');
         }
     });
 
@@ -20,6 +21,7 @@ const DivComponent = ({ template }) => {
     const [fontWeight, setFontWeight] = useState(template.edit.fontWeightText ? template.edit.fontWeightText : '');
     const [divStyles, setDivStyles] = useState([]);
     const [pStyles, setPStyles] = useState([]);
+  
 
     const handlePChange = (index) => (event) => {
         const newPValues = [...pValues];
@@ -41,6 +43,11 @@ const DivComponent = ({ template }) => {
 
     const handleFontWeight = (event) => {
         setFontWeight(event.target.value)
+    }
+
+    const handleNumP = (event) => {
+        setNumP(event.target.value)
+        
     }
 
     const visualDiv = useRef(null);
@@ -97,12 +104,12 @@ const DivComponent = ({ template }) => {
         <div className='container-pages-default-styles'>
             <div className='container-editor'>
                 <p>{'<'}{template.elementType}{'>'}</p>
-                {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
+                {Array.from({ length: numP }).map((_, index) => (
                 <React.Fragment key={index}>
                     <p>
-                        {'<'}{template.defaultContent ? template.defaultContent.children : null}{'>'}
+                        {'<'}{template.defaultContent ? template.defaultContent.children[0] : null}{'>'}
                         <input type='text' onChange={handlePChange(index)} maxLength={12} placeholder='Máximo 12 caracteres'/>
-                        {'</'}{template.defaultContent ? template.defaultContent.children : null}{'>'
+                        {'</'}{template.defaultContent ? template.defaultContent.children[0] : null}{'>'
                     }</p>
                 </React.Fragment>
                 ))}
@@ -128,18 +135,33 @@ const DivComponent = ({ template }) => {
                 <label htmlFor="fontWeight">
                     <p>Negrita</p>
                     <div>
-                    <input type="radio" name='fontWeight' value="bold" onChange={handleFontWeight}/>
-                    <input type="radio" name='fontWeight' value="normal" onChange={handleFontWeight}/>
+                    <input 
+                        type="checkbox" 
+                        name='fontWeight' 
+                        value="bold" 
+                        checked={fontWeight === "bold"}
+                        onChange={(event) => {
+                            const isChecked = event.target.checked;
+                            const newValue = isChecked ? "bold" : "normal";
+                            setFontWeight(newValue)
+                        }}
+                    />
                     </div>
                     
+                </label>
+
+                <label htmlFor="numP">
+                    <p>Nº de Líneas</p>
+                    <input type="number" id='numP' min={1} max={5} onChange={handleNumP}/>
+
                 </label>
                 
             </div>
 
             <div className="container-renderized_visual" >
                 <div className={template.defaultStyles[0]} style={{backgroundColor: `${bgColor}`}} ref={visualDiv}>
-                        {pValues.map((value, index) => (
-                            <p className={template.defaultStyles[1]} key={index} style={{color: `${fontColor}`, fontSize: `${fontSize}`, fontWeight: `${fontWeight}`}} ref={visualP}>{value}</p>
+                {Array.from({ length: numP }).map((_, index) => (
+                            <p className={template.defaultStyles[1]} key={index} style={{color: `${fontColor}`, fontSize: `${fontSize}`, fontWeight: `${fontWeight}`}} ref={visualP}>{pValues[index] }</p>
                         ))}
                 </div>
             </div>
@@ -151,12 +173,12 @@ const DivComponent = ({ template }) => {
                 </div>
                 <div id='html' className='html'>
                     <span>{'<'}{template.elementType}{'>'}</span>
-                    {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
+                    {Array.from({ length: numP }).map((_, index) => (
                     <React.Fragment key={index}>
                         <span> 
-                            {'<' + (template.defaultContent ? template.defaultContent.children : null) + '>'}
+                            {'<' + (template.defaultContent ? template.defaultContent.children[0] : null) + '>'}
                             {pValues[index]}
-                            {'</' + (template.defaultContent ? template.defaultContent.children : null) + '>'}
+                            {'</' + (template.defaultContent ? template.defaultContent.children[0] : null) + '>'}
                         </span>
                     </React.Fragment>
                     ))}

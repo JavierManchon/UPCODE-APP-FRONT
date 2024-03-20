@@ -118,7 +118,7 @@ const Catalogue = () => {
         name: 'divPColumn',
         elementType: 'div',
         defaultContent: 
-          { children: ["p"], grandson :null ,countChildren: 3, countGrandson: null},
+          { children: ["p"], grandson :null ,countChildren: 1, countGrandson: null, tagInfo: null },
         defaultStyles:["divPColumn", "p"],
         edit: {
           text: null,

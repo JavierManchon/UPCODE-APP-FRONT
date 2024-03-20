@@ -1,126 +1,124 @@
+
 div.container-pages-default-styles{
 
-div.container-editor{
-
-    div.article{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        p{
-            transform: translateX(42%);
+    div.container-editor{
+    
+        div.article{
             width: 100%;
-        }
-    }
-
-    
-}
-    .sectionColumn {
-        background-color: rgb(99, 247, 188);
-        width: 100%;
-        padding: 6px;
-    
-        .article {
             display: flex;
             flex-direction: column;
+            align-items: center;
+    
+            p{
+                transform: translateX(42%);
+                width: 100%;
+            }
+        }
+    
+        
+    }
+        .sectionColumn {
+            background-color: rgb(99, 247, 188);
+            width: 100%;
+            padding: 6px;
+        
+            .article {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border: 2px solid black;
+        
+                width: 100%;
+                gap: 5px;
+        
+                .h2 {
+                    color: #f7639e;
+                }
+                .p{
+                    color:orange;
+    
+                }
+            }
+        }
+        .sectionRow {
+            background-color: rgb(206, 53, 53);
+            width: 100%;
+            padding: 6px;
+        
+            .article {
+                display: flex;
+                flex-direction: row;
+                justify-content:  space-around;
+                align-items: center;
+                border: 2px solid black;
+        
+                width: 100%;
+                gap: 5px;
+        
+                .h2 {
+                    color: #3b92b4;
+                }
+                .p{
+                    color:rgb(44, 167, 20);
+    
+                }
+            }
+        }
+        .SectionColumnSpace {
+            background-color: rgb(55, 33, 180);
+            width: 100%;
+            padding: 6px;
+            display: flex;
             justify-content: center;
-            align-items: center;
-            border: 2px solid black;
     
-            width: 100%;
-            gap: 5px;
+        
+            .article {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 2px solid black;
     
-            .h2 {
-                color: #f7639e;
-            }
-            .p{
-                color:orange;
-
-            }
-        }
-    }
-    .sectionRow {
-        background-color: rgb(206, 53, 53);
-        width: 100%;
-        padding: 6px;
+        
+                width: 100%;
+                gap: 5px;
+        
+                .h2 {
+                    color: #e4fd00;
+                }
+                .p{
+                    color:rgb(206, 27, 131);
     
-        .article {
-            display: flex;
-            flex-direction: row;
-            justify-content:  space-around;
-            align-items: center;
-            border: 2px solid black;
-    
-            width: 100%;
-            gap: 5px;
-    
-            .h2 {
-                color: #3b92b4;
-            }
-            .p{
-                color:rgb(44, 167, 20);
-
+                }
             }
         }
-    }
-    .SectionColumnSpace {
-        background-color: rgb(55, 33, 180);
-        width: 100%;
-        padding: 6px;
-        display: flex;
-        justify-content: center;
-
-    
-        .article {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 2px solid black;
-
-    
+        .SectionRowContract {
+            background-color: rgb(58, 14, 56);
             width: 100%;
-            gap: 5px;
+            padding: 6px;
+        
+            .article {
+                display: flex;
+                flex-direction: row;
+                justify-content:  center;
+                align-items: center;
+                width: 100px;
+                height: 70px;
+                border: 2px solid black;
+        
+                width: 100%;
+                gap: 5px;
+        
+                .h2 {
+                    color: #4fb43b;
+                }
+                .p{
+                    color:rgb(189, 71, 169);
     
-            .h2 {
-                color: #e4fd00;
-            }
-            .p{
-                color:rgb(206, 27, 131);
-
+                }
             }
         }
+    
+    
+    
     }
-    .SectionRowContract {
-        background-color: rgb(58, 14, 56);
-        width: 100%;
-        padding: 6px;
-    
-        .article {
-            display: flex;
-            flex-direction: row;
-            justify-content:  center;
-            align-items: center;
-            width: 100px;
-            height: 70px;
-            border: 2px solid black;
-    
-            width: 100%;
-            gap: 5px;
-    
-            .h2 {
-                color: #4fb43b;
-            }
-            .p{
-                color:rgb(189, 71, 169);
-
-            }
-        }
-    }
-
-
-
-}
-
-
-
