@@ -92,30 +92,6 @@ const FormComponent = ({ template }) => {
         setLabelFontSizeEdit(`${event.target.value}px`)
     }
 
-    const handleLabelFontWeight = (event) => {
-        setLabelFontWeight(event.target.value)
-    }
-
-    const handleLabelFontWeightEdit = (event) => {
-        setLabelFontWeightEdit(event.target.value)
-    }
-
-    const handleTextDecoration = (event) => {
-        setTextDecoration(event.target.value)
-    }
-
-    const handleTextDecorationEdit = (event) => {
-        setTextDecorationEdit(event.target.value)
-    }
-
-    const handleButtonFontWeight = (event) => {
-        setButtonFontWeight(event.target.value)
-    }
-
-    const handleButtonFontWeightEdit = (event) => {
-        setButtonFontWeightEdit(event.target.value)
-    }
-
     const handleBgButtonColor = (event) => {
         setBgButtonColor(event.target.value)
     }
