@@ -1,18 +1,31 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../../../css/app.scss";
-import "../Figures/_figureComponent.scss"
+import "../Figures/_figureComponent.scss";
 
 const FigureComponent = ({ template }) => {
-  
-  const [colorText, setColorText] = useState(template.edit.colorText ? template.edit.colorText : "");
-  const [fontSize, setFontSize] = useState(template.edit.fontSize ? `${template.edit.fontSize}px` : "");
-  const [fontWeight, setFontWeight] = useState(template.edit.fontWeight ? template.edit.fontWeight : "");
-  const [textDecoration, setTextDecoration] = useState(template.edit.textDecoration ? template.edit.textDecoration : "");
+  const [colorText, setColorText] = useState(
+    template.edit.colorText ? template.edit.colorText : ""
+  );
+  const [fontSize, setFontSize] = useState(
+    template.edit.fontSizeText ? `${template.edit.fontSizeText}px` : ""
+  );
+  const [fontWeight, setFontWeight] = useState(
+    template.edit.fontWeightText ? template.edit.fontWeightText : ""
+  );
+  const [textDecoration, setTextDecoration] = useState(
+    template.edit.textDecorationText ? template.edit.textDecorationText : ""
+  );
   const [figureStyles, setFigureStyles] = useState({});
   const [imgStyles, setImgStyles] = useState({});
   const [figcaptionStyles, setFigcaptionStyles] = useState({});
-  const [imgUrl, setImgUrl] = useState(template.edit.imgUrl ? template.edit.imgUrl : "https://free4kwallpapers.com/uploads/originals/2020/08/15/-programming-wallpaper.png");
-  const [figcaption, setFigcaption] = useState(template.edit.figcaption ? template.edit.figcaption : "texto predefinido");
+  const [imgUrl, setImgUrl] = useState(
+    template.edit.textItem
+      ? template.edit.textItem
+      : "https://free4kwallpapers.com/uploads/originals/2020/08/15/-programming-wallpaper.png"
+  );
+  const [figcaption, setFigcaption] = useState(
+    template.edit.text ? template.edit.text : "imagen de una closeTag"
+  );
 
   const handleFontColor = (event) => {
     setColorText(event.target.value);
@@ -20,14 +33,6 @@ const FigureComponent = ({ template }) => {
 
   const handleFontSize = (event) => {
     setFontSize(`${event.target.value}px`);
-  };
-
-  const handleFontWeight = (event) => {
-    setFontWeight(event.target.value);
-  };
-
-  const handleTextDecoration = (event) => {
-    setTextDecoration(event.target.value);
   };
 
   const handleImgUrlChange = (event) => {
@@ -46,13 +51,12 @@ const FigureComponent = ({ template }) => {
       );
       setFigureStyles({
         width: "100%",
-        maxWidth:"350px",
-        height: computedFigureStyles.height,
+        maxWidth: "350px",
         padding: computedFigureStyles.padding,
         flexDirection: computedFigureStyles.flexDirection,
       });
     }
-  }, [visualFigure]);
+  }, [figcaption]);
 
   const visualImg = useRef(null);
   useEffect(() => {
@@ -63,22 +67,24 @@ const FigureComponent = ({ template }) => {
         flexDirection: computedImgStyles.flexDirection,
       });
     }
-  }, [visualImg]);
+  }, [imgUrl]);
 
   const visualFigcaption = useRef(null);
   useEffect(() => {
     if (visualFigcaption.current) {
       const computedFigcaptionStyles = window.getComputedStyle(
         visualFigcaption.current
+        
       );
       setFigcaptionStyles({
         color: computedFigcaptionStyles.color,
         fontSize: computedFigcaptionStyles.fontSize,
         fontWeight: computedFigcaptionStyles.fontWeight,
         textDecoration: computedFigcaptionStyles.textDecoration,
+        
       });
     }
-  }, [visualFigcaption, colorText, fontSize, fontWeight, textDecoration]);
+  }, [ colorText, fontSize, fontWeight, textDecoration]);
 
   const copyToClipboard = (elementId) => {
     const element = document.getElementById(elementId);
@@ -89,6 +95,15 @@ const FigureComponent = ({ template }) => {
     selection.addRange(range);
     document.execCommand("copy");
     selection.removeAllRanges();
+  };
+
+
+  const getFirstWord = (text) => {
+    if (text) {
+      const words = text.split(" ");
+      return words[0];
+    }
+    return null;
   };
 
   return (
@@ -131,16 +146,15 @@ const FigureComponent = ({ template }) => {
           <p>Negrita</p>
           <div>
             <input
-              type="radio"
+              type="checkbox"
               name="fontWeight"
               value="bold"
-              onChange={handleFontWeight}
-            />
-            <input
-              type="radio"
-              name="fontWeight"
-              value="normal"
-              onChange={handleFontWeight}
+              checked={fontWeight === "bold"}
+              onChange={(event) => {
+                const isChecked = event.target.checked;
+                const newValue = isChecked ? "bold" : "normal";
+                setFontWeight(newValue);
+              }}
             />
           </div>
         </label>
@@ -149,21 +163,20 @@ const FigureComponent = ({ template }) => {
           <p>Subrayado</p>
           <div>
             <input
-              type="radio"
+              type="checkbox"
               name="textDecoration"
               value="underline"
-              onChange={handleTextDecoration}
-            />
-            <input
-              type="radio"
-              name="textDecoration"
-              value="none"
-              onChange={handleTextDecoration}
+              checked={textDecoration === "underline"}
+              onChange={(event) => {
+                const isChecked = event.target.checked;
+                const newValue = isChecked ? "underline" : "none";
+                setTextDecoration(newValue);
+              }}
             />
           </div>
+
         </label>
       </div>
-
 
       <div className="container-renderized_visual">
         <figure className={template.defaultStyles[0]} ref={visualFigure}>
@@ -194,12 +207,12 @@ const FigureComponent = ({ template }) => {
           <button onClick={() => copyToClipboard("html")}>Copiar</button>
         </div>
         <div id="html" className="html">
-          <span>{"<figure>"}</span>
+          <span>{`<${template.elementType}>`}</span>
           <br></br>
-          <span>{'<img src="' + imgUrl + '" alt="Image" />'}</span>
-          <span>{"<figcaption>" + figcaption + "</figcaption>"}</span>
+          <span>{`<${template.defaultContent.children[0]} src="` + imgUrl + `" alt="" />`}</span>
+          <span>{`<${template.defaultContent.grandson[0]}>` + figcaption + `</${template.defaultContent.grandson[0]}>`}</span>
           <br></br>
-          <span>{"</figure>"}</span>
+          <span>{`</${template.elementType}>`}</span>
         </div>
       </div>
 
@@ -217,7 +230,6 @@ const FigureComponent = ({ template }) => {
             <span>width: {figureStyles.width};</span>
             <span>maxWidth: {figureStyles.maxWidth};</span>
             <span>padding: {figureStyles.padding};</span>
-            <span>height: {figureStyles.height};</span>
             <span>{"}"}</span>
           </div>
         </div>
@@ -232,7 +244,7 @@ const FigureComponent = ({ template }) => {
               {" {"}
             </span>
             <span>width: {imgStyles.width};</span>
-            
+
             <span>{"}"}</span>
           </div>
         </div>
@@ -249,7 +261,7 @@ const FigureComponent = ({ template }) => {
               <span>{`color: ${figcaptionStyles.color};`}</span>
               <span>{`font-size: ${figcaptionStyles.fontSize};`}</span>
               <span>{`font-weight: ${figcaptionStyles.fontWeight};`}</span>
-              <span>{`text-decoration: ${figcaptionStyles.textDecoration};`}</span>
+              <span>{`text-decoration: ${getFirstWord(figcaptionStyles.textDecoration)};`}</span>
               <span>{"}"}</span>
             </div>
           </div>
@@ -260,6 +272,3 @@ const FigureComponent = ({ template }) => {
 };
 
 export default FigureComponent;
-
-
-

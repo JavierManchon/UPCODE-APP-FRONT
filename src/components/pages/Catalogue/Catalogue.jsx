@@ -94,7 +94,7 @@ const Catalogue = () => {
     {
       name: "FigureLeftText",
       elementType: "figure",
-      defaultContent: { children: "img", items: "figcaption", count: 1 },
+      defaultContent: { children: ["img"], grandson: ["figcaption"], countChildren: 1 , countGrandson:0},
       defaultStyles: ["FigureLeftText", "img", "figcaption"],
       edit: {
         text: null,

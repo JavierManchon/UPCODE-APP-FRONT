@@ -1,0 +1,76 @@
+/* Default styles */
+.payments-container {
+    max-width: 400px;
+    margin: auto; 
+    position: absolute;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 600px) {
+    .payments-container {
+        width: 90%;
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    input {
+        font-size: 14px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
