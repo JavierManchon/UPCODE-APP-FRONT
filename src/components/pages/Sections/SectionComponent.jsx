@@ -5,7 +5,7 @@ import '../../../css/app.scss';
 const SectionComponent = ({ template }) => {
     console.log(template)
     const [h2Values, setH2Values] = useState(() => {
-        if(template.edit && template.edit.textArray) {
+        if(template.edit && template.edit.textArray > 0) {
             return [...template.edit.textArray];
         } else {
             return (Array.from({ length: template.defaultContent.countChildren }, () => 'Item'));

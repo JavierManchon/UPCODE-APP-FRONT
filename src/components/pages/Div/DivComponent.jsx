@@ -6,7 +6,7 @@ import '../../../css/app.scss';
 const DivComponent = ({ template }) => {
     const [numP, setNumP] = useState(template.defaultContent.countChildren);
     const [pValues, setPValues] = useState(()=>{
-        if(template.edit && template.edit.textArray){
+        if(template.edit && template.edit.textArray > 0){
             return [...template.edit.textArray];
         }else{
             // Corrección: Asegurarse de retornar el Array.from(...)
