@@ -100,7 +100,7 @@ const SectionComponent = ({ template }) => {
     };
 
     const handleH2FontSizeChange = (event) => {
-        setH2FontSize(`${event.target.value}px`);
+        setH2FontSize(`${event.target.value}px`  );
     };
     const handleH2FontSizeChangeEdit = (event) => {
         setH2FontSizeEdit(`${event.target.value}px`);

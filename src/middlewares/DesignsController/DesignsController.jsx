@@ -1,6 +1,7 @@
 import React from 'react';
 import NavComponent from '../../components/pages/Navs/NavComponent';
 import SectionComponent from '../../components/pages/Sections/SectionComponent'
+import DivComponent from '../../components/pages/Div/DivComponent'
 
 
 const DesignsController = ({template}) => {
@@ -15,6 +16,10 @@ const DesignsController = ({template}) => {
                      return (
                          <SectionComponent template={template}></SectionComponent>
                    );
+                case 'div':
+                    return (
+                        <DivComponent template={template}></DivComponent>
+                    );
             // case 'figure':
             //     return (
             //         <FigureComponent template={template}></FigureComponent>

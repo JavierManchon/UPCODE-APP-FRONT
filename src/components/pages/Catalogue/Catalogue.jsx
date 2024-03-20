@@ -114,6 +114,41 @@ const Catalogue = () => {
           border: "1px solid #000"
         }
       },
+      {
+        name: 'divPColumn',
+        elementType: 'div',
+        defaultContent: 
+          { children: ["p"], grandson :null ,countChildren: 3, countGrandson: null},
+        defaultStyles:["divPColumn", "p"],
+        edit: {
+          text: null,
+          textItem: null,
+          textTitle: null,
+          bgColorNav: null,
+          bgColorForm: null,
+          bgColorButton: null,
+          bgColorSection: null,
+          bgColorArticle: null,
+          bgColorFigure: null,
+          bgColorFooter: null,
+          bgColorDiv: null,
+          bgColorTable: null,
+          colorTitle: null,
+          colorItem: null,
+          colorText: null,
+          fontSizeTitle: null,
+          fontSizeItem: null,
+          fontSizeText: null,
+          textDecorationTitle: null,
+          textDecorationText: null,
+          fontWeightTitle: null,
+          fontWeightItem: null,
+          fontWeightText: null,
+          border: null,
+          borderRadius: null,
+          outline: null
+        }
+      },
           
 
         
@@ -121,7 +156,7 @@ const Catalogue = () => {
 
     ];
 
-    const template = templates[5];
+    const template = templates[8];
     return (
         <DesignsController template={template}/>
     )
