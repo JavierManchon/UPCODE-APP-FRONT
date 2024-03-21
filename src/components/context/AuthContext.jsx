@@ -10,6 +10,17 @@ export const AuthProvider = ({ children }) => {
     token: sessionStorage.getItem('token') || null
   });
 
+  const register = async (user) => {
+    try {
+      const { data } = await registerReq(user);
+      const { token } = data;
+      sessionStorage.setItem('token', token);
+      setAuthState({ token });
+    } catch (error) {
+      console.error('Error registering:', error);
+    }
+  };
+
   const login = async (user) => {
     try {
       const { data } = await loginReq(user);
@@ -27,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authState, login, logout }}>
+    <AuthContext.Provider value={{ authState, register, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

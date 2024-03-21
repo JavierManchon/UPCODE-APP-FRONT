@@ -366,7 +366,6 @@ const Catalogue = () => {
             bgColorArticle: null,
             bgColorFigure: null,
             bgColorFooter: null,
-            bgColorFooter: '#000',
             bgColorDiv: null,
             bgColorTable: null,
             colorTitle: null,
