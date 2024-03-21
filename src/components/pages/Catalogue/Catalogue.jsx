@@ -381,7 +381,21 @@ const Catalogue = () => {
             fontWeightItem: null,
             fontWeightText: null,
             borderRadius: null,
-      }
+          }
+        },
+        {
+          name: 'FormVerticalCheckbox',
+          elementType: 'form',
+          defaultContent: 
+            { children: ["label", "input"], grandson: ["button"], tagInfo: "checkbox", countChildren: 3, countGrandson: 2 },
+          defaultStyles:["formVerticalCheckbox", "label", "input", "button", "div"]
+        },
+        {
+          name: 'FormVerticalColor',
+          elementType: 'form',
+          defaultContent: 
+            { children: ["label", "input"], grandson: ["button"], tagInfo: "color", countChildren: 1, countGrandson: 1 },
+          defaultStyles:["formVerticalColor", "label", "input", "button", "div"]
     },
     
         {

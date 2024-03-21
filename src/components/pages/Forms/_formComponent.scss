@@ -1,0 +1,25 @@
+//clases de la informacion que damos al usuario
+.formVerticalText, .formVerticalCheckbox, .formVerticalRadio, .formVerticalColor  {
+    background-color: rgb(99, 247, 188);
+    width: 200px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    .form-div{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .label {
+        color: #f7639e;
+    }
+
+    .button {
+        color: rgb(99, 247, 188);
+        background-color: white;
+    }
+}
