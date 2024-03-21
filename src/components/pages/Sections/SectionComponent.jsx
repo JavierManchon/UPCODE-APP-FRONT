@@ -19,38 +19,28 @@ const SectionComponent = ({ template }) => {
         }
     });
 
-    const [SectionBgColor, setSectionBgColor] = useState('');
-    const [SectionBgColorEdit, setSectionBgColorEdit] = useState(template.edit.SectionBgColor);
+    const [SectionBgColor, setSectionBgColor] = useState(template.edit.SectionBgColor ? template.edit.SectionBgColor : '');
 
-    const [ArticleBgColor, setArticleBgColor] = useState('');
-    const [ArticleBgColorEdit, setArticleBgColorEdit] = useState(template.edit.ArticleBgColor);
+    const [ArticleBgColor, setArticleBgColor] = useState(template.edit.ArticleBgColor ? template.edit.ArticleBgColor : '');
 
 
-    const [h2FontColor, setH2FontColor] = useState('');
-    const [h2FontColorEdit, setH2FontColorEdit] = useState(template.edit.colorTitle);
+    const [h2FontColor, setH2FontColor] = useState(template.edit.colorTitle ? template.edit.colorTitle : '');
 
 
-    const [pFontColor, setPFontColor] = useState('');
-    const [pFontColorEdit, setPFontColorEdit] = useState(template.edit.colorItem);
+    const [pFontColor, setPFontColor] = useState(template.edit.colorItem ? template.edit.colorItem : '');
 
 
-    const [h2FontSize, setH2FontSize] = useState('');
-    const [h2FontSizeEdit, setH2FontSizeEdit] = useState(template.edit.fontSizeTitle);
+    const [h2FontSize, setH2FontSize] = useState(template.edit.fontSizeTitle ? template.edit.fontSizeTitle : '');
 
-    const [pFontSize, setPFontSize] = useState('');
-    const [pFontSizeEdit, setPFontSizeEdit] = useState(template.edit.fontSizeItem);
+    const [pFontSize, setPFontSize] = useState(template.edit.fontSizeItem ? template.edit.fontSizeItem :'');
 
-    const [h2FontWeight, setH2FontWeight] = useState('');
-    const [h2FontWeightEdit, setH2FontWeightEdit] = useState(template.edit.fontWeightTitle);
+    const [h2FontWeight, setH2FontWeight] = useState(template.edit.fontWeightTitle ? template.edit.fontWeightTitle : '');
 
-    const [pFontWeight, setPFontWeight] = useState('');
-    const [pFontWeightEdit, setPFontWeightEdit] = useState(template.edit.fontWeightItem);
+    const [pFontWeight, setPFontWeight] = useState(template.edit.fontWeightItem ? template.edit.fontWeightItem : '');
 
-    const [h2TextDecoration, setH2TextDecoration] = useState('');
-    const [h2TextDecorationEdit, setH2TextDecorationEdit] = useState(template.edit.textDecorationTitle);
+    const [h2TextDecoration, setH2TextDecoration] = useState(template.edit.textDecorationTitle ? template.edit.textDecorationTitle : '');
 
-    const [pTextDecoration, setPTextDecoration] = useState('');
-    const [pTextDecorationEdit, setPTextDecorationEdit] = useState(template.edit.textDecorationText);
+    const [pTextDecoration, setPTextDecoration] = useState(template.edit.textDecorationText ? template.edit.textDecorationText : '');
 
     const [sectionStyles, setSectionStyles] = useState([]);
     
@@ -76,69 +66,39 @@ const SectionComponent = ({ template }) => {
     const handleSectionBgColor = (event) => {
         setSectionBgColor(event.target.value);
     };
-    const handleSectionBgColorEdit = (event) => {
-        setSectionBgColorEdit(event.target.value);
-    };
     const handleArticleBgColor = (event) => {
         setArticleBgColor(event.target.value);
-    };
-    const handleArticleBgColorEdit = (event) => {
-        setArticleBgColorEdit(event.target.value);
     };
 
     const handleH2FontColor = (event) => {
         setH2FontColor(event.target.value);
     };
-    const handleH2FontColorEdit = (event) => {
-        setH2FontColorEdit(event.target.value);
-    };
     const handlePFontColor = (event) => {
         setPFontColor(event.target.value);
-    };
-    const handlePFontColorEdit = (event) => {
-        setPFontColorEdit(event.target.value);
     };
 
     const handleH2FontSizeChange = (event) => {
         setH2FontSize(`${event.target.value}px`);
     };
-    const handleH2FontSizeChangeEdit = (event) => {
-        setH2FontSizeEdit(`${event.target.value}px`);
-    };
     
     const handlePFontSizeChange = (event) => {
         setPFontSize(`${event.target.value}px`);
-    };
-    const handlePFontSizeChangeEdit = (event) => {
-        setPFontSizeEdit(`${event.target.value}px`);
     };
 
     const handleH2FontWeightChange = (event) => {
         setH2FontWeight(event.target.value);
     };
-    const handleH2FontWeightChangeEdit = (event) => {
-        setH2FontWeightEdit(event.target.value);
-    };
     
     const handlePFontWeightChange = (event) => {
         setPFontWeight(event.target.value);
-    };
-    const handlePFontWeightChangeEdit = (event) => {
-        setPFontWeightEdit(event.target.value);
     };
 
     const handleH2TextDecorationChange = (event) => {
         setH2TextDecoration(event.target.value);
     };
-    const handleH2TextDecorationChangeEdit = (event) => {
-        setH2TextDecorationEdit(event.target.value);
-    };
     
     const handlePTextDecorationChange = (event) => {
         setPTextDecoration(event.target.value);
-    };
-    const handlePTextDecorationChangeEdit = (event) => {
-        setPTextDecorationEdit(event.target.value);
     };
 
     const visualSection = useRef(null);
@@ -159,7 +119,7 @@ const SectionComponent = ({ template }) => {
                     padding: computedSectionStyles.padding
                 });
         }
-    }, [SectionBgColor, SectionBgColorEdit]);    
+    }, [SectionBgColor]);    
 
     
 
@@ -175,7 +135,7 @@ const SectionComponent = ({ template }) => {
                 justifyContent: computedStyles.justifyContent
             });
         }
-    }, [ArticleBgColor,ArticleBgColorEdit]);
+    }, [ArticleBgColor]);
 
     const visualH2 = useRef(null);
     useEffect(() => {
@@ -188,7 +148,7 @@ const SectionComponent = ({ template }) => {
                 textDecoration: computedStyles.textDecoration
             });
         }
-    }, [h2FontColor,h2FontColorEdit, h2FontSize,h2FontSizeEdit, h2FontWeight,h2FontWeightEdit, h2TextDecoration,h2TextDecorationEdit]);
+    }, [h2FontColor, h2FontSize, h2FontWeight, h2TextDecoration]);
 
     const visualP = useRef(null);
     useEffect(() => {
@@ -201,7 +161,7 @@ const SectionComponent = ({ template }) => {
                 textDecoration: computedStyles.textDecoration
             });
         }
-    }, [pFontColor,pFontColorEdit, pFontSize,pFontSizeEdit, pFontWeight,pFontWeightEdit, pTextDecoration,pTextDecorationEdit]);
+    }, [pFontColor, pFontSize, pFontWeight, pTextDecoration]);
 
     const getFirstWord = (text) => {
         if (text) {
@@ -253,37 +213,32 @@ const SectionComponent = ({ template }) => {
             <div className="styles-editor">
                 <label htmlFor="sectionbgColor">
                     <p>Color de Fondo</p>
-                    <input type="color" id='bgColor' onChange={
-                        !template.edit.SectionBgColor ? handleSectionBgColor : handleSectionBgColorEdit}/>
+                    <input type="color" id='bgColor' onChange={handleSectionBgColor}/>
                 </label>
 
                 <label htmlFor="articlebgColor">
                     <p>Color de Fondo para Article</p>
-                    <input type="color" id='bgColor' onChange={
-                        !template.edit.ArticleBgColor ? handleArticleBgColor : handleArticleBgColorEdit}/>
+                    <input type="color" id='bgColor' onChange={handleArticleBgColor}/>
                 </label>
                 
                 <label htmlFor="colorTitle">
                     <p>Color de Letra para H2</p>
-                    <input type="color" id='colorTitle' onChange={
-                        !template.edit.colorTitle ? handleH2FontColor : handleH2FontColorEdit}/>
+                    <input type="color" id='colorTitle' onChange={handleH2FontColor}/>
                 </label>
 
                 <label htmlFor="colorItem">
                     <p>Color de Letra para P</p>
-                    <input type="color" id='colorItem' onChange={
-                        !template.edit.colorItem ?  handlePFontColor : handlePFontColorEdit}/>
+                    <input type="color" id='colorItem' onChange={handlePFontColor}/>
                 </label>
                 
                 <label htmlFor="fontSizeTitle">
                     Tamaño de Letra para H2
-                    <input type="number" id="fontSizeTitle" onChange={
-                        !template.edit.fontSizeTitle ?  handleH2FontSizeChange : handleH2FontSizeChangeEdit} />
+                    <input type="number" id="fontSizeTitle" onChange={handleH2FontSizeChange} />
                     </label>
+
                     <label htmlFor="fontSizeItem">
                     Tamaño de Letra para P
-                    <input type="number" id="fontSizeItem" onChange={
-                        !template.edit.fontSizeItem ? handlePFontSizeChange : handlePFontSizeChangeEdit} />
+                    <input type="number" id="fontSizeItem" onChange={handlePFontSizeChange} />
                 </label>
                 
                 <label htmlFor="fontWeightTitle">
@@ -292,17 +247,13 @@ const SectionComponent = ({ template }) => {
                     <input   type="checkbox" 
                         name='FontWeightTitle' 
                         value="bold" 
-                        checked={template.edit.fontWeightTitle ? h2FontWeightEdit === "bold" : h2FontWeight === "bold"}
+                        checked={h2FontWeight === "bold"}
                         onChange={(event) => {
                             const isChecked = event.target.checked;
                             const newValue = isChecked ? "bold" : "normal";
-                            if (!template.edit.fontWeighTitle) {
-                                setH2FontWeight(newValue);
-                            } else {
-                                setH2FontWeightEdit(newValue);
-                            }
+                            handleH2FontWeightChange(newValue)
                         }}/>
-                    </div>                    
+                    </div>                   
                 </label>
 
                 <label htmlFor="fontWeightItem">
@@ -311,15 +262,11 @@ const SectionComponent = ({ template }) => {
                     <input   type="checkbox" 
                         name='FontWeightItem' 
                         value="bold" 
-                        checked={template.edit.fontWeightItem ? pFontWeightEdit === "bold" : pFontWeight === "bold"}
+                        checked={pFontWeight === "bold"}
                         onChange={(event) => {
                             const isChecked = event.target.checked;
                             const newValue = isChecked ? "bold" : "normal";
-                            if (!template.edit.fontWeighItem) {
-                                setPFontWeight(newValue);
-                            } else {
-                                setPFontWeightEdit(newValue);
-                            }
+                            handlePFontWeightChange(newValue)
                         }}/>
                     </div>
                     
@@ -333,15 +280,11 @@ const SectionComponent = ({ template }) => {
                     <input   type="checkbox" 
                         name='textDecorationTitle' 
                         value="underline" 
-                        checked={template.edit.textDecorationTitle ? h2TextDecorationEdit === "underline" : h2TextDecoration === "underline"}
+                        checked={h2TextDecoration === "underline"}
                         onChange={(event) => {
                             const isChecked = event.target.checked;
                             const newValue = isChecked ? "underline" : "none";
-                            if (!template.edit.textDecorationTitle) {
-                                setH2TextDecoration(newValue);
-                            } else {
-                                setH2TextDecorationEdit(newValue);
-                            }
+                            handleH2TextDecorationChange(newValue);
                         }}/>
                     </div>
                     
@@ -353,15 +296,11 @@ const SectionComponent = ({ template }) => {
                     <input   type="checkbox" 
                         name='textDecorationText' 
                         value="underline" 
-                        checked={template.edit.textDecorationText ? pTextDecorationEdit === "underline" : pTextDecoration === "underline"}
+                        checked={pTextDecoration === "underline"}
                         onChange={(event) => {
                             const isChecked = event.target.checked;
                             const newValue = isChecked ? "underline" : "none";
-                            if (!template.edit.textDecorationText) {
-                                setPTextDecoration(newValue);
-                            } else {
-                                setPTextDecorationEdit(newValue);
-                            }
+                            handlePTextDecorationChange(newValue);
                         }}/>
                     </div>                    
                 </label>
@@ -369,99 +308,12 @@ const SectionComponent = ({ template }) => {
             </div>
 
             <div className="container-renderized_visual">
-    <section className={template.defaultStyles[0]} style={{ backgroundColor:
-    
-     template.edit.SectionBgColor ? 
-
-     `${SectionBgColorEdit}` 
-
-     : `${SectionBgColor}` 
-
-     }} ref={visualSection}>
-
+    <section className={template.defaultStyles[0]} style={{ backgroundColor:`${SectionBgColor}`}} ref={visualSection}>
         {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
-            <article className={template.defaultStyles[1]} style={{ backgroundColor:
-
-             template.edit.bgColorArticle ? 
-
-             `${ArticleBgColorEdit}`
-
-             : `${ArticleBgColor}`
-
-              }} key={index} ref={visualArticle}>
-                <h2 className={template.defaultStyles[2]} style={{ color:
-
-                 template.edit.colorTitle ?
-
-                  `${h2FontColorEdit}` 
-
-                  :`${h2FontColor}` ,
-                  
-                   fontSize:
-
-                   template.edit.fontSizeTitle ?
-
-                    `${h2FontSizeEdit}`
-
-                    :`${h2FontSize}` ,
-                    
-                     fontWeight: 
-
-                     template.edit.fontWeightTitle ?
-
-                    `${h2FontWeightEdit}`
-
-                    :`${h2FontWeight}`,
-                    
-                    
-                     textDecoration:
-                     
-                     template.edit.textDecorationTitle ?
-                     
-                      `${h2TextDecorationEdit}`
-
-                      :  `${h2TextDecoration}`,
-                      
-                      
-                       }}>{h2Values[index]}</h2>
-
-              
-                    <p className={template.defaultStyles[3]} style={{ color:
-                    template.edit.colorItem ? 
-                    
-                     `${pFontColorEdit}`
-                     
-                     :`${pFontColor}`,
-                     
-                      fontSize:
-                      
-                      template.edit.fontSizeItem ? 
-                      
-                       `${pFontSizeEdit}`
-                       
-                       :`${pFontSize}`, 
-                       
-                       fontWeight:
-
-                       template.edit.fontWeightItem?
-                       
-                        `${pFontWeightEdit}`
-                        
-                        :`${pFontWeight}`,
-                        
-                         textDecoration:
-
-                         template.edit.textDecorationText?
-                         
-                          `${pTextDecoration}`
-                          
-                          :`${pTextDecoration}`, 
-                          
-                          }} key={`${index}-${index}`}>{pValues[index]}</p>
+            <article className={template.defaultStyles[1]} style={{ backgroundColor:`${ArticleBgColor}`}} key={index} ref={visualArticle}>
+                <h2 className={template.defaultStyles[2]} style={{ color:`${h2FontColor}` ,fontSize:`${h2FontSize}` ,fontWeight:`${h2FontWeight}`,textDecoration:`${h2TextDecoration}`,}}>{h2Values[index]}</h2><p className={template.defaultStyles[3]} style={{ color:`${pFontColor}`,fontSize:`${pFontSize}`, fontWeight:`${pFontWeight}`,textDecoration:`${pTextDecoration}`,}} key={`${index}-${index}`}>{pValues[index]}</p>
             </article>
-                ))}
-
-
+        ))}
     </section>
 </div>
 
