@@ -1,21 +1,45 @@
 /* Default styles */
 .payments-container {
-    max-width: 400px;
+    max-width: 700px;
     margin: auto; 
     position: absolute;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #ffffff;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+       
 }
   
+
+.container-logoPremium{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 20px;
+    height: 100px;
+    max-height: 300px;
+    
+
+    
+
+    img {
+        
+        width: 80%;
+        object-fit: cover;
+        
+        
+    }
+}
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
-    text-decoration: underline;
+    color: gray;
+    font-size: larger;
 }
 
 form {
@@ -24,10 +48,94 @@ form {
 }
 
 label {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-input {
+input.Name {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+input.card {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+
+
+}
+
+
+.input-card-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  input[type="text"] {
+    padding-right: 40px; 
+  }
+  
+  .icons {
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
+  }
+  
+  .icons i {
+    margin-left: 5px;
+    font-size: 18px; 
+  }
+
+
+
+.form-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  input.expiry {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+
+
+  input.cvc {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+.location-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.country-selector {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+
+}
+
+
+.postal-code {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -36,7 +144,7 @@ input {
 }
 
 button[type="submit"] {
-    background-color: #007bff;
+    background-color: #252729;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -53,13 +161,13 @@ button[type="submit"]:hover {
 p {
     margin-top: 20px;
     text-align: center;
-    font-weight: bold;
+    color: #555;
 }
 
 /* Media queries for responsiveness */
 @media only screen and (max-width: 600px) {
     .payments-container {
-        width: 90%;
+        width: 75%;
         padding: 10px;
     }
 }
@@ -74,3 +182,7 @@ p {
         padding: 8px 16px;
     }
 }
+
+
+
+
