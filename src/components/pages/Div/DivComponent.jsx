@@ -143,7 +143,7 @@ const DivComponent = ({ template }) => {
                         onChange={(event) => {
                             const isChecked = event.target.checked;
                             const newValue = isChecked ? "bold" : "normal";
-                            setFontWeight(newValue)
+                            handleFontWeight(newValue)
                         }}
                     />
                     </div>

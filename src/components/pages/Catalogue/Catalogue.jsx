@@ -4,8 +4,9 @@ import "./_catalogue.scss";
 import axios from 'axios';
 // Asegúrate de que la ruta a DesignsController es correcta según tu estructura de proyecto
 import DesignsController from '../../../middlewares/DesignsController/DesignsController';
+import AsideUser from '../AsideUser/AsideUser';
 
-const Catalogue = () => {
+const Catalogue = ({isLogged ,setIsLogged}) => {
     const templates = [
         {
             name: 'NavBarVertical',
@@ -365,7 +366,6 @@ const Catalogue = () => {
             bgColorSection: null,
             bgColorArticle: null,
             bgColorFigure: null,
-            bgColorFooter: null,
             bgColorFooter: '#000',
             bgColorDiv: null,
             bgColorTable: null,
@@ -476,6 +476,15 @@ const Catalogue = () => {
         setGroupedTemplates(groupByElementType(designs));console.log(groupedTemplates)
     }, [designs]);
 
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            setIsLogged(true);
+        } else {
+            setIsLogged(false);
+        }
+    }, [setIsLogged]);
+
     function capitalizeFirstLetter(text) {
         // Verificar si el texto está vacío
         if (!text) {
@@ -507,6 +516,11 @@ const Catalogue = () => {
                         </div>
                 </section>
             ))}
+            {isLogged ? 
+              <AsideUser setIsLogged={setIsLogged}/> :
+              null
+
+            };
         </main>
     );
 };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Payments.scss";
+import "./_payments.scss";
 import Loading from "../../utils/loading/Loading";
 
 function Payments() {
@@ -255,7 +255,7 @@ function Payments() {
     cvv: "",
     postalCode: "",
   });
-  const [paymentStatus, setPaymentStatus] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -299,12 +299,7 @@ function Payments() {
     ) {
       setIsLoading(true);
       setTimeout(() => {
-        setPaymentStatus(
-            <p>
-            Pago exitoso. ¡Gracias por comprar nuestro servicio premium! 
-        </p>
-
-        );
+        setPaymentStatus(true);
         setIsLoading(false);
       }, 3000);
     } else {
@@ -326,7 +321,7 @@ function Payments() {
             src={"/src/images/UP_C0DE._PREMIUM_PACKpng.png"}
           />
         </div>
-          <form onSubmit={handleSubmit}>
+          <form className="form-payment" onSubmit={handleSubmit}>
             <label>
               Nombre Completo:
               <input
@@ -416,9 +411,10 @@ function Payments() {
             </div>
            
             <button type="submit">Pagar</button>
+            {paymentStatus ? <p>EL pago se ha realizado correctamente</p> : null}
           </form>
 
-          {paymentStatus && <p>{paymentStatus}</p>}
+          
         </>
       )}
     </div>

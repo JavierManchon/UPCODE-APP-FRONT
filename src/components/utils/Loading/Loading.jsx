@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import './Loading.scss'; 
+import './_loading.scss'; 
 
 function App() {
   const titleRef = useRef(null);
