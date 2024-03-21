@@ -53,27 +53,20 @@ import "./_footerComponent.scss";
 
  */}
 const FooterComponent = ({ template }) => {
+  console.log(template)
     const [liValues, setLiValues] = useState(() => {
-        if (template.edit && template.edit.text) {
-          return [...template.edit.text];
+        if (template.edit.textArray > 0) {
+          return [...template.edit.textArray];
         } else {
-          return Array.from({ length: template.defaultContent.count }, () => "Item");
+          return Array.from({ length: template.defaultContent.countGrandson }, () => "Item");
         }
       });
-      const [bgColor, setBgColor] = useState("");
-      const [bgColorEdit, setBgColorEdit] = useState(template.edit.bgColor);
-      const [fontColor, setFontColor] = useState("");
-      const [fontColorEdit, setFontColorEdit] = useState(template.edit.fontColor);
-      const [fontSize, setFontSize] = useState("");
-      const [fontSizeEdit, setFontSizeEdit] = useState(template.edit.fontSize);
-      const [fontWeight, setFontWeight] = useState("");
-      const [fontWeightEdit, setFontWeightEdit] = useState(
-        template.edit.fontWeight
-      );
-      const [textDecoration, setTextDecoration] = useState("");
-      const [textDecorationEdit, setTextDecorationEdit] = useState(
-        template.edit.textDecoration
-      );
+    
+      const [bgColor, setBgColor] = useState(template.edit.bgColorNav ? template.edit.bgColorNav : '');
+      const [fontColor, setFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
+      const [fontSize, setFontSize] = useState(template.edit.fontSizeText ? template.edit.fontSizeText : '');
+      const [fontWeight, setFontWeight] = useState(template.edit.fontWeightText ? template.edit.fontWeightText : '');
+      const [textDecoration, setTextDecoration] = useState(template.edit.textDecorationText ? template.edit.textDecorationText : '');
       const [navStyles, setNavStyles] = useState([]);
       const [ulStyles, setUlStyles] = useState([]);
       const [liStyles, setLiStyles] = useState([]);
@@ -89,40 +82,20 @@ const FooterComponent = ({ template }) => {
     setBgColor(event.target.value);
   };
 
-  const handleBgColorEdit = (event) => {
-    setBgColorEdit(event.target.value);
-  };
-
   const handleFontColor = (event) => {
     setFontColor(event.target.value);
-  };
-
-  const handleFontColorEdit = (event) => {
-    setFontColorEdit(event.target.value);
   };
 
   const handleFontSize = (event) => {
     setFontSize(`${event.target.value}px`);
   };
 
-  const handleFontSizeEdit = (event) => {
-    setFontSizeEdit(`${event.target.value}px`);
-  };
-
   const handleFontWeight = (event) => {
     setFontWeight(event.target.value);
   };
 
-  const handleFontWeightEdit = (event) => {
-    setFontWeightEdit(event.target.value);
-  };
-
   const handleTextDecoration = (event) => {
     setTextDecoration(event.target.value);
-  };
-
-  const handleTextDecorationEdit = (event) => {
-    setTextDecorationEdit(event.target.value);
   };
 
   const visualNav = useRef(null);
@@ -136,7 +109,7 @@ const FooterComponent = ({ template }) => {
         padding: computedNavStyles.padding,
       });
     }
-  }, [bgColor, bgColorEdit]);
+  }, [bgColor]);
 
   const visualUl = useRef(null);
   useEffect(() => {
@@ -165,13 +138,9 @@ const FooterComponent = ({ template }) => {
     }
   }, [
     fontColor,
-    fontColorEdit,
     fontSize,
-    fontSizeEdit,
     fontWeight,
-    fontWeightEdit,
-    textDecoration,
-    textDecorationEdit,
+    textDecoration
   ]);
 
   const getFirstWord = (text) => {
@@ -207,15 +176,15 @@ const FooterComponent = ({ template }) => {
         </p>
         <p>
           {"<"}
-          {template.defaultContent ? template.defaultContent.children : null}
+          {template.defaultContent ? template.defaultContent.children[0] : null}
           {">"}
         </p>
-        {Array.from({ length: template.defaultContent.count }).map(
+        {Array.from({ length: template.defaultContent.countGrandson }).map(
           (_, index) => (
             <React.Fragment key={index}>
               <p>
                 {"<"}
-                {template.defaultContent ? template.defaultContent.items : null}
+                {template.defaultContent ? template.defaultContent.grandson[0] : null}
                 {">"}
                 {aTag ? '<a href="">' : null}
                 <input
@@ -226,7 +195,7 @@ const FooterComponent = ({ template }) => {
                 />
                 {aTag ? "</a>" : null}
                 {"</"}
-                {template.defaultContent ? template.defaultContent.items : null}
+                {template.defaultContent ? template.defaultContent.grandson[0] : null}
                 {">"}
               </p>
             </React.Fragment>
@@ -234,7 +203,7 @@ const FooterComponent = ({ template }) => {
         )}
         <p>
           {"</"}
-          {template.defaultContent ? template.defaultContent.children : null}
+          {template.defaultContent ? template.defaultContent.children[0] : null}
           {">"}
         </p>
         <p>
@@ -252,9 +221,7 @@ const FooterComponent = ({ template }) => {
           <input
             type="color"
             id="bgColor"
-            onChange={
-              !template.edit.bgColor ? handleBgColor : handleBgColorEdit
-            }
+            onChange={handleBgColor}
           />
         </label>
 
@@ -263,9 +230,7 @@ const FooterComponent = ({ template }) => {
           <input
             type="color"
             id="fontColor"
-            onChange={
-              !template.edit.bgColor ? handleFontColor : handleFontColorEdit
-            }
+            onChange={handleFontColor}
           />
         </label>
 
@@ -276,61 +241,41 @@ const FooterComponent = ({ template }) => {
             id="fontSize"
             min={12}
             max={20}
-            onChange={
-              !template.edit.fontSize ? handleFontSize : handleFontSizeEdit
-            }
+            onChange={handleFontSize}
           />
         </label>
 
         <label htmlFor="fontWeight">
           <p>Negrita</p>
           <div>
-            <input
-              type="radio"
-              name="fontWeight"
-              value="bold"
-              onChange={
-                !template.edit.fontWeight
-                  ? handleFontWeight
-                  : handleFontWeightEdit
-              }
-            />
-            <input
-              type="radio"
-              name="fontWeight"
-              value="normal"
-              onChange={
-                !template.edit.fontWeight
-                  ? handleFontWeight
-                  : handleFontWeightEdit
-              }
-            />
+          <input 
+            type="checkbox" 
+            name='fontWeight' 
+            value="bold" 
+            checked={fontWeight === "bold"}
+            onChange={(event) => {
+                const isChecked = event.target.checked;
+                const newValue = isChecked ? "bold" : "normal";
+                handleFontWeight(newValue);
+            }}
+          />
           </div>
         </label>
 
         <label htmlFor="textDecoration">
           <p>Subrayado</p>
           <div>
-            <input
-              type="radio"
-              name="textDecoration"
-              value="underline"
-              onChange={
-                !template.edit.textDecoration
-                  ? handleTextDecoration
-                  : handleTextDecorationEdit
-              }
-            />
-            <input
-              type="radio"
-              name="textDecoration"
-              value="none"
-              onChange={
-                !template.edit.textDecoration
-                  ? handleTextDecoration
-                  : handleTextDecorationEdit
-              }
-            />
+          <input 
+            type="checkbox" 
+            name='textDecoration' 
+            value="underline" 
+            checked={textDecoration === "underline"}
+            onChange={(event) => {
+                const isChecked = event.target.checked;
+                const newValue = isChecked ? "underline" : "none";
+                handleTextDecoration(newValue);
+            }}
+          />
           </div>
         </label>
       </div>
@@ -338,11 +283,7 @@ const FooterComponent = ({ template }) => {
       <div className="container-renderized_visual">
         <nav
           className={template.defaultStyles[0]}
-          style={{
-            backgroundColor: template.edit.bgColor
-              ? `${bgColorEdit}`
-              : `${bgColor}`,
-          }}
+          style={{backgroundColor: bgColor}}
           ref={visualNav}
         >
           <ul className={template.defaultStyles[1]} ref={visualUl}>
@@ -351,18 +292,10 @@ const FooterComponent = ({ template }) => {
                 className={template.defaultStyles[2]}
                 key={index}
                 style={{
-                  color: template.edit.fontColor
-                    ? `${fontColorEdit}`
-                    : `${fontColor}`,
-                  fontSize: template.edit.fontSize
-                    ? `${fontSizeEdit}`
-                    : `${fontSize}`,
-                  fontWeight: template.edit.fontWeight
-                    ? `${fontWeightEdit}`
-                    : `${fontWeight}`,
-                  textDecoration: template.edit.textDecoration
-                    ? `${textDecorationEdit}`
-                    : `${textDecoration}`,
+                  color: fontColor,
+                  fontSize: fontSize,
+                  fontWeight: fontWeight,
+                  textDecoration: textDecoration
                 }}
                 ref={visualLi}
               >
@@ -389,19 +322,19 @@ const FooterComponent = ({ template }) => {
           </span>
           <span>
             {"<"}
-            {template.defaultContent ? template.defaultContent.children : null}
+            {template.defaultContent ? template.defaultContent.children[0] : null}
             {' class="'}
             {template.defaultStyles[1]}
             {'"'}
             {">"}
           </span>
-          {Array.from({ length: template.defaultContent.count }).map(
+          {Array.from({ length: template.defaultContent.countGrandson }).map(
             (_, index) => (
               <React.Fragment key={index}>
                 <span>
                   {"<" +
                     (template.defaultContent
-                      ? template.defaultContent.items
+                      ? template.defaultContent.grandson[0]
                       : null) +
                     ' class="' +
                     template.defaultStyles[2] +
@@ -411,7 +344,7 @@ const FooterComponent = ({ template }) => {
                   {aTag ? "</a>" : null}
                   {"</" +
                     (template.defaultContent
-                      ? template.defaultContent.items
+                      ? template.defaultContent.grandson[0]
                       : null) +
                     ">"}
                 </span>
@@ -420,7 +353,7 @@ const FooterComponent = ({ template }) => {
           )}
           <span>
             {"</"}
-            {template.defaultContent ? template.defaultContent.children : null}
+            {template.defaultContent ? template.defaultContent.children[0] : null}
             {">"}
           </span>
           <span>
@@ -430,6 +363,7 @@ const FooterComponent = ({ template }) => {
           </span>
         </div>
       </div>
+      
       <div className="container-renderized_css">
         <div className="css-nav">
           <div className="title-btn">

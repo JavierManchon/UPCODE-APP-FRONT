@@ -1,62 +1,56 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./_buttonComponent.scss";
 
 const ButtonComponent = ({ template }) => {
-  const [buttonValue, setButtonValue] = useState('');
-  const [buttonValueEdit, setButtonValueEdit] = useState(template.edit.text);
-  const [bgColor, setBgColor] = useState("");
-  const [bgColorEdit, setBgColorEdit] = useState(template.edit.bgColor);
-  const [fontColor, setFontColor] = useState("");
-  const [fontColorEdit, setFontColorEdit] = useState(template.edit.fontColor);
-  const [fontSize, setFontSize] = useState("");
-  const [fontSizeEdit, setFontSizeEdit] = useState(template.edit.fontSize);
-  const [fontWeight, setFontWeight] = useState("");
-  const [fontWeightEdit, setFontWeightEdit] = useState(
-    template.edit.fontWeight
-  );
-  const [borderRadius, setBorderRadius] = useState("");
-  const [borderRadiusEdit, setBorderRadiusEdit] = useState(template.edit.borderRadius);
+  const [buttonValue, setButtonValue] = useState(template.edit.text ? template.edit.text : 'Enviar');
+  const [bgColor, setBgColor] = useState(template.edit.bgColorButton ? template.edit.bgColorButton : '');
+  const [fontColor, setFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
+  const [fontSize, setFontSize] = useState(template.edit.fontSizeText ? template.edit.fontSizeText : '');
+  const [fontWeight, setFontWeight] = useState(template.edit.fontWeightText ? template.edit.fontWeightText : '');
+  const [borderRadius, setBorderRadius] = useState(template.edit.borderRadius ? template.edit.borderRadius : '');
   const [buttonStyles, setButtonStyles] = useState({});
+  const [hoverStyles, setHoverStyles] =useState({});
 
   const handleButtonChange = (event) => {
     setButtonValue(event.target.value);
-  };
-
-  const handleButtonEditChange = (event) => {
-    setButtonValueEdit(event.target.value);
   };
 
   const handleBgColor = (event) => {
     setBgColor(event.target.value);
   };
 
-  const handleBgColorEdit = (event) => {
-    setBgColorEdit(event.target.value);
-  };
-
   const handleFontColor = (event) => {
     setFontColor(event.target.value);
-  };
-
-  const handleFontColorEdit = (event) => {
-    setFontColorEdit(event.target.value);
   };
 
   const handleFontSize = (event) => {
     setFontSize(`${event.target.value}px`);
   };
 
-  const handleFontSizeEdit = (event) => {
-    setFontSizeEdit(`${event.target.value}px`);
-  };
-
   const handleFontWeight = (event) => {
     setFontWeight(event.target.value);
   };
 
-  const handleFontWeightEdit = (event) => {
-    setFontWeightEdit(event.target.value);
-  };
+  function parseCSS(cssText) {
+    const pairs = cssText.split(';');
+
+    const styles = {};
+
+    pairs.forEach(pair => {
+        const keyValue = pair.split(':');
+
+        const key = keyValue[0].trim().replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+        const value = keyValue[1] ? keyValue[1].trim() : '';
+
+        if (key) {
+            styles[key] = value;
+        }
+    });
+    setHoverStyles(styles);
+    return styles;
+  }
+
+  console.log(hoverStyles);
 
   const visualButton = useRef(null);
   useEffect(() => {
@@ -72,9 +66,22 @@ const ButtonComponent = ({ template }) => {
         borderRadius: computedButtonStyles.borderRadius,
         border: computedButtonStyles.border,
         outline: computedButtonStyles.outline,
+        cursor: computedButtonStyles.cursor
       });
     }
-  }, [bgColor, bgColorEdit, fontColor, fontColorEdit, fontSize, fontSizeEdit, fontWeight, fontWeightEdit, borderRadius, borderRadiusEdit]);
+  
+    let i,j;
+    const sel = new RegExp(`button\\.${template.defaultStyles[0]}:hover`);
+    for(i = 0; i < document.styleSheets.length; ++i){
+      for(j = 0; j < document.styleSheets[i].cssRules.length; ++j){    
+          if(sel.test(document.styleSheets[i].cssRules[j].selectorText)){
+              parseCSS(document.styleSheets[i].cssRules[j].style.cssText)
+          }
+      }
+    }
+
+    
+  }, [bgColor, fontColor, fontSize, fontWeight, borderRadius]);
 
   const copyToClipboard = (elementId) => {
     const element = document.getElementById(elementId);
@@ -87,33 +94,17 @@ const ButtonComponent = ({ template }) => {
     selection.removeAllRanges();
   };
 
-  const getSecondWord = (text) => {
-    if (text) {
-      const words = text.split(' ');
-      return words.length > 1 ? words[3] : '';
-    }
-    return null
-  };
-
   return (
     <div className="container-pages-default-styles">
       <div className="container-editor">
-        <p>
-          {"<"}
-          {template.elementType}
-          {">"}
-        </p>
+        <p>{"<" + template.elementType + ' type="' + template.defaultContent.tagInfo + '"' + ">"}</p>
         <input
           type="text"
-          onChange={buttonValueEdit ? handleButtonChange : handleButtonEditChange }
+          onChange={handleButtonChange}
           maxLength={12}
           placeholder="Máximo 12 caracteres"
-        />     
-        <p>
-          {"</"}
-          {template.elementType}
-          {">"}
-        </p>
+        />
+        <p>{"</" + template.elementType + ">"}</p>
       </div>
 
       <div className="styles-editor">
@@ -122,9 +113,7 @@ const ButtonComponent = ({ template }) => {
           <input
             type="color"
             id="bgColor"
-            onChange={
-              !template.edit.bgColor ? handleBgColor : handleBgColorEdit
-            }
+            onChange={handleBgColor}
           />
         </label>
 
@@ -133,9 +122,7 @@ const ButtonComponent = ({ template }) => {
           <input
             type="color"
             id="fontColor"
-            onChange={
-              !template.edit.bgColor ? handleFontColor : handleFontColorEdit
-            }
+            onChange={handleFontColor}
           />
         </label>
 
@@ -146,55 +133,45 @@ const ButtonComponent = ({ template }) => {
             id="fontSize"
             min={12}
             max={20}
-            onChange={
-              !template.edit.fontSize ? handleFontSize : handleFontSizeEdit
-            }
+            onChange={handleFontSize}
           />
         </label>
 
         <label htmlFor="fontWeight">
           <p>Negrita</p>
           <div>
-            <input
-              type="radio"
-              name="fontWeight"
-              value="bold"
-              onChange={
-                !template.edit.fontWeight
-                  ? handleFontWeight
-                  : handleFontWeightEdit
-              }
-            />
-            <input
-              type="radio"
-              name="fontWeight"
-              value="normal"
-              onChange={
-                !template.edit.fontWeight
-                  ? handleFontWeight
-                  : handleFontWeightEdit
-              }
-            />
+          <input 
+            type="checkbox" 
+            name='fontWeight' 
+            value="bold" 
+            checked={fontWeight === "bold"} // Verifica si el estado local es "bold"
+            onChange={(event) => {
+                const isChecked = event.target.checked;
+                const newValue = isChecked ? "bold" : "normal";
+                setFontWeight(newValue); // Actualiza el estado local
+            }}
+          />
           </div>
         </label>
       </div>
 
       <div className="container-renderized_visual">
         <button
-          type={template.defaultContent.type}
+          type={template.defaultContent.tagInfo}
           className={template.defaultStyles[0]}
           style={{
-            backgroundColor: template.edit.bgColor ? bgColorEdit : bgColor,
-            color: template.edit.fontColor ? fontColorEdit : fontColor,
-            fontSize: template.edit.fontSize ? fontSizeEdit : fontSize,
-            fontWeight: template.edit.fontWeight ? fontWeightEdit : fontWeight,
-            borderRadius: template.edit.borderRadius ? borderRadiusEdit : borderRadius,
+            backgroundColor: bgColor,
+            color: fontColor,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            borderRadius: borderRadius,
             border: template.edit.border,
-            outline: template.edit.outline
+            outline: template.edit.outline,
+            padding: template.edit.padding
           }}
           ref={visualButton}
         >
-          {buttonValue ? buttonValue : buttonValueEdit}
+          {buttonValue}
         </button>
       </div>
 
@@ -204,40 +181,35 @@ const ButtonComponent = ({ template }) => {
           <button onClick={() => copyToClipboard("html")}>Copiar</button>
         </div>
         <div id="html" className="html">
-          <span>
-            {"<"}
-            {template.elementType}
-            {' class="'}
-            {template.defaultStyles[0]}
-            {'"'}
-            {">"}
-          </span>
-          {buttonValue ? <span>{buttonValue}</span> : <span>{buttonValueEdit}</span>}
-          <span>
-            {"</"}
-            {template.elementType}
-            {">"}
-          </span>
+          <span>{"<" + template.elementType + ' type="' + template.defaultContent.tagInfo + '"' + ' class="' + template.defaultStyles[0] + '">'}</span>
+          <span>{buttonValue}</span>
+          <span>{"</" + template.elementType + ">"}</span>
         </div>
       </div>
+
       <div className="container-renderized_css">
         <div className="css-btn">
           <div className="title-btn">
-            <h4>Estilos del {'<'}{template.elementType}{'>'}</h4>
-            <button onClick={() => copyToClipboard("css-button")}>Copiar</button>
+            <h4>Estilos del {'<' + template.elementType + '>'}</h4>
+            <button onClick={() => copyToClipboard("css-btn")}>Copiar</button>
           </div>
           <div className="css" id="css-btn">
-            <span>
-              .{template.defaultStyles[0]}
-              {" {"}
-            </span>
-            <span>background-color: {buttonStyles.backgroundColor};</span>
-            <span>color: {buttonStyles.color};</span>
-            <span>font-size: {buttonStyles.fontSize};</span>
-            <span>font-weight: {buttonStyles.fontWeight};</span>
-            <span>border: {buttonStyles.border};</span>
-            <span>outline: {getSecondWord(buttonStyles.outline)};</span>
-            <span>{"}"}</span>
+            <p>.{template.defaultStyles[0]} {"{"}</p>
+            <p>background-color: {buttonStyles.backgroundColor};</p>
+            <p>color: {buttonStyles.color};</p>
+            <p>font-size: {buttonStyles.fontSize};</p>
+            <p>font-weight: {buttonStyles.fontWeight === '700' ? 'bold' : 'normal'};</p>
+            <p>border: {buttonStyles.border};</p>
+            <p>border-radius: {buttonStyles.borderRadius};</p>
+            <p>padding: {buttonStyles.padding};</p>
+            <p>{"}"}</p>
+            <div className="container-hover">
+              <p>.{template.defaultStyles[0]}:hover {"{"}</p>
+              <p>transition: {hoverStyles.transition ? hoverStyles.transition : null}</p>
+              <p>box-shadow: {hoverStyles.boxShadow ? hoverStyles.boxShadow : null}</p>
+              <p>transform: {hoverStyles.transform ? hoverStyles.transform : null}</p>
+              <p>{"}"}</p>
+            </div>
           </div>
         </div>
       </div>
