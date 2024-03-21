@@ -35,7 +35,7 @@ const Catalogue = () => {
           name: 'FormVerticalText',
           elementType: 'form',
           defaultContent: 
-            { children: ["label", "input"], grandson: ["button"], type: "text", countChildren: 2, countGrandson: 1 },
+            { children: ["label", "input"], grandson: ["button"], tagInfo: "text", countChildren: 2, countGrandson: 1 },
           defaultStyles:["formVerticalText", "label", "input", "button", "div"],
           edit: {
             text: null,
@@ -67,7 +67,7 @@ const Catalogue = () => {
           name: 'FormVerticalRadio',
           elementType: 'form',
           defaultContent: 
-            { children: ["label", "input"], grandson: ["button"], type: "radio", countChildren: 2, countGrandson: 2 },
+            { children: ["label", "input"], grandson: ["button"], tagInfo: "radio", countChildren: 2, countGrandson: 2 },
           defaultStyles:["formVerticalRadio", "label", "input", "button", "div"],
           edit: {
             text: null,
@@ -98,14 +98,14 @@ const Catalogue = () => {
           name: 'FormVerticalCheckbox',
           elementType: 'form',
           defaultContent: 
-            { children: ["label", "input"], grandson: ["button"], type: "checkbox", countChildren: 3, countGrandson: 2 },
+            { children: ["label", "input"], grandson: ["button"], tagInfo: "checkbox", countChildren: 3, countGrandson: 2 },
           defaultStyles:["formVerticalCheckbox", "label", "input", "button", "div"]
         },
         {
           name: 'FormVerticalColor',
           elementType: 'form',
           defaultContent: 
-            { children: ["label", "input"], grandson: ["button"], type: "color", countChildren: 1, countGrandson: 1 },
+            { children: ["label", "input"], grandson: ["button"], tagInfo: "color", countChildren: 1, countGrandson: 1 },
           defaultStyles:["formVerticalColor", "label", "input", "button", "div"]
         }
     ];

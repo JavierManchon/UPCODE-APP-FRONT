@@ -12,38 +12,27 @@ const FormComponent = ({ template }) => {
             );
         }
     });
-    const [buttonValue, setButtonValue] = useState('Botón');
-    const [buttonValueEdit, setButtonValueEdit] = useState(template.edit.textItem);
+    const [buttonValue, setButtonValue] = useState(template.edit.textItem ? template.edit.textItem : "Botón");
 
-    const [bgFormColor, setBgFormColor] = useState('');
-    const [bgFormColorEdit, setBgFormColorEdit] = useState(template.edit.bgColorForm);
+    const [bgFormColor, setBgFormColor] = useState(template.edit.bgColorForm ? template.edit.bgColorForm : '');
 
-    const [labelFontColor, setLabelFontColor] = useState('');
-    const [labelFontColorEdit, setLabelFontColorEdit] = useState(template.edit.colorText);
+    const [labelFontColor, setLabelFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
 
-    const [labelFontSize, setLabelFontSize] = useState('');
-    const [labelFontSizeEdit, setLabelFontSizeEdit] = useState(template.edit.fontSizeText);
+    const [labelFontSize, setLabelFontSize] = useState(template.edit.fontSizeText ? template.edit.fontSizeText : '');
 
-    const [labelFontWeight, setLabelFontWeight] = useState('');
-    const [labelFontWeightEdit, setLabelFontWeightEdit] = useState(template.edit.fontWeightText);
+    const [labelFontWeight, setLabelFontWeight] = useState(template.edit.fontWeightText ? template.edit.fontWeightText : '');
 
-    const [textDecoration, setTextDecoration] = useState('');
-    const [textDecorationEdit, setTextDecorationEdit] = useState(template.edit.textDecorationText);
+    const [textDecoration, setTextDecoration] = useState(template.edit.textDecorationText ? template.edit.textDecorationText : '');
 
-    const [bgButtonColor, setBgButtonColor] = useState('');
-    const [bgButtonColorEdit, setBgButtonColorEdit] = useState(template.edit.bgColorButton);
+    const [bgButtonColor, setBgButtonColor] = useState(template.edit.bgColorButton ? template.edit.bgColorButton : '');
 
-    const [buttonFontColor, setButtonFontColor] = useState('');
-    const [buttonFontColorEdit, setButtonFontColorEdit] = useState(template.edit.colorItem);
+    const [buttonFontColor, setButtonFontColor] = useState(template.edit.colorItem ? template.edit.colorItem : '');
 
-    const [buttonFontSize, setButtonFontSize] = useState('');
-    const [buttonFontSizeEdit, setButtonFontSizeEdit] = useState(template.edit.fontSizeItem);
+    const [buttonFontSize, setButtonFontSize] = useState(template.edit.fontSizeItem ? template.edit.fontSizeItem : '');
 
-    const [buttonFontWeight, setButtonFontWeight] = useState('');
-    const [buttonFontWeightEdit, setButtonFontWeightEdit] = useState(template.edit.fontWeightItem);
+    const [buttonFontWeight, setButtonFontWeight] = useState(template.edit.fontWeightItem ? template.edit.fontWeightItem : '');
 
-    const [buttonBorderRadius, setButtonBorderRadius] = useState('');
-    const [buttonBorderRadiusEdit, setButtonBorderRadiusEdit] = useState(template.edit.borderRadius);
+    const [buttonBorderRadius, setButtonBorderRadius] = useState(template.edit.borderRadius ? template.edit.borderRadius : '');
 
     const [formStyles, setFormStyles] = useState({});
     const [labelStyles, setLabelStyles] = useState({});
@@ -64,64 +53,32 @@ const FormComponent = ({ template }) => {
         setButtonValue(event.target.value);
     };
 
-    const handleButtonChangeEdit = (event) => {
-        setButtonValueEdit(event.target.value);
-    };
-
     const handleBgFormColor = (event) => {
         setBgFormColor(event.target.value);
-    };
-
-    const handleBgFormColorEdit = (event) => {
-        setBgFormColorEdit(event.target.value);
     };
 
     const handleLabelFontColor = (event) => {
         setLabelFontColor(event.target.value)
     }
 
-    const handleLabelFontColorEdit = (event) => {
-        setLabelFontColorEdit(event.target.value)
-    }
-
     const handleLabelFontSize = (event) => {
         setLabelFontSize(`${event.target.value}px`)
-    }
-
-    const handleLabelFontSizeEdit = (event) => {
-        setLabelFontSizeEdit(`${event.target.value}px`)
     }
 
     const handleBgButtonColor = (event) => {
         setBgButtonColor(event.target.value)
     }
 
-    const handleBgButtonColorEdit = (event) => {
-        setBgButtonColorEdit(event.target.value)
-    }
-
     const handleButtonFontColor = (event) => {
         setButtonFontColor(event.target.value)
-    }
-
-    const handleButtonFontColorEdit = (event) => {
-        setButtonFontColorEdit(event.target.value)
     }
 
     const handleButtonFontSize = (event) => {
         setButtonFontSize(`${event.target.value}px`)
     }
 
-    const handleButtonFontSizeEdit = (event) => {
-        setButtonFontSizeEdit(`${event.target.value}px`)
-    }
-
     const handleButtonBorderRadius = (event) => {
         setButtonBorderRadius(Number(event.target.value));
-    };
-
-    const handleButtonBorderRadiusEdit = (event) => {
-        setButtonBorderRadiusEdit(Number(event.target.value));
     };
     
 
@@ -140,7 +97,7 @@ const FormComponent = ({ template }) => {
                     gap: computedFormStyles.gap
                 });
         }
-    }, [bgFormColor, bgFormColorEdit]);    
+    }, [bgFormColor]);    
 
     
 
@@ -155,7 +112,7 @@ const FormComponent = ({ template }) => {
                 textDecoration: computedLabelStyles.textDecoration
             });
         }
-    }, [labelFontColor, labelFontColorEdit, labelFontSize, labelFontSizeEdit, labelFontWeight, labelFontWeightEdit, textDecoration, textDecorationEdit]);
+    }, [labelFontColor, labelFontSize, labelFontWeight, textDecoration]);
 
     const visualButton = useRef(null);
     useEffect(() => {
@@ -169,7 +126,7 @@ const FormComponent = ({ template }) => {
                 borderRadius: computedButtonStyles.borderRadius
             });
         }
-    }, [bgButtonColor, bgButtonColorEdit, buttonFontColor, buttonFontColorEdit, buttonFontSize, buttonFontSizeEdit, buttonFontWeight, buttonFontWeightEdit, buttonBorderRadius, buttonBorderRadiusEdit]);
+    }, [bgButtonColor, buttonFontColor, buttonFontSize, buttonFontWeight, buttonBorderRadius]);
 
     const visualDiv = useRef(null);
     useEffect(() => {
@@ -230,7 +187,7 @@ const FormComponent = ({ template }) => {
                 ))}
                 <p>
                     {'<'}{template.defaultContent ? template.defaultContent.grandson[0] : null}{'>'}
-                    <input type='text' onChange={!template.edit.textItem ? handleButtonChange : handleButtonChangeEdit} maxLength={12} placeholder='Máximo 12 caracteres'/>
+                    <input type='text' onChange={handleButtonChange} maxLength={12} placeholder='Máximo 12 caracteres'/>
                     {'</'}{template.defaultContent ? template.defaultContent.grandson[0] : null}{'>'}
                 </p>
                 <p>{`</${template.elementType}>`}</p>
@@ -239,17 +196,17 @@ const FormComponent = ({ template }) => {
             <div className="styles-editor">
                 <label htmlFor="bgFormColor">
                     <p>Color de Fondo Form</p>
-                    <input type="color" id='bgFormColor' onChange={!template.edit.bgFormColor ? handleBgFormColor : handleBgFormColorEdit}/>
+                    <input type="color" id='bgFormColor' onChange={handleBgFormColor}/>
                 </label>
                 
                 <label htmlFor="labelFontColor">
                     <p>Color de Letra del Label</p>
-                    <input type="color" id='labelFontColor' onChange={!template.edit.colorText ? handleLabelFontColor : handleLabelFontColorEdit}/>
+                    <input type="color" id='labelFontColor' onChange={handleLabelFontColor}/>
                 </label>
                 
                 <label htmlFor="labelFontSize">
                     <p>Tamaño de Letra del Label</p>
-                    <input type="number" id='labelFontSize' min={12} max={20} onChange={!template.edit.fontSizeText ? handleLabelFontSize : handleLabelFontSizeEdit}/>
+                    <input type="number" id='labelFontSize' min={12} max={20} onChange={handleLabelFontSize}/>
                 </label>
                 
                 <label htmlFor="labelFontWeight">
@@ -259,15 +216,11 @@ const FormComponent = ({ template }) => {
                         type="checkbox" 
                         name='labelFontWeight' 
                         value="bold" 
-                        checked={template.edit.fontWeightText ? labelFontWeightEdit === "bold" : labelFontWeight === "bold"}
+                        checked={labelFontWeight === "bold"}
                         onChange={(event) => {
                             const isChecked = event.target.checked;
                             const newValue = isChecked ? "bold" : "normal";
-                            if (!template.edit.fontWeightText) {
-                                setLabelFontWeight(newValue);
-                            } else {
-                                setLabelFontWeightEdit(newValue);
-                            }
+                            setLabelFontWeight(newValue);
                         }}
                     />
                     </div>
@@ -280,15 +233,11 @@ const FormComponent = ({ template }) => {
                         type="checkbox" 
                         name='textDecoration' 
                         value="underline" 
-                        checked={template.edit.textDecorationText ? textDecorationEdit === "undeline" : textDecoration === "underline"}
+                        checked={textDecoration === "underline"}
                         onChange={(event) => {
                             const isChecked = event.target.checked;
                             const newValue = isChecked ? "underline" : "none";
-                            if (!template.edit.textDecorationText) {
-                                setTextDecoration(newValue);
-                            } else {
-                                setTextDecorationEdit(newValue);
-                            }
+                            setTextDecoration(newValue);
                         }}
                     />
                     </div>
@@ -296,17 +245,17 @@ const FormComponent = ({ template }) => {
 
                 <label htmlFor="bgButtonColor">
                     <p>Color de Fondo Button</p>
-                    <input type="color" id='bgButtonColor' onChange={!template.edit.bgColorButton ? handleBgButtonColor : handleBgButtonColorEdit}/>
+                    <input type="color" id='bgButtonColor' onChange={handleBgButtonColor}/>
                 </label>
 
                 <label htmlFor="buttonFontColor">
                     <p>Color de Letra del Button</p>
-                    <input type="color" id='buttonFontColor' onChange={!template.edit.colorItem ? handleButtonFontColor : handleButtonFontColorEdit}/>
+                    <input type="color" id='buttonFontColor' onChange={handleButtonFontColor}/>
                 </label>
 
                 <label htmlFor="buttonFontSize">
                     <p>Tamaño de Letra del Button</p>
-                    <input type="number" id='buttonFontSize' min={12} max={20} onChange={!template.edit.fontSizeItem ? handleButtonFontSize : handleButtonFontSizeEdit}/>
+                    <input type="number" id='buttonFontSize' min={12} max={20} onChange={handleButtonFontSize}/>
                 </label>
 
                 <label htmlFor="buttonFontWeight">
@@ -316,15 +265,11 @@ const FormComponent = ({ template }) => {
                         type="checkbox" 
                         name='buttonFontWeight' 
                         value="bold" 
-                        checked={template.edit.fontWeightItem ? buttonFontWeightEdit === "bold" : buttonFontWeight === "bold"}
+                        checked={buttonFontWeight === "bold"}
                         onChange={(event) => {
                             const isChecked = event.target.checked;
                             const newValue = isChecked ? "bold" : "normal";
-                            if (!template.edit.fontWeightItem) {
-                                setButtonFontWeight(newValue);
-                            } else {
-                                setButtonFontWeightEdit(newValue);
-                            }
+                            setButtonFontWeight(newValue);
                         }}
                     />
                     </div>
@@ -332,14 +277,14 @@ const FormComponent = ({ template }) => {
 
                 <label htmlFor="buttonBorderRadius">
                     <p>Border Radius del Button</p>
-                    <input type="number" id='buttonBorderRadius' onChange={!template.edit.borderRadius ? handleButtonBorderRadius : handleButtonBorderRadiusEdit}/>
+                    <input type="number" id='buttonBorderRadius' onChange={handleButtonBorderRadius}/>
                 </label>
                 
             </div>
 
             <div className="container-renderized_visual">
                 <form className={template.defaultStyles[0]} style={{
-                     backgroundColor: !template.edit.bgColorForm ? bgFormColor : bgFormColorEdit
+                     backgroundColor: bgFormColor
                     }} ref={visualForm}>
                     {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
                         <React.Fragment key={`renderized_${index}`}>
@@ -347,23 +292,23 @@ const FormComponent = ({ template }) => {
                             {Array.from({ length: template.defaultContent.countGrandson }).map((_, i) => (
                                 <React.Fragment key={`visual_${index}_${i}`}>
                                     <label className={template.defaultStyles[1]} htmlFor={`id${index}_${i}`} style={{
-                                            color: !template.edit.colorText ? labelFontColor : labelFontColorEdit,
-                                            fontSize: !template.edit.fontSizeText ? labelFontSize : labelFontSizeEdit, 
-                                            fontWeight: !template.edit.fontWeightText ? labelFontWeight : labelFontWeightEdit, 
-                                            textDecoration: !template.edit.textDecoration ? textDecoration : textDecorationEdit
+                                            color: labelFontColor,
+                                            fontSize: labelFontSize, 
+                                            fontWeight: labelFontWeight, 
+                                            textDecoration: textDecoration
                                         }} ref={visualLabel}>{labelValues[index][i]}</label>
-                                    <input className={template.defaultStyles[2]} key={`visual_input_${index}_${i}`} id={`id${index}_${i}`} name={`id${index}_${i}`} type={template.defaultContent.type} />
+                                    <input className={template.defaultStyles[2]} key={`visual_input_${index}_${i}`} id={`id${index}_${i}`} name={`id${index}_${i}`} type={template.defaultContent.tagInfo} />
                                 </React.Fragment>
                             ))}
                         </div>
                         </React.Fragment>
                     ))}
                     <button className={template.defaultStyles[3]} style={{ 
-                        backgroundColor: !template.edit.bgColorButton ? bgButtonColor : bgButtonColor, 
-                        fontSize: !template.edit.fontSizeText ? buttonFontSize : buttonFontSizeEdit, 
-                        color: !template.edit.colorText ? buttonFontColor : buttonFontColorEdit, 
-                        fontWeight: !template.edit.fontWeightText ? buttonFontWeight : buttonFontWeightEdit, 
-                        borderRadius: !template.edit.borderRadius ? (typeof buttonBorderRadius === 'number' ? `${buttonBorderRadius}px` : buttonBorderRadius) : (typeof buttonBorderRadiusEdit === 'number' ? `${buttonBorderRadiusEdit}px` : buttonBorderRadiusEdit) }} ref={visualButton}>{!template.edit.textItem ? buttonValue : buttonValueEdit}</button>
+                        backgroundColor: bgButtonColor, 
+                        fontSize: buttonFontSize, 
+                        color: buttonFontColor, 
+                        fontWeight: buttonFontWeight, 
+                        borderRadius: typeof buttonBorderRadius === 'number' ? `${buttonBorderRadius}px` : buttonBorderRadius }} ref={visualButton}>{buttonValue}</button>
                 </form>
             </div>
 
@@ -385,7 +330,7 @@ const FormComponent = ({ template }) => {
                                         {'</' + (template.defaultContent ? template.defaultContent.children[0] : null) + '>'}
                                     </span>
                                     <span> 
-                                        {'<' + (template.defaultContent ? template.defaultContent.children[1] : null) + ` type=${template.defaultContent.type} id=id${index + 1}_${i + 1} name=id${index + 1}>`}
+                                        {'<' + (template.defaultContent ? template.defaultContent.children[1] : null) + ` type=${template.defaultContent.tagInfo} id=id${index + 1}_${i + 1} name=id${index + 1}>`}
                                         {'</' + (template.defaultContent ? template.defaultContent.children[1] : null) + '>'}
                                     </span>
                             </React.Fragment>
@@ -393,7 +338,7 @@ const FormComponent = ({ template }) => {
                         <span>{'</div>'}</span>
                     </React.Fragment>
                     ))}
-                    <span>{'<'}{template.defaultContent ? template.defaultContent.grandson[0] : null}{' type="submit">'}{!template.edit.textItem ? buttonValue : buttonValueEdit}
+                    <span>{'<'}{template.defaultContent ? template.defaultContent.grandson[0] : null}{' type="submit">'}{buttonValue}
                     {'</'}{template.defaultContent ? template.defaultContent.grandson[0] : null}{'>'}</span>
                     <span>{'</'}{template.elementType}{'>'}</span>
                 </div>
