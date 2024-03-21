@@ -5,7 +5,9 @@ import Header from './layout/Header/Header'
 import Footer from './layout/Footer/Footer'
 import Payments from './pages/Payments/Payments'
 import { AuthProvider } from '../components/context/AuthContext';
-import Login from './pages/Authentication/Login/LoginForm'
+import LoginForm from './pages/Authentication/Login/LoginForm';
+import RegisterForm from './pages/Authentication/Register/RegisterForm'
+
 
 function App() {
   //const [isLogged, setIsLogged] = useState(false); COMENTADO PARA PRUEBAS DE LOGIN
@@ -13,7 +15,7 @@ function App() {
     <AuthProvider>
       <div>
         <h1>My App</h1>
-        <Login />
+        <RegisterForm />
       </div>
     </AuthProvider>
   )
