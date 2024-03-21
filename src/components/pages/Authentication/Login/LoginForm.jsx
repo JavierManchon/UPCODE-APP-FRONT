@@ -13,20 +13,20 @@ const LoginForm = () => {
     try {
       const user = { email, password };
       await login(user);
-      // Aqui es donde hariamos la redirección a my area o la que digamos
+      // Aquí es donde podríamos redirigir a otra página después del inicio de sesión exitoso
     } catch (error) {
-      setError('Error logging in: ' + error.message);
+      if (error.response && error.response.data && error.response.data.msg) {
+        setError(error.response.data.msg);
+      } else {
+        setError('Error logging in: ' + error.message);
+      }
     }
   };
 
-
-  //Esta funcion logout no debe ir ene l login es solo para pruebas, se debe incorporar en el componente desde el que hagamos logout
   const handleLogout = () => {
     logout();
   };
 
-
-  //Inlcuyo un condicional que renderice el boton de logout para las pruebas.
   return (
     <div>
       <h2>Login</h2>

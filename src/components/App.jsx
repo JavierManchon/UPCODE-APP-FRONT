@@ -15,7 +15,7 @@ function App() {
     <AuthProvider>
       <div>
         <h1>My App</h1>
-        <RegisterForm />
+        <LoginForm />
       </div>
     </AuthProvider>
   )

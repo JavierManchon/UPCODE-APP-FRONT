@@ -14,15 +14,35 @@ const RegisterForm = () => {
     e.preventDefault();
 
     try {
+      // Validación de campos
+      if (!name || !surname || !email || !username || !password) {
+        setError('¡No puedes dejar campos vacíos!');
+        return;
+      }
+
+      // Validación de la contraseña
+      if (password.length < 8) {
+        setError('¡La contraseña es demasiado corta! Debe tener al menos 8 caracteres.');
+        return;
+      }
+      const regexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,12}$/;
+      if (!regexp.test(password)) {
+        setError('¡La contraseña no cumple con los requisitos mínimos de seguridad! Debe tener de 8 a 12 caracteres, al menos una letra mayúscula, una letra minúscula, y un número.');
+        return;
+      }
+
+      // Registro del usuario
       const user = { name, surname, email, username, password };
       await registerReq(user);
+      
+      // Mensaje de éxito y limpieza de campos
       setSuccessMessage('Se ha enviado un mensaje de confirmación de registro a tu correo electrónico.');
-      // Limpiar los campos después del registro exitoso
       setName('');
       setSurname('');
       setEmail('');
       setUsername('');
       setPassword('');
+      setError('');
     } catch (error) {
       setError('Error registering: ' + error.message);
     }
