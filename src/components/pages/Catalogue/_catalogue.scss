@@ -1,0 +1,108 @@
+@import '../../../css/_variables.scss';
+
+
+
+main.container-catalogue {
+    width: 100%;
+    height: calc(100vh - 160px);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 30px;
+
+    >h2{
+        font-weight: bold;
+        width: 100%;
+        padding: 5px;
+        padding-bottom: 1px;
+        text-align: left;
+        border-bottom: 1px solid black;
+        flex-shrink: 0;
+    }
+
+    >section.container-packs{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        flex-shrink: 0;
+        >h3{
+            font-weight: bold;
+            width: 100%;
+            padding: 5px;
+            padding-bottom: 1px;
+            text-align: left;
+            border-bottom: 1px solid black;
+            flex-shrink: 0;
+        }
+        >div.packs{
+            display: flex;
+            flex-flow: row wrap;
+            gap: 20px;
+            width: 100%;
+            padding: 20px 10px;
+            >article.pack{
+                width: 100%;
+                max-width: 300px;
+                height: 240px;
+                overflow: hidden;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                border-radius: 15px;
+                >img{
+                    width: 100%;
+                    height: calc(100% - 25px);
+                }
+                >h4{
+                    font-weight: bold;
+                    width: 100%;
+                    padding: 5px;
+                    padding-bottom: 1px;
+                    text-align: left;
+                    border-bottom: 1px solid black;
+                    height: 25px;
+                    flex-shrink: 0;
+                }
+
+                &.nav{
+                    border: 1px solid $colorNav;
+                    
+                }
+                &.footer{
+                    border: 1px solid $colorFooter;
+                    
+                }
+                &.section{
+                    border: 1px solid $colorSection;
+                    
+                }
+                &.form{
+                    border: 1px solid $colorForm;
+                    
+                }
+                &.div{
+                    border: 1px solid $colorDiv;
+                    
+                }
+                &.button{
+                    border: 1px solid $colorButton;
+                    
+                }
+                &.figure{
+                    border: 1px solid $colorFigure;
+                    
+                }
+            }
+
+        }
+
+    }
+
+}

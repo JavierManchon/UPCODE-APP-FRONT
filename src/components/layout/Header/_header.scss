@@ -1,0 +1,112 @@
+header.container-title-links {
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-right: 20px;
+    background-color: black;
+
+    position: sticky;
+    top: 0;
+
+    > a.title-logo {
+        width: 100px;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+
+        > h1 {
+            position: absolute;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 0;
+            width: 0px;
+            height: 0px;
+        }
+
+        > img {
+            width: 100%;
+            height: 100%;
+        }
+
+        &:hover {
+            > img {
+                transition: all ease .5s;
+                width: 110%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    > nav.list-links {
+        width: calc(100% - 100px);
+        height: 100%;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        > ul.container-items {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+
+            > li {
+                color: #fff;
+                text-decoration: none;
+                position: relative;
+                cursor: pointer;
+                transform: scale(0.9);
+                
+                > a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+                &::before {
+                    content: "";
+
+                    width: 0px;
+                    height: 1px;
+
+                    background-color: #fff;
+
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                &:hover {
+                    transition: all ease .5s;
+                    transform: scale(1);
+                    
+                    &::before {
+                        transition: all ease .5s;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    header.container-title-links {
+        height: 60px;
+        overflow-y: hidden;
+
+        > a.title-logo {
+            height: 125%;
+
+        }
+    }
+}
