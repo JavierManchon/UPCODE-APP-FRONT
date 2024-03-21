@@ -1,0 +1,90 @@
+//clases de la informacion que damos al usuario
+.footerVertical {
+    background-color: rgb(99, 247, 188);
+    width: 100%;
+    padding: 6px;
+
+    .ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 5px;
+
+        .li {
+            color: #f7639e;
+        }
+    }
+}
+
+.footerHorizontal {
+    background-color: rgb(99, 247, 188);
+    width: 100%;
+    padding: 6px;
+
+    .ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+
+        .li {
+            color: #f7639e;
+        }
+    }
+}
+
+//estilo por añadir enlace a li
+div.container-pages-default-styles {
+    > button {
+        width: 130px;
+        align-self: center;
+    }
+    div.container-editor {
+        > p {
+            width: 350px !important;
+        } 
+    }
+    div.container-renderized_html {
+        > div.html {
+            > span {
+                width: 350px !important;
+            }
+        }
+    }
+    div.container-renderized_css {
+        > div.css-a {
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+
+            display: flex;
+            flex-direction: column;
+
+            > div.title-btn {
+                width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px;
+            }
+
+            > div.css {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+    
+    
+                > span {
+                    padding-left: 50px;
+    
+                    &:first-child,
+                    &:last-child {
+                        padding-left: 40px;
+                    }
+                }
+            }
+        }
+    }
+}
