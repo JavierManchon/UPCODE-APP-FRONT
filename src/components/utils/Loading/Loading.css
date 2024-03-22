@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "Retro Gaming";
+  src: url("../fonts//Retro Gaming.ttf");
+}
+
+h1 {
+  --heading-text: #000000;
+  --heading-start: transparent;
+  --easing: ease-out;
+  --speed: 0.6s;
+  position: relative;
+  overflow: hidden;
+  color: var(--heading-start);
+  letter-spacing: -3px;
+  font-size: clamp(2.5rem, 3.5vw, 6rem);
+  font-weight: bold;
+  font-family: "Retro Gaming";
+}
+h1::after {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  background-color: var(--heading-text);
+}
+h1.animate {
+  animation: var(--speed) headingFadeInText var(--speed) var(--easing) forwards;
+}
+h1.animate::after {
+  animation: var(--speed) headingSliderOverlay var(--speed) var(--easing) forwards;
+}
+
+@keyframes headingSliderOverlay {
+  0% {
+    left: 0;
+    width: 0%;
+  }
+  50% {
+    left: 0;
+    width: 100%;
+  }
+  100% {
+    left: 100%;
+    width: 0%;
+    right: 0;
+  }
+}
+@keyframes headingFadeInText {
+  0% {
+    color: var(--heading-start);
+  }
+  49% {
+    color: var(--heading-start);
+  }
+  50%, 100% {
+    color: var(--heading-text);
+  }
+}/*# sourceMappingURL=Loading.css.map */
