@@ -47,7 +47,7 @@ main.container-catalogue {
             gap: 20px;
             width: 100%;
             padding: 20px 10px;
-            >article.pack{
+            >a.pack{
                 width: 100%;
                 max-width: 300px;
                 height: 240px;
@@ -57,6 +57,7 @@ main.container-catalogue {
                 flex-direction: column;
                 gap: 20px;
                 border-radius: 15px;
+                text-decoration: none;
                 >img{
                     width: 100%;
                     height: calc(100% - 25px);
@@ -68,7 +69,7 @@ main.container-catalogue {
                     padding-bottom: 1px;
                     text-align: left;
                     border-bottom: 1px solid black;
-                    height: 25px;
+                    height: 30px;
                     flex-shrink: 0;
                 }
 
@@ -106,4 +107,10 @@ main.container-catalogue {
 
     }
 
+}
+
+@media (max-width: 575.98px) {
+    main.container-catalogue {
+        height: calc(100vh - 120px);
+    }
 }
