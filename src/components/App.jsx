@@ -5,19 +5,20 @@ import Header from './layout/Header/Header'
 import Footer from './layout/Footer/Footer'
 import Payments from './pages/Payments/Payments'
 import { Route, Routes } from "react-router-dom";
-
 import UserArea from './pages/UserArea/UserArea'
 import AsideTickets from './layout/AsideTickets/AsideTickets'
-
 import { AuthProvider } from '../components/context/AuthContext';
 import LoginForm from './pages/Authentication/Login/LoginForm';
 import RegisterForm from './pages/Authentication/Register/RegisterForm'
 import Home from './pages/Home/Home'
+import Profile from './pages/Profile/Profile'
+
 
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   return (
+
 
 
       <div>
@@ -33,6 +34,7 @@ function App() {
         <Footer />
       </div>
   
+
 
   )
 }

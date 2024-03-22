@@ -7,6 +7,11 @@
 
 //estilos de la pagina
 
+div.container-all {
+    position: relative;
+    overflow-y: hidden;
+}
+
 div.container-pages-default-styles {
     display: flex;
     gap: 10px;
