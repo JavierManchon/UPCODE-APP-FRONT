@@ -5,12 +5,14 @@ import Header from './layout/Header/Header'
 import Footer from './layout/Footer/Footer'
 import Payments from './pages/Payments/Payments'
 import UserArea from './pages/UserArea/UserArea'
+import AsideTickets from './layout/AsideTickets/AsideTickets'
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   return (
     <div>
       <Header isLogged={isLogged} setIsLogged={setIsLogged}/>
+      <AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/>
 
       {/*<Catalogue isLogged={isLogged} setIsLogged={setIsLogged}/>*/}
       <UserArea isLogged={isLogged} setIsLogged={setIsLogged}/>
