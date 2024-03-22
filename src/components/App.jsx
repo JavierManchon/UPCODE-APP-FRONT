@@ -11,6 +11,7 @@ import AsideTickets from './layout/AsideTickets/AsideTickets'
 import { AuthProvider } from '../components/context/AuthContext';
 import LoginForm from './pages/Authentication/Login/LoginForm';
 import RegisterForm from './pages/Authentication/Register/RegisterForm'
+import Profile from './pages/Profile/Profile'
 
 
 function App() {
@@ -19,8 +20,11 @@ function App() {
 
     <div className='container-all'>
       <Header isLogged={isLogged} setIsLogged={setIsLogged}/>
-      <AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/>
-      <Catalogue isLogged={isLogged} setIsLogged={setIsLogged}/>
+      {/*<AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/>*/}
+        <AuthProvider>
+          <LoginForm />
+        </AuthProvider>
+      {/*<Catalogue isLogged={isLogged} setIsLogged={setIsLogged}/>*/}
       {/* <UserArea isLogged={isLogged} setIsLogged={setIsLogged}/> */}
       {/*<Payments/>*/}
       <Footer/>
