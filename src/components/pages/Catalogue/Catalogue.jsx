@@ -366,7 +366,7 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
             bgColorSection: null,
             bgColorArticle: null,
             bgColorFigure: null,
-            bgColorFooter: '#000',
+            bgColorFooter: null,
             bgColorDiv: null,
             bgColorTable: null,
             colorTitle: null,
