@@ -18,7 +18,7 @@ export const API = axios.create({
     baseURL: 'http://localhost:8084/api',
 });
 
-/*const headersWithFormDataContentType = {
+ export const headersWithFormDataContentType = {
     ...APIHeader,
     "Content-Type": "multipart/form-data"
-  };*/
+  };
