@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import "./_catalogue.scss";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// Asegúrate de que la ruta a DesignsController es correcta según tu estructura de proyecto
 import DesignsController from '../../../middlewares/DesignsController/DesignsController';
-import { getDesigns } from '../../../api/axios/designs';
 import AsideTickets from '../../layout/AsideTickets/AsideTickets';
+import { getDesigns } from '../../../api/axios/designs';
+
 
 const Catalogue = ({isLogged ,setIsLogged}) => {
     const [templates, setTemplates] = useState([]);
@@ -72,9 +72,7 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
                         </div>
                 </section>
             ))}
-            {isLogged ? 
-              <AsideTickets setIsLogged={setIsLogged}/> : null
-            }
+            {isLogged ? <AsideTickets setIsLogged={setIsLogged}/> : null};
         </main>
     );
 };
