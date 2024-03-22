@@ -1,107 +1,111 @@
-@import '../../../css/variables';
+@import "../../../css/variables";
 
-div.container-aside {
-    position: absolute;
-    bottom: 100px;
-    right: 30px;
-    width: 300px;
-    height: 620px;
-    overflow: hidden;
-    z-index: 10;
+img.user-image {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: grey;
+  position: absolute;
+  bottom: 100px;
+  right: 30px;
+  z-index: 2;
+
+  &.hide {
+    z-index: 0;
+    visibility: hidden;
+  }
+}
+
+aside.user-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  width: 90%;
+  height: calc(95vh - 160px);
+  max-width: 600px;
+  position: absolute;
+  top: 50%;
+  right: -800px;
+  transform: translateY(-50%);
+  z-index: 2;
+  border: 2px solid black;
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  overflow-y: scroll;
 
     &.show {
-        border-radius: 15px;
-        border: 2px solid black;
-        backdrop-filter: blur(10px);
-        padding: 20px;
-    }
-    
-    
-    > img {
-        cursor: pointer;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 1px solid black;
-        background-color: grey;
+        transition: all ease 1s;
+        right: 30px;
+        
     }
 
-    > aside.user-data {
+    > div.container-general {
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5px;
 
-        > .wrapper {
-            width: 100%;
+        > div.form-user {
+            width: 45%;
+            height: 100%;
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 3px;
             > button.close-symbol {
                 width: 20px;
                 height: 20px;
                 border: none;
                 background-color: transparent;
-                
+                flex-shrink: 0;
+              }
+          
+            > div.container-user {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              align-items: center;
+              padding: 10px;
+              flex-shrink: 0;
             }
-
-            > button.drag-symbol {
-                width: 20px;
-                height: 20px;
-                border: none;
-                background-color: transparent;
-            }
-        }
-    
-        > div.container-user {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 10px;
-        }
-
-        > form.ticket {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: flex-start;
-            align-items: flex-start;
-
-            > label {
+          
+            > form.ticket {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-shrink: 0;
+          
+              > label {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
-
+          
                 > input {
-                    width: 100%;
-                    border: none;
-                    outline: none;
-                    border-bottom: 1px solid black;
-                    padding: 5px 0;
+                  width: 100%;
+                  border: none;
+                  outline: none;
+                  border-bottom: 1px solid black;
+                  padding: 5px 0;
                 }
-
+          
                 > textarea {
-                    padding: 3px;
-                    outline: none;
+                  padding: 3px;
+                  outline: none;
                 }
-            }
-        }
+              }
 
-        > div.container-buttons {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: 5px;
-
-            > button, > a {
+              > button {
                 width: 100%;
                 height: 30px;
                 border: none;
@@ -112,7 +116,57 @@ div.container-aside {
                 align-items: center;
                 color: white;
                 border-radius: 10px;
+              }
             }
+          
+            
         }
+
+        > div.separator {
+            width: 2px;
+            height: 90%;
+            background-color: black;
+            align-self: flex-end;
+        }
+        
+    }
+
+    
+    > div.container-buttons {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 5px;
+    
+        > button,
+        > a {
+          width: 100%;
+          height: 30px;
+          border: none;
+          text-decoration: none;
+          background-color: black;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: white;
+          border-radius: 10px;
+        }
+      }
+   
+}
+
+@media (max-width: 575.98px) {
+    aside.user-data {
+        height: calc(95vh - 120px);
+        top: 50%;
+
+        &.show {
+            transition: all ease 1s;
+            right: 5%;
+            transform: translateY(-50%);
+        }
+
     }
 }

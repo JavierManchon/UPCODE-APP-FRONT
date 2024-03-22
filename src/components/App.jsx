@@ -18,7 +18,7 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   return (
 
-    <div>
+    <div className='container-all'>
       <Header isLogged={isLogged} setIsLogged={setIsLogged}/>
       {/*<AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/>*/}
         <AuthProvider>
