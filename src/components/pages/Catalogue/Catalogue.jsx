@@ -4,6 +4,7 @@ import "./_catalogue.scss";
 import axios from 'axios';
 // Asegúrate de que la ruta a DesignsController es correcta según tu estructura de proyecto
 import DesignsController from '../../../middlewares/DesignsController/DesignsController';
+import AsideTickets from '../../layout/AsideTickets/AsideTickets';
 
 
 const Catalogue = ({isLogged ,setIsLogged}) => {
@@ -517,7 +518,7 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
                 </section>
             ))}
             {isLogged ? 
-              <AsideUser setIsLogged={setIsLogged}/> :
+              <AsideTickets setIsLogged={setIsLogged}/> :
               null
 
             };

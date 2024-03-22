@@ -23,7 +23,7 @@ const Header = ({ isLogged, setIsLogged }) => {
 
     return (
         <header className='container-title-links'>
-            <Link className='title-logo'>
+            <Link className='title-logo' to='/'>
                 <h1>UP-CODE</h1>
                 <img src={Logo} alt="Logo" />
             </Link>
@@ -31,8 +31,8 @@ const Header = ({ isLogged, setIsLogged }) => {
                 <ul className='container-items'>
                     {isLogged ? (
                         <>
-                            <li><Link to="/mydesigns">Mis Diseños</Link></li>
-                            <li><Link to="/templates">Templates</Link></li>
+                            <li><Link to="/user-area">Mis Diseños</Link></li>
+                            <li><Link to="/catalogue">Templates</Link></li>
                             <li onClick={handleLogout}>Logout</li>
                         </>
                     ) : (

@@ -1,0 +1,20 @@
+/* PremiumContent.scss */
+.premium-content {
+    text-align: center; /* Centra el contenido */
+    margin-top: 20px; /* Añade un poco de margen en la parte superior */
+}
+
+.premium-content button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Un color azul como ejemplo */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px; /* Ajusta el tamaño de la fuente según necesites */
+    border-radius: 5px; /* Bordes redondeados para el botón */
+    transition: background-color 0.3s; /* Efecto de transición suave para el hover */
+}
+
+.premium-content button:hover {
+    background-color: #0056b3; /* Un azul más oscuro para el efecto hover */
+}
