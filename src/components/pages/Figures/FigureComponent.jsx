@@ -210,7 +210,7 @@ const FigureComponent = ({ template }) => {
           <span>{`<${template.elementType}>`}</span>
           <br></br>
           <span>{`<${template.defaultContent.children[0]} src="` + imgUrl + `" alt="" />`}</span>
-          <span>{`<${template.defaultContent.grandson[0]}>` + figcaption + `</${template.defaultContent.grandson[0]}>`}</span>
+          <span>{`<${template.defaultContent.children[1]}>` + figcaption + `</${template.defaultContent.children[1]}>`}</span>
           <br></br>
           <span>{`</${template.elementType}>`}</span>
         </div>
