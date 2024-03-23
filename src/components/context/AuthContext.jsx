@@ -9,8 +9,8 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
-    token: sessionStorage.getItem('token') || null,
-    user: null
+    token: sessionStorage.getItem('token') ||  null,
+    user: JSON.parse(sessionStorage.getItem('user')) || null
   });
 
   useEffect(() => {
@@ -47,15 +47,14 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await loginReq(user);
       const { token } = data;
-      setAuthState({ token: token, user: data });
       sessionStorage.setItem('token', token);
-      API.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
-      console.log(token)
+      sessionStorage.setItem('user', JSON.stringify(data));
+      setAuthState({ token: token, user: data });
+      API.defaults.headers.common['Authorization'] = token;
     } catch (error) {
       console.error('Error logging in:', error);
     }
   };
-
   const logout = () => {
     sessionStorage.removeItem('token');
     setAuthState({ token: null, user: null });
