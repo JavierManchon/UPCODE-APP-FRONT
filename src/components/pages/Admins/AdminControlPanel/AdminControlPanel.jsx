@@ -1,22 +1,15 @@
-import React from 'react'
-
-import UserManagement from '../UserManagement/UserManagement'
-import DesignManagement from '../DesignManagement/DesignManagement'
-import TicketsManagement from '../TicketsManagement/TicketsManagement'
-import TicketsDetails from '../TicketsManagement/TicketsDetails/TicketsDetails'
-
+import React, { useState } from 'react';
+import { useAuth } from '../../../context/AuthContext';
 
 
 function AdminControlPanel() {
+  const { authState } = useAuth();
+
   return (
     <div>
-       
-         {/* <UserManagement/> 
-         <DesignManagement /> */}
-        {/* <TicketsManagement/> */}
-        <TicketsDetails/>
+    <h2>Bienvenido {authState.user.username}</h2>
     </div>
-  )
+  );
 }
 
-export default AdminControlPanel
+export default AdminControlPanel;
