@@ -5,7 +5,7 @@ import './_profile.scss';
 
 const Profile = () => {
   const { authState, patchUser } = useAuth();
-  const userInfo = authState.user;
+  //const userInfo = authState.user;
 
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -34,7 +34,7 @@ const Profile = () => {
         userData.image = newPicture;
       }
   
-      await patchUser(userInfo._id, userData);
+      await patchUser(authState.user._id, userData);
   
       setNewUsername('');
       setNewPicture(null);
@@ -47,7 +47,7 @@ const Profile = () => {
     setShowEditForm(prevState => !prevState);
   };
 
-  if (!userInfo) {
+  if (!authState.user) {
     return <div>Cargando...</div>;
   }
 
@@ -55,12 +55,12 @@ const Profile = () => {
     <section className="profile-container">
       <article className="profile-id-container">
         <div className="profile-id-image-container">
-          <img className="profile-id-image" alt="" src={userInfo.image}/>
+          <img className="profile-id-image" alt="" src={authState.user.image}/>
         </div>
-        <h3 className="profile-id-username">{userInfo.username}</h3>
-        <h4 className="profile-id-name">{userInfo.name}</h4>
-        <h4 className="profile-id-surname">{userInfo.surname}</h4>
-        <h4 className="profile-id-email">{userInfo.email}</h4>
+        <h3 className="profile-id-username">{authState.user.username}</h3>
+        <h4 className="profile-id-name">{authState.user.name}</h4>
+        <h4 className="profile-id-surname">{authState.user.surname}</h4>
+        <h4 className="profile-id-email">{authState.user.email}</h4>
         <img className="edit-icon" src={iconImage} alt="" onClick={toggleEditForm} />
         {showEditForm && (
           <div className="edit-profile-form">

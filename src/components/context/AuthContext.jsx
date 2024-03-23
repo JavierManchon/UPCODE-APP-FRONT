@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { registerReq, loginReq, userByTokenReq, patchUserReq } from '../../api/axios/auth';
+import { API } from '../../api/axios/axios';
+
 
 const AuthContext = createContext();
 
@@ -47,6 +49,7 @@ export const AuthProvider = ({ children }) => {
       const { token } = data;
       setAuthState({ token: token, user: data });
       sessionStorage.setItem('token', token);
+      API.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
       console.log(token)
     } catch (error) {
       console.error('Error logging in:', error);
@@ -65,6 +68,7 @@ export const AuthProvider = ({ children }) => {
         ...prevState,
         user: response.data
       }));
+      console.log(id , userData)
     } catch (error) {
       console.error('Error updating user:', error);
     }

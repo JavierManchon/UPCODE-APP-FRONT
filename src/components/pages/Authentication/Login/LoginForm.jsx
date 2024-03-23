@@ -3,6 +3,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { Link, useNavigate } from "react-router-dom";
 import './_login.scss';
 
+
 const LoginForm = ({ setIsLogged }) => {
   const navigate = useNavigate();
   const { login, authState } = useAuth();
