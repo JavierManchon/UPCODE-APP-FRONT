@@ -1,0 +1,104 @@
+.container-title{
+    width: 100%;
+    background-color: #29319e;
+    display: flex;
+    flex-direction: column;
+  }
+
+.aside-title{
+    text-align: center;
+    font-size: 100%;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family:system-ui,
+    
+}
+  .aside-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ffffff8c;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 5px #000000;
+    background-color: rgb(179, 177, 177);
+    overflow: auto;
+  }
+  
+  .aside-items{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .aside-li{
+    text-decoration: none;
+    font-size: 80%;
+  }
+
+  .table {
+    background-color: #f2f2f2;
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  .table-header{
+    border: 1px solid #dddddd;
+    padding: 12px;
+    text-align: center;
+  }
+  .table-data{
+    border: 1px solid #dddddd;
+    font-size:large;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .table-head{
+    background-color: #f2f2f2;
+    color: #333333;
+    font-weight: bold;
+  }
+  .table-row {
+   font-size: smaller; 
+  }
+  .table-row:hover  {
+    background-color: #e2e2e2;
+  }
+
+  .delete-button{
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #ff0000;
+    }
+  }
+
+  .search{
+    margin-left: 20px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 20%;
+
+  }
+
+  .no-tickets{
+    font-size: smaller; 
+  }
+
+  .ticket-btn{
+    color: #000000;
+    cursor: pointer;
+    border-radius: 8%;
+    transition: color 0.3s ease;
+
+    &:hover{
+      background-color: #625050;
+    }
+  }
