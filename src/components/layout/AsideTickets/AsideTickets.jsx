@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./_asideTickets.scss";
 import { Link, useNavigate } from "react-router-dom";
+import Profile from "../../pages/Profile/Profile";
 
 const AsideTickets = ({ isLogged, setIsLogged }) => {
   const [userName, setUserName] = useState("Context Enjoyers");
@@ -75,7 +76,7 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
           </form>
         </div>
         <div className="separator"></div>
-        {/* <Etiqueta de Javi></Etiqueta> */}
+        <Profile/>
         </div>
 
         
