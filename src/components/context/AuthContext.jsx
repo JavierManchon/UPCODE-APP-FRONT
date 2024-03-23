@@ -14,13 +14,13 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        if (!authState.user && authState.token) {
-          const response = await userByTokenReq();
-          setAuthState(prevState => ({
-            ...prevState,
-            user: response.data
-          }));
-        }
+        // if (!authState.user && authState.token) {
+        //   const response = await userByTokenReq();
+        //   setAuthState(prevState => ({
+        //     ...prevState,
+        //     user: response.data
+        //   }));
+        // }
       } catch (error) {
         console.error('Error fetching user info:', error);
       }
@@ -45,8 +45,9 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await loginReq(user);
       const { token } = data;
+      setAuthState({ token: token, user: data });
       sessionStorage.setItem('token', token);
-      setAuthState({ token, user: null });
+      console.log(token)
     } catch (error) {
       console.error('Error logging in:', error);
     }

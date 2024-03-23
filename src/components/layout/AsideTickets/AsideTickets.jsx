@@ -34,13 +34,17 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
 
   return (
     <>
-      <img
+      {
+        isLogged 
+        ? 
+        <>
+        <img
         src={userImage}
         alt="Imagen de usuario"
         className={`user-image ${showAside ? "hide" : ""}`}
         onClick={handleShowAside}
-      />
-      <aside className={`user-data ${showAside ? "show" : ""}`}>
+          />
+          <aside className={`user-data ${showAside ? "show" : ""}`}>
         <div className="container-general">
         <div className="form-user">
           <button onClick={handleHideAside} className="close-symbol">
@@ -90,6 +94,11 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
             <Link to="">Área Premium</Link>
           </div>
       </aside>
+      </>
+        : null
+      }
+      
+      
     </>
   );
 };

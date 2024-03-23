@@ -18,17 +18,17 @@ import Profile from './pages/Profile/Profile'
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   return (
-      <div>
+      <div className='container-all'>
         <Header isLogged={isLogged} setIsLogged={setIsLogged} />
         <Routes>
           <Route path="/" element={<Home isLogged={isLogged} setIsLogged={setIsLogged} />} />
           <Route path="/catalogue" element={<Catalogue isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
           <Route path="/user-area" element={<UserArea isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
           <Route path="/payments" element={<Payments />} /> 
-          <Route path="/login" element={<LoginForm isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
+          <Route path="/login" element={<LoginForm setIsLogged={setIsLogged} />} /> 
           <Route path="/register" element={<RegisterForm />} /> 
         </Routes>
-        {isLogged ? <AsideTickets/> : null}
+        {isLogged ? <AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/> : null}
         <Footer />
       </div>
   )
