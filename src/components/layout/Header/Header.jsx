@@ -36,7 +36,11 @@ const Header = ({ isLogged, setIsLogged }) => {
                             <li onClick={handleLogout}>Logout</li>
                         </>
                     ) : (
+                        <>
+                        <li><Link to="/catalogue">Templates</Link></li>
                         <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/register">Register</Link></li>
+                        </>
                     )}
                 </ul>
             </nav>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { registerReq } from '../../../../api/axios/auth';
+import { Link } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -101,6 +102,7 @@ const RegisterForm = () => {
         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         <button type="submit">Register</button>
       </form>
+      <li><Link to="/login">Login</Link></li>
     </div>
   );
 };

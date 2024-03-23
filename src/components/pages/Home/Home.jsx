@@ -48,7 +48,7 @@ const Home = ({isLogged ,setIsLogged}) => {
 
 
       <div className="links">
-        <Link to="/suscribirse">Suscríbete Ahora</Link>
+        <Link to="/register">Regístrate Ahora</Link>
         <p>¿Tienes preguntas? <Link to="/contacto">Contáctanos</Link></p>
       </div>
       <Slider slides={slideImages} />

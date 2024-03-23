@@ -15,17 +15,6 @@ const TableComparationPremium = ({isLogged}) => {
     { id: 4, feature: 'Diseños ilimitados', free: true, paid: true },
   ];
 
-
-  const handleButtonClick = () => {
-    if (isLogged) {
-
-      navigate('/ruta-suscribirse');
-    } else {
-
-      navigate('/ruta-registrarse');
-    }
-  };
-
   return (
     <>
           <h2 className='home-title'>Bienvenido a Nuestro Servicio</h2>
@@ -51,8 +40,8 @@ const TableComparationPremium = ({isLogged}) => {
 
 
       </table>
-                  <Link onClick={handleButtonClick} className="suscribe-button">
-                    {isLogged ? 'Suscríbete Aquí' : 'Regístrate Aquí para Hacerte Premium'}
+                  <Link to={isLogged ? '' : '/register'} className="suscribe-button">
+                    {isLogged ? 'Hazte Premium' : 'Regístrate Aquí'}
                   </Link>
     </>
   );
