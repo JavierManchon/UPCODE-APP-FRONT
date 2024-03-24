@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./_userManagement.scss";
-import { getAllUsersReq } from "../../../../api/axios/auth";
+import { getAllUsersReq, deleteUserReq } from "../../../../api/axios/auth";
 
 function UserManagement() {
   const [usersState, setUsersState] = useState([]);
@@ -9,8 +9,8 @@ function UserManagement() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const users = await getAllUsersReq();
-        console.log("Usuarios obtenidos:", users);
+        const response = await getAllUsersReq();
+        const users = response.data;
         setUsersState(users);
       } catch (error) {
         console.error("Error al obtener usuarios:", error);
@@ -23,16 +23,28 @@ function UserManagement() {
     setSearchUsers(e.target.value);
   };
 
-  // Verificación para asegurarse de que usersState es un array antes de aplicar el filtro
-  const filteredUsers = Array.isArray(usersState) ? usersState.filter(
-    (user) =>
-      user.name.toLowerCase().includes(searchUsers.toLowerCase()) ||
-      user.surname.toLowerCase().includes(searchUsers.toLowerCase()) ||
-      user.username.toLowerCase().includes(searchUsers.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchUsers.toLowerCase())
-  ) : [];
+  const handleDeleteUser = async (userId) => {
+    try {
+      await deleteUserReq(userId);
+      // Actualizar la lista de usuarios después de eliminar uno
+      const response = await getAllUsersReq();
+      const users = response.data;
+      setUsersState(users);
+    } catch (error) {
+      console.error("Error al eliminar usuario:", error);
+    }
+  };
 
-  console.log("Usuarios filtrados:", filteredUsers);
+  const filteredUsers = usersState.filter((user) => {
+    const searchTerm = searchUsers.toLowerCase();
+    return (
+      user.name.toLowerCase().includes(searchTerm) ||
+      user.surname.toLowerCase().includes(searchTerm) ||
+      user.username.toLowerCase().includes(searchTerm) ||
+      user.email.toLowerCase().includes(searchTerm) ||
+      user._id.toLowerCase().includes(searchTerm)
+    );
+  });
 
   return (
     <div>
@@ -56,11 +68,12 @@ function UserManagement() {
                 <th className="table-header">Email</th>
                 <th className="table-header">Premium</th>
                 <th className="table-header">Tickets</th>
+                <th className="table-header">Acciones</th>
               </tr>
             </thead>
             <tbody>
               {filteredUsers.map((user) => (
-                <tr key={user.username} className="table-row">
+                <tr key={user._id} className="table-row">
                   <td className="table-data">
                     {user.name} {user.surname}
                   </td>
@@ -70,17 +83,14 @@ function UserManagement() {
                     {user.isPremium ? "true" : "false"}
                   </td>
                   <td className="table-data">
-                    {user.tickets.length > 0 ||
-                    user.generalTickets.length > 0 ? (
-                      <button
-                        className="ticket-btn"
-                        onClick={() => redirectToTicketPage(user.username)}
-                      >
-                        Go to tickets
-                      </button>
+                    {user.tickets && user.tickets.length > 0 ? (
+                      <button className="ticket-btn">Go to tickets</button>
                     ) : (
                       <p className="no-tickets">No hay tickets</p>
                     )}
+                  </td>
+                  <td className="table-data">
+                    <button onClick={() => handleDeleteUser(user._id)}>Borrar</button>
                   </td>
                 </tr>
               ))}

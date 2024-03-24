@@ -66,9 +66,10 @@ export const AuthProvider = ({ children }) => {
       const response = await patchUserReq(id, userData);
       setAuthState(prevState => ({
         ...prevState,
-        user: response.data
+        user: response.data,
       }));
       console.log(id , userData)
+      sessionStorage.setItem('user', JSON.stringify(response.data));
     } catch (error) {
       console.error('Error updating user:', error);
     }
