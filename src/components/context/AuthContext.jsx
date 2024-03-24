@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { registerReq, loginReq, userByTokenReq, patchUserReq } from '../../api/axios/auth';
+import { registerReq, loginReq, userByTokenReq, patchUserReq, getAllUsersReq } from '../../api/axios/auth';
 import { API } from '../../api/axios/axios';
 
 
@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     token: sessionStorage.getItem('token') ||  null,
     user: JSON.parse(sessionStorage.getItem('user')) || null
   });
+  const [usersState, setUsersState] = useState([]);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -73,8 +74,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getAllUsers = async () => {
+    try {
+      const response = await getAllUsersReq();
+      const users = response.data;
+      setUsersState(users);
+      return users;
+    } catch (error) {
+      console.error('Error fetching all users:', error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ authState, register, login, logout, patchUser }}>
+    <AuthContext.Provider value={{ authState, usersState, register, login, logout, patchUser, getAllUsers }}>
       {children}
     </AuthContext.Provider>
   );
