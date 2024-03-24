@@ -1,39 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './_sectionComponent.scss';
 import '../../../css/app.scss';
-import { useParams } from "react-router";
-import { getDesignById } from "../../../api/axios/designs";
+import { useLocation } from 'react-router-dom';
 
 const SectionComponent = () => {
-
-    const [template, setTemplate]=useState({});
-    const { designId } = useParams();
-    console.log(designId)
-  
-   useEffect(() => {
-    console.log('hola')
-    const fetchDesign = async () => {
-      try {
-          console.log(`Design ID al inicio del useEffect: ${designId}`);
-          if(designId){
-              const response = await getDesignById(designId);
-              console.log('Respuesta de la API:', response);
-              if(response){
-                  setTemplate(response.data);
-              } else {
-                  console.log('No se encontró el diseño.');
-              }
-          } else {
-              console.log('Design ID no está definido.');
-          }
-      } catch (error) {
-        console.error('Error fetching design:', error);
-      }
-    };
-
-    fetchDesign();
-}, []);
-
+    const location = useLocation(); 
+    const template = location.state.templateData; 
+    console.log(template)
 
     const [h2Values, setH2Values] = useState(() => {
         if(template.edit && template.edit.textArray > 0) {

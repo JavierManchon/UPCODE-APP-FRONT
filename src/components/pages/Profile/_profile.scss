@@ -1,7 +1,17 @@
-.profile-id-image {
-    width: 100px;
-}
+section.profile-container {
+    width: 100%;
 
-.edit-icon {
-    width: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    & > *{
+        flex-shrink: 0;
+    }
+
+    > img.edit-icon {
+        width: 30px;
+        height: 30px;
+    }
 }

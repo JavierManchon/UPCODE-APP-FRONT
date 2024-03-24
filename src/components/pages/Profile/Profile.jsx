@@ -53,7 +53,6 @@ const Profile = () => {
 
   return (
     <section className="profile-container">
-      <article className="profile-id-container">
         <div className="profile-id-image-container">
           <img className="profile-id-image" alt="" src={authState.user.image}/>
         </div>
@@ -79,7 +78,6 @@ const Profile = () => {
             </form>
           </div>
         )}
-      </article>
     </section>
   );
 };

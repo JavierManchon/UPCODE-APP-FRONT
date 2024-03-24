@@ -7,17 +7,26 @@
 
 //estilos de la pagina
 
-div.container-all {
-    position: relative;
-    overflow-y: hidden;
-    padding-top: 100px;
+body {
+    height: 100vh;
+
+    > div#root {
+        height: 100vh;
+
+        div.container-all {
+            position: relative;
+            overflow-y: scroll;
+            padding-top: 100px;
+            height: 100vh;
+        }
+    }
 }
+
 
 div.container-pages-default-styles {
     display: flex;
     gap: 10px;
     flex-direction: column;
-    padding-top: 100px;
     div.container-editor {
         display: flex;
         flex-direction: column;

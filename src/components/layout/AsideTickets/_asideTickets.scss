@@ -27,7 +27,7 @@ aside.user-data {
   width: 90%;
   height: calc(95vh - 160px);
   max-width: 600px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   right: -800px;
   transform: translateY(-50%);

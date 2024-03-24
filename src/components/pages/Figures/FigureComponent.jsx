@@ -1,31 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import "../../../css/app.scss";
 import "../Figures/_figureComponent.scss";
-import { useParams } from "react-router";
-import { getDesignById } from "../../../api/axios/designs";
+import { useLocation } from "react-router-dom";
 
 const FigureComponent = () => {
-  const [template, setTemplate]=useState({});
-  const { designId } = useParams();
+  const location = useLocation(); 
+  const template = location.state.templateData; 
   console.log(template)
-
-
-
-    const fetchDesign = async () => {
-      console.log("wakanda")
-      try {
-        const response = await getDesignById(designId);
-        console.log(response)
-        setTemplate(response.data); 
-
-      } catch (error) {
-        console.error('Error fetching design:', error);
-      }
-    };
-
-
-    fetchDesign();
-
 
   const [colorText, setColorText] = useState(
     template.edit.colorText ? template.edit.colorText : ""

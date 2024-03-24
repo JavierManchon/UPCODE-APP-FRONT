@@ -1,6 +1,6 @@
 div.container-areaVoid {
     display: flex;
-    height: 800px;
+    height: calc(100vh - 160px);
     align-items: center;
     .circulo {
       display: flex;
