@@ -4,7 +4,7 @@ import Catalogue from './pages/Catalogue/Catalogue'
 import Header from './layout/Header/Header'
 import Footer from './layout/Footer/Footer'
 import Payments from './pages/Payments/Payments'
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import UserArea from './pages/UserArea/UserArea'
 import AsideTickets from './layout/AsideTickets/AsideTickets'
 
@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Home isLogged={isLogged} setIsLogged={setIsLogged} />} />
           <Route path="/catalogue" element={<Catalogue isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
           <Route path="/user-area" element={<UserArea isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/payments" element={<Payments />} /> 
+          <Route path="/payments" element={isLogged ? <Payments /> : <Navigate to="/" />} /> 
           <Route path="/login" element={<LoginForm setIsLogged={setIsLogged} />} /> 
           <Route path="/register" element={<RegisterForm />} /> 
         </Routes>

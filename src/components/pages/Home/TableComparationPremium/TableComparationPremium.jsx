@@ -40,7 +40,7 @@ const TableComparationPremium = ({isLogged}) => {
 
 
       </table>
-                  <Link to={isLogged ? '' : '/register'} className="suscribe-button">
+                  <Link to={isLogged ? '/payments' : '/register'} className="suscribe-button">
                     {isLogged ? 'Hazte Premium' : 'Regístrate Aquí'}
                   </Link>
     </>
