@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Profile from "../../pages/Profile/Profile";
 
 const AsideTickets = ({ isLogged, setIsLogged }) => {
-  const [userName, setUserName] = useState("Context Enjoyers");
-  const [email, setEmail] = useState("context@enjoyers.com");
   const [userImage, setUserImage] = useState(
     "https://res.cloudinary.com/do0s2lutu/image/upload/v1701777805/owonnexnscmi56bbdomz.png"
   );
@@ -34,71 +32,76 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
 
   return (
     <>
-      {
-        isLogged 
-        ? 
+      {isLogged ? (
         <>
-        <img
-        src={userImage}
-        alt="Imagen de usuario"
-        className={`user-image ${showAside ? "hide" : ""}`}
-        onClick={handleShowAside}
+          <img
+            src={userImage}
+            alt="Imagen de usuario"
+            className={`user-image ${showAside ? "hide" : ""}`}
+            onClick={handleShowAside}
           />
           <aside className={`user-data ${showAside ? "show" : ""}`}>
-        <div className="container-general">
-        <div className="form-user">
-          <button onClick={handleHideAside} className="close-symbol">
-            ✖️
-          </button>
-
-          <form action="" className="ticket" onSubmit={handleFormSubmit}>
-            <span>¿Tienes alguna duda?</span>
-
-            <label htmlFor="title">
-              <span>Título</span>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                maxLength={10}
-                placeholder="Máximo 10 caracteres"
-              />
-            </label>
-
-            <label htmlFor="description">
-              <span>Descripción:</span>
-              <textarea
-                name="description"
-                id="description"
-                cols="30"
-                rows="10"
-                placeholder="Máximo 300 caracteres"
-              ></textarea>
-            </label>
-
-            <button type="submit">Enviar</button>
-          </form>
-        </div>
-        <div className="separator"></div>
-        <Profile/>
-        </div>
-
-        
-        <div className="container-buttons">
-            {isLogged ? (
-              <button onClick={handleLogout} className="logout-btn">
-                Logout
+            <div className="container-general">
+              <button onClick={handleHideAside} className="close-symbol">
+                X
               </button>
-            ) : null}
-            <Link to="">Mi área</Link>
-            <Link to="">Área Premium</Link>
-          </div>
-      </aside>
-      </>
-        : null
-      }
-      
-      
+              <div className="form-user">
+                <button onClick={handleHideAside} className="close-symbol">
+                  X
+                </button>
+
+                <form action="" className="ticket" onSubmit={handleFormSubmit}>
+                  <span>¿Tienes alguna duda?</span>
+
+                  <label htmlFor="title">
+                    <span>Título</span>
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      maxLength={10}
+                      placeholder="Máximo 10 caracteres"
+                    />
+                  </label>
+
+                  <label htmlFor="description">
+                    <span>Descripción:</span>
+                    <textarea
+                      name="description"
+                      id="description"
+                      cols="30"
+                      rows="10"
+                      placeholder="Máximo 300 caracteres"
+                    ></textarea>
+                  </label>
+
+                  <label htmlFor="screenshot">
+                    <span>Captura:</span>
+                    <input
+                      type="file"
+                      name="screenshot"
+                      id="screenshot"
+                    />
+                  </label>
+
+                  <button type="submit">Enviar</button>
+                </form>
+              </div>
+              <div className="separator"></div>
+              <Profile />
+            </div>
+
+            <div className="container-buttons">
+              {isLogged ? (
+                <button onClick={handleLogout} className="logout-btn">
+                  Logout
+                </button>
+              ) : null}
+              <Link to="">Mi área</Link>
+            </div>
+          </aside>
+        </>
+      ) : null}
     </>
   );
 };

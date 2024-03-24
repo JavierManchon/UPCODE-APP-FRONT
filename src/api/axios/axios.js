@@ -15,9 +15,9 @@ export const API = axios.create({
     headers: APIHeader,
     baseURL: 'http://localhost:8084/api',
 });
-
- export const headersWithFormDataContentType = {
-    ...APIHeader,
-    "Content-Type": "multipart/form-data",
-  };
+API.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
+export const headersWithFormDataContentType = {
+   ...APIHeader,
+   "Content-Type": "multipart/form-data",
+ };
 

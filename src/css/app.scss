@@ -16,166 +16,180 @@ body {
         div.container-all {
             position: relative;
             overflow-y: scroll;
-            padding-top: 100px;
+            padding: 80px 0;
             height: 100vh;
         }
     }
 }
 
-
 div.container-pages-default-styles {
+    width: 100%;
+  
     display: flex;
-    gap: 10px;
-    flex-direction: column;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 50px;
+
+    padding: 50px 0;
+  
+    & > * {
+      border: 2px solid;
+      border-radius: 15px;
+    }
+  
     div.container-editor {
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 30px;
+      position: relative;
+  
+      > p {
+        font-weight: bold;
+      }
+    }
+  
+    div.styles-editor {
+        width: 350px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+  
+      > label {
+          width: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+  
+        > p {
+          width: 80%;
+          text-align: center;
+          border-bottom: 2px solid;
+          flex-shrink: 0;
+        }
+  
+        > input {
+          border: none;
+          border-bottom: 1px solid;
+          outline: none;
+          background-color: transparent;
+          border-radius: 5px;
+        }
+  
+        &:nth-child(3) {
+          > input {
+            border: 1px solid;
+          }
+        }
+      }
+    }
+  
+    div.container-renderized_html {
+        width: 350px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+  
+      > div.title-btn {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+  
+      > div.html {
         display: flex;
         flex-direction: column;
         gap: 3px;
         padding: 30px;
         width: 100%;
         position: relative;
-
-        > p {
-            font-weight: bold;
-            padding-left: 30px;
-            width: 250px;
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-
-            &:first-child, &:last-child {
-                padding-left: 10px;
-            }
-
-            &:nth-child(2), &:nth-last-child(2) {
-                padding-left: 20px;
-            }
+        > span {
+          font-weight: bold;
+          width: 250px;
+          position: relative;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding-left: 30px;
+  
+          &:first-child,
+          &:last-child {
+            padding-left: 10px;
+          }
+  
+          &:nth-child(2),
+          &:nth-last-child(2),
+          &:nth-child(5),
+          &:nth-child(6),
+          &:nth-child(9),
+          &:nth-child(10) {
+            padding-left: 20px;
+          }
         }
+      }
     }
-
-    div.styles-editor {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-
-        >label {
-            width: 160px;
-            height: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 5px;
-
-            > p {
-                border-bottom: 2px solid;
-            }
-
-            > input {
-                border: none;
-                outline: none;
-                background-color: transparent;
-                border-radius: 5px;
-            }
-
-            &:nth-child(3) {
-                > input {
-                    border: 1px solid;
-                }
-            }
-        }
+  
+    div.container-renderized_visual {
+        width: 350px;
+        padding: 10px;
     }
-
-    div.container-renderized_html {
-        width: 100%;
-        max-width: 400px;
+  
+    div.container-renderized_css {
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: stretch;
+      gap: 30px;
+      border: none;
+  
+      > div.css-section,
+      > div.css-article,
+      > div.css-h2,
+      > div.css-p {
+        width: 350px;
+        padding: 20px;
+  
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
 
+        border: 2px solid;
+        border-radius: 15px;
+  
         > div.title-btn {
-            width: 100%;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
+          width: 100%;
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px;
         }
-
-        >div.html {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            padding: 30px;
-            width: 100%;
-            position: relative;
-            > span {
-                font-weight: bold;
-                width: 250px;
-                position: relative;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                padding-left: 30px;
-    
-                &:first-child, &:last-child {
-                    padding-left: 10px;
-                }
-    
-                &:nth-child(2), &:nth-last-child(2) {
-                    padding-left: 20px;
-                }
+  
+        > div.css {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+  
+          > span {
+            padding-left: 50px;
+  
+            &:first-child,
+            &:last-child {
+              padding-left: 40px;
             }
-        } 
-    }
-
-    div.container-renderized_css {
-        width: 100%;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-around;
-        align-items: stretch;
-        gap: 30px;
-
-        > div.css-nav, 
-        > div.css-ul, 
-        > div.css-li {
-            width: 90%;
-            max-width: 400px;
-            padding: 20px;
-
-            display: flex;
-            flex-direction: column;
-
-            > div.title-btn {
-                width: 100%;
-                display: flex;
-                flex-flow: row nowrap;
-                justify-content: space-between;
-                align-items: center;
-                padding: 20px;
-            }
-
-            > div.css {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-
-                > span {
-                    padding-left: 50px;
-
-                    &:first-child,
-                    &:last-child {
-                        padding-left: 40px;
-                    }
-                }
-            }
+          }
         }
+      }
     }
-}
+  }
+  
