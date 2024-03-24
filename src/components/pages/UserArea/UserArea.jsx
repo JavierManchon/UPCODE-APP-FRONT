@@ -3,10 +3,12 @@ import './_userArea.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
+
 const UserArea = () => {
   const { authState } = useAuth();
 
   const hasDesigns = authState.user.designs && authState.user.designs.length > 0;
+
 
   return (
     <>

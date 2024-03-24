@@ -1,59 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./_footerComponent.scss";
-{/*
-<div className="container-renderized_visual">
-    <form className={template.defaultStyles[0]} style={{ backgroundColor: bgFormColor }} ref={visualForm}>
-        {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
-            <div key={`renderized_${index}`}>
-                <div key={`child_${index}`} className='form-div' ref={visualDiv}>
-                    {Array.from({ length: template.defaultContent.countGrandson }).map((_, i) => (
-                        <React.Fragment key={`visual_${index}_${i}`}>
-                            <label className={template.defaultStyles[1]} htmlFor={`id${index}_${i}`} style={{ color: labelFontColor, fontSize: labelFontSize, fontWeight: labelFontWeight, textDecoration: textDecoration }} ref={visualLabel}>{labelValues[index][i]}</label>
-                            <input className={template.defaultStyles[2]} key={`visual_input_${index}_${i}`} id={`id${index}_${i}`} name={`id${index}_${i}`} type={template.defaultContent.type} />
-                        </React.Fragment>
-                    ))}
-                </div>
-            </div>
-        ))}
-        <button className={template.defaultStyles[3]} style={{ backgroundColor: bgButtonColor, fontSize: buttonFontSize, color: buttonFontColor, fontWeight: buttonFontWeight, borderRadius: typeof buttonBorderRadius === 'number' ? `${buttonBorderRadius}px` : buttonBorderRadius }} ref={visualButton}>{buttonValue}</button>
-    </form>
-</div>
+import { useLocation } from "react-router-dom";
 
-<div className='container-renderized_html'>
-    <div className='title-btn'>
-        <h4>HTML</h4>
-        <button onClick={() => copyToClipboard('html')}>Copiar</button>
-    </div>
-    <div id='html' className='html'>
-        <span>{`<${template.elementType} class=${template.defaultStyles[0]} action="" method="POST">`}</span>
-        {Array.from({ length: template.defaultContent.countChildren }).map((_, index) => (
-            <React.Fragment key={`html_${index}`}>
-                <span>{'<div>'}</span>
-                {Array.from({ length: template.defaultContent.countGrandson }).map((_, i) => (
-                    <React.Fragment key={`html_in_${i}`}>
-                        <span> 
-                            {'<' + (template.defaultContent ? template.defaultContent.children[0] : null) + ` for=id${index + 1}>`}
-                            {labelValues[index][i]}
-                            {'</' + (template.defaultContent ? template.defaultContent.children[0] : null) + '>'}
-                        </span>
-                        <span> 
-                            {'<' + (template.defaultContent ? template.defaultContent.children[1] : null) + ` type=${template.defaultContent.type} id=id${index + 1}_${i + 1} name=id${index + 1}>`}
-                            {'</' + (template.defaultContent ? template.defaultContent.children[1] : null) + '>'}
-                        </span>
-                    </React.Fragment>
-                ))}
-                <span>{'</div>'}</span>
-            </React.Fragment>
-        ))}
-        <span>{`<${template.defaultContent ? template.defaultContent.grandson[0] : null} type="submit">`}{buttonValue}</span>
-        <span>{`</${template.defaultContent ? template.defaultContent.grandson[0] : null}>`}</span>
-        <span>{`</${template.elementType}>`}</span>
-    </div>
-</div>
-
- */}
-const FooterComponent = ({ template }) => {
-  console.log(template)
+const FooterComponent = () => {
+  const location = useLocation(); 
+    const template = location.state.templateData; 
+    console.log(template)
+  
     const [liValues, setLiValues] = useState(() => {
         if (template.edit.textArray > 0) {
           return [...template.edit.textArray];

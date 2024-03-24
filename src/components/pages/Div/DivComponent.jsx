@@ -1,9 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './_divComponent.scss';
 import '../../../css/app.scss';
+import { useLocation } from "react-router-dom";
 
 
-const DivComponent = ({ template }) => {
+const DivComponent = () => {
+    const location = useLocation(); 
+    const template = location.state.templateData; 
+    console.log(template)
+
     const [numP, setNumP] = useState(template.defaultContent.countChildren);
     const [pValues, setPValues] = useState(()=>{
         if(template.edit && template.edit.textArray > 0){
@@ -80,14 +85,6 @@ const DivComponent = ({ template }) => {
             });
         }
     }, [fontColor, fontSize, fontWeight]);
-
-    const getFirstWord = (text) => {
-        if (text) {
-            const words = text.split(" ");
-        return words[0];
-        }
-        return null;
-    };
 
     const copyToClipboard = (elementId) => {
         const element = document.getElementById(elementId);

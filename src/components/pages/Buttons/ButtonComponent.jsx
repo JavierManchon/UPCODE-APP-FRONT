@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import "./_buttonComponent.scss";
+import { useLocation } from "react-router-dom";
 
-const ButtonComponent = ({ template }) => {
+
+const ButtonComponent = () => {
+  const location = useLocation(); 
+  const template = location.state.templateData; 
+  console.log(template)
+  
   const [buttonValue, setButtonValue] = useState(template.edit.text ? template.edit.text : 'Enviar');
   const [bgColor, setBgColor] = useState(template.edit.bgColorButton ? template.edit.bgColorButton : '');
   const [fontColor, setFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');

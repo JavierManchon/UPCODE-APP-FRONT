@@ -1,7 +1,181 @@
-.profile-id-image {
-    width: 100px;
+section.profile-container {
+    width: 45%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    position: relative;
+    padding-top: 100px;
+
+    & > *{
+        flex-shrink: 0;
+    }
+
+    > div.profile-id-image-container {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        display: flex;
+
+        > img.profile-id-image {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: grey;
+            border: 2px solid black;
+        }
+    }
+
+    div.profile-info {
+        width: calc(100% - 70px);
+
+        align-self: flex-end;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+
+        & > *{
+            flex-shrink: 0;
+        }
+    }
+
+    > span.edit-span {
+        width: 100%;
+        height: 30px;
+        
+        display: grid;
+        place-items: center;
+
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+    }
+
+    > div.edit-profile-form {
+        width: 100%;
+        height: 150px;
+
+        position: absolute;
+        top: -150px;
+        left: 0;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.94);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        border-radius: 15px;
+        transition: all ease 1s;
+        
+        &.show {
+            top: 100px;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        > form {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            & > * {
+                flex-shrink: 0;
+            }
+
+            > div.input-area {
+                width: 80%;
+
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                > label {
+                    color: white;
+                }
+
+                > input {
+                    width: 90%;
+                    height: 20px;
+                    border: none;
+                    outline: none;
+                    background-color: black;
+                    color: white;
+                    border-bottom: 1px solid white;
+                }
+            }
+
+            > div.edit-profile-form-buttons {
+                width: 100%;
+                border: none;
+                outline: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                > button.form-button {
+                    width: 80%;
+                    height: 25px;
+                    border: none;
+                    outline: none;
+                    border-radius: 10px;
+                    flex-shrink: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
 }
 
-.edit-icon {
-    width: 20px;
+@media (max-width: 576px) {
+    section.profile-container {
+        width: 90%;
+        height: 100%;
+        padding-top: 30px;
+        overflow-y: visible;
+        align-self: center;
+        flex-shrink: none;
+
+        & > * {
+            flex-shrink: 0;
+        }
+
+        > span.edit-span {
+            display: none;
+        }
+
+        > div.profile-id-image-container {
+            top: 30px;
+            overflow-y: visible;
+        }
+
+        > div.edit-profile-form {
+            position: relative;
+            z-index: 3;
+            top: 30px; 
+            left: 0;
+            opacity: 1; 
+            visibility: visible; 
+            pointer-events: auto;
+            transition: none;
+            height: 180px;
+            margin-top: 50px;
+        }
+    }
 }

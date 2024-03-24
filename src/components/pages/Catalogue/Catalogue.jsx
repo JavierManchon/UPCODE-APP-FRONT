@@ -12,7 +12,7 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
     const [templates, setTemplates] = useState([]);
     const [groupedTemplates, setGroupedTemplates] = useState({});
 
-    console.log(templates)
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -63,7 +63,8 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
                     <h3>{`Packs de ${capitalizeFirstLetter(elementType)}`}</h3>
                         <div className='packs'>
                             {templates.map((template, index) => (
-                                <Link key={index} className={`pack ${elementType}`}>
+                                <Link key={index} className={`pack ${elementType}`} to={`/catalogue/template-${elementType}s/${template._id}`} state={{ templateData: template }}>
+                                {    console.log(template._id)}
                                     <h4>{template.nameDesign}</h4>
                                     <img src={template.image} alt={`imagen de ${template.nameDesign}`}></img>
                                     {/* Otros elementos que quieras incluir */}

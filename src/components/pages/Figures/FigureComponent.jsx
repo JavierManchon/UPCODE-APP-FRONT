@@ -1,8 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import "../../../css/app.scss";
 import "../Figures/_figureComponent.scss";
+import { useLocation } from "react-router-dom";
 
-const FigureComponent = ({ template }) => {
+const FigureComponent = () => {
+  const location = useLocation(); 
+  const template = location.state.templateData; 
+  console.log(template)
+
   const [colorText, setColorText] = useState(
     template.edit.colorText ? template.edit.colorText : ""
   );
