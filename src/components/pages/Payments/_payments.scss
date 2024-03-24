@@ -1,35 +1,30 @@
 /* Default styles */
 .payments-container {
-    max-width: 700px;
-    margin: auto; 
-    position: absolute;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #ffffff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+width: 100%;
+height: calc(100vh - 160px);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
        
 }
   
 
 .container-logoPremium{
+    width: 100%;
+    height: 200px;
+    max-width: 600px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    padding: 20px;
-    height: 100px;
-    max-height: 300px;
-    overflow-y: hidden;
+
     
 
     
 
     img {
         
-        width: 80%;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         
         
@@ -40,6 +35,9 @@
 form.form-payment {
     display: flex;
     flex-direction: column;
+    gap:5px;
+    width: 100%;
+    max-width: 600px;
     >button[type="submit"] {
         background-color: #252729;
         color: #fff;
@@ -62,18 +60,19 @@ form.form-payment {
     label {
         margin-bottom: 10px;
     }
+    input {
+        border: none;
+        outline: none;
+        border-bottom: 2px solid black;
+    }
     input.Name {
         width: 100%;
         padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
         font-size: 16px;
     }
     input.card {
         width: 100%;
         padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
         font-size: 16px;   
     }
     input[type="text"] {
@@ -99,11 +98,12 @@ form.form-payment {
         width: 100%;
         justify-content: space-between;
         align-items: center;   
+        >label{
+            width: 250px;
+        }
         input.expiry {
             width: 100%; 
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             font-size: 16px;
           }
         
@@ -112,32 +112,31 @@ form.form-payment {
           input.cvc {
             width: 100%; 
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             font-size: 16px;
           } 
     }
     .location-container {
         display: flex;
-        flex-direction: column;
+        flex-flow: row nowrap;
         align-items: center;
-        margin-bottom: 20px;
+        justify-content: space-between;
         .country-selector {
-            width: 100%;
+            border: none;
+            outline: none;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             font-size: 16px;
+            border-bottom: 2px solid black;
         
         }
         
         
         .postal-code {
-            width: 100%;
+            width: 250px;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             font-size: 16px;
+            >option{
+                width: 250px;
+            }
         }
     }
  

@@ -1,8 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './_formComponent.scss';
 import '../../../css/app.scss';
+import { useLocation } from 'react-router-dom';
 
-const FormComponent = ({ template }) => {
+const FormComponent = () => {
+    const location = useLocation(); 
+    const template = location.state.templateData; 
+    console.log(template)
+
     const [labelValues, setLabelValues] = useState(() => {
         if (template.edit && template.edit.text > 0) {
             return [...template.edit.text];

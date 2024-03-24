@@ -27,10 +27,11 @@ aside.user-data {
   width: 90%;
   height: calc(95vh - 160px);
   max-width: 600px;
-  position: absolute;
-  top: 50%;
+  max-height: 600px;
+  position: fixed;
+  bottom: 100px;
   right: -800px;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);
   z-index: 2;
   border: 2px solid black;
   backdrop-filter: blur(20px);
@@ -51,19 +52,33 @@ aside.user-data {
         justify-content: space-between;
         gap: 5px;
 
+        > button.close-symbol {
+          display: none;
+          width: 30px;
+          height: 30px;
+          border: none;
+          background-color: black;
+          border-radius: 50%;
+          flex-shrink: 0;
+          color: white;
+        }
+
         > div.form-user {
             width: 45%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-            padding: 3px;
+            justify-content: space-between;
             > button.close-symbol {
                 width: 20px;
                 height: 20px;
                 border: none;
                 background-color: transparent;
                 flex-shrink: 0;
+                background-color: black;
+                border-radius: 50%;
+                flex-shrink: 0;
+                color: white;
               }
           
             > div.container-user {
@@ -78,6 +93,8 @@ aside.user-data {
           
             > form.ticket {
               width: 100%;
+              height: calc(100% - 80px);
+    
               display: flex;
               flex-direction: column;
               gap: 10px;
@@ -116,6 +133,7 @@ aside.user-data {
                 align-items: center;
                 color: white;
                 border-radius: 10px;
+                overflow: hidden;
               }
             }
           
@@ -157,16 +175,39 @@ aside.user-data {
    
 }
 
-@media (max-width: 575.98px) {
-    aside.user-data {
-        height: calc(95vh - 120px);
-        top: 50%;
+@media (max-width: 576px) {
+  aside.user-data {
+      height: calc(95vh - 120px);
+      bottom: 80px;
 
-        &.show {
-            transition: all ease 1s;
-            right: 5%;
-            transform: translateY(-50%);
+      &.show {
+          transition: all ease 1s;
+          right: 5%;
+      }
+
+      > div.container-general {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: hidden;
+        height: calc(100% - 130px);
+
+        & > * {
+          flex-shrink: 0;
         }
 
-    }
+        > div.form-user {
+          display: none;
+        }
+
+        > button.close-symbol {
+          display: block;
+        }
+
+        > div.separator {
+          display: none;
+        }
+      }  
+  }
 }
+

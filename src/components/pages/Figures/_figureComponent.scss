@@ -20,8 +20,6 @@ figCaption {
 
 }
 
-
-
 .FigureLeftText {
   display: flex;
   flex-direction: column-reverse;
@@ -30,17 +28,6 @@ figCaption {
   padding: 6px;
   margin: 0 auto;
 }
-
- .img {
-  width: 300px;
-  align-self: center; 
-}
-
- .figCaption {
-  color: black;
-  text-align: left; 
-}
-
 
 .FigureRightText{
   display: flex;
@@ -64,3 +51,4 @@ figCaption {
 }
 
 }
+

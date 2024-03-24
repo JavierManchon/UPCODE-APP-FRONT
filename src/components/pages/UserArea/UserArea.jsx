@@ -1,13 +1,18 @@
 import React from 'react';
 import './_userArea.scss';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
-const UserArea = ({ children }) => {
-  const content = React.Children.count(children) > 0;{/*/esta const se tiene que sustituir por el contenido que llege de base de datos/ */}
+
+const UserArea = () => {
+  const { authState } = useAuth();
+
+  const hasDesigns = authState.user.designs && authState.user.designs.length > 0;
+
 
   return (
     <>
-      {!content ? (
+      {!hasDesigns ? (
         <div className='container-areaVoid'>
           <div className="circulo">
             <h2>UPS!</h2>
@@ -16,10 +21,13 @@ const UserArea = ({ children }) => {
             <Link to="/catalogue" className="btn-catalogo">Catálogo</Link>
           </div>
         </div>
-      ) : 
-      
-      {children}}
-      
+      ) : (
+        authState.user.designs.map( (child, index) => (
+          <div key={index} className="user-design-container">
+
+          </div>
+        ))
+      )}
     </>
   );
 };
