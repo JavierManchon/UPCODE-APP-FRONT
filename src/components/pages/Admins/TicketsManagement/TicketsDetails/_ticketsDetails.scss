@@ -1,0 +1,104 @@
+.ticket-details-container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #d1cfcf;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .ticket-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .detail {
+    margin-bottom: 15px;
+  }
+  
+  .label-title,
+  .label-description,
+  .label-status,
+  .label-comments,
+  .label-image,
+  .label-comment {
+    font-weight: bold;
+  }
+  
+.ticket-image{
+  width: 60%;
+  height: 80%;
+  margin: 0 auto;
+  display: block;
+  border-radius: 4%;
+}
+
+  .input-value,
+  .textarea-description,
+  .input-status,
+  .input-comment {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .comments-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #000000;
+    border-radius: 5%;
+    background-color: #fff;
+  }
+  
+  .comment {
+    margin-bottom: 5px;
+  }
+  
+  .button-save {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .button-save:hover {
+    background-color: #0056b3;
+  }
+  
+  .in-process {
+    font-weight: bold;
+    color: green;
+  }
+  .admin-comment {
+    background-color: lightblue; 
+    border: 1px solid blue; 
+  }
+  .button-close {
+    background-color: red;
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-top: 10px; 
+  }
+  
+  .button-close:hover {
+    background-color: darkred; 
+  }
+  
+  .closed-ticket .input-status {
+    color: red; 
+  }
+  
