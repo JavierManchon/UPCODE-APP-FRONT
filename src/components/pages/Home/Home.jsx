@@ -16,9 +16,10 @@ const Home = ({isLogged ,setIsLogged}) => {
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
-        const isPremium = authState.user.isPremium; console.log(isPremium)
+        
         if(token){
             setIsLogged(true);
+            const isPremium = authState.user.isPremium;
             if(isPremium){
                 setIsPremium(true);            
             }

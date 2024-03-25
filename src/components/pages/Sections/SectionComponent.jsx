@@ -6,21 +6,16 @@ import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns"
 import { useAuth } from "../../context/AuthContext";
 import _ from 'lodash';
 
-const SectionComponent = () => {
-  const { authState} = useAuth();
+const SectionComponent = ({ isLogged }) => {
+  const { authState } = useAuth();
   const location = useLocation();
   const template = location.state.templateData;
+  console.log(template)
   const [designToSave, setDesignToSave]=useState();
 
   useEffect(() => {
     setDesignToSave(location.state.templateData);
   }, [template]); 
-
-
-
-  
-
-  
 
   const updateTemplate = (path, value) => {
     setDesignToSave((currentTemplate) => {
@@ -35,12 +30,8 @@ const SectionComponent = () => {
     });
   };
 
-
-
-
-
   const [h2Values, setH2Values] = useState(() => {
-    if (template.edit && template.edit.textArray > 0) {
+    if (template.edit.textArray.length > 0) {
       return [...template.edit.textArray];
     } else {
       return Array.from(
@@ -62,7 +53,7 @@ const SectionComponent = () => {
 
 
   const [pValues, setPValues] = useState(() => {
-    if (template.edit && template.edit.textArray2 > 0) {
+    if (template.edit.textArray2.length > 0) {
       return [...template.edit.textArray2];
     } else {
       return Array.from(
@@ -85,11 +76,11 @@ const SectionComponent = () => {
   
 
   const [SectionBgColor, setSectionBgColor] = useState(
-    template.edit.SectionBgColor ? template.edit.SectionBgColor : ""
+    template.edit.bgColorSection ? template.edit.bgColorSection : ""
   );
 
   const [ArticleBgColor, setArticleBgColor] = useState(
-    template.edit.ArticleBgColor ? template.edit.ArticleBgColor : ""
+    template.edit.bgColorArticle ? template.edit.bgColorArticle : ""
   );
 
   const [h2FontColor, setH2FontColor] = useState(
@@ -659,7 +650,7 @@ const SectionComponent = () => {
           </div>
         </div>
       </div>
-      {authState.user.isPremium ? <ButtonSaveDesigns designToSave={designToSave}></ButtonSaveDesigns> : null}
+      {isLogged ? <ButtonSaveDesigns designToSave={designToSave}></ButtonSaveDesigns> : null}
     </div>
   );
 };
