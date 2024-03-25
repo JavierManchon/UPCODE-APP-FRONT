@@ -108,6 +108,23 @@ footer.container-admins {
     }
 }
 
+@media (max-width: 767px) {
+    footer.container-admins {
+        height: 60px;
+        overflow-y: hidden;
+
+        > ul.admin-items {
+            > li {
+                > div.name-img {
+                    > p {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 575.98px) {
     footer.container-admins {
         height: 60px;
