@@ -1,0 +1,113 @@
+@import "../../../css/variables";
+
+div.container-infoticket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > form.infoticket {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        > span {
+            margin-bottom: 10px;
+        }
+
+        > label {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+
+            > span {
+                margin-bottom: 5px;
+            }
+
+            > input,
+            > textarea {
+                width: 100%;
+                border: none;
+                outline: none;
+                border-bottom: 1px solid #ccc;
+                padding: 5px 0;
+            }
+
+            > textarea {
+                height: 100px;
+            }
+        }
+
+        > button {
+            width: 100%;
+            height: 40px;
+            border: none;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: #333;
+            }
+        }
+    }
+
+    > div.ticket-list {
+        width: 100%;
+        max-width: 300px;
+        margin-top: 20px;
+
+        > ul {
+            list-style: none;
+            padding: 0;
+
+            > li {
+
+                > div.ticket-list_item-resume {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .status-indicator {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    margin-left: 10px;
+                }
+
+                .enviado {
+                    background-color: red;
+                }
+
+                .en-proceso {
+                    background-color: orange;
+                }
+
+                > div.ticket-details {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 20px;
+            
+                    > h2 {
+                        margin-bottom: 10px;
+                    }
+            
+                    > p {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
