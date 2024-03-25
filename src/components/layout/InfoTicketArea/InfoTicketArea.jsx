@@ -97,17 +97,17 @@ const InfoTicketArea = () => {
                   key={ticket._id}
                   onClick={() => handleTicketClick(ticket)}
                 >
-                    <div className="ticket-list_item-resume">
-                        <span>{ticket.title}</span>
-                        <span>
-                            {new Date(ticket.createdAt).toLocaleDateString()}
-                        </span>
-                        <div
-                            className={`status-indicator ${ticket.status
-                            .toLowerCase()
-                            .replace(" ", "-")}`}
-                        ></div>
-                    </div>
+                  <div className="ticket-list_item-resume">
+                    <span>{ticket.title}</span>
+                    <span>
+                      {new Date(ticket.createdAt).toLocaleDateString()}
+                    </span>
+                    <div
+                      className={`status-indicator ${ticket.status
+                        .toLowerCase()
+                        .replace(" ", "-")}`}
+                    ></div>
+                  </div>
                   {selectedTicket && selectedTicket._id === ticket._id && (
                     <div className="ticket-details">
                       <h3>Detalles del Ticket</h3>
@@ -117,6 +117,13 @@ const InfoTicketArea = () => {
                       <p>
                         <strong>Descripción:</strong> {ticket.description}
                       </p>
+                      {ticket.screenshot && (
+                        <img
+                          src={ticket.screenshot}
+                          alt="Captura de pantalla"
+                          className="ticket-screenshot"
+                        />
+                      )}
                       <p>
                         <strong>Fecha de Creación:</strong>{" "}
                         {new Date(ticket.createdAt).toLocaleDateString()}
