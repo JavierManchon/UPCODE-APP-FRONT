@@ -1,10 +1,10 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Catalogue from './pages/Catalogue/Catalogue'
 import Header from './layout/Header/Header'
 import Footer from './layout/Footer/Footer'
 import Payments from './pages/Payments/Payments'
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import UserArea from './pages/UserArea/UserArea'
 import AsideTickets from './layout/AsideTickets/AsideTickets'
 
@@ -31,6 +31,12 @@ import SectionComponent from './pages/Sections/SectionComponent'
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
+  const location = useLocation();
+
+  const showAsideTickets = () => {
+    return isLogged && location.pathname !== "/user-area";
+  };
+
   return (
 
 <div className='container-all'>
@@ -57,7 +63,7 @@ function App() {
           <Route path="/catalogue/template-sections/:designId" element={<SectionComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
 
         </Routes>
-        {isLogged ? <AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/> : null}
+        {showAsideTickets() && <AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/> }
         <Footer />
       </div>
   )
