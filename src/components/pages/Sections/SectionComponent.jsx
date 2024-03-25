@@ -10,12 +10,11 @@ const SectionComponent = ({ isLogged }) => {
   const { authState } = useAuth();
   const location = useLocation();
   const template = location.state.templateData;
-  console.log(template)
   const [designToSave, setDesignToSave]=useState();
 
   useEffect(() => {
     setDesignToSave(location.state.templateData);
-  }, [template]); 
+  }, [location.state.templateData]); 
 
   const updateTemplate = (path, value) => {
     setDesignToSave((currentTemplate) => {
@@ -650,7 +649,7 @@ const SectionComponent = ({ isLogged }) => {
           </div>
         </div>
       </div>
-      {isLogged ? <ButtonSaveDesigns designToSave={designToSave}></ButtonSaveDesigns> : null}
+      {isLogged ? <ButtonSaveDesigns designToSave={designToSave} setDesignToSave={setDesignToSave}></ButtonSaveDesigns> : null}
     </div>
   );
 };

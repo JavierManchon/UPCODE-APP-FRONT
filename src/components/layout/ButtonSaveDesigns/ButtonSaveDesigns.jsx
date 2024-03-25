@@ -4,14 +4,13 @@ import { useAuth } from '../../context/AuthContext';
 import { createDesign } from '../../../api/axios/designs';
 import { getUserLogged } from '../../../api/axios/auth';
 
-const ButtonSaveDesigns = ({ designToSave }) => {
+const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
     const { authState } = useAuth();
     useEffect(() => {
         const getUser = async() => {
             try {
-                console.log(authState.user._id)
-                const response = await getUserLogged(authState.user._id);
-                console.log(response)
+                // const response = await getUserLogged(authState.user._id);
+                // console.log(response.data.designs)
             }catch (error) {
                 console.error(error)
             }
@@ -20,14 +19,21 @@ const ButtonSaveDesigns = ({ designToSave }) => {
     }, [])
     
     const postDesign = async () => {
-        try {
-            const response = await createDesign(authState.user._id, designToSave);
-            const updatedTemplate = response.data;
-            console.log(updatedTemplate);
-            console.log(authState.user)
-        } catch (error) {
-            console.error('Error fetching designs:', error);
+        setDesignToSave(prevTemplate => ({
+            ...prevTemplate,
+            template: false // Cambia el valor de template.template a false antes de hacer la llamada a la API
+        }));
+        console.log(designToSave.template);
+        if (!designToSave.template) {
+            try {
+                const response = await createDesign(authState.user._id, designToSave);
+                const updatedTemplate = response.data;
+                console.log(updatedTemplate);
+            } catch (error) {
+                console.error('Error fetching designs:', error);
+            }
         }
+        
     };
 
     return (
