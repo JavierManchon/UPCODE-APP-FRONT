@@ -2,14 +2,39 @@ import React, { useEffect, useState, useRef } from "react";
 import "./_sectionComponent.scss";
 // import "../../../css/app.scss";
 import { useLocation } from "react-router-dom";
+import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
+import { useAuth } from "../../context/AuthContext";
+import _ from 'lodash';
 
-const SectionComponent = () => {
+const SectionComponent = ({ isLogged }) => {
+  const { authState } = useAuth();
   const location = useLocation();
+  const previousRoute = location.state.url;
+  console.log(previousRoute)
   const template = location.state.templateData;
-  console.log(template);
+  const [designToSave, setDesignToSave]=useState();
+
+
+
+  useEffect(() => {
+    setDesignToSave(location.state.templateData);
+  }, [location.state.templateData]); 
+
+  const updateTemplate = (path, value) => {
+    setDesignToSave((currentTemplate) => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+
+      _.set(updatedTemplate, 'edit.textArray', h2Values);
+      _.set(updatedTemplate, 'edit.textArray2', pValues);
+  
+
+      _.set(updatedTemplate, path, value);
+      return updatedTemplate;
+    });
+  };
 
   const [h2Values, setH2Values] = useState(() => {
-    if (template.edit && template.edit.textArray > 0) {
+    if (template.edit.textArray.length > 0) {
       return [...template.edit.textArray];
     } else {
       return Array.from(
@@ -18,8 +43,20 @@ const SectionComponent = () => {
       );
     }
   });
+
+  useEffect(() => {
+    // Actualiza textArray basado en h2Values
+    setDesignToSave(currentTemplate => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+      _.set(updatedTemplate, 'edit.textArray', h2Values);
+      return updatedTemplate;
+    });
+  }, [h2Values]);
+
+
+
   const [pValues, setPValues] = useState(() => {
-    if (template.edit && template.edit.textArray2) {
+    if (template.edit.textArray2.length > 0) {
       return [...template.edit.textArray2];
     } else {
       return Array.from(
@@ -29,12 +66,24 @@ const SectionComponent = () => {
     }
   });
 
+
+  useEffect(() => {
+    // Actualiza textArray2 basado en pValues
+    setDesignToSave(currentTemplate => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+      _.set(updatedTemplate, 'edit.textArray2', pValues);
+      return updatedTemplate;
+    });
+  }, [pValues]);
+
+  
+
   const [SectionBgColor, setSectionBgColor] = useState(
-    template.edit.SectionBgColor ? template.edit.SectionBgColor : ""
+    template.edit.bgColorSection ? template.edit.bgColorSection : ""
   );
 
   const [ArticleBgColor, setArticleBgColor] = useState(
-    template.edit.ArticleBgColor ? template.edit.ArticleBgColor : ""
+    template.edit.bgColorArticle ? template.edit.bgColorArticle : ""
   );
 
   const [h2FontColor, setH2FontColor] = useState(
@@ -81,50 +130,62 @@ const SectionComponent = () => {
     const newH2Values = [...h2Values];
     newH2Values[index] = event.target.value;
     setH2Values(newH2Values);
+    updateTemplate('edit.textArray', event.target.value);
   };
 
   const handlePChange = (index) => (event) => {
     const newPValues = [...pValues];
     newPValues[index] = event.target.value;
     setPValues(newPValues);
+    updateTemplate('edit.textArray2', event.target.value);
   };
 
   const handleSectionBgColor = (event) => {
+    updateTemplate('edit.bgColorSection', event.target.value);
     setSectionBgColor(event.target.value);
   };
   const handleArticleBgColor = (event) => {
+    updateTemplate('edit.bgColorArticle', event.target.value);
     setArticleBgColor(event.target.value);
   };
 
   const handleH2FontColor = (event) => {
+    updateTemplate('edit.colorTitle', event.target.value);
     setH2FontColor(event.target.value);
   };
   const handlePFontColor = (event) => {
+    updateTemplate('edit.colorItem', event.target.value);
     setPFontColor(event.target.value);
   };
 
   const handleH2FontSizeChange = (event) => {
+    updateTemplate('edit.fontSizeTitle', event.target.value);
     setH2FontSize(`${event.target.value}px`);
   };
 
   const handlePFontSizeChange = (event) => {
+    updateTemplate('edit.fontSizeItem', event.target.value);
     setPFontSize(`${event.target.value}px`);
   };
 
-  const handleH2FontWeightChange = (event) => {
-    setH2FontWeight(event.target.value);
+  const handleH2FontWeightChange = (newValue) => {
+    updateTemplate('edit.fontWeightTitle', newValue);
+    setH2FontWeight(newValue);
   };
 
-  const handlePFontWeightChange = (event) => {
-    setPFontWeight(event.target.value);
+  const handlePFontWeightChange = (newValue) => {
+    updateTemplate('edit.fontWeightItem', newValue);
+    setPFontWeight(newValue);
   };
 
-  const handleH2TextDecorationChange = (event) => {
-    setH2TextDecoration(event.target.value);
+  const handleH2TextDecorationChange = (newValue) => {
+    updateTemplate('edit.textDecorationTitle', newValue);
+    setH2TextDecoration(newValue);
   };
 
-  const handlePTextDecorationChange = (event) => {
-    setPTextDecoration(event.target.value);
+  const handlePTextDecorationChange = (newValue) => {
+    updateTemplate('edit.textDecorationItem', newValue);
+    setPTextDecoration(newValue);
   };
 
   const visualSection = useRef(null);
@@ -172,7 +233,7 @@ const SectionComponent = () => {
 
   const visualH2 = useRef(null);
   useEffect(() => {
-    if (visualH2.current) {
+    if (visualH2.current) {      
       const computedStyles = window.getComputedStyle(visualH2.current);
       setH2Styles({
         color: computedStyles.color,
@@ -421,6 +482,7 @@ const SectionComponent = () => {
                     fontWeight: `${h2FontWeight}`,
                     textDecoration: `${h2TextDecoration}`,
                   }}
+                  ref={visualH2}
                 >
                   {h2Values[index]}
                 </h2>
@@ -433,6 +495,7 @@ const SectionComponent = () => {
                     textDecoration: `${pTextDecoration}`,
                   }}
                   key={`${index}-${index}`}
+                  ref={visualP}
                 >
                   {pValues[index]}
                 </p>
@@ -590,6 +653,9 @@ const SectionComponent = () => {
           </div>
         </div>
       </div>
+      {isLogged && previousRoute === '/catalogue' ? (
+        <ButtonSaveDesigns designToSave={designToSave} setDesignToSave={setDesignToSave} />
+      ) : null}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { registerReq, loginReq, userByTokenReq, patchUserReq, getAllUsersReq } from '../../api/axios/auth';
+import { registerReq, loginReq, patchUserReq, getAllUsersReq } from '../../api/axios/auth';
 import { API } from '../../api/axios/axios';
 
 
