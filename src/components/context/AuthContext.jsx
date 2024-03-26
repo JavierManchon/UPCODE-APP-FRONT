@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { registerReq, loginReq, patchUserReq, getAllUsersReq } from '../../api/axios/auth';
+import { registerReq, loginReq, patchUserReq, getAllUsersReq, logoutReq } from '../../api/axios/auth';
 import { API } from '../../api/axios/axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const AuthContext = createContext();
@@ -8,6 +9,10 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
+
+  const [isLogged, setIsLogged] = useState(false);
+
   const [authState, setAuthState] = useState({
     token: sessionStorage.getItem('token') ||  null,
     user: JSON.parse(sessionStorage.getItem('user')) || null
@@ -52,13 +57,22 @@ export const AuthProvider = ({ children }) => {
       sessionStorage.setItem('user', JSON.stringify(data));
       setAuthState({ token: token, user: data });
       API.defaults.headers.common['Authorization'] = token;
+      setIsLogged(true);
+      navigate('/user-area')
     } catch (error) {
-      console.error('Error logging in:', error);
+      throw new Error(error.response && error.response.data && error.response.data.msg ? error.response.data.msg : 'Error al intentar iniciar sesión. Por favor, intenta nuevamente.');
     }
   };
-  const logout = () => {
-    sessionStorage.clear();
-    setAuthState({ token: null, user: null });
+
+  const logout = async () => {
+    try {
+        // await logoutReq(); // Hacer la solicitud para cerrar sesión en el servidor
+        setAuthState({ token: null, user: null });
+        setIsLogged(false);
+        navigate('/');
+    } catch (error) {
+        console.error('Error logging out:', error);
+    }
   };
 
   const patchUser = async (id, userData) => {
@@ -87,7 +101,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authState, usersState, register, login, logout, patchUser, getAllUsers }}>
+    <AuthContext.Provider value={{ authState, usersState, register, login, logout, patchUser, getAllUsers, isLogged }}>
       {children}
     </AuthContext.Provider>
   );

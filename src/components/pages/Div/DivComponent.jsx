@@ -1,17 +1,38 @@
-import React, { useEffect, useState, useRef } from 'react'
-import './_divComponent.scss';
-import '../../../css/app.scss';
+import React, { useEffect, useState, useRef } from "react";
+import "./_divComponent.scss";
 import { useLocation } from "react-router-dom";
+import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
+import { useAuth } from "../../context/AuthContext";
+import _ from 'lodash';
 
 
-const DivComponent = () => {
-    const location = useLocation(); 
-    const template = location.state.templateData; 
+const DivComponent = ({isLogged}) => {
+    const { authState } = useAuth();
+    const location = useLocation();
+    const previousRoute = location.state.url;
+    const template = location.state.templateData;
     console.log(template)
+    const [designToSave, setDesignToSave]=useState();
+
+    useEffect(() => {
+        setDesignToSave(location.state.templateData);
+      }, [location.state.templateData]); 
+    
+      const updateTemplate = (path, value) => {
+        setDesignToSave((currentTemplate) => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+    
+          _.set(updatedTemplate, 'edit.textArray', pValues);
+      
+    
+          _.set(updatedTemplate, path, value);
+          return updatedTemplate;
+        });
+      };
 
     const [numP, setNumP] = useState(template.defaultContent.countChildren);
     const [pValues, setPValues] = useState(()=>{
-        if(template.edit && template.edit.textArray > 0){
+        if(template.edit && template.edit.textArray.length > 0){
             return [...template.edit.textArray];
         }else{
             // Corrección: Asegurarse de retornar el Array.from(...)
@@ -19,6 +40,14 @@ const DivComponent = () => {
         }
     });
 
+    useEffect(() => {
+        // Actualiza textArray basado en h2Values
+        setDesignToSave(currentTemplate => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+          _.set(updatedTemplate, 'edit.textArray', pValues);
+          return updatedTemplate;
+        });
+    }, [pValues]);
 
     const [bgColor, setBgColor] = useState(template.edit.bgColorDiv ? template.edit.bgColorDiv : '');
     const [fontColor, setFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
@@ -32,27 +61,32 @@ const DivComponent = () => {
         const newPValues = [...pValues];
         newPValues[index] = event.target.value;
         setPValues(newPValues);
+        updateTemplate('edit.textArray', event.target.value);
     };
 
     const handleBgColor = (event) => {
+        updateTemplate('edit.bgColorDiv', event.target.value);
         setBgColor(event.target.value);
     };
 
     const handleFontColor = (event) => {
+        updateTemplate('edit.colorText', event.target.value);
         setFontColor(event.target.value)
     }
 
     const handleFontSize = (event) => {
+        updateTemplate('edit.fontSizeText', event.target.value);
         setFontSize(`${event.target.value}px`)
     }
 
-    const handleFontWeight = (event) => {
+    const handleFontWeight = (newValue) => {
+        updateTemplate('edit.fontSizeText', newValue);
         setFontWeight(event.target.value)
     }
 
     const handleNumP = (event) => {
+        updateTemplate('defaultContent.countChildren', event.target.value);
         setNumP(event.target.value)
-        
     }
 
     const visualDiv = useRef(null);
@@ -216,6 +250,9 @@ const DivComponent = () => {
                     </div>
                 </div>
             </div>
+            {isLogged && previousRoute === '/catalogue' ? (
+            <ButtonSaveDesigns designToSave={designToSave} setDesignToSave={setDesignToSave} />
+            ) : null}
         </div>
     )
 };

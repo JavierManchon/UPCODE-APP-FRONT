@@ -1,25 +1,66 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './_formComponent.scss';
-import '../../../css/app.scss';
 import { useLocation } from 'react-router-dom';
+import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
+import { useAuth } from "../../context/AuthContext";
+import _ from 'lodash';
 
-const FormComponent = () => {
-    const location = useLocation(); 
-    const template = location.state.templateData; 
-    console.log(template)
+const FormComponent = ({ isLogged }) => {
+    const { authState } = useAuth();
+    const location = useLocation();
+    const previousRoute = location.state.url;
+    console.log(previousRoute)
+    const template = location.state.templateData;
+    const [designToSave, setDesignToSave]=useState();
+
+    useEffect(() => {
+        setDesignToSave(location.state.templateData);
+      }, [location.state.templateData]); 
+    
+      const updateTemplate = (path, value) => {
+        setDesignToSave((currentTemplate) => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+    
+          _.set(updatedTemplate, 'edit.textArray', labelValues);
+          _.set(updatedTemplate, 'edit.textItem', buttonValue);
+      
+    
+          _.set(updatedTemplate, path, value);
+          return updatedTemplate;
+        });
+      };
 
     const [labelValues, setLabelValues] = useState(() => {
-        if (template.edit && template.edit.text > 0) {
-            return [...template.edit.text];
+        if (template.edit && template.edit.textArray.length > 0) {
+            return [...template.edit.textArray];
         } else {
             return Array.from({ length: template.defaultContent.countChildren }, () =>
                 Array.from({ length: template.defaultContent.countGrandson }, () => 'Item:')
             );
         }
     });
+
+    useEffect(() => {
+        // Actualiza textArray basado en h2Values
+        setDesignToSave(currentTemplate => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+          _.set(updatedTemplate, 'edit.textArray', labelValues);
+          return updatedTemplate;
+        });
+      }, [labelValues]);
+
     const [buttonValue, setButtonValue] = useState(template.edit.textItem ? template.edit.textItem : "Botón");
 
-    const [bgFormColor, setBgFormColor] = useState(template.edit.bgColorForm ? template.edit.bgColorForm : '');
+    useEffect(() => {
+        // Actualiza textArray2 basado en pValues
+        setDesignToSave(currentTemplate => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+          _.set(updatedTemplate, 'edit.textItem', buttonValue);
+          return updatedTemplate;
+        });
+      }, [buttonValue]);
+
+    const [bgFormColor, setBgFormColor] = useState(template.edit.bgFormColor ? template.edit.bgFormColor : '');
 
     const [labelFontColor, setLabelFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
 
@@ -48,6 +89,7 @@ const FormComponent = () => {
         if (index >= 0 && index < labelValues.length && childIndex >= 0 && childIndex < labelValues[index].length) {
             const newLabelValues = [...labelValues];
             newLabelValues[index][childIndex] = event.target.value;
+            updateTemplate('edit.textArray', newLabelValues);
             setLabelValues(newLabelValues);
         } else {
             console.error("Índices fuera de rango:", index, childIndex);
@@ -55,34 +97,42 @@ const FormComponent = () => {
     };
 
     const handleButtonChange = (event) => {
+        updateTemplate('edit.textItem', event.target.value);
         setButtonValue(event.target.value);
     };
 
     const handleBgFormColor = (event) => {
+        updateTemplate('edit.bgFormColor', event.target.value);
         setBgFormColor(event.target.value);
     };
 
     const handleLabelFontColor = (event) => {
+        updateTemplate('edit.colorText', event.target.value);
         setLabelFontColor(event.target.value)
     }
 
     const handleLabelFontSize = (event) => {
+        updateTemplate('edit.fontSizeText', event.target.value);
         setLabelFontSize(`${event.target.value}px`)
     }
 
     const handleBgButtonColor = (event) => {
+        updateTemplate('edit.bgColorButton', event.target.value);
         setBgButtonColor(event.target.value)
     }
 
     const handleButtonFontColor = (event) => {
+        updateTemplate('edit.colorItem', event.target.value);
         setButtonFontColor(event.target.value)
     }
 
     const handleButtonFontSize = (event) => {
+        updateTemplate('edit.fontSizeItem', event.target.value);
         setButtonFontSize(`${event.target.value}px`)
     }
 
     const handleButtonBorderRadius = (event) => {
+        updateTemplate('edit.borderRadius', event.target.value);
         setButtonBorderRadius(Number(event.target.value));
     };
     
@@ -413,6 +463,9 @@ const FormComponent = () => {
                     </div>
                 </div>
             </div> 
+            {isLogged && previousRoute === '/catalogue' ? (
+            <ButtonSaveDesigns designToSave={designToSave} setDesignToSave={setDesignToSave} />
+            ) : null}
         </div>
     )
 }
