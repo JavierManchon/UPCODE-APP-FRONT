@@ -21,11 +21,12 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
     const postDesign = async () => {
         setDesignToSave(prevTemplate => ({
             ...prevTemplate,
-            template: false // Cambia el valor de template.template a false antes de hacer la llamada a la API
+            template: false 
         }));
-        console.log(designToSave.template);
+        
         if (!designToSave.template) {
             try {
+                // console.log(designToSave.template);
                 const response = await createDesign(authState.user._id, designToSave);
                 const updatedTemplate = response.data;
                 console.log(updatedTemplate);
