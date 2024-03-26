@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./_infoTicketArea.scss";
 import { useAuth } from "../../context/AuthContext";
 import { getOneUserReq } from "../../../api/axios/auth";
-import { postTicketReq } from "../../../api/axios/tickets";
+import { postTicketReq, patchTicketReq } from "../../../api/axios/tickets";
 
 const InfoTicketArea = () => {
   const { authState } = useAuth();
@@ -47,9 +47,21 @@ const InfoTicketArea = () => {
 
   const handleTicketClick = (ticket) => {
     if (selectedTicket && selectedTicket._id === ticket._id) {
-      setSelectedTicket(null); // Si el ticket seleccionado ya está abierto, ciérralo
+      setSelectedTicket(null);
     } else {
-      setSelectedTicket(ticket); // De lo contrario, abre el ticket seleccionado
+      setSelectedTicket(ticket);
+    }
+  };
+
+  const handleStatusChange = async (ticket) => {
+    if (ticket.status === "En proceso") {
+      try {
+        await patchTicketReq(ticket._id, { status: "Completado" });
+        const updatedUserResponse = await getOneUserReq(user._id);
+        setUser(updatedUserResponse.data);
+      } catch (error) {
+        console.error("Error actualizando el estado:", error);
+      }
     }
   };
 
@@ -130,8 +142,16 @@ const InfoTicketArea = () => {
                       </p>
                       <p>
                         <strong>Estado:</strong>{" "}
-                        {ticket.status === "Enviado" ? "Enviado" : "En Proceso"}
+                        {ticket.status}
                       </p>
+                      {ticket.status === "En proceso" && (
+                        <button
+                          onClick={() => handleStatusChange(ticket)}
+                          className="complete-button"
+                        >
+                          Completar
+                        </button>
+                      )}
                     </div>
                   )}
                 </li>

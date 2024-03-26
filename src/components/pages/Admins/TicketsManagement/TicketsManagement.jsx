@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getOneUserReq } from "../../../../api/axios/auth";
+import { getOneUserReq, patchUserReq } from "../../../../api/axios/auth";
 import "./_ticketsManagement.scss";
 import { patchTicketReq } from "../../../../api/axios/tickets";
 
@@ -32,6 +32,7 @@ function TicketsManagement() {
     setLightboxImageUrl("");
     setLightboxOpen(false);
   };
+
   const handleStatusChange = async (ticketId, newStatus) => {
     try {
       await patchTicketReq(ticketId, { status: newStatus });
@@ -39,6 +40,19 @@ function TicketsManagement() {
       setUserData(updatedUserResponse.data);
     } catch (error) {
       console.error("Error updating ticket status:", error);
+    }
+  };
+
+  const handleDeleteTicket = async (ticketId) => {
+    try {
+      const updatedTickets = userData.tickets.filter(
+        (ticket) => ticket._id !== ticketId
+      );
+      const updatedUserData = { ...userData, tickets: updatedTickets };
+      await patchUserReq(userId, { tickets: updatedTickets });
+      setUserData(updatedUserData);
+    } catch (error) {
+      console.error("Error deleting ticket:", error);
     }
   };
 
@@ -76,7 +90,7 @@ function TicketsManagement() {
                   {lightboxOpen && (
                     <div
                       className="lightbox"
-                      onClick={closeLightbox} // Cierra el lightbox cuando se hace clic fuera de la imagen
+                      onClick={closeLightbox}
                     >
                       <img className="lightboxImg"
                         src={lightboxImageUrl}
@@ -87,7 +101,7 @@ function TicketsManagement() {
                   <td>{new Date(ticket.createdAt).toLocaleString()}</td>
                   <td>{ticket.status}</td>
                   <td>
-                    {ticket.status !== "Enviado" && (
+                    {ticket.status === "En proceso" && (
                       <button
                         onClick={() =>
                           handleStatusChange(ticket._id, "Enviado")
@@ -96,7 +110,7 @@ function TicketsManagement() {
                         Marcar como Enviado
                       </button>
                     )}
-                    {ticket.status !== "En proceso" && (
+                    {ticket.status === "Enviado" && (
                       <button
                         onClick={() =>
                           handleStatusChange(ticket._id, "En proceso")
@@ -105,7 +119,11 @@ function TicketsManagement() {
                         Marcar como En proceso
                       </button>
                     )}
-
+                    {ticket.status === "Completado" && (
+                      <button onClick={() => handleDeleteTicket(ticket._id)}>
+                        Eliminar
+                      </button>
+                    )}
                     <a
                       href={`mailto:${userData.email}?subject=Up_Code_Support%20:%20${ticket.title}`}
                     >
