@@ -9,8 +9,12 @@ import _ from 'lodash';
 const SectionComponent = ({ isLogged }) => {
   const { authState } = useAuth();
   const location = useLocation();
+  const previousRoute = location.state.url;
+  console.log(previousRoute)
   const template = location.state.templateData;
   const [designToSave, setDesignToSave]=useState();
+
+
 
   useEffect(() => {
     setDesignToSave(location.state.templateData);
@@ -649,7 +653,9 @@ const SectionComponent = ({ isLogged }) => {
           </div>
         </div>
       </div>
-      {isLogged ? <ButtonSaveDesigns designToSave={designToSave} setDesignToSave={setDesignToSave}></ButtonSaveDesigns> : null}
+      {isLogged && previousRoute === '/catalogue' ? (
+        <ButtonSaveDesigns designToSave={designToSave} setDesignToSave={setDesignToSave} />
+      ) : null}
     </div>
   );
 };
