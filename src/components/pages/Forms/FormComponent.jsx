@@ -44,7 +44,7 @@ const FormComponent = ({ isLogged }) => {
         // Actualiza textArray basado en h2Values
         setDesignToSave(currentTemplate => {
           let updatedTemplate = _.cloneDeep(currentTemplate);
-          _.set(updatedTemplate, 'edit.textArray', labelValues);
+          _.set(updatedTemplate, 'edit.textArrayBidimensional', labelValues);
           return updatedTemplate;
         });
       }, [labelValues]);
@@ -89,7 +89,7 @@ const FormComponent = ({ isLogged }) => {
         if (index >= 0 && index < labelValues.length && childIndex >= 0 && childIndex < labelValues[index].length) {
             const newLabelValues = [...labelValues];
             newLabelValues[index][childIndex] = event.target.value;
-            updateTemplate('edit.textArray', newLabelValues);
+            updateTemplate('edit.textArrayBidimensional', newLabelValues);
             setLabelValues(newLabelValues);
         } else {
             console.error("Índices fuera de rango:", index, childIndex);

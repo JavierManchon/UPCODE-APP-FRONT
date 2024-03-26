@@ -1,12 +1,39 @@
 import { useEffect, useRef, useState } from "react";
 import "./_buttonComponent.scss";
 import { useLocation } from "react-router-dom";
+import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
+import { useAuth } from "../../context/AuthContext";
+import _ from 'lodash';
 
+const ButtonComponent = ({ isLogged }) => {
+  const { authState } = useAuth();
+    const location = useLocation();
+    const previousRoute = location.state.url;
+    console.log(previousRoute)
+    const template = location.state.templateData;
+    const [designToSave, setDesignToSave]=useState();
 
-const ButtonComponent = () => {
-  const location = useLocation(); 
-  const template = location.state.templateData; 
-  console.log(template)
+    useEffect(() => {
+      setDesignToSave(location.state.templateData);
+    }, [location.state.templateData]); 
+
+    const updateTemplate = (path, value) => {
+      setDesignToSave((currentTemplate) => {
+        let updatedTemplate = _.cloneDeep(currentTemplate);
+        _.set(updatedTemplate, 'edit.text', buttonValue);
+        _.set(updatedTemplate, path, value);
+        return updatedTemplate;
+      });
+    };
+
+    useEffect(() => {
+      // Actualiza textArray2 basado en pValues
+      setDesignToSave(currentTemplate => {
+        let updatedTemplate = _.cloneDeep(currentTemplate);
+        _.set(updatedTemplate, 'edit.text', buttonValue);
+        return updatedTemplate;
+      });
+    }, [buttonValue]);
   
   const [buttonValue, setButtonValue] = useState(template.edit.text ? template.edit.text : 'Enviar');
   const [bgColor, setBgColor] = useState(template.edit.bgColorButton ? template.edit.bgColorButton : '');
@@ -18,22 +45,27 @@ const ButtonComponent = () => {
   const [hoverStyles, setHoverStyles] =useState({});
 
   const handleButtonChange = (event) => {
+    updateTemplate('edit.text', event.target.value);
     setButtonValue(event.target.value);
   };
 
   const handleBgColor = (event) => {
+    updateTemplate('edit.bgColorButton', event.target.value);
     setBgColor(event.target.value);
   };
 
   const handleFontColor = (event) => {
+    updateTemplate('edit.colorText', event.target.value);
     setFontColor(event.target.value);
   };
 
   const handleFontSize = (event) => {
+    updateTemplate('edit.fontSizeText', event.target.value);
     setFontSize(`${event.target.value}px`);
   };
 
-  const handleFontWeight = (event) => {
+  const handleFontWeight = (newValue) => {
+    updateTemplate('edit.fontWeightText', newValue);
     setFontWeight(event.target.value);
   };
 
@@ -154,7 +186,7 @@ const ButtonComponent = () => {
             onChange={(event) => {
                 const isChecked = event.target.checked;
                 const newValue = isChecked ? "bold" : "normal";
-                setFontWeight(newValue); // Actualiza el estado local
+                handleFontWeight(newValue); // Actualiza el estado local
             }}
           />
           </div>

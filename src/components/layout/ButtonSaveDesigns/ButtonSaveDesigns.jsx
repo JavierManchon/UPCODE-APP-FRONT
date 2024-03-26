@@ -19,11 +19,15 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
     // }, [])
     
     
-    const postDesign = async () => {
+    const postDesign = () => {
         setDesignToSave(prevTemplate => ({
             ...prevTemplate,
             template: false 
         }));
+        confirmPost();
+    };
+
+    const confirmPost = async() => {
         if (!designToSave.template) {
             try {
                 const response = await createDesign(authState.user._id, designToSave);
@@ -34,8 +38,7 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
                 console.error('Error fetching designs:', error);
             }
         }
-        
-    };
+    }
 
     return (
         <button type='button' onClick={() => postDesign(designToSave)} >Guardar Diseño</button> 
