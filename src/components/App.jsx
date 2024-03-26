@@ -27,6 +27,7 @@ import NavComponent from './pages/Navs/NavComponent'
 import SectionComponent from './pages/Sections/SectionComponent'
 
 import InfoTicketArea from './layout/InfoTicketArea/InfoTicketArea'
+import TicketsManagement from './pages/Admins/TicketsManagement/TicketsManagement'
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path='/admins' element={<AdminControlPanel/>}/>
           <Route path="/adminUserManagement" element={<UserManagement />} />
           <Route path="/adminDesignsManagement" element={<DesignManagement />} />
+          <Route path="/adminticketsManagement/:userId" element={<TicketsManagement />} />
 
           <Route path="/register" element={<RegisterForm />} /> 
           <Route path="/catalogue/template-buttons/:designId" element={<ButtonComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
