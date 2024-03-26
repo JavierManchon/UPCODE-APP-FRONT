@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getOneUserReq } from "../../../../api/axios/auth";
+import { getOneUserReq, patchUserReq } from "../../../../api/axios/auth";
 import "./_ticketsManagement.scss";
 import { patchTicketReq } from "../../../../api/axios/tickets";
 
@@ -32,6 +32,7 @@ function TicketsManagement() {
     setLightboxImageUrl("");
     setLightboxOpen(false);
   };
+
   const handleStatusChange = async (ticketId, newStatus) => {
     try {
       await patchTicketReq(ticketId, { status: newStatus });
@@ -42,74 +43,111 @@ function TicketsManagement() {
     }
   };
 
+  const handleDeleteTicket = async (ticketId) => {
+    try {
+      const updatedTickets = userData.tickets.filter(
+        (ticket) => ticket._id !== ticketId
+      );
+      const updatedUserData = { ...userData, tickets: updatedTickets };
+      await patchUserReq(userId, { tickets: updatedTickets });
+      setUserData(updatedUserData);
+    } catch (error) {
+      console.error("Error deleting ticket:", error);
+    }
+  };
+
   return (
-    <div>
-      <h1>Admin Tickets Management</h1>
+    <div className="tickets-title-container">
+      <h1 className="tickets-title-management">Tickets</h1>
       {userData ? (
-        <div>
-          <h2>User ID: {userData._id}</h2>
-          <p>User Name: {userData.name}</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Screenshot</th>
-                <th>Created At</th>
-                <th>Status</th>
-                <th>Action</th>
+        <div className="tickets-containerAll">
+          <h2 className="username">Username: {userData.username}</h2>
+          <p className="user_id">User_ID: {userData._id}</p>
+          <p className="email">Email: {userData.email}</p>
+          <table className="tickets-table">
+            <thead className="tickets-table__head">
+              <tr className="tickets-table__head__tr">
+                <th className="table-header">Title</th>
+                <th className="table-header">Description</th>
+                <th className="table-header-img">Screenshot</th>
+                <th className="table-header">Created At</th>
+                <th className="table-header">Status</th>
+                <th className="table-header">Action</th>
               </tr>
             </thead>
             <tbody>
               {userData.tickets.map((ticket) => (
                 <tr key={ticket._id}>
-                  <td>{ticket.title}</td>
-                  <td>{ticket.description}</td>
-                  <td>
-                    <img
-                      className="ticketImg"
-                      src={ticket.screenshot}
-                      alt="screenshot"
-                      onClick={() => openLightbox(ticket.screenshot)}
-                    />
+                  <td className="table-data">{ticket.title}</td>
+                  <td className="table-data">{ticket.description}</td>
+                  <td className="ticket-img-container">
+                    {ticket.screenshot && (
+                      <img
+                        className="ticket-Img-data"
+                        src={ticket.screenshot}
+                        alt="screenshot"
+                        onClick={() => openLightbox(ticket.screenshot)}
+                      />
+                    )}
                   </td>
                   {lightboxOpen && (
                     <div
                       className="lightbox"
-                      onClick={closeLightbox} // Cierra el lightbox cuando se hace clic fuera de la imagen
+                      onClick={closeLightbox}
                     >
-                      <img className="lightboxImg"
+                      <img
+                        className="lightboxImg"
                         src={lightboxImageUrl}
                         alt="screenshot"
                       />
                     </div>
                   )}
-                  <td>{new Date(ticket.createdAt).toLocaleString()}</td>
-                  <td>{ticket.status}</td>
-                  <td>
-                    {ticket.status !== "Enviado" && (
+
+                  <td className="table-data">
+                    {new Date(ticket.createdAt).toLocaleString()}
+                  </td>
+                  <td className="table-data">
+                    <div
+                      className={`status-indicator ${ticket.status
+                        .toLowerCase()
+                        .replace(" ", "-")}`}
+                    >
+                      <span className="sr-only">{ticket.status}</span>{" "}
+                    </div>
+                  </td>
+
+                  <td className="table-data">
+                    {ticket.status === "En proceso" && (
                       <button
+                        className="send-button"
                         onClick={() =>
                           handleStatusChange(ticket._id, "Enviado")
                         }
                       >
-                        Marcar como Enviado
+                       Marcar como Enviado
                       </button>
                     )}
-                    {ticket.status !== "En proceso" && (
+                    {ticket.status === "Enviado" && (
                       <button
+                        className="in-process-button"
                         onClick={() =>
                           handleStatusChange(ticket._id, "En proceso")
                         }
                       >
-                        Marcar como En proceso
+                      Marcar como En proceso
                       </button>
                     )}
-
+                    {ticket.status === "Completado" && (
+                      <button onClick={() => handleDeleteTicket(ticket._id)}>
+                        Eliminar
+                      </button>
+                    )}
                     <a
                       href={`mailto:${userData.email}?subject=Up_Code_Support%20:%20${ticket.title}`}
                     >
-                      <button>Contactar por correo</button>
+                      <button className="email-button">
+                        <div>✉️</div>
+                      </button>
                     </a>
                   </td>
                 </tr>

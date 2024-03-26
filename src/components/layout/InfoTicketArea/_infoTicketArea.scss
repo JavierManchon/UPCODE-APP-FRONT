@@ -86,11 +86,15 @@ div.container-infoticket {
                 }
 
                 .enviado {
-                    background-color: red;
+                    background-color: orange;
                 }
 
                 .en-proceso {
-                    background-color: orange;
+                    background-color: green;
+                }
+
+                .completado {
+                    background-color: gray;
                 }
 
                 > div.ticket-details {
