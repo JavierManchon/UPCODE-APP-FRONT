@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getOneUserReq } from "../../../../api/axios/auth";
+import { getOneUserReq, patchUserReq } from "../../../../api/axios/auth";
 import "./_ticketsManagement.scss";
 import { patchTicketReq } from "../../../../api/axios/tickets";
 
@@ -43,6 +43,19 @@ function TicketsManagement() {
     }
   };
 
+  const handleDeleteTicket = async (ticketId) => {
+    try {
+      const updatedTickets = userData.tickets.filter(
+        (ticket) => ticket._id !== ticketId
+      );
+      const updatedUserData = { ...userData, tickets: updatedTickets };
+      await patchUserReq(userId, { tickets: updatedTickets });
+      setUserData(updatedUserData);
+    } catch (error) {
+      console.error("Error deleting ticket:", error);
+    }
+  };
+
   return (
     <div className="tickets-title-container">
       <h1 className="tickets-title-management">Tickets</h1>
@@ -80,7 +93,7 @@ function TicketsManagement() {
                   {lightboxOpen && (
                     <div
                       className="lightbox"
-                      onClick={closeLightbox} // Cierra el lightbox cuando se hace clic fuera de la imagen
+                      onClick={closeLightbox}
                     >
                       <img
                         className="lightboxImg"
@@ -89,6 +102,7 @@ function TicketsManagement() {
                       />
                     </div>
                   )}
+
                   <td className="table-data">
                     {new Date(ticket.createdAt).toLocaleString()}
                   </td>
@@ -103,7 +117,7 @@ function TicketsManagement() {
                   </td>
 
                   <td className="table-data">
-                    {ticket.status !== "Enviado" && (
+                    {ticket.status === "En proceso" && (
                       <button
                         className="send-button"
                         onClick={() =>
@@ -113,7 +127,7 @@ function TicketsManagement() {
                        Marcar como Enviado
                       </button>
                     )}
-                    {ticket.status !== "En proceso" && (
+                    {ticket.status === "Enviado" && (
                       <button
                         className="in-process-button"
                         onClick={() =>
@@ -123,7 +137,11 @@ function TicketsManagement() {
                       Marcar como En proceso
                       </button>
                     )}
-
+                    {ticket.status === "Completado" && (
+                      <button onClick={() => handleDeleteTicket(ticket._id)}>
+                        Eliminar
+                      </button>
+                    )}
                     <a
                       href={`mailto:${userData.email}?subject=Up_Code_Support%20:%20${ticket.title}`}
                     >

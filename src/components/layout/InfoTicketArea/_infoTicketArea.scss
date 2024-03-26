@@ -93,6 +93,10 @@ div.container-infoticket {
                     background-color: green;
                 }
 
+                .completado {
+                    background-color: gray;
+                }
+
                 > div.ticket-details {
                     display: flex;
                     flex-direction: column;
