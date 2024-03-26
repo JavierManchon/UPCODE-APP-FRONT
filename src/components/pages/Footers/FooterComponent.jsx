@@ -1,20 +1,54 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./_footerComponent.scss";
 import { useLocation } from "react-router-dom";
+import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
+import { useAuth } from "../../context/AuthContext";
+import _ from 'lodash';
 
-const FooterComponent = () => {
-  const location = useLocation(); 
-    const template = location.state.templateData; 
-    console.log(template)
+const FooterComponent = ({ isLogged }) => {
+  const { authState } = useAuth();
+  const location = useLocation();
+  const previousRoute = location.state.url;
+  console.log(previousRoute)
+  const template = location.state.templateData;
+  const [designToSave, setDesignToSave]=useState();
   
-    const [liValues, setLiValues] = useState(() => {
-        if (template.edit.textArray > 0) {
+    
+
+      
+
+      useEffect(() => {
+        setDesignToSave(location.state.templateData);
+      }, [location.state.templateData]); 
+    
+      const updateTemplate = (path, value) => {
+        setDesignToSave((currentTemplate) => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+    
+          _.set(updatedTemplate, 'edit.textArray', liValues);
+          
+          _.set(updatedTemplate, path, value);
+          return updatedTemplate;
+        });
+      };
+    
+      const [liValues, setLiValues] = useState(() => {
+        if (template.edit.textArray.length > 0) {
           return [...template.edit.textArray];
         } else {
           return Array.from({ length: template.defaultContent.countGrandson }, () => "Item");
         }
       });
-    
+
+      useEffect(() => {
+        // Actualiza textArray basado en h2Values
+        setDesignToSave(currentTemplate => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+          _.set(updatedTemplate, 'edit.textArray', liValues);
+          return updatedTemplate;
+        });
+      }, [liValues]);
+
       const [bgColor, setBgColor] = useState(template.edit.bgColorNav ? template.edit.bgColorNav : '');
       const [fontColor, setFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
       const [fontSize, setFontSize] = useState(template.edit.fontSizeText ? template.edit.fontSizeText : '');
@@ -29,26 +63,32 @@ const FooterComponent = () => {
     const newLiValues = [...liValues];
     newLiValues[index] = event.target.value;
     setLiValues(newLiValues);
+    updateTemplate('edit.textArray', event.target.value);
   };
 
   const handleBgColor = (event) => {
+    updateTemplate('edit.bgColorNav', event.target.value);
     setBgColor(event.target.value);
   };
 
   const handleFontColor = (event) => {
+    updateTemplate('edit.colorText', event.target.value);
     setFontColor(event.target.value);
   };
 
   const handleFontSize = (event) => {
+    updateTemplate('edit.fontSizeText', event.target.value);
     setFontSize(`${event.target.value}px`);
   };
 
-  const handleFontWeight = (event) => {
-    setFontWeight(event.target.value);
+  const handleFontWeight = (newValue) => {
+    updateTemplate('edit.fontWeigthText', newValue);
+    setFontWeight(newValue);
   };
 
-  const handleTextDecoration = (event) => {
-    setTextDecoration(event.target.value);
+  const handleTextDecoration = (newValue) => {
+    updateTemplate('edit.textDecorationText', newValue);
+    setTextDecoration(newValue);
   };
 
   const visualNav = useRef(null);
@@ -390,6 +430,9 @@ const FooterComponent = () => {
           </div>
         ) : null}
       </div>
+      {isLogged && previousRoute === '/catalogue' ? (
+        <ButtonSaveDesigns designToSave={designToSave} setDesignToSave={setDesignToSave} />
+      ) : null}
     </div>
   );
 };

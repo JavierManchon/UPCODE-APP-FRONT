@@ -1,12 +1,36 @@
 import { useEffect, useState, useRef } from "react";
-import "../../../css/app.scss";
 import "../Figures/_figureComponent.scss";
 import { useLocation } from "react-router-dom";
+import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
+import { useAuth } from "../../context/AuthContext";
+import _ from 'lodash';
 
-const FigureComponent = () => {
-  const location = useLocation(); 
-  const template = location.state.templateData; 
-  console.log(template)
+const FigureComponent = ({ isLogged }) => {
+  const { authState } = useAuth();
+  const location = useLocation();
+  const previousRoute = location.state.url;
+  console.log(previousRoute)
+  const template = location.state.templateData;
+  const [designToSave, setDesignToSave]=useState();
+
+
+
+  useEffect(() => {
+    setDesignToSave(location.state.templateData);
+  }, [location.state.templateData]); 
+
+  const updateTemplate = (path, value) => {
+    setDesignToSave((currentTemplate) => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+
+      _.set(updatedTemplate, 'edit.textItem', imgUrl);
+      _.set(updatedTemplate, 'edit.text', figcaption);
+  
+
+      _.set(updatedTemplate, path, value);
+      return updatedTemplate;
+    });
+  };
 
   const [colorText, setColorText] = useState(
     template.edit.colorText ? template.edit.colorText : ""
@@ -28,23 +52,46 @@ const FigureComponent = () => {
       ? template.edit.textItem
       : "https://free4kwallpapers.com/uploads/originals/2020/08/15/-programming-wallpaper.png"
   );
+
+  useEffect(() => {
+    // Actualiza textArray basado en h2Values
+    setDesignToSave(currentTemplate => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+      _.set(updatedTemplate, 'edit.textItem', imgUrl);
+      return updatedTemplate;
+    });
+  }, [imgUrl]);
+
   const [figcaption, setFigcaption] = useState(
     template.edit.text ? template.edit.text : "imagen de una closeTag"
   );
 
+  useEffect(() => {
+    // Actualiza textArray2 basado en pValues
+    setDesignToSave(currentTemplate => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+      _.set(updatedTemplate, 'edit.text', figcaption);
+      return updatedTemplate;
+    });
+  }, [figcaption]);
+
   const handleFontColor = (event) => {
+    updateTemplate('edit.colorText', event.target.value);
     setColorText(event.target.value);
   };
 
   const handleFontSize = (event) => {
+    updateTemplate('edit.fontSizeText', event.target.value);
     setFontSize(`${event.target.value}px`);
   };
 
   const handleImgUrlChange = (event) => {
+    updateTemplate('edit.textItem', event.target.value);
     setImgUrl(event.target.value);
   };
 
   const handleFigcaptionChange = (event) => {
+    updateTemplate('edit.text', event.target.value);
     setFigcaption(event.target.value);
   };
 
@@ -272,6 +319,10 @@ const FigureComponent = () => {
           </div>
         </div>
       </div>
+
+      {isLogged && previousRoute === '/catalogue' ? (
+        <ButtonSaveDesigns designToSave={designToSave} setDesignToSave={setDesignToSave} />
+      ) : null}
     </div>
   );
 };

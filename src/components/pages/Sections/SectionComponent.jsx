@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./_sectionComponent.scss";
-// import "../../../css/app.scss";
 import { useLocation } from "react-router-dom";
 import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
 import { useAuth } from "../../context/AuthContext";
@@ -287,7 +286,6 @@ const SectionComponent = ({ isLogged }) => {
         {Array.from({ length: template.defaultContent.countChildren }).map(
           (_, index) => (
             <React.Fragment key={index}>
-              {/* Asume que `children` es un array con al menos dos elementos, donde el primer elemento es tratado como un contenedor (ej. div) y el segundo como el título (ej. h2) */}
               <div className={`${template.defaultContent.children[0]}`}>
                 <p>
                   {"<"}
