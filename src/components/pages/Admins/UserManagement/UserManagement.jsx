@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./_userManagement.scss";
 import { getAllUsersReq, deleteUserReq } from "../../../../api/axios/auth";
+import { Link } from "react-router-dom";
 
 function UserManagement() {
   const [usersState, setUsersState] = useState([]);
-  const [searchUsers, setSearchUsers] = useState('');
+  const [searchUsers, setSearchUsers] = useState("");
+
 
   useEffect(() => {
     async function fetchData() {
@@ -84,13 +86,18 @@ function UserManagement() {
                   </td>
                   <td className="table-data">
                     {user.tickets && user.tickets.length > 0 ? (
-                      <button className="ticket-btn">Go to tickets</button>
+                      <Link to={`/adminticketsManagement/${user._id}`}>
+                        <button className="ticket-btn">Go to tickets</button>
+                      </Link>
                     ) : (
                       <p className="no-tickets">No hay tickets</p>
                     )}
                   </td>
+
                   <td className="table-data">
-                    <button onClick={() => handleDeleteUser(user._id)}>Borrar</button>
+                    <button onClick={() => handleDeleteUser(user._id)}>
+                      Borrar
+                    </button>
                   </td>
                 </tr>
               ))}

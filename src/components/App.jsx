@@ -26,7 +26,8 @@ import FormComponent from './pages/Forms/FormComponent'
 import NavComponent from './pages/Navs/NavComponent'
 import SectionComponent from './pages/Sections/SectionComponent'
 
-
+import InfoTicketArea from './layout/InfoTicketArea/InfoTicketArea'
+import TicketsManagement from './pages/Admins/TicketsManagement/TicketsManagement'
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path='/admins' element={<AdminControlPanel/>}/>
           <Route path="/adminUserManagement" element={<UserManagement />} />
           <Route path="/adminDesignsManagement" element={<DesignManagement />} />
+          <Route path="/adminticketsManagement/:userId" element={<TicketsManagement />} />
 
           <Route path="/register" element={<RegisterForm />} /> 
           <Route path="/catalogue/template-buttons/:designId" element={<ButtonComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
@@ -61,6 +63,8 @@ function App() {
           <Route path="/catalogue/template-forms/:designId" element={<FormComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
           <Route path="/catalogue/template-navs/:designId" element={<NavComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
           <Route path="/catalogue/template-sections/:designId" element={<SectionComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
+
+          <Route path="/infoTicket" element={<InfoTicketArea />} /> 
 
         </Routes>
         {showAsideTickets() && <AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/> }
