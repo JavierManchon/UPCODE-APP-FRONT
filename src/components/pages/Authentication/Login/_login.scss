@@ -31,6 +31,9 @@ div.container-login{
         border: 2px solid $colorBorders;
         border-radius: 15px;
         padding: 30px 0;
+        >span.linki-register{
+            color:$colorText;
+        }
 
         >h2.title-login{
             margin-bottom: 20px;

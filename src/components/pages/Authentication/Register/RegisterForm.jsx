@@ -99,7 +99,7 @@ const RegisterForm = () => {
           {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
           <button type="submit">Register</button>
         </form>
-         <span className='link-register' > Si ya está registrado , pulse <Link to="/login">aquí</Link></span>
+         <span className='link-register' > Si ya está registrado , pulse 👉<Link to="/login">aquí</Link>👈</span>
       </div>
     </div>
   );

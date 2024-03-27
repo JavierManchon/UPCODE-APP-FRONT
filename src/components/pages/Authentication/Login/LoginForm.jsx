@@ -71,7 +71,9 @@ const LoginForm = ({ setIsLogged }) => {
           {error && <p style={{ color: 'red' }}>{error}</p>}
           <button type="submit">Login</button>
         </form>
-        <Link className='link-register' to="/register">Regístrate Ahora</Link>
+        <span className='linki-register'>¿Aún no estás registrado? 👉<Link className='link-register' to="/register">¡Pincha aquí!</Link>
+              <span>👈</span></span>
+
       </div>
     </div>
   );
