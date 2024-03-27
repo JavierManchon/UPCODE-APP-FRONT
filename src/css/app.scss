@@ -1,195 +1,426 @@
+@import "./_variables.scss";
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 //estilos de la pagina
 
 body {
+  height: 100vh;
+  background-color: $bgApp;
+
+  > div#root {
     height: 100vh;
 
-    > div#root {
-        height: 100vh;
-
-        div.container-all {
-            position: relative;
-            overflow-y: scroll;
-            padding: 80px 0;
-            height: 100vh;
-        }
+    div.container-all {
+      position: relative;
+      overflow-y: scroll;
+      padding: 80px 0;
+      height: 100vh;
     }
+  }
 }
 
 div.container-pages-default-styles {
-    width: 100%;
-  
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: stretch;
-    gap: 50px;
+  width: 100%;
+  height: calc(100vh - 160px);
 
-    padding: 50px 0;
-  
-    & > * {
-      border: 2px solid;
-      border-radius: 15px;
-    }
-  
-    div.container-editor {
-      width: 350px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      padding: 30px;
-      position: relative;
-  
-      > p {
-        font-weight: bold;
-      }
-    }
-  
-    div.styles-editor {
-        width: 350px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+
+  overflow-y: scroll;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 30px;
+
+  > div.styles-editor {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: $bgNavFooter;
+    border-radius: 15px;
+
+    > div.container-label {
+      width: 100%;
       display: flex;
       flex-flow: row wrap;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
-  
+      gap: 10px;
+      overflow: visible;
+
       > label {
-          width: 160px;
+        width: 120px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         gap: 5px;
-  
+        overflow: visible;
+
         > p {
           width: 80%;
           text-align: center;
-          border-bottom: 2px solid;
+          // border-bottom: 2px solid;
           flex-shrink: 0;
+          color: $colorText;
         }
-  
-        > input {
-          border: none;
-          border-bottom: 1px solid;
-          outline: none;
-          background-color: transparent;
-          border-radius: 5px;
-        }
-  
-        &:nth-child(3) {
-          > input {
-            border: 1px solid;
-          }
-        }
-      }
-    }
-  
-    div.container-renderized_html {
-        width: 350px;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-  
-      > div.title-btn {
-        width: 100%;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-      }
-  
-      > div.html {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        padding: 30px;
-        width: 100%;
-        position: relative;
-        > span {
-          font-weight: bold;
-          width: 250px;
-          position: relative;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          padding-left: 30px;
-  
-          &:first-child,
-          &:last-child {
-            padding-left: 10px;
-          }
-  
-          &:nth-child(2),
-          &:nth-last-child(2),
-          &:nth-child(5),
-          &:nth-child(6),
-          &:nth-child(9),
-          &:nth-child(10) {
-            padding-left: 20px;
-          }
-        }
-      }
-    }
-  
-    div.container-renderized_visual {
-        width: 350px;
-        padding: 10px;
-    }
-  
-    div.container-renderized_css {
-      width: 100%;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      align-items: stretch;
-      gap: 30px;
-      border: none;
-  
-      > div.css-section,
-      > div.css-article,
-      > div.css-h2,
-      > div.css-p {
-        width: 350px;
-        padding: 20px;
-  
-        display: flex;
-        flex-direction: column;
 
-        border: 2px solid;
-        border-radius: 15px;
+        > div {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          gap: 5px;
+          overflow: visible;
+          > input {
+            border: none;
+            border-bottom: 1px solid $colorText;
+            outline: none;
+            background-color: transparent;
+            color: $colorText;
+
+            &[type="color"] {
+              border: none;
+            }
+          }
+
+          > span {
+            color: $colorText;
+            transform: translateY(4px);
+          }
+        }
+      }
+    }
+
+    > span {
+      width: 100%;
+      max-width: 300px;
+      padding: 5px;
+      text-align: center;
+      background-color: $bgButtons;
+      border-radius: 15px;
+    }
+  }
+
+  > button.no-visual {
+    transform: scale(0);
+    margin-bottom: -100px;
+    &.btn-visual {
+      width: 100%;
+      max-width: 300px;
+      padding: 5px 10px;
+      text-align: center;
+      background-color: $bgButtons;
+      border-radius: 15px;
+      flex-shrink: 0;
+      border: none;
+      transform: scale(1);
+      margin-bottom: 0px;
+    }
+  }
   
+
+  > div.container-containers {
+    width: 90%;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    > div.container-editor {
+      width: 100%;
+      max-width: calc(50% - 20px);
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      gap: 3px;
+      padding: 30px;
+      background-color: $bgNavFooter;
+      border-radius: 15px;
+
+      > div {
+        p {
+          font-weight: bold;
+
+          &.padding-left-10 {
+            padding-left: $paddingLeft10;
+          }
+
+          &.padding-left-20 {
+            padding-left: $paddingLeft20;
+          }
+
+          > input {
+            border: none;
+            outline: none;
+            padding: 3px;
+            &.input-img {
+              margin-left: 9px;
+            }
+          }
+        }
+      }
+
+      > span {
+        width: 100%;
+        max-width: 300px;
+        padding: 5px;
+        text-align: center;
+        background-color: $bgButtons;
+        border-radius: 15px;
+        flex-shrink: 0;
+      }
+    }
+
+    > div.container-render {
+      width: 100%;
+      max-width: calc(50% - 20px);
+      height: 300px;
+      position: relative;
+
+      & > * {
+        position: absolute;
+        border-radius: 15px;
+      }
+      > div.container-renderized_html {
+        width: 100%;
+        height: 300px;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        top: 0;
+        left: 0;
+        z-index: 3;
+
+        background-color: $bgNavFooter;
+        opacity: 0;
+        transform: scale(0);
+
         > div.title-btn {
           width: 100%;
           display: flex;
           flex-flow: row nowrap;
-          justify-content: space-between;
+          justify-content: space-around;
           align-items: center;
-          padding: 20px;
+          padding: 50px 10px 10px;
+
+          > button {
+            padding: 5px 10px;
+            background-color: $bgButtons;
+            border-radius: 15px;
+            border: none;
+            outline: none;
+          }
         }
-  
-        > div.css {
-          width: 100%;
+
+        > div.html {
           display: flex;
           flex-direction: column;
-  
+          align-items: flex-start;
+          gap: 3px;
+          padding-left: 10px;
+          padding-top: 20px;
+
           > span {
-            padding-left: 50px;
-  
+            font-weight: bold;
+            padding-left: $paddingLeft10;
+
             &:first-child,
             &:last-child {
-              padding-left: 40px;
+              padding-left: 0;
+            }
+
+            &.section-h2,
+            &.section-p {
+              padding-left: $paddingLeft20;
+            }
+          }
+        }
+
+        &.show {
+          transition: all ease 1s;
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      > div.container-renderized_visual {
+        width: 100%;
+        height: 300px;
+
+        padding: 10px;
+
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        background-color: $bgNavFooter;
+
+        &.hidden {
+          visibility: hidden;
+        }
+
+        > figure.figure {
+          display: grid;
+          place-items: center;
+          gap: 20px;
+          > img {
+            width: 250px;
+            height: 250px;
+          }
+        }
+      }
+
+      > div.container-renderized_css {
+        width: 100%;
+        height: 300px;
+
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: stretch;
+        gap: 30px;
+
+        overflow-y: scroll;
+
+        top: 0;
+        left: 0;
+        z-index: 3;
+        opacity: 0;
+        transform: scale(0);
+
+        border: none;
+        background-color: $bgNavFooter;
+        padding: 20px;
+
+        &.show {
+          transition: all ease 1s;
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        > div.css-nav,
+        > div.css-btn,
+        > div.css-ul,
+        > div.css-li,
+        > div.css-fig,
+        > div.css-figcaption,
+        > div.css-img,
+        > div.css-div,
+        > div.css-section,
+        > div.css-article,
+        > div.css-h2,
+        > div.css-p {
+          width: 350px;
+          padding: 20px;
+
+          display: flex;
+          flex-direction: column;
+
+          > div.title-btn {
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+
+            > button {
+              padding: 5px 10px;
+              background-color: $bgButtons;
+              border-radius: 15px;
+              border: none;
+              outline: none;
+            }
+          }
+
+          > div.css {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            > span {
+              padding-left: 50px;
+
+              &:first-child,
+              &:last-child {
+                padding-left: 40px;
+              }
+            }
+
+            > p {
+              padding-left: 50px;
+
+              &:first-child,
+              &:nth-last-child(2) {
+                padding-left: 40px;
+              }
+            }
+
+            > div.container-hover {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              padding-top: 30px;
+
+              > p {
+                padding-left: 50px;
+  
+                &:first-child,
+                &:last-child {
+                  padding-left: 40px;
+                }
+              }
             }
           }
         }
       }
     }
   }
-  
+}
+
+@media screen and (max-width: 1023px) {
+  div.container-pages-default-styles {
+    gap: 20px;
+    > div.container-containers {
+      gap: 20px;
+      > div.container-render {
+        max-width: none;
+      }
+
+      > div.container-editor {
+        max-width: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 801px) {
+  div.container-pages-default-styles {
+    // height: auto;
+    
+  }
+}
