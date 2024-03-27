@@ -11,11 +11,13 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(!!sessionStorage.getItem('token'));
+  const [isAdmin, setIsAdmin] = useState(!!sessionStorage.getItem('isAdmin'));
 
   const [authState, setAuthState] = useState({
     token: sessionStorage.getItem('token') ||  null,
-    user: JSON.parse(sessionStorage.getItem('user')) || null
+    user: JSON.parse(sessionStorage.getItem('user')) || null,
+    isAdmin:sessionStorage.getItem('isAdmin') || null
   });
   const [usersState, setUsersState] = useState([]);
 
@@ -52,13 +54,20 @@ export const AuthProvider = ({ children }) => {
   const login = async (user) => {
     try {
       const { data } = await loginReq(user);
-      const { token } = data;
+      const { token, isAdmin } = data;
       sessionStorage.setItem('token', token);
       sessionStorage.setItem('user', JSON.stringify(data));
+      sessionStorage.setItem('isAdmin', data.isAdmin);
+      console.log(sessionStorage.getItem('isAdmin'));
       setAuthState({ token: token, user: data });
+      setIsAdmin(isAdmin || false);
       API.defaults.headers.common['Authorization'] = token;
       setIsLogged(true);
-      navigate('/user-area')
+      if (isAdmin) {
+        navigate('/admins');
+      } else {
+        navigate('/user-area');
+      }
     } catch (error) {
       throw new Error(error.response && error.response.data && error.response.data.msg ? error.response.data.msg : 'Error al intentar iniciar sesión. Por favor, intenta nuevamente.');
     }
@@ -101,7 +110,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authState, usersState, register, login, logout, patchUser, getAllUsers, isLogged }}>
+    <AuthContext.Provider value={{ authState, usersState, register, login, logout, patchUser, getAllUsers, isLogged ,isAdmin }}>
       {children}
     </AuthContext.Provider>
   );
