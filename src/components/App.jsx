@@ -30,7 +30,7 @@ import TicketsManagement from "./pages/Admins/TicketsManagement/TicketsManagemen
 import { useAuth } from "./context/AuthContext";
 
 function App() {
-  const { isAdmin,isLogged } = useAuth();
+  const { isAdmin, isLogged } = useAuth();
   const [logged, setLogged] = useState(isLogged);
   const location = useLocation();
 

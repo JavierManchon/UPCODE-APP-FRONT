@@ -10,7 +10,6 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-
   const [isLogged, setIsLogged] = useState(!!sessionStorage.getItem('token'));
   const [isAdmin, setIsAdmin] = useState(!!sessionStorage.getItem('isAdmin'));
 
@@ -110,7 +109,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authState, usersState, register, login, logout, patchUser, getAllUsers, isLogged ,isAdmin }}>
+    <AuthContext.Provider value={{ authState, setAuthState, usersState, register, login, logout, patchUser, getAllUsers, isLogged ,isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

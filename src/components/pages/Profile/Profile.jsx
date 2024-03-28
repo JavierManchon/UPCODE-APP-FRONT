@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { useLocation } from "react-router-dom";
 import "./_profile.scss";
 import defaultUser from '../../../images/default-user.png';
 
 const Profile = () => {
   const { authState, patchUser } = useAuth();
   //const userInfo = authState.user;
+  
+  const location = useLocation();
+  const isUserArea = location.pathname === "/user-area";
 
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -52,7 +56,7 @@ const Profile = () => {
   }
 
   return (
-    <section className="profile-container">
+    <section className={isUserArea ? "profile-container-myarea" : "profile-container"}>
       <div className="profile-id-image-container">
         {authState.user.image 
           ? <img className="profile-id-image" alt="" src={authState.user.image} />
@@ -63,7 +67,6 @@ const Profile = () => {
         <h3 className="profile-id-username">{authState.user.username}</h3>
         <h4 className="profile-id-name">{authState.user.name}</h4>
         <h4 className="profile-id-surname">{authState.user.surname}</h4>
-        <h4 className="profile-id-email">{authState.user.email}</h4>
       </div>
       <span className="edit-span" onClick={toggleEditForm}>Editar Información</span>
       <div className={`edit-profile-form ${showEditForm ? "show" : ""}`}>

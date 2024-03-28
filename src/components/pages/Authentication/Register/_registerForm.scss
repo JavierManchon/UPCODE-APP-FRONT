@@ -1,7 +1,9 @@
 @import '../../../../css/_variables.scss';
 
 
-div.container-login{
+
+
+div.container-register{
     width: 100%;
     height: 100%;
     display: flex;
@@ -10,19 +12,13 @@ div.container-login{
     .link-register{
         text-decoration: none;
         color: $colorText;
-        a{
-            text-decoration: none;
-            color : $colorText;
-            &:hover{
-                text-decoration: underline;
-            }
-        }
     }
 
 
-    >div.div-login {
+    >div.div-register {
         width: 90%;
-        max-width: 500px;
+        max-width: 400px;
+        height: 300px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -30,10 +26,6 @@ div.container-login{
         background-color: $bgOthers;
         border: 2px solid $colorBorders;
         border-radius: 15px;
-        padding: 30px 0;
-        >span.linki-register{
-            color:$colorText;
-        }
 
         >h2.title-login{
             margin-bottom: 20px;
@@ -43,45 +35,28 @@ div.container-login{
         >form.form-login{
             display: flex ;
             flex-direction: column;
-            align-items: center;
             margin: 4PX;
             >div{
-                width: 100%;
-                max-width: 300px;
                 padding: 2px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
                 >input.input-login{
                     padding: 5px;
                     border: none;
                     outline: none;
                 }
-                >p{
-                    width: 100%;
-                }
             }
 
             button{
-                width: 50%;
                 background-color: $bgButtons;
                 margin-top: 20px;
-                margin-bottom: 10px;
+                margin-bottom: 15px;
                 height: 30px;
                 color: $colorText;
                 border-radius: 15px;
-                border: none;
-                outline: none;
             }
             button:hover {
                 background-color: $colorText;
                 color: $bgButtons;
             }
-            p.msgerror{
-                padding-top: 10px;
-                display: flex;
-                justify-content: center;
 
         }
     }
@@ -89,15 +64,4 @@ div.container-login{
 
 }
 
-}
 
-
-
-@media (max-width: 320px){
-    p.msgerror{
-        padding-top: 10px 20px 20px 0;
-        display: flex;
-        justify-content: center;
-
-    }
-}

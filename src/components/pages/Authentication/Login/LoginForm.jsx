@@ -55,23 +55,26 @@ const LoginForm = ({ setIsLogged }) => {
   };
 
   return (
-    <div className='div-login'>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Login</button>
-      </form>
-      <Link to="/register">Regístrate Ahora</Link>
+    <div className='container-login'>
+      <div className='div-login'>
+
+        <h2 className='title-login'>Login</h2>
+        <form className='form-login' onSubmit={handleLogin}>
+          <div>
+            <input type="email" className='input-login' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+            {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
+          </div>
+          <div>
+            <input className='input-login' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+            {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <button type="submit">Login</button>
+        </form>
+        <span className='linki-register'>¿Aún no estás registrado? 👉<Link className='link-register' to="/register">¡Pincha aquí!</Link>
+              <span>👈</span></span>
+
+      </div>
     </div>
   );
 };

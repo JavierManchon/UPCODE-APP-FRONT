@@ -64,6 +64,12 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
         // Convertir la primera letra a mayúscula y concatenar con el resto del texto
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
+
+    const templateToDesign = (template) => {
+        const modifiedTemplate = { ...template };
+        modifiedTemplate.template = false;
+        return modifiedTemplate;
+    };
   
     return (
         <main className='container-catalogue'>
@@ -75,7 +81,7 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
                             {templates.map((template, index) => (
                                 template.template 
                                 ? (
-                                    <Link key={index} className={`pack ${elementType}`} to={`/catalogue/template-${elementType}s/${template._id}`} state={{ templateData: template, url:previousRoute }}>
+                                    <Link key={index} className={`pack ${elementType}`} to={`/catalogue/template-${elementType}s/${template._id}`} state={{ templateData: templateToDesign(template), url: previousRoute }}>
                                         <h4>{template.nameDesign}</h4>
                                         <img src={template.image} alt={`imagen de ${template.nameDesign}`} />
                                     </Link>
