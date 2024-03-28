@@ -235,7 +235,7 @@ const UserArea = () => {
                   </div>
                   <h3>{design.nameDesign}</h3>
                 </Link>
-                <button onClick={() => handleDeleteDesign(design._id)} style={{ marginTop: '10px' }}>Eliminar diseño</button>
+                <button className='deleteButton' onClick={() => handleDeleteDesign(design._id)} style={{ marginTop: '10px' }}>x</button>
               </div>
               ) : null
           ))}
