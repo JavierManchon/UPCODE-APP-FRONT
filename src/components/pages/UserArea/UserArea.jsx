@@ -4,18 +4,31 @@ import Profile from "../../pages/Profile/Profile";
 import './_userArea.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { removeDesignReq } from '../../../api/axios/designs';
+import { getOneUserReq } from '../../../api/axios/auth';
 
 const UserArea = () => {
-  const { authState } = useAuth();
+  const { authState, setAuthState } = useAuth();
+  console.log(authState)
 
   const [designs, setDesigns] = useState([]);
 
-  // Efecto para establecer diseños y diseños agrupados cuando cambia el estado de autenticación
+
   useEffect(() => {
-    if (authState.user && authState.user.designs) {
-      const newDesigns = authState.user.designs;
-      setDesigns(newDesigns);
-    }
+    const fetchData = async () => {
+      if (authState.user && authState.user._id) {
+        try {
+          const response = await getOneUserReq(authState.user._id);
+          if (response && response.data) {
+            setDesigns(response.data.designs || []);
+          }
+        } catch (error) {
+          console.error("Error fetching designs:", error);
+        }
+      }
+    };
+
+    fetchData();
   }, [authState.user]);
 
   // function capitalizeFirstLetter(text) {
@@ -24,6 +37,31 @@ const UserArea = () => {
   // }
 
   const hasDesigns = designs.length > 0;
+
+  const handleDeleteDesign = async (designId) => {
+    try {
+      await removeDesignReq(designId);
+      
+      // Actualiza el estado con los diseños restantes
+      const updatedDesigns = designs.filter(design => design._id !== designId);
+      setDesigns(updatedDesigns);
+      
+      // Opcionalmente, actualiza el usuario en el estado global si es necesario
+      // Este paso es opcional y depende de cómo desees manejar el estado global
+      const response = await getOneUserReq(authState.user._id);
+      setAuthState(prevState => ({
+        ...prevState,
+        user: {
+          ...prevState.user,
+          designs: response.data.designs,
+        },
+      }));
+    } catch (error) {
+      console.error('Error deleting:', error);
+    }
+  };
+
+  
 
   return (
     <section className='my-area'>
@@ -46,7 +84,6 @@ const UserArea = () => {
             design.template === false ? (
               <div key={`my-design-${index}`} className={`design ${design.elementType}`}>
                 <Link key={index} to={`/catalogue/template-${design.elementType}s/${design._id}`} state={{ templateData: design }}>
-                 {console.log(design)}
                   <div className={`identifier ${design.elementType}`}></div>
                   <div className={`visualizer ${design.elementType}`}>
                   {design.elementType === "section" && (
@@ -198,6 +235,7 @@ const UserArea = () => {
                   </div>
                   <h3>{design.nameDesign}</h3>
                 </Link>
+                <button onClick={() => handleDeleteDesign(design._id)} style={{ marginTop: '10px' }}>Eliminar diseño</button>
               </div>
               ) : null
           ))}
