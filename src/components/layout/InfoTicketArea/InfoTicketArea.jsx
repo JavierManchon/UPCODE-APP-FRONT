@@ -68,10 +68,10 @@ const InfoTicketArea = () => {
   return (
     <>
       <div className="container-infoticket">
+        <h4>¿Podemos ayudarte?</h4>
         <form action="" className="infoticket" onSubmit={handleFormSubmit}>
-          <span>¿Tienes alguna duda?</span>
 
-          <label htmlFor="title">
+          <label htmlFor="title" className="ticket-title">
             <span>Título</span>
             <input
               type="text"
@@ -82,7 +82,12 @@ const InfoTicketArea = () => {
             />
           </label>
 
-          <label htmlFor="description">
+          <label htmlFor="screenshot" className="ticket-screenshot">
+            <span>Captura:</span>
+            <input type="file" name="screenshot" id="screenshot" />
+          </label>
+
+          <label htmlFor="description" className="ticket-description">
             <span>Descripción:</span>
             <textarea
               name="description"
@@ -93,14 +98,9 @@ const InfoTicketArea = () => {
             ></textarea>
           </label>
 
-          <label htmlFor="screenshot">
-            <span>Captura:</span>
-            <input type="file" name="screenshot" id="screenshot" />
-          </label>
           <button type="submit">Enviar</button>
         </form>
         <div className="ticket-list">
-          <h2>Tickets del Usuario</h2>
           <ul className="ticket-list__list">
             {user?.tickets?.length ? (
               user.tickets.map((ticket) => (
@@ -122,7 +122,6 @@ const InfoTicketArea = () => {
                   </div>
                   {selectedTicket && selectedTicket._id === ticket._id && (
                     <div className="ticket-details">
-                      <h3>Detalles del Ticket</h3>
                       <p>
                         <strong>Título:</strong> {ticket.title}
                       </p>

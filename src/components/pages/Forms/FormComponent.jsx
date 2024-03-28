@@ -6,163 +6,135 @@ import { useAuth } from "../../context/AuthContext";
 import _ from "lodash";
 
 const FormComponent = ({ isLogged }) => {
-  const { authState } = useAuth();
-  const location = useLocation();
-  const previousRoute = location.state.url;
-  console.log(previousRoute);
-  const template = location.state.templateData;
-  const [designToSave, setDesignToSave] = useState();
-  const [showCss, setShowCss] = useState(false);
-  const [showHtml, setShowHtml] = useState(false);
-  const [showVisual, setShowVisual] = useState(true);
-  const visualButtonRef = useRef(null);
+    const { authState } = useAuth();
+    const location = useLocation();
+    const previousRoute = location.state.url;
+    const template = location.state.templateData;
+    const [designToSave, setDesignToSave]=useState();
+    const [showCss, setShowCss] = useState(false);
+    const [showHtml, setShowHtml] = useState(false);
+    const [showVisual, setShowVisual] = useState(true);
+    const visualButtonRef = useRef(null);
 
-  const handleCss = () => {
-    setShowVisual(false);
-    setShowHtml(false);
-    setShowCss(true);
-    visualButtonRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+    const handleCss = () => {
+      setShowVisual(false);
+      setShowHtml(false);
+      setShowCss(true);
+      visualButtonRef.current.scrollIntoView({ behavior: "smooth" });
+    };
+  
+    const handleHtml = () => {
+      setShowVisual(false);
+      setShowCss(false);
+      setShowHtml(true);
+      visualButtonRef.current.scrollIntoView({ behavior: "smooth" });
+    };
+  
+    const handleVisual = () => {
+      setShowHtml(false);
+      setShowCss(false);
+      setShowVisual(true);
+    };
 
-  const handleHtml = () => {
-    setShowVisual(false);
-    setShowCss(false);
-    setShowHtml(true);
-    visualButtonRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+    useEffect(() => {
+        setDesignToSave(location.state.templateData);
+      }, [location.state.templateData]); 
+    
+      const updateTemplate = (path, value) => {
+        setDesignToSave((currentTemplate) => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+    
+          _.set(updatedTemplate, 'edit.textArrayBidimensional', labelValues);
+          _.set(updatedTemplate, 'edit.textItem', buttonValue);
+      
+    
+          _.set(updatedTemplate, path, value);
+          return updatedTemplate;
+        });
+      };
 
-  const handleVisual = () => {
-    setShowHtml(false);
-    setShowCss(false);
-    setShowVisual(true);
-  };
-
-  useEffect(() => {
-    setDesignToSave(location.state.templateData);
-  }, [location.state.templateData]);
-
-  const updateTemplate = (path, value) => {
-    setDesignToSave((currentTemplate) => {
-      let updatedTemplate = _.cloneDeep(currentTemplate);
-
-      _.set(updatedTemplate, "edit.textArray", labelValues);
-      _.set(updatedTemplate, "edit.textItem", buttonValue);
-
-      _.set(updatedTemplate, path, value);
-      return updatedTemplate;
+    const [labelValues, setLabelValues] = useState(() => {
+        if (template.edit && template.edit.textArrayBidimensional.length > 1) {
+            return [...template.edit.textArrayBidimensional];
+        } else {
+            return Array.from({ length: template.defaultContent.countChildren }, () =>
+                Array.from({ length: template.defaultContent.countGrandson }, () => 'Item:')
+            );
+        }
     });
-  };
 
-  const [labelValues, setLabelValues] = useState(() => {
-    if (template.edit && template.edit.textArray.length > 0) {
-      return [...template.edit.textArray];
-    } else {
-      return Array.from({ length: template.defaultContent.countChildren }, () =>
-        Array.from(
-          { length: template.defaultContent.countGrandson },
-          () => "Item:"
-        )
-      );
-    }
-  });
+    useEffect(() => {
+        // Actualiza textArray basado en h2Values
+        setDesignToSave(currentTemplate => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+          _.set(updatedTemplate, 'edit.textArrayBidimensional', labelValues);
+          return updatedTemplate;
+        });
+      }, [labelValues]);
 
-  useEffect(() => {
-    // Actualiza textArray basado en h2Values
-    setDesignToSave((currentTemplate) => {
-      let updatedTemplate = _.cloneDeep(currentTemplate);
-      _.set(updatedTemplate, "edit.textArrayBidimensional", labelValues);
-      return updatedTemplate;
-    });
-  }, [labelValues]);
+    const [buttonValue, setButtonValue] = useState(template.edit.textItem ? template.edit.textItem : "Botón");
 
-  const [buttonValue, setButtonValue] = useState(
-    template.edit.textItem ? template.edit.textItem : "Botón"
-  );
+    useEffect(() => {
+        // Actualiza textArray2 basado en pValues
+        setDesignToSave(currentTemplate => {
+          let updatedTemplate = _.cloneDeep(currentTemplate);
+          _.set(updatedTemplate, 'edit.textItem', buttonValue);
+          return updatedTemplate;
+        });
+      }, [buttonValue]);
 
-  useEffect(() => {
-    // Actualiza textArray2 basado en pValues
-    setDesignToSave((currentTemplate) => {
-      let updatedTemplate = _.cloneDeep(currentTemplate);
-      _.set(updatedTemplate, "edit.textItem", buttonValue);
-      return updatedTemplate;
-    });
-  }, [buttonValue]);
+    const [bgFormColor, setBgFormColor] = useState(template.edit.bgFormColor ? template.edit.bgFormColor : '');
 
-  const [bgFormColor, setBgFormColor] = useState(
-    template.edit.bgFormColor ? template.edit.bgFormColor : ""
-  );
+    const [labelFontColor, setLabelFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
 
-  const [labelFontColor, setLabelFontColor] = useState(
-    template.edit.colorText ? template.edit.colorText : ""
-  );
+    const [labelFontSize, setLabelFontSize] = useState(template.edit.fontSizeText ? template.edit.fontSizeText : '');
 
-  const [labelFontSize, setLabelFontSize] = useState(
-    template.edit.fontSizeText ? template.edit.fontSizeText : ""
-  );
+    const [labelFontWeight, setLabelFontWeight] = useState(template.edit.fontWeightText ? template.edit.fontWeightText : '');
 
-  const [labelFontWeight, setLabelFontWeight] = useState(
-    template.edit.fontWeightText ? template.edit.fontWeightText : ""
-  );
+    const [textDecoration, setTextDecoration] = useState(template.edit.textDecorationText ? template.edit.textDecorationText : '');
 
-  const [textDecoration, setTextDecoration] = useState(
-    template.edit.textDecorationText ? template.edit.textDecorationText : ""
-  );
+    const [bgButtonColor, setBgButtonColor] = useState(template.edit.bgColorButton ? template.edit.bgColorButton : '');
 
-  const [bgButtonColor, setBgButtonColor] = useState(
-    template.edit.bgColorButton ? template.edit.bgColorButton : ""
-  );
+    const [buttonFontColor, setButtonFontColor] = useState(template.edit.colorItem ? template.edit.colorItem : '');
 
-  const [buttonFontColor, setButtonFontColor] = useState(
-    template.edit.colorItem ? template.edit.colorItem : ""
-  );
+    const [buttonFontSize, setButtonFontSize] = useState(template.edit.fontSizeItem ? template.edit.fontSizeItem : '');
 
-  const [buttonFontSize, setButtonFontSize] = useState(
-    template.edit.fontSizeItem ? template.edit.fontSizeItem : ""
-  );
+    const [buttonFontWeight, setButtonFontWeight] = useState(template.edit.fontWeightItem ? template.edit.fontWeightItem : '');
 
-  const [buttonFontWeight, setButtonFontWeight] = useState(
-    template.edit.fontWeightItem ? template.edit.fontWeightItem : ""
-  );
+    const [buttonBorderRadius, setButtonBorderRadius] = useState(template.edit.borderRadius ? template.edit.borderRadius : '');
 
-  const [buttonBorderRadius, setButtonBorderRadius] = useState(
-    template.edit.borderRadius ? template.edit.borderRadius : ""
-  );
+    const [formStyles, setFormStyles] = useState({});
+    const [labelStyles, setLabelStyles] = useState({});
+    const [buttonStyles, setButtonStyles] = useState({});
+    const [divStyles, setDivStyles] = useState({});
 
-  const [formStyles, setFormStyles] = useState({});
-  const [labelStyles, setLabelStyles] = useState({});
-  const [buttonStyles, setButtonStyles] = useState({});
-  const [divStyles, setDivStyles] = useState({});
+    const handleLabelChange = (index, childIndex) => (event) => {
+        if (index >= 0 && index < labelValues.length && childIndex >= 0 && childIndex < labelValues[index].length) {
+            const newLabelValues = [...labelValues];
+            newLabelValues[index][childIndex] = event.target.value;
+            updateTemplate('edit.textArrayBidimensional', newLabelValues);
+            setLabelValues(newLabelValues);
+        } else {
+            console.error("Índices fuera de rango:", index, childIndex);
+        }
+    };
+  
 
-  const handleLabelChange = (index, childIndex) => (event) => {
-    if (
-      index >= 0 &&
-      index < labelValues.length &&
-      childIndex >= 0 &&
-      childIndex < labelValues[index].length
-    ) {
-      const newLabelValues = [...labelValues];
-      newLabelValues[index][childIndex] = event.target.value;
-      updateTemplate("edit.textArrayBidimensional", newLabelValues);
-      setLabelValues(newLabelValues);
-    } else {
-      console.error("Índices fuera de rango:", index, childIndex);
-    }
-  };
+    const handleButtonChange = (event) => {
+        updateTemplate('edit.textItem', event.target.value);
+        setButtonValue(event.target.value);
+    };
 
-  const handleButtonChange = (event) => {
-    updateTemplate("edit.textItem", event.target.value);
-    setButtonValue(event.target.value);
-  };
+    const handleBgFormColor = (event) => {
+        updateTemplate('edit.bgColorForm', event.target.value);
+        setBgFormColor(event.target.value);
+    };
 
-  const handleBgFormColor = (event) => {
-    updateTemplate("edit.bgFormColor", event.target.value);
-    setBgFormColor(event.target.value);
-  };
-
-  const handleLabelFontColor = (event) => {
-    updateTemplate("edit.colorText", event.target.value);
-    setLabelFontColor(event.target.value);
-  };
+    const handleLabelFontColor = (event) => {
+        updateTemplate('edit.colorText', event.target.value);
+        setLabelFontColor(event.target.value)
+    };
+  
 
   const handleLabelFontSize = (event) => {
     updateTemplate("edit.fontSizeText", event.target.value);
