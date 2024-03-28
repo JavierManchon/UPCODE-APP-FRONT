@@ -46,12 +46,8 @@ const NavMobile = () => {
     try {
       await removeDesignReq(designId);
       
-      // Actualiza el estado con los diseños restantes
       const updatedDesigns = designs.filter(design => design._id !== designId);
       setDesigns(updatedDesigns);
-      
-      // Opcionalmente, actualiza el usuario en el estado global si es necesario
-      // Este paso es opcional y depende de cómo desees manejar el estado global
       const response = await getOneUserReq(authState.user._id);
       setAuthState(prevState => ({
         ...prevState,

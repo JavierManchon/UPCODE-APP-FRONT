@@ -77,7 +77,7 @@ const UserArea = () => {
 
   return (
   <>
-    {windowWidth > 812 ? (
+    {windowWidth > 1023 ? (
       <section className='my-area'>
         <aside className='container-aside-mydesigns'>
           <Profile />
