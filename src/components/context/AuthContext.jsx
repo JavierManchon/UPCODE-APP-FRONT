@@ -12,7 +12,10 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(!!sessionStorage.getItem('token'));
-  const [isAdmin, setIsAdmin] = useState(!!sessionStorage.getItem('isAdmin'));
+
+  const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('isAdmin') === 'true');
+
+
 
   const [authState, setAuthState] = useState({
     token: sessionStorage.getItem('token') ||  null,
