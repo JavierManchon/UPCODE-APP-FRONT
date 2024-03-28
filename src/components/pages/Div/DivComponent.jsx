@@ -216,7 +216,6 @@ const DivComponent = ({ isLogged }) => {
                 max={5}
                 onChange={handleNumP}
               />
-              <span>px</span>
             </div>
           </label>
         </div>

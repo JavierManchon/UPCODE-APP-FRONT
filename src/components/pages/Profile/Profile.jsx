@@ -5,7 +5,7 @@ import "./_profile.scss";
 import defaultUser from '../../../images/default-user.png';
 
 const Profile = () => {
-  const { authState, patchUser } = useAuth();
+  const { authState, patchUser, setAuthState } = useAuth();
   //const userInfo = authState.user;
   
   const location = useLocation();

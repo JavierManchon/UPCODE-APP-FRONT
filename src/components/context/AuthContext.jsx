@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(!!sessionStorage.getItem('token'));
   const [isAdmin, setIsAdmin] = useState(!!sessionStorage.getItem('isAdmin'));
+  console.log(isAdmin)
 
   const [authState, setAuthState] = useState({
     token: sessionStorage.getItem('token') ||  null,
@@ -56,7 +57,7 @@ export const AuthProvider = ({ children }) => {
       const { token, isAdmin } = data;
       sessionStorage.setItem('token', token);
       sessionStorage.setItem('user', JSON.stringify(data));
-      sessionStorage.setItem('isAdmin', data.isAdmin);
+      sessionStorage.setItem('isAdmin', isAdmin);
       console.log(sessionStorage.getItem('isAdmin'));
       setAuthState({ token: token, user: data });
       setIsAdmin(isAdmin || false);

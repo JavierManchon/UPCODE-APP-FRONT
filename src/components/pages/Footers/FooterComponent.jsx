@@ -74,7 +74,7 @@ const FooterComponent = ({ isLogged }) => {
   }, [liValues]);
 
   const [bgColor, setBgColor] = useState(
-    template.edit.bgColorNav ? template.edit.bgColorNav : ""
+    template.edit.bgColorFooter ? template.edit.bgColorFooter : ""
   );
   const [fontColor, setFontColor] = useState(
     template.edit.colorText ? template.edit.colorText : ""
