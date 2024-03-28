@@ -12,6 +12,7 @@ body {
 }
 body > div#root {
   height: 100vh;
+  background-color: #fafbe9;
 }
 body > div#root div.container-all {
   position: relative;
