@@ -11,12 +11,13 @@ const TableComparationPremium = ({isLogged}) => {
   const caracteristicas = [
     { id: 1, feature: 'Contenido premium', free: false, paid: true },
     { id: 2, feature: 'Soporte técnico 24/7', free: true, paid: true },
-    { id: 3, feature: 'Acceso a tutoriales', free: true, paid: true },
-    { id: 4, feature: 'Diseños ilimitados', free: true, paid: true },
+    { id: 3, feature: 'Guarda tus diseños', free: false, paid: true },
+    { id: 4, feature: 'Diseños ilimitados', free: false, paid: true },
   ];
 
   return (
     <>
+    <div className='container-table'>
           <h2 className='home-title'>Bienvenido a Nuestro Servicio</h2>
       <p className='home-text'>Compara las características de nuestras suscripciones y elige la que mejor se adapte a tus necesidades.</p>
       <table className="comparison-table">
@@ -43,6 +44,7 @@ const TableComparationPremium = ({isLogged}) => {
                   <Link to={isLogged ? '/payments' : '/register'} className="suscribe-button">
                     {isLogged ? 'Hazte Premium' : 'Regístrate Aquí'}
                   </Link>
+    </div>
     </>
   );
 };

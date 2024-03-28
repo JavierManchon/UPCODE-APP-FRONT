@@ -11,6 +11,16 @@ import { getDesigns } from '../../../api/axios/designs';
 const Catalogue = ({isLogged ,setIsLogged}) => {
     const [templates, setTemplates] = useState([]);
     const [groupedTemplates, setGroupedTemplates] = useState({});
+    const [previousRoute, setPreviousRoute] = useState('');
+
+    useEffect(() => {
+        // Almacenar la ruta actual antes de que cambie
+        const currentRoute = sessionStorage.getItem('currentPath');
+        // Actualizar la ruta previa basada en la actual antes de cambiar
+        setPreviousRoute(currentRoute);
+        // Establecer la nueva ruta actual en sessionStorage
+        sessionStorage.setItem('currentPath', location.pathname);
+      }, [location.pathname]);
 
 
 
@@ -54,6 +64,12 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
         // Convertir la primera letra a mayúscula y concatenar con el resto del texto
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
+
+    const templateToDesign = (template) => {
+        const modifiedTemplate = { ...template };
+        modifiedTemplate.template = false;
+        return modifiedTemplate;
+    };
   
     return (
         <main className='container-catalogue'>
@@ -63,13 +79,15 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
                     <h3>{`Packs de ${capitalizeFirstLetter(elementType)}`}</h3>
                         <div className='packs'>
                             {templates.map((template, index) => (
-                                <Link key={index} className={`pack ${elementType}`} to={`/catalogue/template-${elementType}s/${template._id}`} state={{ templateData: template }}>
-                                {    console.log(template._id)}
-                                    <h4>{template.nameDesign}</h4>
-                                    <img src={template.image} alt={`imagen de ${template.nameDesign}`}></img>
-                                    {/* Otros elementos que quieras incluir */}
-                                </Link>
-                        ))}
+                                template.template 
+                                ? (
+                                    <Link key={index} className={`pack ${elementType}`} to={`/catalogue/template-${elementType}s/${template._id}`} state={{ templateData: templateToDesign(template), url: previousRoute }}>
+                                        <h4>{template.nameDesign}</h4>
+                                        <img src={template.image} alt={`imagen de ${template.nameDesign}`} />
+                                    </Link>
+                                ) 
+                                : null
+                            ))}
                         </div>
                 </section>
             ))}

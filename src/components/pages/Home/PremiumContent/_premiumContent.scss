@@ -1,3 +1,6 @@
+@import '../../../../css/variables.scss';
+
+
 /* PremiumContent.scss */
 .premium-content {
     text-align: center; /* Centra el contenido */
@@ -6,8 +9,8 @@
 
 .premium-content button {
     padding: 10px 20px;
-    background-color: #007bff; /* Un color azul como ejemplo */
-    color: white;
+    background-color: $bgOthers; /* Un color azul como ejemplo */
+    color: $colorText;
     border: none;
     cursor: pointer;
     font-size: 16px; /* Ajusta el tamaño de la fuente según necesites */
@@ -16,5 +19,5 @@
 }
 
 .premium-content button:hover {
-    background-color: #0056b3; /* Un azul más oscuro para el efecto hover */
+    background-color: $bgButtons; /* Un azul más oscuro para el efecto hover */
 }

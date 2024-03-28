@@ -1,0 +1,142 @@
+@import "../../../css/variables";
+
+div.container-infoticket {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > h4 {
+        margin-bottom: 10px;
+    }
+
+    > form.infoticket {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        > span {
+            margin-bottom: 10px;
+        }
+
+        > label {
+            display: flex;
+            flex-direction: column;
+            width: 47%;
+
+            > span {
+                margin-bottom: 5px;
+            }
+
+            > input,
+            > textarea {
+                width: 100%;
+                border: none;
+                outline: none;
+                border-bottom: 1px solid #ccc;
+                padding: 5px 0;
+            }
+
+            > textarea {
+                height: 60px;
+            }
+        }
+
+        > label.ticket-description {
+            width: 100%;
+        }
+
+        > button {
+            width: 50%;
+            height: 25px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+
+            &:hover {
+                background-color: #333;
+            }
+        }
+    }
+
+    > div.ticket-list {
+        width: 100%;
+        max-width: 300px;
+        height: 180px;
+        margin-top: 20px;
+
+        > ul {
+            list-style: none;
+            padding: 0;
+
+            > li {
+
+                > div.ticket-list_item-resume {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .status-indicator {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    margin-left: 10px;
+                }
+
+                .enviado {
+                    background-color: orange;
+                }
+
+                .en-proceso {
+                    background-color: green;
+                }
+
+                .completado {
+                    background-color: gray;
+                }
+
+                > div.ticket-details {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    margin-top: 20px;
+                    height: 100%;
+            
+                    > h2 {
+                        margin-bottom: 10px;
+                    }
+            
+                    > p {
+                        margin-bottom: 5px;
+                    }
+
+                    > img {
+                        width: 100%;
+                    }
+
+                    > button {
+                        align-self: center;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

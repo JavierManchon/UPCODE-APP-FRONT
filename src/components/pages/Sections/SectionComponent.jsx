@@ -1,15 +1,60 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./_sectionComponent.scss";
-// import "../../../css/app.scss";
 import { useLocation } from "react-router-dom";
+import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
+import { useAuth } from "../../context/AuthContext";
+import _ from "lodash";
 
-const SectionComponent = () => {
+const SectionComponent = ({ isLogged }) => {
+  const { authState } = useAuth();
   const location = useLocation();
+  const previousRoute = location.state.url;
+  console.log(previousRoute);
   const template = location.state.templateData;
-  console.log(template);
+  const [designToSave, setDesignToSave] = useState();
+  const [showCss, setShowCss] = useState(false);
+  const [showHtml, setShowHtml] = useState(false);
+  const [showVisual, setShowVisual] = useState(true);
+  const visualButtonRef = useRef(null);
+
+  const handleCss = () => {
+    setShowVisual(false);
+    setShowHtml(false);
+    setShowCss(true);
+    visualButtonRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleHtml = () => {
+    setShowVisual(false);
+    setShowCss(false);
+    setShowHtml(true);
+    visualButtonRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleVisual = () => {
+    setShowHtml(false);
+    setShowCss(false);
+    setShowVisual(true);
+  };
+
+  useEffect(() => {
+    setDesignToSave(location.state.templateData);
+  }, [location.state.templateData]);
+
+  const updateTemplate = (path, value) => {
+    setDesignToSave((currentTemplate) => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+
+      _.set(updatedTemplate, "edit.textArray", h2Values);
+      _.set(updatedTemplate, "edit.textArray2", pValues);
+
+      _.set(updatedTemplate, path, value);
+      return updatedTemplate;
+    });
+  };
 
   const [h2Values, setH2Values] = useState(() => {
-    if (template.edit && template.edit.textArray > 0) {
+    if (template.edit.textArray.length > 0) {
       return [...template.edit.textArray];
     } else {
       return Array.from(
@@ -18,8 +63,18 @@ const SectionComponent = () => {
       );
     }
   });
+
+  useEffect(() => {
+    // Actualiza textArray basado en h2Values
+    setDesignToSave((currentTemplate) => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+      _.set(updatedTemplate, "edit.textArray", h2Values);
+      return updatedTemplate;
+    });
+  }, [h2Values]);
+
   const [pValues, setPValues] = useState(() => {
-    if (template.edit && template.edit.textArray2) {
+    if (template.edit.textArray2.length > 0) {
       return [...template.edit.textArray2];
     } else {
       return Array.from(
@@ -29,12 +84,21 @@ const SectionComponent = () => {
     }
   });
 
+  useEffect(() => {
+    // Actualiza textArray2 basado en pValues
+    setDesignToSave((currentTemplate) => {
+      let updatedTemplate = _.cloneDeep(currentTemplate);
+      _.set(updatedTemplate, "edit.textArray2", pValues);
+      return updatedTemplate;
+    });
+  }, [pValues]);
+
   const [SectionBgColor, setSectionBgColor] = useState(
-    template.edit.SectionBgColor ? template.edit.SectionBgColor : ""
+    template.edit.bgColorSection ? template.edit.bgColorSection : ""
   );
 
   const [ArticleBgColor, setArticleBgColor] = useState(
-    template.edit.ArticleBgColor ? template.edit.ArticleBgColor : ""
+    template.edit.bgColorArticle ? template.edit.bgColorArticle : ""
   );
 
   const [h2FontColor, setH2FontColor] = useState(
@@ -81,50 +145,62 @@ const SectionComponent = () => {
     const newH2Values = [...h2Values];
     newH2Values[index] = event.target.value;
     setH2Values(newH2Values);
+    updateTemplate("edit.textArray", event.target.value);
   };
 
   const handlePChange = (index) => (event) => {
     const newPValues = [...pValues];
     newPValues[index] = event.target.value;
     setPValues(newPValues);
+    updateTemplate("edit.textArray2", event.target.value);
   };
 
   const handleSectionBgColor = (event) => {
+    updateTemplate("edit.bgColorSection", event.target.value);
     setSectionBgColor(event.target.value);
   };
   const handleArticleBgColor = (event) => {
+    updateTemplate("edit.bgColorArticle", event.target.value);
     setArticleBgColor(event.target.value);
   };
 
   const handleH2FontColor = (event) => {
+    updateTemplate("edit.colorTitle", event.target.value);
     setH2FontColor(event.target.value);
   };
   const handlePFontColor = (event) => {
+    updateTemplate("edit.colorItem", event.target.value);
     setPFontColor(event.target.value);
   };
 
   const handleH2FontSizeChange = (event) => {
+    updateTemplate("edit.fontSizeTitle", event.target.value);
     setH2FontSize(`${event.target.value}px`);
   };
 
   const handlePFontSizeChange = (event) => {
+    updateTemplate("edit.fontSizeItem", event.target.value);
     setPFontSize(`${event.target.value}px`);
   };
 
-  const handleH2FontWeightChange = (event) => {
-    setH2FontWeight(event.target.value);
+  const handleH2FontWeightChange = (newValue) => {
+    updateTemplate("edit.fontWeightTitle", newValue);
+    setH2FontWeight(newValue);
   };
 
-  const handlePFontWeightChange = (event) => {
-    setPFontWeight(event.target.value);
+  const handlePFontWeightChange = (newValue) => {
+    updateTemplate("edit.fontWeightItem", newValue);
+    setPFontWeight(newValue);
   };
 
-  const handleH2TextDecorationChange = (event) => {
-    setH2TextDecoration(event.target.value);
+  const handleH2TextDecorationChange = (newValue) => {
+    updateTemplate("edit.textDecorationTitle", newValue);
+    setH2TextDecoration(newValue);
   };
 
-  const handlePTextDecorationChange = (event) => {
-    setPTextDecoration(event.target.value);
+  const handlePTextDecorationChange = (newValue) => {
+    updateTemplate("edit.textDecorationItem", newValue);
+    setPTextDecoration(newValue);
   };
 
   const visualSection = useRef(null);
@@ -151,7 +227,7 @@ const SectionComponent = () => {
         flexFlow: computedSectionStyles.flexFlow,
         justifyContent: computedSectionStyles.justifyContent,
         alignItems: computedSectionStyles.alignItems,
-        gap: computedSectionStyles.gap
+        gap: computedSectionStyles.gap,
       });
     }
   }, [SectionBgColor]);
@@ -217,379 +293,406 @@ const SectionComponent = () => {
 
   return (
     <div className="container-pages-default-styles">
-      <div className="container-editor">
-        <p>
-          {"<"}
-          {template.elementType}
-          {">"}
-        </p>
-        {Array.from({ length: template.defaultContent.countChildren }).map(
-          (_, index) => (
-            <React.Fragment key={index}>
-              {/* Asume que `children` es un array con al menos dos elementos, donde el primer elemento es tratado como un contenedor (ej. div) y el segundo como el título (ej. h2) */}
-              <div className={`${template.defaultContent.children[0]}`}>
-                <p>
-                  {"<"}
-                  {template.defaultContent
-                    ? template.defaultContent.children[0]
-                    : null}
-                  {">"}
-                </p>
-                {/* Aquí asumimos que querías un h2 basado en tu función handleH2Change */}
-                <p className={`${template.defaultContent.children[1]}`}>
-                  {"<"}
-                  {template.defaultContent
-                    ? template.defaultContent.children[1]
-                    : null}
-                  {">"}
-                  <input
-                    type="text"
-                    onChange={handleH2Change(index)}
-                    maxLength={12}
-                    placeholder="Máximo 12 caracteres"
-                  />
-                  {"</"}
-                  {template.defaultContent
-                    ? template.defaultContent.children[1]
-                    : null}
-                  {">"}
-                </p>
-                <p>
-                  {"<"}
-                  {template.defaultContent
-                    ? template.defaultContent.grandson[0]
-                    : null}
-                  {">"}
-                  <input
-                    type="text"
-                    onChange={handlePChange(index)}
-                    maxLength={12}
-                    placeholder="Máximo 12 caracteres"
-                  />
-                  {"</"}
-                  {template.defaultContent
-                    ? template.defaultContent.grandson[0]
-                    : null}
-                  {">"}
-                </p>
-
-                <p>
-                  {"</"}
-                  {template.defaultContent
-                    ? template.defaultContent.children[0]
-                    : null}
-                  {">"}
-                </p>
-              </div>
-            </React.Fragment>
-          )
-        )}
-        <p>
-          {"</"}
-          {template.elementType}
-          {">"}
-        </p>
-      </div>
 
       <div className="styles-editor">
-        <label htmlFor="sectionbgColor">
-          <p>BgColor Section</p>
-          <input type="color" id="bgColor" onChange={handleSectionBgColor} />
-        </label>
+        <div className="container-label">
+          <label htmlFor="sectionbgColor">
+            <p>BgColor Section</p>
+            <input type="color" id="bgColor" onChange={handleSectionBgColor} />
+          </label>
 
-        <label htmlFor="articlebgColor">
-          <p>BagColor Article</p>
-          <input type="color" id="bgColor" onChange={handleArticleBgColor} />
-        </label>
+          <label htmlFor="articlebgColor">
+            <p>BagColor Article</p>
+            <input type="color" id="bgColor" onChange={handleArticleBgColor} />
+          </label>
 
-        <label htmlFor="colorTitle">
-          <p>TextColor H2</p>
-          <input type="color" id="colorTitle" onChange={handleH2FontColor} />
-        </label>
+          <label htmlFor="colorTitle">
+            <p>TextColor H2</p>
+            <input type="color" id="colorTitle" onChange={handleH2FontColor} />
+          </label>
 
-        <label htmlFor="colorItem">
-          <p>TextColor P</p>
-          <input type="color" id="colorItem" onChange={handlePFontColor} />
-        </label>
+          <label htmlFor="colorItem">
+            <p>TextColor P</p>
+            <input type="color" id="colorItem" onChange={handlePFontColor} />
+          </label>
 
-        <label htmlFor="fontSizeTitle">
-        <p>FontSize H2</p>
-          <input
-            type="number"
-            id="fontSizeTitle"
-            onChange={handleH2FontSizeChange}
-          />
-        </label>
-
-        <label htmlFor="fontSizeItem">
-          <p>FontSize P</p>
-          <input
-            type="number"
-            id="fontSizeItem"
-            onChange={handlePFontSizeChange}
-          />
-        </label>
-
-        <label htmlFor="fontWeightTitle">
-          <p>Negrita H2</p>
-          <div>
+          <label htmlFor="fontSizeTitle">
+            <p>FontSize H2</p>
             <input
-              type="checkbox"
-              name="FontWeightTitle"
-              value="bold"
-              checked={h2FontWeight === "bold"}
-              onChange={(event) => {
-                const isChecked = event.target.checked;
-                const newValue = isChecked ? "bold" : "normal";
-                handleH2FontWeightChange(newValue);
-              }}
+              type="number"
+              id="fontSizeTitle"
+              onChange={handleH2FontSizeChange}
             />
-          </div>
-        </label>
+          </label>
 
-        <label htmlFor="fontWeightItem">
-          <p>Negrita P</p>
-          <div>
+          <label htmlFor="fontSizeItem">
+            <p>FontSize P</p>
             <input
-              type="checkbox"
-              name="FontWeightItem"
-              value="bold"
-              checked={pFontWeight === "bold"}
-              onChange={(event) => {
-                const isChecked = event.target.checked;
-                const newValue = isChecked ? "bold" : "normal";
-                handlePFontWeightChange(newValue);
-              }}
+              type="number"
+              id="fontSizeItem"
+              onChange={handlePFontSizeChange}
             />
-          </div>
-        </label>
+          </label>
 
-        <label htmlFor="textDecorationTitle">
-          <p>Subrayado H2</p>
-          <div>
-            <input
-              type="checkbox"
-              name="textDecorationTitle"
-              value="underline"
-              checked={h2TextDecoration === "underline"}
-              onChange={(event) => {
-                const isChecked = event.target.checked;
-                const newValue = isChecked ? "underline" : "none";
-                handleH2TextDecorationChange(newValue);
-              }}
-            />
-          </div>
-        </label>
+          <label htmlFor="fontWeightTitle">
+            <p>Negrita H2</p>
+            <div>
+              <input
+                type="checkbox"
+                name="FontWeightTitle"
+                value="bold"
+                checked={h2FontWeight === "bold"}
+                onChange={(event) => {
+                  const isChecked = event.target.checked;
+                  const newValue = isChecked ? "bold" : "normal";
+                  handleH2FontWeightChange(newValue);
+                }}
+              />
+            </div>
+          </label>
 
-        <label htmlFor="textDecorationText">
-          <p>Subrayado P</p>
-          <div>
-            <input
-              type="checkbox"
-              name="textDecorationText"
-              value="underline"
-              checked={pTextDecoration === "underline"}
-              onChange={(event) => {
-                const isChecked = event.target.checked;
-                const newValue = isChecked ? "underline" : "none";
-                handlePTextDecorationChange(newValue);
-              }}
-            />
-          </div>
-        </label>
-      </div>
+          <label htmlFor="fontWeightItem">
+            <p>Negrita P</p>
+            <div>
+              <input
+                type="checkbox"
+                name="FontWeightItem"
+                value="bold"
+                checked={pFontWeight === "bold"}
+                onChange={(event) => {
+                  const isChecked = event.target.checked;
+                  const newValue = isChecked ? "bold" : "normal";
+                  handlePFontWeightChange(newValue);
+                }}
+              />
+            </div>
+          </label>
 
-      <div className="container-renderized_visual">
-        <section
-          className={template.defaultStyles[0]}
-          style={{ backgroundColor: `${SectionBgColor}` }}
-          ref={visualSection}
-        >
-          {Array.from({ length: template.defaultContent.countChildren }).map(
-            (_, index) => (
-              <article
-                className={template.defaultStyles[1]}
-                style={{ backgroundColor: `${ArticleBgColor}` }}
-                key={index}
-                ref={visualArticle}
-              >
-                <h2
-                  className={template.defaultStyles[2]}
-                  style={{
-                    color: `${h2FontColor}`,
-                    fontSize: `${h2FontSize}`,
-                    fontWeight: `${h2FontWeight}`,
-                    textDecoration: `${h2TextDecoration}`,
-                  }}
-                >
-                  {h2Values[index]}
-                </h2>
-                <p
-                  className={template.defaultStyles[3]}
-                  style={{
-                    color: `${pFontColor}`,
-                    fontSize: `${pFontSize}`,
-                    fontWeight: `${pFontWeight}`,
-                    textDecoration: `${pTextDecoration}`,
-                  }}
-                  key={`${index}-${index}`}
-                >
-                  {pValues[index]}
-                </p>
-              </article>
-            )
-          )}
-        </section>
-      </div>
+          <label htmlFor="textDecorationTitle">
+            <p>Subrayado H2</p>
+            <div>
+              <input
+                type="checkbox"
+                name="textDecorationTitle"
+                value="underline"
+                checked={h2TextDecoration === "underline"}
+                onChange={(event) => {
+                  const isChecked = event.target.checked;
+                  const newValue = isChecked ? "underline" : "none";
+                  handleH2TextDecorationChange(newValue);
+                }}
+              />
+            </div>
+          </label>
 
-      <div className="container-renderized_html">
-        <div className="title-btn">
-          <h4>HTML</h4>
-          <button onClick={() => copyToClipboard("html")}>Copiar</button>
+          <label htmlFor="textDecorationText">
+            <p>Subrayado P</p>
+            <div>
+              <input
+                type="checkbox"
+                name="textDecorationText"
+                value="underline"
+                checked={pTextDecoration === "underline"}
+                onChange={(event) => {
+                  const isChecked = event.target.checked;
+                  const newValue = isChecked ? "underline" : "none";
+                  handlePTextDecorationChange(newValue);
+                }}
+              />
+            </div>
+          </label>
         </div>
-        <div id="html" className="html">
-          <span>
+        <span onClick={handleCss}>Mostrar código</span>
+      </div>
+
+      <div className="container-containers">
+        <div className="container-editor">
+          <div>
+            <p>
             {"<"}
             {template.elementType}
             {">"}
-          </span>
-          {Array.from({ length: template.defaultContent.countChildren }).map(
+            </p>
+            {Array.from({ length: template.defaultContent.  countChildren }).map(
             (_, index) => (
               <React.Fragment key={index}>
-                <span>
-                  {"<"}
-                  {template.defaultContent
-                    ? template.defaultContent.children[0]
-                    : null}
-                  {">"}
-                </span>
-                <span>
-                  {"<" +
-                    (template.defaultContent
+                <div className={`${template.defaultContent.children[0]}`}>
+                  <p className="padding-left-10">
+                    {"<"}
+                    {template.defaultContent
+                      ? template.defaultContent.children[0]
+                      : null}
+                    {">"}
+                  </p>
+                  {/* Aquí asumimos que querías un h2 basado en tu función handleH2Change */}
+                  <p className={`padding-left-20 ${template.defaultContent.children[1]}`}>
+                    {"<"}
+                    {template.defaultContent
                       ? template.defaultContent.children[1]
-                      : null) +
-                    ">"}
-                  {h2Values[index]}
-                  {"</" +
-                    (template.defaultContent
+                      : null}
+                    {">"}
+                    <input
+                      type="text"
+                      onChange={handleH2Change(index)}
+                      maxLength={12}
+                      placeholder="Máximo 12 caracteres"
+                    />
+                    {"</"}
+                    {template.defaultContent
                       ? template.defaultContent.children[1]
-                      : null) +
-                    ">"}
-                </span>
-                <span>
-                  {"<" +
-                    (template.defaultContent
+                      : null}
+                    {">"}
+                  </p>
+                  <p className={`padding-left-20 ${template.defaultContent.children[1]}`}>
+                    {"<"}
+                    {template.defaultContent
                       ? template.defaultContent.grandson[0]
-                      : null) +
-                    ">"}
-                  {pValues[index]}
-                  {"</" +
-                    (template.defaultContent
+                      : null}
+                    {">"}
+                    <input
+                      type="text"
+                      onChange={handlePChange(index)}
+                      maxLength={12}
+                      placeholder="Máximo 12 caracteres"
+                      className={template.elementType ? 'input-img' : ''}
+                    />
+                    {"</"}
+                    {template.defaultContent
                       ? template.defaultContent.grandson[0]
-                      : null) +
-                    ">"}
-                </span>
-                <span>
-                  {"</"}
-                  {template.defaultContent
-                    ? template.defaultContent.children[0]
-                    : null}
-                  {">"}
-                </span>
+                      : null}
+                    {">"}
+                  </p>
+
+                  <p className="padding-left-10">
+                    {"</"}
+                    {template.defaultContent
+                      ? template.defaultContent.children[0]
+                      : null}
+                    {">"}
+                  </p>
+                </div>
               </React.Fragment>
             )
-          )}
-          <span>
+            )}
+            <p>
             {"</"}
             {template.elementType}
             {">"}
-          </span>
-        </div>
-      </div>
-      <div className="container-renderized_css">
-        <div className="css-section">
-          <div className="title-btn">
-            <h4>Estilos del {"<section>"}</h4>
-            <button onClick={() => copyToClipboard("css-section")}>
-              Copiar
-            </button>
+            </p>
           </div>
-          <div className="css" id="css-section">
-            <span>
-              .{template.defaultStyles[0]}
-              {" {"}
-            </span>
-            <span>background-color: {sectionStyles.backgroundColor};</span>
-            <span>width: {sectionStyles.width};</span>
-            <span>padding: {sectionStyles.padding};</span>
-            <span>display: {sectionStyles.display};</span>
-            <span>flex-flow: {sectionStyles.flexFlow};</span>
-            <span>justify-content: {sectionStyles.justifyContent};</span>
-            <span>align-items: {sectionStyles.alignItems};</span>
-            <span>{"}"}</span>
-          </div>
+          <span onClick={handleHtml}>Mostrar código</span>
         </div>
 
-        <div className="css-article 300px">
-          <div className="title-btn">
-            <h4>Estilos de la {"<article>"}</h4>
-            <button onClick={() => copyToClipboard("css-article")}>
-              Copiar
-            </button>
+        <div className="container-render">
+          <div className={`container-renderized_visual ${
+              showVisual ? "" : "hidden"
+            }`}>
+            <section
+              className={template.defaultStyles[0]}
+              style={{ backgroundColor: `${SectionBgColor}` }}
+              ref={visualSection}
+            >
+              {Array.from({
+                length: template.defaultContent.countChildren,
+              }).map((_, index) => (
+                <article
+                  className={template.defaultStyles[1]}
+                  style={{ backgroundColor: `${ArticleBgColor}` }}
+                  key={index}
+                  ref={visualArticle}
+                >
+                  <h2
+                    className={template.defaultStyles[2]}
+                    style={{
+                      color: `${h2FontColor}`,
+                      fontSize: `${h2FontSize}`,
+                      fontWeight: `${h2FontWeight}`,
+                      textDecoration: `${h2TextDecoration}`,
+                    }}
+                    ref={visualH2}
+                  >
+                    {h2Values[index]}
+                  </h2>
+                  <p
+                    className={template.defaultStyles[3]}
+                    style={{
+                      color: `${pFontColor}`,
+                      fontSize: `${pFontSize}`,
+                      fontWeight: `${pFontWeight}`,
+                      textDecoration: `${pTextDecoration}`,
+                    }}
+                    key={`${index}-${index}`}
+                    ref={visualP}
+                  >
+                    {pValues[index]}
+                  </p>
+                </article>
+              ))}
+            </section>
           </div>
-          <div className="css" id="css-article">
-            <span>
-              .{template.defaultStyles[1]}
-              {" {"}
-            </span>
-            <span>display: {articleStyles.display};</span>
-            <span>flex-direction: {articleStyles.flexDirection};</span>
-            <span>justify-content: {articleStyles.justifyContent};</span>
-            <span>gap: {articleStyles.gap};</span>
-            <span>width: {articleStyles.width};</span>
-            <span>{"}"}</span>
-          </div>
-        </div>
 
-        <div className="css-h2">
-          <div className="title-btn">
-            <h4>Estilos de la {"<h2>"}</h4>
-            <button onClick={() => copyToClipboard("css-h2")}>Copiar</button>
+          <div className={`container-renderized_html ${showHtml ? "show" : ""}`}>
+            <div className="title-btn">
+              <h4>HTML</h4>
+              <button onClick={() => copyToClipboard("html")}>Copiar</button>
+            </div>
+            <div id="html" className="html">
+              <span>
+                {"<"}
+                {template.elementType}
+                {">"}
+              </span>
+              {Array.from({
+                length: template.defaultContent.countChildren,
+              }).map((_, index) => (
+                <React.Fragment key={index}>
+                  <span>
+                    {"<"}
+                    {template.defaultContent
+                      ? template.defaultContent.children[0]
+                      : null}
+                    {">"}
+                  </span>
+                  <span className="section-h2">
+                    {"<" +
+                      (template.defaultContent
+                        ? template.defaultContent.children[1]
+                        : null) +
+                      ">"}
+                    {h2Values[index]}
+                    {"</" +
+                      (template.defaultContent
+                        ? template.defaultContent.children[1]
+                        : null) +
+                      ">"}
+                  </span>
+                  <span className="section-p">
+                    {"<" +
+                      (template.defaultContent
+                        ? template.defaultContent.grandson[0]
+                        : null) +
+                      ">"}
+                    {pValues[index]}
+                    {"</" +
+                      (template.defaultContent
+                        ? template.defaultContent.grandson[0]
+                        : null) +
+                      ">"}
+                  </span>
+                  <span>
+                    {"</"}
+                    {template.defaultContent
+                      ? template.defaultContent.children[0]
+                      : null}
+                    {">"}
+                  </span>
+                </React.Fragment>
+              ))}
+              <span>
+                {"</"}
+                {template.elementType}
+                {">"}
+              </span>
+            </div>
           </div>
-          <div className="css" id="css-h2">
-            <span>
-              .{template.defaultStyles[2]}
-              {" {"}
-            </span>
-            <span>color: {h2Styles.color};</span>
-            <span>font-size: {h2Styles.fontSize};</span>
-            <span>font-weight: {h2Styles.fontWeight};</span>
-            <span>
-              text-decoration: {getFirstWord(h2Styles.textDecoration)};
-            </span>
-            <span>{"}"}</span>
-          </div>
-        </div>
-        <div className="css-p">
-          <div className="title-btn">
-            <h4>Estilos de la {"<p>"}</h4>
-            <button onClick={() => copyToClipboard("css-p")}>Copiar</button>
-          </div>
-          <div className="css" id="css-p">
-            <span>
-              .{template.defaultStyles[3]}
-              {" {"}
-            </span>
-            <span>color: {pStyles.color};</span>
-            <span>font-size: {pStyles.fontSize};</span>
-            <span>font-weight: {pStyles.fontWeight};</span>
-            <span>
-              text-decoration: {getFirstWord(pStyles.textDecoration)};
-            </span>
-            <span>{"}"}</span>
+
+          <div className={`container-renderized_css ${showCss ? "show" : ""}`}>
+            <div className="css-section">
+              <div className="title-btn">
+                <h4>Estilos del {"<section>"}</h4>
+                <button onClick={() => copyToClipboard("css-section")}>
+                  Copiar
+                </button>
+              </div>
+              <div className="css" id="css-section">
+                <span>
+                  .{template.defaultStyles[0]}
+                  {" {"}
+                </span>
+                <span>background-color: {sectionStyles.backgroundColor};</span>
+                <span>width: {sectionStyles.width};</span>
+                <span>padding: {sectionStyles.padding};</span>
+                <span>display: {sectionStyles.display};</span>
+                <span>flex-flow: {sectionStyles.flexFlow};</span>
+                <span>justify-content: {sectionStyles.justifyContent};</span>
+                <span>align-items: {sectionStyles.alignItems};</span>
+                <span>{"}"}</span>
+              </div>
+            </div>
+
+            <div className="css-article 300px">
+              <div className="title-btn">
+                <h4>Estilos de la {"<article>"}</h4>
+                <button onClick={() => copyToClipboard("css-article")}>
+                  Copiar
+                </button>
+              </div>
+              <div className="css" id="css-article">
+                <span>
+                  .{template.defaultStyles[1]}
+                  {" {"}
+                </span>
+                <span>display: {articleStyles.display};</span>
+                <span>flex-direction: {articleStyles.flexDirection};</span>
+                <span>justify-content: {articleStyles.justifyContent};</span>
+                <span>gap: {articleStyles.gap};</span>
+                <span>width: {articleStyles.width};</span>
+                <span>{"}"}</span>
+              </div>
+            </div>
+
+            <div className="css-h2">
+              <div className="title-btn">
+                <h4>Estilos de la {"<h2>"}</h4>
+                <button onClick={() => copyToClipboard("css-h2")}>
+                  Copiar
+                </button>
+              </div>
+              <div className="css" id="css-h2">
+                <span>
+                  .{template.defaultStyles[2]}
+                  {" {"}
+                </span>
+                <span>color: {h2Styles.color};</span>
+                <span>font-size: {h2Styles.fontSize};</span>
+                <span>font-weight: {h2Styles.fontWeight};</span>
+                <span>
+                  text-decoration: {getFirstWord(h2Styles.textDecoration)};
+                </span>
+                <span>{"}"}</span>
+              </div>
+            </div>
+            <div className="css-p">
+              <div className="title-btn">
+                <h4>Estilos de la {"<p>"}</h4>
+                <button onClick={() => copyToClipboard("css-p")}>Copiar</button>
+              </div>
+              <div className="css" id="css-p">
+                <span>
+                  .{template.defaultStyles[3]}
+                  {" {"}
+                </span>
+                <span>color: {pStyles.color};</span>
+                <span>font-size: {pStyles.fontSize};</span>
+                <span>font-weight: {pStyles.fontWeight};</span>
+                <span>
+                  text-decoration: {getFirstWord(pStyles.textDecoration)};
+                </span>
+                <span>{"}"}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <button ref={visualButtonRef} className={`no-visual ${!showVisual ? 'btn-visual' : ''}`} onClick={handleVisual}>Mostrar visualizado</button>
+
+      {isLogged && previousRoute === "/catalogue" ? (
+        <ButtonSaveDesigns
+          designToSave={designToSave}
+          setDesignToSave={setDesignToSave}
+        />
+      ) : null}
     </div>
   );
 };

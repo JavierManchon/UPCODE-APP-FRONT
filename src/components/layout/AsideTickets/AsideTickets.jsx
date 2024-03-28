@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./_asideTickets.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Profile from "../../pages/Profile/Profile";
+import { useAuth } from "../../context/AuthContext";
+import { postTicketReq } from "../../../api/axios/tickets";
 
 const AsideTickets = ({ isLogged, setIsLogged }) => {
+  const {authState} = useAuth();
   const [userImage, setUserImage] = useState(
     "https://res.cloudinary.com/do0s2lutu/image/upload/v1701777805/owonnexnscmi56bbdomz.png"
   );
@@ -23,12 +26,22 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
     setIsLogged(false);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formDataObject = Object.fromEntries(formData.entries());
-    console.log("Formulario enviado:", formDataObject);
+    formDataObject.userId = authState.user._id;
+  
+    try {
+      await postTicketReq(formDataObject);
+      e.target.reset();
+      alert("¡El ticket se ha enviado correctamente!");
+    } catch (error) {
+      console.error("Error al enviar el ticket:", error);
+      alert("Ha ocurrido un error al enviar el ticket...");
+    }
   };
+  
 
   return (
     <>

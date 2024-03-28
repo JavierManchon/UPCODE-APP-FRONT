@@ -7,16 +7,19 @@ import TableComparationPremium from './TableComparationPremium/TableComparationP
 import Slider from './Slider/Slider';
 import Description from './Description/Description';
 import PremiumContent from './PremiumContent/PremiumContent';
+import { useAuth } from '../../context/AuthContext';
 
 const Home = ({isLogged ,setIsLogged}) => {
 
     const [isPremium, setIsPremium] = useState(false);
+    const { authState} = useAuth();
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
-        const isPremium = sessionStorage.getItem('isPremium'); // Asumiendo que guardas el estado premium aquí
+        
         if(token){
             setIsLogged(true);
+            const isPremium = authState.user.isPremium;
             if(isPremium){
                 setIsPremium(true);            
             }
@@ -42,10 +45,6 @@ const Home = ({isLogged ,setIsLogged}) => {
         ? ( <PremiumContent /> ) 
         : ( <TableComparationPremium isLogged={isLogged} /> )
       }
-      <div className="links">
-        <Link to="/register">Regístrate Ahora</Link>
-        <p>¿Tienes preguntas? <Link to="/contacto">Contáctanos</Link></p>
-      </div>
       <Slider slides={slideImages} />
     </div>            
   );

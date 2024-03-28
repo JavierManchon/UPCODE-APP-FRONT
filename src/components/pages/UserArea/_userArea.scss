@@ -1,35 +1,490 @@
-div.container-areaVoid {
+@import "../../../css/_variables.scss";
+
+section.my-area {
+  width: 100%;
+  height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  aside.container-aside-mydesigns {
     display: flex;
-    height: calc(100vh - 160px);
+    width: 350px;
     align-items: center;
-    .circulo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly; 
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      border: 2px solid turquoise;
-      text-align: center;
-      margin: 20px auto; 
+    justify-content: center;
+    flex-direction: column;
+    background-color: $bgOthers;
+    height: 100%;
+  }
+
+  div.container-mydesigns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+    gap: 10px;
+
+    > div.nav {
+      border: 1px solid $colorNav;
+    }
+
+    > div.div {
+      border: 1px solid $colorDiv;
+    }
+
+    > div.footer {
+      border: 1px solid $colorFooter;
+    }
+
+    > div.form {
+      border: 1px solid $colorForm;
+    }
+
+    > div.section {
+      border: 1px solid $colorSection;
+    }
+
+    > div.figure {
+      border: 1px solid $colorFigure;
+    }
+
+    > div.buton {
+      border: 1px solid $colorButton;
+    }
+
+    > div.design {
+      width: 250px;
+      height: 250px;
+      border-radius: 15px;
+
+      > a {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-decoration: none;
+        color: $bgNavFooter;
+
+        height: 100%;
+
+        > h3 {
+          padding: 10px;
+          overflow: hidden;
+        }
+
+        > div.identifier {
+          height: 20px;
+        }
+
+        > div.nav {
+          background-color: $colorNav;
+        }
+    
+        > div.div {
+          background-color: $colorDiv;
+        }
+    
+        > div.footer {
+          background-color: $colorFooter;
+        }
+    
+        > div.form {
+          background-color: $colorForm;
+        }
+    
+        > div.section {
+          background-color: $colorSection;
+        }
+    
+        > div.figure {
+          background-color: $colorFigure;
+        }
+    
+        > div.buton {
+          background-color: $colorButton;
+        }
+
+        > div.visualizer {
+          width: 100%;
+          height: 250px;
+          overflow-y: hidden;
+          overflow-x: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          > .formVerticalText, > .formVerticalCheckbox, > .formVerticalRadio, > .formVerticalColor  {
+            background-color: rgb(99, 247, 188);
+            width: 200px;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+        
+            > .form-div{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+        
+            > .label {
+                color: #f7639e;
+            }
+        
+            > .button {
+                color: rgb(99, 247, 188);
+                background-color: white;
+            }
+        }
+
+          > div.footerVertical {
+              background-color: rgb(99, 247, 188);
+              width: 100%;
+              padding: 6px;
+          
+              > .ul {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  width: 100%;
+                  gap: 5px;
+          
+                  > .li {
+                      color: #f7639e;
+                  }
+              }
+          }
+
+          > div.footerHorizontal {
+              background-color: rgb(99, 247, 188);
+              width: 100%;
+              padding: 6px;
+          
+              > .ul {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-around;
+                  width: 100%;
+          
+                  > .li {
+                      color: #f7639e;
+                  }
+              }
+          }
+
+          > div.divPColumn {
+              background-color: rgb(99, 247, 188);
+              width: 100px;
+              padding: 6px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+          
+              > .p {
+                  color: #f7639e;
+          
+          
+              }
+          }
+
+          > figure.FigureUpText{
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 6px;
+            margin: 0 auto;
+            
+            > .img {
+                width: 300px;
+                align-self: center;
+                
+            }
+            
+            > .figCaption {
+                color: black;
+            }
+        
+        }
+
+        .FigureLeftText {
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: center;
+          width: 400px; 
+          padding: 6px;
+          margin: 0 auto;
+        }
+        
+        .FigureRightText{
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          width: 400px;
+          padding: 6px;
+          margin: 0 auto;
+        
+        > .img {
+          width: 300px;
+          align-self: center; 
+          
+        }
+        
+        > .figCaption {
+          color: black;
+          align-self: end;
+         
+         
+        }
+        
+        }
+
+        .navBarVertical {
+          background-color: rgb(99, 247, 188);
+          width: 100px;
+          padding: 6px;
       
-      > h2 {
-        color: turquoise;
-        font-size: 36px; 
+          > .ul {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              width: 100%;
+              gap: 5px;
+      
+              > .li {
+                  color: #f7639e;
+              }
+          }
       }
       
-      > h3, > p { 
-        margin: 20px 0;
-        font-size: 24px; 
-        color: gray; 
+      .navBarHorizontalStart {
+          background-color: rgb(99, 247, 188);
+          width: 100%;
+          padding: 6px;
+      
+          > .ul {
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              width: 100%;
+              gap: 5px;
+      
+              > .li {
+                  color: #f7639e;
+              }
+          }
+      }
+      
+      .navBarHorizontalCenter {
+          background-color: rgb(99, 247, 188);
+          width: 100%;
+          padding: 6px;
+      
+          > .ul {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              width: 100%;
+              gap: 5px;
+      
+              > .li {
+                  color: #f7639e;
+              }
+          }
+      }
+      
+      .navBarHorizontalEnd {
+          background-color: rgb(99, 247, 188);
+          width: 100%;
+          padding: 6px;
+      
+          > .ul {
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-end;
+              width: 100%;
+              gap: 5px;
+      
+              > .li {
+                  color: #f7639e;
+              }
+          }
+      }
+
+          > div.sectionColumn {
+            background-color: rgb(99, 247, 188);
+            width: 100%;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: stretch;
+            gap: 30px;
+          
+          
+            > .article {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              border: 2px solid black;
+              gap: 10px;
+          
+              > .h2 {
+                color: #f7639e;
+              }
+              > .p {
+                color: orange;
+              }
+            }
+          }
+
+          > div.SectionColumnSpace {
+            background-color: rgb(55, 33, 180);
+            width: 100%;
+            padding: 6px;
+            display: flex;
+            justify-content: center;
+          
+            > .article {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              border: 2px solid black;
+          
+              width: 100%;
+              gap: 5px;
+          
+              > .h2 {
+                color: #e4fd00;
+              }
+              > .p {
+                color: rgb(206, 27, 131);
+              }
+            }
+          }
+
+          > div.SectionRowContract {
+            background-color: rgb(58, 14, 56);
+            width: 100%;
+            padding: 6px;
+          
+            > .article {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              width: 100px;
+              height: 70px;
+              border: 2px solid black;
+          
+              width: 100%;
+              gap: 5px;
+          
+              > .h2 {
+                color: #4fb43b;
+              }
+              > .p {
+                color: rgb(189, 71, 169);
+              }
+            }
+          }
+
+          > div.sectionRow {
+            background-color: rgb(206, 53, 53);
+            width: 100%;
+            padding: 6px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 10px;
+
+            > .article {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              align-items: center;
+              border: 2px solid black;
+              gap: 5px;
+              padding: 5px;
+              width: 150px;
+
+              > .h2 {
+                color: #3b92b4;
+              }
+              > .p {
+                color: rgb(44, 167, 20);
+              }
+            }
+          }
+        
+
+        > button.btn-inset {
+          padding: 5px;
+          cursor: pointer;
+  
+          &:hover {
+              transition: all ease .5s;
+              box-shadow: inset 3px 3px 5px 0px rgba(255, 255, 255, 0.5), 
+                          inset -3px -3px 5px 0px rgba(255, 255, 255, 0.5);
+              transform: scale(0.95);
+          }
+          
+      }
+  
+      > button.btn-outset {
+          padding: 5px;
+          cursor: pointer;
+  
+          &:hover {
+              transition: all ease .5s;
+              box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.5), 
+                          -3px -3px 5px 0px rgb(255, 135, 135);
+              transform: scale(1.05);
+          }
+          
+      }
+      }
+
+      > div.visualizer.div {
+        background-color: lightgrey;
       }
     }
+
+    
+
+
+    // .designs-area {
+    //   display: flex;
+    //   flex-direction: column;
+    //   align-items: center;
+    //   justify-content: space-evenly; 
+    //   text-align: center;
+    //   margin: 20px auto; 
+      
+    //   > h2 {
+    //     color: $bgOthers;
+    //     font-size: 36px; 
+    //   }
+      
+    //   > h3, > p { 
+    //     margin: 20px 0;
+    //     font-size: 24px; 
+    //     color: gray; 
+    //   }
+    // }
     
     .btn-catalogo {
       text-decoration: none;
-      color: white; 
-      background-color: turquoise; 
+      color: $colorText; 
+      background-color: $bgButtons; 
       padding: 15px 30px; 
       font-size: 18px; 
       border: 1px solid transparent; 
@@ -43,4 +498,9 @@ div.container-areaVoid {
       }
     }
   }
+}
+}
+
+
+
   

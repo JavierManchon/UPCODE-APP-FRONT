@@ -12,7 +12,7 @@ const PremiumContent = () => {
 
     return (
         <div className="premium-content">
-            <button onClick={handleButtonClick}>Acceso Premium</button>
+            <button onClick={handleButtonClick}>Accede a Mi Área </button>
         </div>
     );
 };

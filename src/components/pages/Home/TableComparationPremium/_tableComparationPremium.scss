@@ -1,12 +1,26 @@
+@import '../../../../css/variables.scss';
+
+
+div.container-table{
+  background-color: $bgOthers;
+  width: 100%;
+
+  border: 2px solid $colorBorders;
+
+}
+
+
 h2.home-title{
   margin: 5px auto;
   text-align: center;
   padding: 0 20px;
+  color: $colorText;
 }
 p.home-text{
   margin: 5px auto 20px;
   text-align: center;
   padding: 0 20px 2px;
+  color: $colorText;
 }
 .comparison-table {
     width: 360px;
@@ -22,7 +36,8 @@ p.home-text{
         width: 100px;
         text-align: center;
         border-radius: 15px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $colorText;
+        color: $colorText;
         &:first-child{
           width:200px ;
         }
@@ -35,14 +50,15 @@ p.home-text{
         width: 100px;
         text-align: center;
         border-radius: 15px;
+        color: $colorText;
       }
     }  
     .check {
-      background-color: #b1ffd2; 
+      background-color: $colorBorders; 
     }
   
     .cross {
-      background-color: #e0e0e0; 
+      background-color: $bgNavFooter; 
     }
   
     .suscribe-button-container {
@@ -52,7 +68,7 @@ p.home-text{
   }
   
   a.suscribe-button {
-    width: 100%;
+    width: 90%;
     max-width: 360px;
     height: 30px;
     display: grid;
@@ -60,14 +76,17 @@ p.home-text{
     text-decoration: none;
     margin: 5px auto;
     text-align: center;
-    background-color: #45a049;
-    color: white;
+    background-color: $bgButtons;
+    color: $colorText;
     border: none;
     cursor: pointer;
     border-radius: 5px;
   
     &:hover {
-      background-color: #45a049; 
+      background-color: $colorText; 
+      color: $bgButtons;
     }
   }
   
+
+

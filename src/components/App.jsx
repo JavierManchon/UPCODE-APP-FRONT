@@ -26,11 +26,17 @@ import FormComponent from './pages/Forms/FormComponent'
 import NavComponent from './pages/Navs/NavComponent'
 import SectionComponent from './pages/Sections/SectionComponent'
 
-
+import InfoTicketArea from './layout/InfoTicketArea/InfoTicketArea'
+import TicketsManagement from './pages/Admins/TicketsManagement/TicketsManagement'
+import { useAuth } from './context/AuthContext'
 
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  
+  const {isLogged } = useAuth();
+  console.log(isLogged)
+  const [logged, setLogged] = useState(isLogged)
+
   const location = useLocation();
 
   const showAsideTickets = () => {
@@ -40,30 +46,33 @@ function App() {
   return (
 
 <div className='container-all'>
-        <Header isLogged={isLogged} setIsLogged={setIsLogged} />
+        <Header isLogged={logged} setIsLogged={setLogged} />
 
         <Routes>
-          <Route path="/" element={<Home isLogged={isLogged} setIsLogged={setIsLogged} />} />
-          <Route path="/catalogue" element={<Catalogue isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/user-area" element={<UserArea isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/payments" element={isLogged ? <Payments /> : <Navigate to="/" />} /> 
-          <Route path="/login" element={<LoginForm setIsLogged={setIsLogged} />} /> 
+          <Route path="/" element={<Home isLogged={logged} setIsLogged={setLogged} />} />
+          <Route path="/catalogue" element={<Catalogue isLogged={logged} setIsLogged={setLogged} />} /> 
+          <Route path="/user-area" element={<UserArea isLogged={logged} setIsLogged={setLogged} />} /> 
+          <Route path="/payments" element={logged ? <Payments /> : <Navigate to="/" />} /> 
+          <Route path="/login" element={<LoginForm setIsLogged={setLogged} />} /> 
 
           <Route path='/admins' element={<AdminControlPanel/>}/>
           <Route path="/adminUserManagement" element={<UserManagement />} />
           <Route path="/adminDesignsManagement" element={<DesignManagement />} />
+          <Route path="/adminticketsManagement/:userId" element={<TicketsManagement />} />
 
           <Route path="/register" element={<RegisterForm />} /> 
-          <Route path="/catalogue/template-buttons/:designId" element={<ButtonComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/catalogue/template-divs/:designId" element={<DivComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/catalogue/template-figures/:designId" element={<FigureComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/catalogue/template-footers/:designId" element={<FooterComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/catalogue/template-forms/:designId" element={<FormComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/catalogue/template-navs/:designId" element={<NavComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
-          <Route path="/catalogue/template-sections/:designId" element={<SectionComponent isLogged={isLogged} setIsLogged={setIsLogged} />} /> 
+          <Route path="/catalogue/template-buttons/:designId" element={<ButtonComponent isLogged={logged} setIsLogged={setLogged} />} /> 
+          <Route path="/catalogue/template-divs/:designId" element={<DivComponent isLogged={logged} setIsLogged={setLogged} />} /> 
+          <Route path="/catalogue/template-figures/:designId" element={<FigureComponent isLogged={logged} setIsLogged={setLogged} />} /> 
+          <Route path="/catalogue/template-footers/:designId" element={<FooterComponent isLogged={logged} setIsLogged={setLogged} />} /> 
+          <Route path="/catalogue/template-forms/:designId" element={<FormComponent isLogged={logged} setIsLogged={setLogged} />} /> 
+          <Route path="/catalogue/template-navs/:designId" element={<NavComponent isLogged={logged} setIsLogged={setLogged} />} /> 
+          <Route path="/catalogue/template-sections/:designId" element={<SectionComponent isLogged={logged} setIsLogged={setLogged} />} /> 
+
+          <Route path="/infoTicket" element={<InfoTicketArea />} /> 
 
         </Routes>
-        {showAsideTickets() && <AsideTickets isLogged={isLogged} setIsLogged={setIsLogged}/> }
+        {showAsideTickets() && <AsideTickets isLogged={logged} setIsLogged={setLogged}/> }
         <Footer />
       </div>
   )
