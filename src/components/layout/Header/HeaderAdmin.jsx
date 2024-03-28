@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './_header.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../../images/upcode.png';
+import { useAuth } from '../../context/AuthContext';
 
 const HeaderAdmin = ({ isLogged, setIsLogged }) => {
+    const { logout } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,7 +20,8 @@ const HeaderAdmin = ({ isLogged, setIsLogged }) => {
     const handleLogout = () => {
         navigate('/');
         sessionStorage.clear();
-        setIsLogged(false);
+        logout();
+        
     };
 
     return (
