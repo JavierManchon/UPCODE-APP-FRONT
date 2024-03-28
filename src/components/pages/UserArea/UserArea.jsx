@@ -10,7 +10,6 @@ import MyAreaMobile from './NavMobile/MyAreaMobile';
 
 const UserArea = () => {
   const { authState, setAuthState } = useAuth();
-  console.log(authState)
 
   const [designs, setDesigns] = useState([]);
 

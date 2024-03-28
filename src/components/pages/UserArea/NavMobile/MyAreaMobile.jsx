@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './_myAreaMobile.scss';
 import InfoTicketArea from '../../../layout/InfoTicketArea/InfoTicketArea';
 import { useAuth } from '../../../context/AuthContext';
@@ -10,8 +10,8 @@ const NavMobile = () => {
   const [showTickets, setShowTickets] = useState(false);
   const [showDesigns, setShowDesigns] = useState(true);
   const { authState, setAuthState } = useAuth();
-  console.log(authState.user.designs);
-
+  const [designs, setDesigns] = useState([]);
+  console.log(!authState.user.designs ? authState.user.designs : null);
   const handleTickets = () => {
     setShowTickets(true);
     setShowDesigns(false);
@@ -21,9 +21,6 @@ const NavMobile = () => {
     setShowTickets(false);
     setShowDesigns(true);
   }
-
-  const [designs, setDesigns] = useState([]);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,18 +41,25 @@ const NavMobile = () => {
 
   const handleDeleteDesign = async (designId) => {
     try {
+      // Paso 1: Eliminar el diseño mediante la API
       await removeDesignReq(designId);
-      
+  
+      // Paso 2: Actualizar el estado local filtrando el diseño eliminado
       const updatedDesigns = designs.filter(design => design._id !== designId);
       setDesigns(updatedDesigns);
+  
+      // Paso 3: Actualizar el estado global
+      // Obtener la información actualizada del usuario para reflejar la eliminación en el estado global
       const response = await getOneUserReq(authState.user._id);
+      const updatedUser = { ...authState.user, designs: response.data.designs };
+  
       setAuthState(prevState => ({
         ...prevState,
-        user: {
-          ...prevState.user,
-          designs: response.data.designs,
-        },
+        user: updatedUser,
       }));
+  
+      // Paso 4: Sincronizar con sessionStorage para que los cambios persistan entre recargas de la página
+      sessionStorage.setItem('user', JSON.stringify(updatedUser));
     } catch (error) {
       console.error('Error deleting:', error);
     }
@@ -74,13 +78,15 @@ const NavMobile = () => {
       {showDesigns 
       ? (
           <div className='container-designs-my-area-mobile'>
-            {authState.user.designs.map((template, index) => (
+            {designs.map((template, index) => (
+            template.template === false ?
             <Link key={index} to={`/catalogue/template-${template.elementType}s/${template._id}`} state={{ templateData: template }} className={`template ${template.elementType}`}>
                 <div className='line-top'></div>
                 <h4>{template.nameDesign}</h4>
                 <p>{'<'}{template.elementType}{'>'}</p>
                 <button onClick={() => handleDeleteDesign(template._id)}>Eliminar</button>
             </Link>
+            : null
             ))}
           </div>
         )
