@@ -45,10 +45,6 @@ const Home = ({isLogged ,setIsLogged}) => {
         ? ( <PremiumContent /> ) 
         : ( <TableComparationPremium isLogged={isLogged} /> )
       }
-      <div className="links">
-        <Link to="/register">Regístrate Ahora</Link>
-        <p>¿Tienes preguntas? <Link to="/contacto">Contáctanos</Link></p>
-      </div>
       <Slider slides={slideImages} />
     </div>            
   );

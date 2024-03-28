@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { registerReq } from '../../../../api/axios/auth';
 import { Link } from 'react-router-dom';
+import '../Login/_login.scss';
 
 const RegisterForm = () => {
   const [name, setName] = useState('');
@@ -37,7 +38,7 @@ const RegisterForm = () => {
       await registerReq(user);
       
       // Mensaje de éxito y limpieza de campos
-      setSuccessMessage('Se ha enviado un mensaje de confirmación de registro a tu correo electrónico.');
+      setSuccessMessage('Se ha enviado un email de confirmación de registro a tu correo electrónico.');
       setName('');
       setSurname('');
       setEmail('');
@@ -50,59 +51,56 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Surname:</label>
-          <input
-            type="text"
-            value={surname}
-            onChange={(e) => setSurname(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-        <button type="submit">Register</button>
-      </form>
-      <li><Link to="/login">Login</Link></li>
+    <div className='container-login'>
+      <div className='div-login'>
+        <h2 className='title-login'>Register</h2>
+        <form className='form-login' onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="text" placeholder='Name' className='input-login'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text" className='input-login' placeholder='Surmane'
+              value={surname}
+              onChange={(e) => setSurname(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text" className='input-login' placeholder='Username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input className='input-login' placeholder='Email'
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="password" className='input-login' placeholder='Password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          {error && <p className='msgerror' style={{ color: 'red' }}>{error}</p>}
+          {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+          <button type="submit">Register</button>
+        </form>
+         <span className='link-register' > Si ya está registrado , pulse 👉<Link to="/login">aquí</Link>👈</span>
+      </div>
     </div>
   );
 };

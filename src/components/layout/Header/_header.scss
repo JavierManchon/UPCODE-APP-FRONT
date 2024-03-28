@@ -1,4 +1,5 @@
-@import '../../../css/variables';
+@import '../../../css/_variables.scss';
+
 
 header.container-title-links {
     width: 100%;
@@ -10,7 +11,7 @@ header.container-title-links {
     align-items: center;
 
     padding-right: 20px;
-    background-color: black;
+    background-color: $bgNavFooter;
 
     position: fixed;
     top: 0;
