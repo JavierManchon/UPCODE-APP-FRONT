@@ -21,7 +21,7 @@ const FormComponent = ({ isLogged }) => {
         setDesignToSave((currentTemplate) => {
           let updatedTemplate = _.cloneDeep(currentTemplate);
     
-          _.set(updatedTemplate, 'edit.textArray', labelValues);
+          _.set(updatedTemplate, 'edit.textArrayBidimensional', labelValues);
           _.set(updatedTemplate, 'edit.textItem', buttonValue);
       
     
@@ -31,8 +31,8 @@ const FormComponent = ({ isLogged }) => {
       };
 
     const [labelValues, setLabelValues] = useState(() => {
-        if (template.edit && template.edit.textArray.length > 0) {
-            return [...template.edit.textArray];
+        if (template.edit && template.edit.textArrayBidimensional.length > 1) {
+            return [...template.edit.textArrayBidimensional];
         } else {
             return Array.from({ length: template.defaultContent.countChildren }, () =>
                 Array.from({ length: template.defaultContent.countGrandson }, () => 'Item:')
@@ -44,7 +44,7 @@ const FormComponent = ({ isLogged }) => {
         // Actualiza textArray basado en h2Values
         setDesignToSave(currentTemplate => {
           let updatedTemplate = _.cloneDeep(currentTemplate);
-          _.set(updatedTemplate, 'edit.textArray', labelValues);
+          _.set(updatedTemplate, 'edit.textArrayBidimensional', labelValues);
           return updatedTemplate;
         });
       }, [labelValues]);
@@ -89,7 +89,7 @@ const FormComponent = ({ isLogged }) => {
         if (index >= 0 && index < labelValues.length && childIndex >= 0 && childIndex < labelValues[index].length) {
             const newLabelValues = [...labelValues];
             newLabelValues[index][childIndex] = event.target.value;
-            updateTemplate('edit.textArray', newLabelValues);
+            updateTemplate('edit.textArrayBidimensional', newLabelValues);
             setLabelValues(newLabelValues);
         } else {
             console.error("Índices fuera de rango:", index, childIndex);
@@ -102,7 +102,7 @@ const FormComponent = ({ isLogged }) => {
     };
 
     const handleBgFormColor = (event) => {
-        updateTemplate('edit.bgFormColor', event.target.value);
+        updateTemplate('edit.bgColorForm', event.target.value);
         setBgFormColor(event.target.value);
     };
 

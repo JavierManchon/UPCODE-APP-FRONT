@@ -5,7 +5,7 @@ import { createDesign } from '../../../api/axios/designs';
 import { getUserLogged } from '../../../api/axios/auth';
 
 const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
-    const { authState } = useAuth();
+    const { authState, setAuthState } = useAuth();
     // useEffect(() => {
     //     const getUser = async() => {
     //         try {
@@ -30,6 +30,14 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
                 const updatedTemplate = response.data;
                 console.log(updatedTemplate);
                 // console.log(designToSave)
+
+                const updatedUser = await getUserLogged(authState.user._id);
+                setAuthState(prevState => ({
+                    ...prevState,
+                    user: updatedUser.data
+                }));
+
+                console.log(updatedUser);
             } catch (error) {
                 console.error('Error fetching designs:', error);
             }

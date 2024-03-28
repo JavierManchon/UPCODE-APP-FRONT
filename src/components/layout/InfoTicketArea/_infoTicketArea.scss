@@ -1,16 +1,23 @@
 @import "../../../css/variables";
 
 div.container-infoticket {
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
+    > h4 {
+        margin-bottom: 10px;
+    }
+
     > form.infoticket {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+        gap: 10px;
 
         > span {
             margin-bottom: 10px;
@@ -19,7 +26,7 @@ div.container-infoticket {
         > label {
             display: flex;
             flex-direction: column;
-            margin-bottom: 15px;
+            width: 47%;
 
             > span {
                 margin-bottom: 5px;
@@ -35,19 +42,25 @@ div.container-infoticket {
             }
 
             > textarea {
-                height: 100px;
+                height: 60px;
             }
         }
 
-        > button {
+        > label.ticket-description {
             width: 100%;
-            height: 40px;
+        }
+
+        > button {
+            width: 50%;
+            height: 25px;
             border: none;
-            background-color: black;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            outline: none;
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
 
             &:hover {
                 background-color: #333;
@@ -58,6 +71,7 @@ div.container-infoticket {
     > div.ticket-list {
         width: 100%;
         max-width: 300px;
+        height: 180px;
         margin-top: 20px;
 
         > ul {
@@ -100,8 +114,10 @@ div.container-infoticket {
                 > div.ticket-details {
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
+                    align-items: flex-start;
+                    justify-content: flex-start;
                     margin-top: 20px;
+                    height: 100%;
             
                     > h2 {
                         margin-bottom: 10px;
@@ -113,6 +129,11 @@ div.container-infoticket {
 
                     > img {
                         width: 100%;
+                    }
+
+                    > button {
+                        align-self: center;
+                        margin-top: 10px;
                     }
                 }
             }
