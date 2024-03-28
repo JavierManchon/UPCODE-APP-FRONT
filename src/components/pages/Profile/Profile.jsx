@@ -67,6 +67,7 @@ const Profile = () => {
         <h3 className="profile-id-username">{authState.user.username}</h3>
         <h4 className="profile-id-name">{authState.user.name}</h4>
         <h4 className="profile-id-surname">{authState.user.surname}</h4>
+        <h4 className="profile-id-email">{authState.user.email}</h4>
       </div>
       <span className="edit-span" onClick={toggleEditForm}>Editar Información</span>
       <div className={`edit-profile-form ${showEditForm ? "show" : ""}`}>

@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(!!sessionStorage.getItem('token'));
   const [isAdmin, setIsAdmin] = useState(!!sessionStorage.getItem('isAdmin'));
-  console.log(isAdmin)
 
   const [authState, setAuthState] = useState({
     token: sessionStorage.getItem('token') ||  null,
