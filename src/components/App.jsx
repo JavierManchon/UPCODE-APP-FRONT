@@ -34,6 +34,7 @@ import { useAuth } from './context/AuthContext'
 function App() {
   
   const {isLogged } = useAuth();
+  console.log(isLogged)
   const [logged, setLogged] = useState(isLogged)
 
   const location = useLocation();

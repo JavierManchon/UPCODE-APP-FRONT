@@ -1,5 +1,6 @@
 @import '../../../css/_variables.scss';
 
+
 footer.container-admins {
     width: 100%;
     height: 80px;
@@ -7,6 +8,7 @@ footer.container-admins {
     position: fixed;
     bottom: 0;
     z-index: 10;
+    background-color: $bgNavFooter;
 }
 
 @media (max-width: 575.98px) {
