@@ -8,7 +8,123 @@ footer.container-admins {
     position: fixed;
     bottom: 0;
     z-index: 10;
-    background-color: $bgNavFooter;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    > ul.admin-items {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        > li {
+            width: 25%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            > div.name-img {
+                width: 100%;
+                height: 100%;
+
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: center;
+                align-items: center;
+
+                > p {
+                    color: white;
+                    font-weight: bold;
+                }
+
+                > div.img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    
+                    overflow: hidden;
+                    > img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        border: 1px solid white;
+                        
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            > div.links {
+                width: 100%;
+                height: 100%;
+
+                position: absolute;
+                top:100%;
+                left: 0;
+                z-index: 2;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 10%;
+                align-items: center;
+
+                background-color: $bgNavFooter;
+
+                > a {
+                    display: block;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    
+                    overflow: hidden;
+
+                    > img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        filter: invert(1);
+                    }
+                } 
+            }
+
+            &:hover > div.links {
+                transition: all ease 0.5s;
+                top: 0;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    footer.container-admins {
+        height: 60px;
+        overflow-y: hidden;
+
+        > ul.admin-items {
+            > li {
+                > div.name-img {
+                    > p {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 575.98px) {
