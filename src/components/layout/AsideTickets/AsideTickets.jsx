@@ -7,9 +7,7 @@ import { postTicketReq } from "../../../api/axios/tickets";
 
 const AsideTickets = ({ isLogged, setIsLogged }) => {
   const {authState} = useAuth();
-  const [userImage, setUserImage] = useState(
-    "https://res.cloudinary.com/do0s2lutu/image/upload/v1701777805/owonnexnscmi56bbdomz.png"
-  );
+
   const navigate = useNavigate();
 
   const [showAside, setShowAside] = useState(false);
@@ -47,8 +45,8 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
     <>
       {isLogged ? (
         <>
-          <img
-            src={userImage}
+        <img
+            src={authState.user.image} 
             alt="Imagen de usuario"
             className={`user-image ${showAside ? "hide" : ""}`}
             onClick={handleShowAside}

@@ -177,7 +177,22 @@ section.my-area {
                   }
               }
           }
-
+          > div.footerRow {
+            background-color: rgb(99, 247, 188);
+            width: 100%;
+            padding: 6px;
+          
+            .ul {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;
+              width: 100%;
+          
+              .li {
+                color: #f7639e;
+              }
+            }
+          }
           > div.divPColumn {
               background-color: rgb(99, 247, 188);
               width: 100px;
