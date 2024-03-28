@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import "./_adminControlPanel.scss";
+import { useNavigate } from "react-router-dom";
 function AdminControlPanel() {
   const { authState } = useAuth();
   const [dynamicText, setDynamicText] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const username = authState.user.username;
@@ -21,6 +23,9 @@ function AdminControlPanel() {
     return () => clearInterval(intervalId);
   }, [authState.user.username]);
 
+  const handleButtonClick = () => {
+    navigate('/user-area'); 
+};
   return (
     <div className="container">
       <div className="content1">
@@ -48,6 +53,7 @@ function AdminControlPanel() {
         </div>
       </div>
     </div>
+    
   );
 }
 

@@ -28,6 +28,8 @@ import SectionComponent from "./pages/Sections/SectionComponent";
 import InfoTicketArea from "./layout/InfoTicketArea/InfoTicketArea";
 import TicketsManagement from "./pages/Admins/TicketsManagement/TicketsManagement";
 import { useAuth } from "./context/AuthContext";
+import AdminMiddleware from "./middlewares/AdminMiddleware";
+import AuthMiddleware from "./middlewares/AuthMiddleware";
 
 function App() {
   const { isAdmin, isLogged } = useAuth();
@@ -41,7 +43,11 @@ function App() {
   return (
     <div className="container-all">
       {isLogged && isAdmin ? (
-        <HeaderAdmin isLogged={logged} setIsLogged={setLogged} isAdmin={isAdmin} />
+        <HeaderAdmin
+          isLogged={logged}
+          setIsLogged={setLogged}
+          isAdmin={isAdmin}
+        />
       ) : (
         <Header isLogged={logged} setIsLogged={setLogged} />
       )}
@@ -57,7 +63,11 @@ function App() {
         />
         <Route
           path="/user-area"
-          element={<UserArea isLogged={logged} setIsLogged={setLogged} />}
+          element={
+            <AuthMiddleware>
+              <UserArea isLogged={logged} setIsLogged={setLogged} />
+            </AuthMiddleware>
+          }
         />
         <Route
           path="/payments"
@@ -65,14 +75,38 @@ function App() {
         />
         <Route path="/login" element={<LoginForm setIsLogged={setLogged} />} />
 
-        <Route path="/admins" element={<AdminControlPanel isLogged={logged} />} />
-        <Route path="/adminUserManagement" element={<UserManagement isLogged={logged} />} />
-        <Route path="/adminDesignsManagement" element={<DesignManagement isLogged={logged} />} />
+        <Route
+          path="/admins"
+          element={
+            <AdminMiddleware>
+              <AdminControlPanel />
+            </AdminMiddleware>
+          }
+        />
+        <Route
+          path="/adminUserManagement"
+          element={
+            <AdminMiddleware>
+              <UserManagement />
+            </AdminMiddleware>
+          }
+        />
+        <Route
+          path="/adminDesignsManagement"
+          element={
+            <AdminMiddleware>
+              <DesignManagement />
+            </AdminMiddleware>
+          }
+        />
         <Route
           path="/adminticketsManagement/:userId"
-          element={<TicketsManagement />}
+          element={
+            <AdminMiddleware>
+              <TicketsManagement />
+            </AdminMiddleware>
+          }
         />
-
         <Route path="/register" element={<RegisterForm />} />
         <Route
           path="/catalogue/template-buttons/:designId"
@@ -110,8 +144,6 @@ function App() {
             <SectionComponent isLogged={logged} setIsLogged={setLogged} />
           }
         />
-
-        <Route path="/infoTicket" element={<InfoTicketArea />} />
       </Routes>
       {showAsideTickets() && (
         <AsideTickets isLogged={logged} setIsLogged={setLogged} />

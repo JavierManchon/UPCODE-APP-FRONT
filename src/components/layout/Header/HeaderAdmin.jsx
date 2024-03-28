@@ -34,8 +34,8 @@ const HeaderAdmin = ({ isLogged, setIsLogged }) => {
                 <ul className='container-items'>
                     {isLogged ? (
                         <>
-                            <li><Link to="/adminUserManagement">User_Management</Link></li>
-                            <li><Link to="/adminDesignsManagement">Designs_Management</Link></li>
+                            <li><Link to="/adminUserManagement">Usuarios</Link></li>
+                            <li><Link to="/adminDesignsManagement">Diseños</Link></li>
                             <li onClick={handleLogout}>Logout</li>
                         </>
                     ) : (

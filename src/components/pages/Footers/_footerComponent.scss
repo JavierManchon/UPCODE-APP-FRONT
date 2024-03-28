@@ -1,35 +1,51 @@
 //clases de la informacion que damos al usuario
 .footerVertical {
-    background-color: rgb(99, 247, 188);
+  background-color: rgb(99, 247, 188);
+  width: 100%;
+  padding: 6px;
+
+  .ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    padding: 6px;
+    gap: 5px;
 
-    .ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        gap: 5px;
-
-        .li {
-            color: #f7639e;
-        }
+    .li {
+      color: #f7639e;
     }
+  }
 }
 
 .footerHorizontal {
-    background-color: rgb(99, 247, 188);
+  background-color: rgb(99, 247, 188);
+  width: 100%;
+  padding: 6px;
+
+  .ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     width: 100%;
-    padding: 6px;
 
-    .ul {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
-
-        .li {
-            color: #f7639e;
-        }
+    .li {
+      color: #f7639e;
     }
+  }
+}
+.footerRow {
+  background-color: rgb(99, 247, 188);
+  width: 100%;
+  padding: 6px;
+
+  .ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+
+    .li {
+      color: #f7639e;
+    }
+  }
 }
