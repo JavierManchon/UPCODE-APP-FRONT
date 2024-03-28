@@ -13,7 +13,6 @@ const InfoTicketArea = () => {
     const fetchUserData = async () => {
       try {
         const response = await getOneUserReq(authState.user._id);
-        console.log(response.data);
         setUser(response.data);
       } catch (error) {
         console.error("Error al obtener la información del usuario:", error);
