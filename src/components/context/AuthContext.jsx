@@ -10,7 +10,6 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-
   const [isLogged, setIsLogged] = useState(!!sessionStorage.getItem('token'));
 
   const [authState, setAuthState] = useState({

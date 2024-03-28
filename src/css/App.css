@@ -1,3 +1,4 @@
+/*colores segun etiquetas*/
 * {
   margin: 0;
   padding: 0;
@@ -21,153 +22,469 @@ body > div#root div.container-all {
 
 div.container-pages-default-styles {
   width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: stretch;
-  gap: 50px;
-  padding: 50px 0;
-}
-div.container-pages-default-styles > * {
-  border: 2px solid;
-  border-radius: 15px;
-}
-div.container-pages-default-styles div.container-editor {
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 30px;
-  position: relative;
-}
-div.container-pages-default-styles div.container-editor > p {
-  font-weight: bold;
-}
-div.container-pages-default-styles div.styles-editor {
-  width: 350px;
+  height: calc(100vh - 160px);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  gap: 50px;
+  overflow-y: scroll;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
 }
-div.container-pages-default-styles div.styles-editor > label {
-  width: 160px;
+div.container-pages-default-styles > div.styles-editor {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #05668D;
+  border-radius: 15px;
+}
+div.container-pages-default-styles > div.styles-editor > div.container-label {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  overflow: visible;
+}
+div.container-pages-default-styles > div.styles-editor > div.container-label > label {
+  width: 120px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 5px;
+  overflow: visible;
 }
-div.container-pages-default-styles div.styles-editor > label > p {
+div.container-pages-default-styles > div.styles-editor > div.container-label > label > p {
   width: 80%;
   text-align: center;
-  border-bottom: 2px solid;
   flex-shrink: 0;
+  color: #F0F3BD;
 }
-div.container-pages-default-styles div.styles-editor > label > input {
+div.container-pages-default-styles > div.styles-editor > div.container-label > label > div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+  overflow: visible;
+}
+div.container-pages-default-styles > div.styles-editor > div.container-label > label > div > input {
   border: none;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #F0F3BD;
   outline: none;
   background-color: transparent;
-  border-radius: 5px;
+  color: #F0F3BD;
 }
-div.container-pages-default-styles div.styles-editor > label:nth-child(3) > input {
-  border: 1px solid;
+div.container-pages-default-styles > div.styles-editor > div.container-label > label > div > input[type=color] {
+  border: none;
 }
-div.container-pages-default-styles div.container-renderized_html {
-  width: 350px;
+div.container-pages-default-styles > div.styles-editor > div.container-label > label > div > span {
+  color: #F0F3BD;
+  transform: translateY(4px);
+}
+div.container-pages-default-styles > div.styles-editor > span {
+  width: 100%;
+  max-width: 300px;
+  padding: 5px;
+  text-align: center;
+  background-color: #02C39A;
+  border-radius: 15px;
+}
+div.container-pages-default-styles > button.no-visual {
+  transform: scale(0);
+  margin-bottom: -100px;
+}
+div.container-pages-default-styles > button.no-visual.btn-visual {
+  width: 100%;
+  max-width: 300px;
+  padding: 5px 10px;
+  text-align: center;
+  background-color: #02C39A;
+  border-radius: 15px;
+  flex-shrink: 0;
+  border: none;
+  transform: scale(1);
+  margin-bottom: 0px;
+}
+div.container-pages-default-styles > div.container-containers {
+  width: 90%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor {
+  width: 100%;
+  max-width: calc(50% - 20px);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3px;
+  padding: 30px;
+  background-color: #05668D;
+  border-radius: 15px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor > div p {
+  font-weight: bold;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor > div p.padding-left-10 {
+  padding-left: 10px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor > div p.padding-left-20 {
+  padding-left: 20px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor > div p > input {
+  border: none;
+  outline: none;
+  padding: 3px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor > div p > input.input-img {
+  margin-left: 9px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor > span {
+  width: 100%;
+  max-width: 300px;
+  padding: 5px;
+  text-align: center;
+  background-color: #02C39A;
+  border-radius: 15px;
+  flex-shrink: 0;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render {
+  width: 100%;
+  max-width: calc(50% - 20px);
+  height: 300px;
+  position: relative;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > * {
+  position: absolute;
+  border-radius: 15px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html {
+  width: 100%;
+  height: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-color: #05668D;
+  opacity: 0;
+  transform: scale(0);
 }
-div.container-pages-default-styles div.container-renderized_html > div.title-btn {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.title-btn {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 20px;
+  padding: 50px 10px 10px;
 }
-div.container-pages-default-styles div.container-renderized_html > div.html {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.title-btn > button {
+  padding: 5px 10px;
+  background-color: #02C39A;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.html {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 3px;
-  padding: 30px;
-  width: 100%;
-  position: relative;
+  padding-left: 10px;
+  padding-top: 20px;
 }
-div.container-pages-default-styles div.container-renderized_html > div.html > span {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.html > span {
   font-weight: bold;
-  width: 250px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-left: 30px;
-}
-div.container-pages-default-styles div.container-renderized_html > div.html > span:first-child, div.container-pages-default-styles div.container-renderized_html > div.html > span:last-child {
   padding-left: 10px;
 }
-div.container-pages-default-styles div.container-renderized_html > div.html > span:nth-child(2), div.container-pages-default-styles div.container-renderized_html > div.html > span:nth-last-child(2), div.container-pages-default-styles div.container-renderized_html > div.html > span:nth-child(5), div.container-pages-default-styles div.container-renderized_html > div.html > span:nth-child(6), div.container-pages-default-styles div.container-renderized_html > div.html > span:nth-child(9), div.container-pages-default-styles div.container-renderized_html > div.html > span:nth-child(10) {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.html > span:first-child, div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.html > span:last-child {
+  padding-left: 0;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.html > span.section-h2, div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.html > span.section-p {
   padding-left: 20px;
 }
-div.container-pages-default-styles div.container-renderized_visual {
-  width: 350px;
-  padding: 10px;
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html.show {
+  transition: all ease 1s;
+  transform: scale(1);
+  opacity: 1;
 }
-div.container-pages-default-styles div.container-renderized_css {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_visual {
   width: 100%;
+  height: 300px;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #05668D;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_visual.hidden {
+  visibility: hidden;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_visual > figure.figure {
+  display: grid;
+  place-items: center;
+  gap: 20px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_visual > figure.figure > img {
+  width: 250px;
+  height: 250px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css {
+  width: 100%;
+  height: 300px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: stretch;
   gap: 30px;
+  overflow-y: scroll;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  opacity: 0;
+  transform: scale(0);
   border: none;
+  background-color: #05668D;
+  padding: 20px;
 }
-div.container-pages-default-styles div.container-renderized_css > div.css-section,
-div.container-pages-default-styles div.container-renderized_css > div.css-article,
-div.container-pages-default-styles div.container-renderized_css > div.css-h2,
-div.container-pages-default-styles div.container-renderized_css > div.css-p {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css.show {
+  transition: all ease 1s;
+  transform: scale(1);
+  opacity: 1;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p {
   width: 350px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  border: 2px solid;
-  border-radius: 15px;
 }
-div.container-pages-default-styles div.container-renderized_css > div.css-section > div.title-btn,
-div.container-pages-default-styles div.container-renderized_css > div.css-article > div.title-btn,
-div.container-pages-default-styles div.container-renderized_css > div.css-h2 > div.title-btn,
-div.container-pages-default-styles div.container-renderized_css > div.css-p > div.title-btn {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.title-btn,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.title-btn {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
 }
-div.container-pages-default-styles div.container-renderized_css > div.css-section > div.css,
-div.container-pages-default-styles div.container-renderized_css > div.css-article > div.css,
-div.container-pages-default-styles div.container-renderized_css > div.css-h2 > div.css,
-div.container-pages-default-styles div.container-renderized_css > div.css-p > div.css {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.title-btn > button,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.title-btn > button {
+  padding: 5px 10px;
+  background-color: #02C39A;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-div.container-pages-default-styles div.container-renderized_css > div.css-section > div.css > span,
-div.container-pages-default-styles div.container-renderized_css > div.css-article > div.css > span,
-div.container-pages-default-styles div.container-renderized_css > div.css-h2 > div.css > span,
-div.container-pages-default-styles div.container-renderized_css > div.css-p > div.css > span {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > span,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > span {
   padding-left: 50px;
 }
-div.container-pages-default-styles div.container-renderized_css > div.css-section > div.css > span:first-child, div.container-pages-default-styles div.container-renderized_css > div.css-section > div.css > span:last-child,
-div.container-pages-default-styles div.container-renderized_css > div.css-article > div.css > span:first-child,
-div.container-pages-default-styles div.container-renderized_css > div.css-article > div.css > span:last-child,
-div.container-pages-default-styles div.container-renderized_css > div.css-h2 > div.css > span:first-child,
-div.container-pages-default-styles div.container-renderized_css > div.css-h2 > div.css > span:last-child,
-div.container-pages-default-styles div.container-renderized_css > div.css-p > div.css > span:first-child,
-div.container-pages-default-styles div.container-renderized_css > div.css-p > div.css > span:last-child {
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > span:first-child, div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > span:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > span:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > span:last-child {
   padding-left: 40px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > p {
+  padding-left: 50px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > p:first-child, div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > p:nth-last-child(2),
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > p:nth-last-child(2) {
+  padding-left: 40px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > div.container-hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > div.container-hover {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > div.container-hover > p,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > div.container-hover > p {
+  padding-left: 50px;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > div.container-hover > p:first-child, div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.css > div.container-hover > p:last-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > div.container-hover > p:first-child,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.css > div.container-hover > p:last-child {
+  padding-left: 40px;
+}
+
+@media screen and (max-width: 1023px) {
+  div.container-pages-default-styles {
+    gap: 20px;
+  }
+  div.container-pages-default-styles > div.container-containers {
+    gap: 20px;
+  }
+  div.container-pages-default-styles > div.container-containers > div.container-render {
+    max-width: none;
+  }
+  div.container-pages-default-styles > div.container-containers > div.container-editor {
+    max-width: none;
+  }
 }/*# sourceMappingURL=app.css.map */
