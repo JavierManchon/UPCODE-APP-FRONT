@@ -80,21 +80,20 @@ function TicketsManagement() {
                 <tr key={ticket._id}>
                   <td className="table-data">{ticket.title}</td>
                   <td className="table-data">{ticket.description}</td>
-                  <td className="ticket-img-container">
-                    {ticket.screenshot && (
+                  <td className="table-data">
+                    {ticket.screenshot ? (
                       <img
                         className="ticket-Img-data"
                         src={ticket.screenshot}
                         alt="screenshot"
                         onClick={() => openLightbox(ticket.screenshot)}
                       />
+                    ) : (
+                      <span className="no-image">No se adjunto una captura del problema</span>
                     )}
                   </td>
                   {lightboxOpen && (
-                    <div
-                      className="lightbox"
-                      onClick={closeLightbox}
-                    >
+                    <div className="lightbox" onClick={closeLightbox}>
                       <img
                         className="lightboxImg"
                         src={lightboxImageUrl}
@@ -124,7 +123,7 @@ function TicketsManagement() {
                           handleStatusChange(ticket._id, "Enviado")
                         }
                       >
-                       Marcar como Enviado
+                        Marcar como Enviado
                       </button>
                     )}
                     {ticket.status === "Enviado" && (
@@ -134,7 +133,7 @@ function TicketsManagement() {
                           handleStatusChange(ticket._id, "En proceso")
                         }
                       >
-                      Marcar como En proceso
+                        Marcar como En proceso
                       </button>
                     )}
                     {ticket.status === "Completado" && (

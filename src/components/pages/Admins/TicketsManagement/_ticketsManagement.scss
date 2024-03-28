@@ -71,6 +71,17 @@
       border: 1px solid #dddddd;
       max-width: 120px;
 
+      > .ticket-Img-data {
+        width: 100%;
+        cursor: pointer;
+      }
+      > span.no-image{
+        font-size: large;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 12px;
+        text-align: center;
+        
+      }
       > .status-indicator {
         width: 50px;
         height: 50px;
@@ -83,17 +94,6 @@
       }
     }
 
-    .ticket-img-container {
-      display: flex;
-      width: 100%;
-      margin-bottom: 5px;
-      border-radius: 1%;
-
-      > .ticket-Img-data {
-        width: 100%;
-        cursor: pointer;
-      }
-    }
   }
 }
 
