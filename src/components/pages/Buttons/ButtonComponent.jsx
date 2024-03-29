@@ -9,8 +9,8 @@ const ButtonComponent = ({ isLogged }) => {
   const { authState } = useAuth();
   const location = useLocation();
   const previousRoute = location.state.url;
-  console.log(previousRoute);
   const template = location.state.templateData;
+  console.log(template)
   const [designToSave, setDesignToSave] = useState();
 
   const [showCss, setShowCss] = useState(false);
@@ -64,7 +64,6 @@ const ButtonComponent = ({ isLogged }) => {
     });
   }, [buttonValue]);
 
-  
   const [bgColor, setBgColor] = useState(
     template.edit.bgColorButton ? template.edit.bgColorButton : ""
   );
@@ -178,17 +177,17 @@ const ButtonComponent = ({ isLogged }) => {
       <div className="styles-editor">
         <div className="container-label">
         <label htmlFor="bgColor">
-          <p>Color de Fondo</p>
+          <p>Color bg</p>
           <input type="color" id="bgColor" onChange={handleBgColor} />
         </label>
 
         <label htmlFor="fontColor">
-          <p>Color de Letra</p>
+          <p>Color letra</p>
           <input type="color" id="fontColor" onChange={handleFontColor} />
         </label>
 
         <label htmlFor="fontSize">
-          <p>Tamaño de Letra</p>
+          <p>Fontsize</p>
           <input
             type="number"
             id="fontSize"
@@ -196,6 +195,7 @@ const ButtonComponent = ({ isLogged }) => {
             max={20}
             onChange={handleFontSize}
           />
+          <span>px</span>
         </label>
 
         <label htmlFor="fontWeight">

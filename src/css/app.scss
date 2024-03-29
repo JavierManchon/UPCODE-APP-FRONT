@@ -61,10 +61,15 @@ div.container-pages-default-styles {
       width: 100%;
       display: flex;
       flex-flow: row wrap;
-      justify-content: space-around;
-      align-items: center;
-      gap: 10px;
+      justify-content: center;
+      align-items: stretch;
+      gap: 20px;
       overflow: visible;
+
+      input {
+        cursor: pointer;
+        width: 20px;
+      }
 
       > label {
         width: 120px;
@@ -81,6 +86,23 @@ div.container-pages-default-styles {
           // border-bottom: 2px solid;
           flex-shrink: 0;
           color: $colorText;
+        }
+
+        > input {
+          border: none;
+          border-bottom: 1px solid $colorText;
+          outline: none;
+          background-color: transparent;
+          color: $colorText;
+
+          &[type="color"] {
+            border: none;
+          }
+
+          > span {
+            color: $colorText;
+            transform: translateY(4px);
+          }
         }
 
         > div {
@@ -114,9 +136,16 @@ div.container-pages-default-styles {
       max-width: 300px;
       padding: 5px;
       text-align: center;
-      background-color: $bgButtons;
+      background-color: $bgOthers2;
       border-radius: 15px;
       color: $bgApp;
+
+      &:hover {
+        cursor: pointer;
+        transition: all ease 0.5s;
+        background-color: $bgOthers2Hover;
+        color: $colorText;
+      }
     }
   }
 
@@ -141,7 +170,7 @@ div.container-pages-default-styles {
           top: 0;
           left: 0;
           
-          background-color: rgba(0, 0, 0, 0.764);
+          background-color: rgba(80, 80, 80, 0.764);
           transition: all ease .5s;
       }
 
@@ -150,7 +179,7 @@ div.container-pages-default-styles {
         max-width: 150px;
         padding: 5px 10px;
         text-align: center;
-        background-color: $bgButtons;
+        background-color: $bgOthers2;
         border-radius: 15px;
         flex-shrink: 0;
         border: none;
@@ -161,6 +190,13 @@ div.container-pages-default-styles {
           width: 100%;
           height: 0;
           transition: all ease .5s;
+        }
+
+        &:hover {
+          cursor: pointer;
+          transition: all ease 0.5s;
+          background-color: $bgOthers2Hover;
+          color: $colorText;
         }
       }
   }
@@ -182,7 +218,7 @@ div.container-pages-default-styles {
       flex-direction: column-reverse;
       justify-content: space-around;
       align-items: center;
-      gap: 3px;
+      gap: 10px;
       padding: 30px;
       background-color: $bgOthers2;
       border-radius: 15px;
@@ -192,6 +228,19 @@ div.container-pages-default-styles {
         position: absolute;
         top: 10px;
         right: 10px;
+        padding: 5px;
+        border: none;
+        outline: none;
+        background-color: $colorText;
+        color: $bgNavFooter;
+        border-radius: 50%;
+
+        &:hover {
+          cursor: pointer;
+          transition: all ease 0.5s;
+          background-color: $bgNavFooter;
+          color: $colorText;
+        }
       }
       
 
@@ -234,6 +283,13 @@ div.container-pages-default-styles {
         border-radius: 15px;
         flex-shrink: 0;
         color: $bgApp;
+
+        &:hover {
+          cursor: pointer;
+          transition: all ease 0.5s;
+          background-color: $colorText;
+          color: $bgButtons;
+        }
       }
 
 
@@ -282,6 +338,13 @@ div.container-pages-default-styles {
             border: none;
             outline: none;
             color: $bgApp;
+
+            &:hover {
+              cursor: pointer;
+              transition: all ease 0.5s;
+              background-color: $bgApp;
+              color: $bgButtons;
+            }
           }
 
           > h4 {
@@ -414,6 +477,13 @@ div.container-pages-default-styles {
               border: none;
               outline: none;
               color: $bgApp;
+
+              &:hover {
+                cursor: pointer;
+                transition: all ease 0.5s;
+                background-color: $bgApp;
+                color: $colorText;
+              }
             }
 
             > h4 {
@@ -474,6 +544,7 @@ div.container-pages-default-styles {
     display: grid;
     place-items: center;
     width: 100%;
+
   }
 }
 
@@ -494,6 +565,13 @@ div.container-pages-default-styles {
 }
 
 @media screen and (max-width: 576px) {
+  body {
+    > div#root {
+      div.container-all {
+        padding: 60px 0;
+      }
+    }
+  }
   div.container-pages-default-styles {
     height: calc(100vh - 120px);
   }

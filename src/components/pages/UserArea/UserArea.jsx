@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import InfoTicketArea from "../../layout/InfoTicketArea/InfoTicketArea";
 import Profile from "../../pages/Profile/Profile";
 import './_userArea.scss';
@@ -9,10 +10,9 @@ import { getOneUserReq } from '../../../api/axios/auth';
 import MyAreaMobile from './NavMobile/MyAreaMobile';
 
 const UserArea = () => {
-  const { authState, setAuthState } = useAuth();
-
+  const { authState, setAuthState, patchUser } = useAuth();
   const [designs, setDesigns] = useState([]);
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,12 +71,28 @@ const UserArea = () => {
     };
   }, []);
 
+  const handlePremiumToggle = async () => {
+    if (authState.user.isPremium) {
+      try {
+        await patchUser(authState.user._id, { isPremium: false });
+        alert("Tu suscripción premium ha sido cancelada.");
+      } catch (error) {
+        console.error("Error al cancelar la suscripción premium:", error);
+      }
+    } else {
+      navigate("/payments");
+    }
+  };
+
   return (
   <>
     {windowWidth > 1023 ? (
       <section className='my-area'>
         <aside className='container-aside-mydesigns'>
           <Profile />
+          <button onClick={handlePremiumToggle} className="premium-toggle-btn">
+          {authState.user.isPremium ? "Cancelar Premium" : "Hazte Premium"}
+          </button>
           <InfoTicketArea />
         </aside>
         {!hasDesigns ? (

@@ -176,7 +176,7 @@ const DivComponent = ({ isLogged }) => {
           </label>
 
           <label htmlFor="fontSize">
-            <p>Font size</p>
+            <p>Fontsize</p>
             <div>
               <input
                 type="number"

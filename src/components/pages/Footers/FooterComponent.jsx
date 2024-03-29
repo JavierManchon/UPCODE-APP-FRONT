@@ -194,17 +194,18 @@ const FooterComponent = ({ isLogged }) => {
       <div className="styles-editor">
         <div className="container-label">
         <label htmlFor="bgColor">
-          <p>Color de Fondo</p>
+          <p>Color bg</p>
           <input type="color" id="bgColor" onChange={handleBgColor} />
         </label>
 
         <label htmlFor="fontColor">
-          <p>Color de Letra</p>
+          <p>Color {"<li>"}</p>
           <input type="color" id="fontColor" onChange={handleFontColor} />
         </label>
 
         <label htmlFor="fontSize">
-          <p>Tamaño de Letra</p>
+          <p>Fontsize</p>
+          <div>
           <input
             type="number"
             id="fontSize"
@@ -212,6 +213,8 @@ const FooterComponent = ({ isLogged }) => {
             max={20}
             onChange={handleFontSize}
           />
+          <span>px</span>
+          </div>
         </label>
 
         <label htmlFor="fontWeight">
@@ -253,7 +256,7 @@ const FooterComponent = ({ isLogged }) => {
 
       <div className="container-containers">
         <div className="container-editor">
-          <button onClick={handleATag} className="btn-href">Añadir {'<a>'}</button>
+          <button onClick={handleATag} className="btn-href">{'<a>'}</button>
           <div>
           <p>
             {"<"}

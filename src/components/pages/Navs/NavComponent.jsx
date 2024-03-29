@@ -253,7 +253,7 @@ const FooterComponent = ({ isLogged }) => {
 
       <div className="container-containers">
         <div className="container-editor">
-          <button className="btn-href" onClick={handleATag}>Añadir {'<a>'}</button>
+          <button className="btn-href" onClick={handleATag}>{'<a>'}</button>
           <div>
           <p>
             {"<"}

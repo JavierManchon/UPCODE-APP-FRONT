@@ -50,7 +50,6 @@ section.profile-container {
 
     > span.edit-span {
         width: 100%;
-        height: 30px;
         
         display: grid;
         place-items: center;
@@ -59,10 +58,18 @@ section.profile-container {
         top: 60px;
         left: 50%;
         transform: translateX(-50%);
+        padding: 5px 10px;
 
-        background-color: $colorBorders;
-        color: white;
-        border-radius: 10px;
+        background-color: $bgOthers2;
+        color: $bgApp;
+        border-radius: 15px;
+
+        &:hover {
+            cursor: pointer;
+            transition: all ease .5s;
+            background-color: $bgOthers2Hover;
+            color: $bgNavFooter;
+        }
     }
 
     > div.edit-profile-form {
@@ -147,6 +154,7 @@ section.profile-container {
 
 section.profile-container-myarea {
     width: 80%;
+    max-width: 400px;
     height: 200px;
     display: flex;
     flex-direction: column;
@@ -193,16 +201,19 @@ section.profile-container-myarea {
 
         > h3.profile-id-username {
             font-size: 25px;
+            color: $bgApp;
         }
 
-        > h4.profile-id-email {
+        > h4.profile-id-email,
+        > h4.profile-id-name,
+        > h4.profile-id-surname {
             font-size: 14px;
+            color: $bgApp;
         }
     }
 
     > span.edit-span {
         width: 100%;
-        height: 30px;
         
         display: grid;
         place-items: center;
@@ -211,11 +222,19 @@ section.profile-container-myarea {
         top: 5px;
         left: 50%;
         transform: translateX(-50%);
+        padding: 5px 10px;
 
         background-color: $bgOthers2;
         color: $colorText;
-        border-radius: 10px;
+        border-radius: 15px;
         cursor: pointer;
+
+        &:hover {
+            cursor: pointer;
+            transition: all ease .5s;
+            background-color: $bgOthers2Hover;
+            color: $bgNavFooter;
+        }
     }
 
     > div.edit-profile-form {
@@ -332,5 +351,24 @@ section.profile-container-myarea {
             height: 180px;
             margin-top: 50px;
         }
+    }
+}
+
+@media (max-width: 1024px) {
+    section.profile-container-myarea {
+        div.profile-info {
+            > h3.profile-id-username,
+            > h4.profile-id-email,
+            > h4.profile-id-name,
+            > h4.profile-id-surname {
+                color: $bgNavFooter;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    section.profile-container-myarea {
+       padding-top: 20px;
     }
 }

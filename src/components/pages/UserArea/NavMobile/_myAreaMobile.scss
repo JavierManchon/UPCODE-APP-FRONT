@@ -1,14 +1,21 @@
 @import '../../../../css/variables';
 
-a.premium-link {
-    width: 350px;
-
+button.premium-toggle-btn {
     background-color: $bgButtonsSpecial;
     text-decoration: none;
+    border: none;
+    outline: none;
     border-radius: 15px;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px 10px;
     color: $colorText;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $bgButtonsSpecialHover;
+        color: $bgNavFooter;
+    }
 }
 nav.nav-my-area {
     width: 100%;
@@ -18,7 +25,7 @@ nav.nav-my-area {
     background-color: $bgOthers;
     height: 50px;
 
-    box-shadow: 10px 0 20px 0 $bgOthers;
+    box-shadow: 10px 0 20px 0 $colorEffects;
 
     > ul {
         width: 90%;
@@ -29,14 +36,37 @@ nav.nav-my-area {
 
         > li {
             color: $colorText;
+            cursor: pointer;
 
+            &::before {
+                content: "";
+
+                width: 0px;
+                height: 1px;
+
+                background-color: #fff;
+
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+
+            &:hover {
+                transition: all ease .5s;
+                transform: scale(1);
+                
+                &::before {
+                    transition: all ease .5s;
+                    width: 100%;
+                }
+            }
         }
     }
 }
 
 div.container-designs-my-area-mobile {
     width: 80%;
-
+    max-width: 450px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -165,8 +195,7 @@ div.container-designs-my-area-mobile {
     
             &:hover {
                 transition: all ease 0.5s;
-                background-color: white;
-                color: $bgButtons;
+                background-color: $bgButtonsDeleteHover;
             }
         }
     }

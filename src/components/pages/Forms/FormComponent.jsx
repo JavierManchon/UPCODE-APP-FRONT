@@ -251,12 +251,12 @@ const FormComponent = ({ isLogged }) => {
       <div className="styles-editor">
         <div className="container-label">
           <label htmlFor="bgFormColor">
-            <p>Color de Fondo Form</p>
+            <p>Color bg</p>
             <input type="color" id="bgFormColor" onChange={handleBgFormColor} />
           </label>
 
           <label htmlFor="labelFontColor">
-            <p>Color de Letra del Label</p>
+            <p>Color {'<label>'}</p>
             <input
               type="color"
               id="labelFontColor"
@@ -265,7 +265,8 @@ const FormComponent = ({ isLogged }) => {
           </label>
 
           <label htmlFor="labelFontSize">
-            <p>Tamaño de Letra del Label</p>
+            <p>Fontsize {'<label>'}</p>
+            <div>
             <input
               type="number"
               id="labelFontSize"
@@ -273,10 +274,12 @@ const FormComponent = ({ isLogged }) => {
               max={20}
               onChange={handleLabelFontSize}
             />
+            <span>px</span>
+            </div>
           </label>
 
           <label htmlFor="labelFontWeight">
-            <p>Negrita del Label</p>
+            <p>Negrita {'<label>'}</p>
             <div>
               <input
                 type="checkbox"
@@ -293,7 +296,7 @@ const FormComponent = ({ isLogged }) => {
           </label>
 
           <label htmlFor="textDecoration">
-            <p>Subrayado del Label</p>
+            <p>Subrayado {'<label>'}</p>
             <div>
               <input
                 type="checkbox"
@@ -310,7 +313,7 @@ const FormComponent = ({ isLogged }) => {
           </label>
 
           <label htmlFor="bgButtonColor">
-            <p>Color de Fondo Button</p>
+            <p>Color bg {'<button>'}</p>
             <input
               type="color"
               id="bgButtonColor"
@@ -319,7 +322,7 @@ const FormComponent = ({ isLogged }) => {
           </label>
 
           <label htmlFor="buttonFontColor">
-            <p>Color de Letra del Button</p>
+            <p>Color {'<button>'}</p>
             <input
               type="color"
               id="buttonFontColor"
@@ -328,7 +331,8 @@ const FormComponent = ({ isLogged }) => {
           </label>
 
           <label htmlFor="buttonFontSize">
-            <p>Tamaño de Letra del Button</p>
+            <p>Fontsize {'<button>'}</p>
+            <div>
             <input
               type="number"
               id="buttonFontSize"
@@ -336,10 +340,12 @@ const FormComponent = ({ isLogged }) => {
               max={20}
               onChange={handleButtonFontSize}
             />
+            <span>px</span>
+            </div>
           </label>
 
           <label htmlFor="buttonFontWeight">
-            <p>Negrita del Button</p>
+            <p>Negrita {'<button>'}</p>
             <div>
               <input
                 type="checkbox"
@@ -356,12 +362,15 @@ const FormComponent = ({ isLogged }) => {
           </label>
 
           <label htmlFor="buttonBorderRadius">
-            <p>Border Radius del Button</p>
+            <p>BorderRadius {'<button>'}</p>
+            <div>
             <input
               type="number"
               id="buttonBorderRadius"
               onChange={handleButtonBorderRadius}
             />
+            <span>px</span>
+            </div>
           </label>
         </div>
         <span onClick={handleCss}>Mostrar código</span>
