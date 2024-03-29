@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./_formComponent.scss";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
 import { useAuth } from "../../context/AuthContext";
 import _ from "lodash";
@@ -666,12 +666,16 @@ const FormComponent = ({ isLogged }) => {
 
       <button ref={visualButtonRef} className={`no-visual ${!showVisual ? 'btn-visual' : ''}`} onClick={handleVisual}>Mostrar visualizado</button>
 
-      {isLogged && previousRoute === "/catalogue" ? (
+      {isLogged && authState.user.isPremium && previousRoute === "/catalogue" ? (
         <ButtonSaveDesigns
           designToSave={designToSave}
           setDesignToSave={setDesignToSave}
         />
       ) : null}
+      {isLogged && (!authState.user.isPremium) && previousRoute === "/catalogue" ? (
+          <Link className="premiumsavedesign" to='/payments'>Hazte Premium</Link>
+      ) : null}
+
     </div>
   );
 };
