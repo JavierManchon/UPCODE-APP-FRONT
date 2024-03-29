@@ -251,10 +251,9 @@ const FooterComponent = ({ isLogged }) => {
         <span onClick={handleCss}>Mostrar código</span>
       </div>
 
-      <button onClick={handleATag}>Añadir enlace a {"li"}</button>
-
       <div className="container-containers">
         <div className="container-editor">
+          <button onClick={handleATag}>Añadir enlace a {"li"}</button>
           <div>
           <p>
             {"<"}

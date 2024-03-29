@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './_buttonSaveDesigns.scss';
 import { useAuth } from '../../context/AuthContext';
 import { createDesign, patchDesignReq } from '../../../api/axios/designs';
@@ -10,6 +10,7 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
     const [designName, setDesignName] = useState('');
     const [innerHeight, setInnerHeight] = useState(window.innerHeight);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const overlayRef = useRef(null);
 
     const handleResize = () => {
         setInnerHeight(window.innerHeight);
@@ -51,12 +52,25 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
         }
     }
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (overlayRef.current && !overlayRef.current.contains(event.target)) {
+                setShowForm(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className="button-save-designs-container">
             <button type='button' onClick={postDesign}>Guardar Diseño</button>
             {showForm && (
                 <div className="centered-overlay" style={{ height: innerHeight, width: windowWidth }}>
-                    <div className="overlay-content">
+                    <div className="overlay-content" ref={overlayRef}>
                         <h2>Ponle un nombre a tu diseño</h2>
                         <input
                             type="text"

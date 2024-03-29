@@ -45,130 +45,140 @@ div.container-designs-my-area-mobile {
 
     padding: 0 20px;
 
-    > a.template {
+    > div.container-link {
         width: 100%;
         height: 100px;
         position: relative;
 
-        border-radius: 15px;
-        padding: 20px;
-        overflow: hidden;
-        text-decoration: none;
-        
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 20px;
-
-        &.section {
-            border: 1px solid $colorSection;
-            &:hover {
-                transition: all ease 0.5s;
-                box-shadow: 3px 3px 10px 0 $colorSection;
-            }
-            > div.line-top {
-                background-color: $colorSection;         
-            }
-        }
-        &.button {
-            border: 1px solid $colorButton;
-            &:hover {
-                transition: all ease 0.5s;
-                box-shadow: 3px 3px 5px 0 $colorButton;
-            }
-            > div.line-top {
-                background-color: $colorButton;  
-            }
-        }
-        &.nav {
-            border: 1px solid $colorNav;
-            &:hover {
-                transition: all ease 0.5s;
-                box-shadow: 3px 3px 5px 0 $colorNav;
-            }
-            > div.line-top {
-                background-color: $colorNav;             
-            }
-        }
-        &.footer {
-            border: 1px solid $colorFooter;
-            &:hover {
-                transition: all ease 0.5s;
-                box-shadow: 3px 3px 5px 0 $colorFooter;
-            }
-            > div.line-top {
-                background-color: $colorFooter;               
-            }
-        }
-        &.form {
-            border: 1px solid $colorForm;
-            &:hover {
-                transition: all ease 0.5s;
-                box-shadow: 3px 3px 5px 0 $colorForm;
-            }
-            > div.line-top {
-                background-color: $colorForm;             
-            }
-        }
-        &.figure {
-            border: 1px solid $colorFigure;
-            &:hover {
-                transition: all ease 0.5s;
-                box-shadow: 3px 3px 5px 0 $colorFigure;
-            }
-            > div.line-top {
-                background-color: $colorFigure;                
-            }
-        }
-        &.div {
-            border: 1px solid $colorDiv;
-            &:hover {
-                transition: all ease 0.5s;
-                box-shadow: 3px 3px 5px 0 $colorDiv;
-            }
-            > div.line-top {
-                background-color: $colorDiv;               
-            }
-        }
-
-        > div.line-top {
+        > a.template {
             width: 100%;
-            height: 10px;
-
-            position: absolute;
-            top: 0;
-            left: 0;
+            height: 100px;
+            position: relative;
+    
+            border-radius: 15px;
+            padding: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            
+    
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+    
+            &.section {
+                border: 1px solid $colorSection;
+                &:hover {
+                    transition: all ease 0.5s;
+                    box-shadow: 3px 3px 10px 0 $colorSection;
+                }
+                > div.line-top {
+                    background-color: $colorSection;         
+                }
+            }
+            &.button {
+                border: 1px solid $colorButton;
+                &:hover {
+                    transition: all ease 0.5s;
+                    box-shadow: 3px 3px 5px 0 $colorButton;
+                }
+                > div.line-top {
+                    background-color: $colorButton;  
+                }
+            }
+            &.nav {
+                border: 1px solid $colorNav;
+                &:hover {
+                    transition: all ease 0.5s;
+                    box-shadow: 3px 3px 5px 0 $colorNav;
+                }
+                > div.line-top {
+                    background-color: $colorNav;             
+                }
+            }
+            &.footer {
+                border: 1px solid $colorFooter;
+                &:hover {
+                    transition: all ease 0.5s;
+                    box-shadow: 3px 3px 5px 0 $colorFooter;
+                }
+                > div.line-top {
+                    background-color: $colorFooter;               
+                }
+            }
+            &.form {
+                border: 1px solid $colorForm;
+                &:hover {
+                    transition: all ease 0.5s;
+                    box-shadow: 3px 3px 5px 0 $colorForm;
+                }
+                > div.line-top {
+                    background-color: $colorForm;             
+                }
+            }
+            &.figure {
+                border: 1px solid $colorFigure;
+                &:hover {
+                    transition: all ease 0.5s;
+                    box-shadow: 3px 3px 5px 0 $colorFigure;
+                }
+                > div.line-top {
+                    background-color: $colorFigure;                
+                }
+            }
+            &.div {
+                border: 1px solid $colorDiv;
+                &:hover {
+                    transition: all ease 0.5s;
+                    box-shadow: 3px 3px 5px 0 $colorDiv;
+                }
+                > div.line-top {
+                    background-color: $colorDiv;               
+                }
+            }
+    
+            > div.line-top {
+                width: 100%;
+                height: 10px;
+    
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+    
+            > h4, > p {
+                font-weight: bold;
+                text-decoration: none;
+                color: $bgNavFooter;
+            }
         }
 
         > button {
             width: 70px;
             height: 20px;
-
+    
             border: none;
             outline: none;
             background-color: $bgButtons;
             border-radius: 15px;
             color: $colorText;
-
+    
             position: absolute;
             top: 50%;
             right: 20px;
             transform: translateY(-50%);
             cursor: pointer;
-
+    
             &:hover {
                 transition: all ease 0.5s;
                 background-color: white;
                 color: $bgButtons;
             }
         }
-
-        > h4, > p {
-            font-weight: bold;
-            text-decoration: none;
-            color: $bgNavFooter;
-        }
     }
+
+    
+
+    
 }

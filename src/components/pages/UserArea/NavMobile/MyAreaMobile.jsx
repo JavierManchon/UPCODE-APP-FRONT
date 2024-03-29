@@ -80,12 +80,16 @@ const NavMobile = () => {
           <div className='container-designs-my-area-mobile'>
             {designs.map((template, index) => (
             template.template === false ?
-            <Link key={index} to={`/catalogue/template-${template.elementType}s/${template._id}`} state={{ templateData: template }} className={`template ${template.elementType}`}>
-                <div className='line-top'></div>
-                <h4>{template.nameDesign}</h4>
-                <p>{'<'}{template.elementType}{'>'}</p>
-                <button onClick={() => handleDeleteDesign(template._id)}>Eliminar</button>
-            </Link>
+            <>
+            <div className='container-link'>
+              <Link key={index} to={`/catalogue/template-${template.elementType}s/${template._id}`} state={{ templateData:  template }} className={`template ${template.elementType}`}>
+                  <div className='line-top'></div>
+                  <h4>{template.nameDesign}</h4>
+                  <p>{'<'}{template.elementType}{'>'}</p>  
+              </Link>
+              <button onClick={() => handleDeleteDesign(template._id)}>Eliminar</button>
+            </div>
+            </>
             : null
             ))}
           </div>
