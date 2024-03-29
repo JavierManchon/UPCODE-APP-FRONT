@@ -5,6 +5,9 @@
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
+  font-family: 'Robot', sans-serif;
+  color: $bgNavFooter;
+  font-size: $sizeText;
 }
 
 //estilos de la pagina
@@ -15,7 +18,6 @@ body {
 
   > div#root {
     height: 100vh;
-    background-color: #fafbe9;
 
     div.container-all {
       position: relative;
@@ -33,7 +35,7 @@ div.container-pages-default-styles {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 20px;
 
   overflow-y: scroll;
 
@@ -47,12 +49,12 @@ div.container-pages-default-styles {
   > div.styles-editor {
     width: 90%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     gap: 20px;
     padding: 20px;
-    background-color: $bgNavFooter;
+    background-color: $bgOthers2;
     border-radius: 15px;
 
     > div.container-label {
@@ -114,26 +116,54 @@ div.container-pages-default-styles {
       text-align: center;
       background-color: $bgButtons;
       border-radius: 15px;
+      color: $bgApp;
     }
   }
 
   > button.no-visual {
-    transform: scale(0);
-    margin-bottom: -100px;
-    &.btn-visual {
       width: 100%;
-      max-width: 300px;
+      max-width: 150px;
       padding: 5px 10px;
       text-align: center;
       background-color: $bgButtons;
       border-radius: 15px;
       flex-shrink: 0;
       border: none;
-      transform: scale(1);
-      margin-bottom: 0px;
-    }
+      color: $bgApp;
+      position: relative;
+
+      &::after {
+        content: '';
+          width: 100%;
+          height: 100%;
+          
+          position: absolute;
+          top: 0;
+          left: 0;
+          
+          background-color: rgba(0, 0, 0, 0.764);
+          transition: all ease .5s;
+      }
+
+      &.btn-visual {
+        width: 100%;
+        max-width: 150px;
+        padding: 5px 10px;
+        text-align: center;
+        background-color: $bgButtons;
+        border-radius: 15px;
+        flex-shrink: 0;
+        border: none;
+        color: $bgApp;
+
+        &::after {
+          content: '';
+          width: 100%;
+          height: 0;
+          transition: all ease .5s;
+        }
+      }
   }
-  
 
   > div.container-containers {
     width: 90%;
@@ -149,17 +179,30 @@ div.container-pages-default-styles {
       max-width: calc(50% - 20px);
       height: 300px;
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       justify-content: space-around;
       align-items: center;
       gap: 3px;
       padding: 30px;
-      background-color: $bgNavFooter;
+      background-color: $bgOthers2;
       border-radius: 15px;
+      position: relative;
+
+      > button.btn-href {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+      
 
       > div {
+        padding: 20px;
+        background-color: rgb(19, 19, 19);
+        border-radius: 15px;
         p {
           font-weight: bold;
+          color: $colorText;
+          font-family: 'Source Code Pro', sans-serif;
 
           &.padding-left-10 {
             padding-left: $paddingLeft10;
@@ -172,7 +215,9 @@ div.container-pages-default-styles {
           > input {
             border: none;
             outline: none;
-            padding: 3px;
+            padding: 3px 3px 1px;
+            background-color: transparent;
+            border-bottom: 1px solid $colorText;
             &.input-img {
               margin-left: 9px;
             }
@@ -188,7 +233,10 @@ div.container-pages-default-styles {
         background-color: $bgButtons;
         border-radius: 15px;
         flex-shrink: 0;
+        color: $bgApp;
       }
+
+
     }
 
     > div.container-render {
@@ -215,7 +263,7 @@ div.container-pages-default-styles {
         left: 0;
         z-index: 3;
 
-        background-color: $bgNavFooter;
+        background-color: $bgOthers2;
         opacity: 0;
         transform: scale(0);
 
@@ -233,20 +281,31 @@ div.container-pages-default-styles {
             border-radius: 15px;
             border: none;
             outline: none;
+            color: $bgApp;
+          }
+
+          > h4 {
+            color: $bgApp;
           }
         }
 
         > div.html {
+          width: 80%;
+          padding: 20px;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           gap: 3px;
-          padding-left: 10px;
-          padding-top: 20px;
-
+          background-color: $bgFalse;
+          border-radius: 15px;
+          
           > span {
+            width: 100%;
+            text-overflow: ellipsis;
             font-weight: bold;
             padding-left: $paddingLeft10;
+            color: $colorText;
+            font-family: 'Source Code Pro';
 
             &:first-child,
             &:last-child {
@@ -313,7 +372,7 @@ div.container-pages-default-styles {
         transform: scale(0);
 
         border: none;
-        background-color: $bgNavFooter;
+        background-color: $bgOthers2;
         padding: 20px;
 
         &.show {
@@ -354,6 +413,11 @@ div.container-pages-default-styles {
               border-radius: 15px;
               border: none;
               outline: none;
+              color: $bgApp;
+            }
+
+            > h4 {
+              color: $colorText;
             }
           }
 
@@ -361,9 +425,14 @@ div.container-pages-default-styles {
             width: 100%;
             display: flex;
             flex-direction: column;
+            background-color: $bgFalse;
+            padding: 20px;
+            border-radius: 15px;
 
             > span {
               padding-left: 50px;
+              color: $colorText;
+              font-family: 'Source Code Pro';
 
               &:first-child,
               &:last-child {
@@ -400,6 +469,12 @@ div.container-pages-default-styles {
       }
     }
   }
+
+  > div.button-save-designs-container {
+    display: grid;
+    place-items: center;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -418,9 +493,8 @@ div.container-pages-default-styles {
   }
 }
 
-@media screen and (min-height: 801px) {
+@media screen and (max-width: 576px) {
   div.container-pages-default-styles {
-    // height: auto;
-    
+    height: calc(100vh - 120px);
   }
 }

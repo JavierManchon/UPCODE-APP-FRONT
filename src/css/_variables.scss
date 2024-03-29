@@ -1,34 +1,43 @@
 /*colores segun etiquetas*/
 
+$sizeText: 14px;
+$sizeTitles: 16px;
+
 $paddingLeft10: 10px;
 
 $paddingLeft20: 20px;
 
-$colorNav: rgba(255, 199, 199);
+$colorNav: rgba(255, 199, 199, 0.5);
 
-$colorDiv: rgb(254, 226, 159);
+$colorDiv: rgb(254, 226, 159, 0.5);
 
-$colorFooter: rgb(172, 255, 151);
+$colorFooter: rgb(172, 255, 151, 0.5);
 
-$colorForm: rgb(135, 255, 255);
+$colorForm: rgb(135, 255, 255, 0.5);
 
-$colorSection: rgb(141, 135, 255);
+$colorSection: rgb(141, 135, 255, 0.5);
 
-$colorFigure: rgb(253, 135, 255);
+$colorFigure: rgba(253, 135, 255, 0.5);
 
-$colorButton: rgb(255, 135, 135);
+$colorButton: rgb(255, 135, 135, 0.5);
 
-$bgNavFooter: #05668D;
+$bgNavFooter: #3b4446;
+$bgFalse: rgb(19,19, 19);
 
-$bgOthers: #028090;
+$bgOthers: #525e61;
+$bgOthers2: #166a8f;
 
-$colorBorders: #00A896;
+$colorEffects: #7b868a;
 
-$bgButtons: #02C39A;
+$colorBorders: #777;
 
-$colorText: #F0F3BD;
+$bgButtonsSpecial: #2dbe60;
+$bgButtonsDelete: #893f3f;
+$bgButtons: #2facb2;
 
-$bgApp: #fafbe9;
+$colorText: #d7dcdd;
+
+$bgApp: #eff2f3;
 
 
 

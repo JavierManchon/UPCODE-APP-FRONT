@@ -60,7 +60,7 @@ section.profile-container {
         left: 50%;
         transform: translateX(-50%);
 
-        background-color: black;
+        background-color: $colorBorders;
         color: white;
         border-radius: 10px;
     }
@@ -212,7 +212,7 @@ section.profile-container-myarea {
         left: 50%;
         transform: translateX(-50%);
 
-        background-color: $colorBorders;
+        background-color: $bgOthers2;
         color: $colorText;
         border-radius: 10px;
         cursor: pointer;
@@ -226,7 +226,7 @@ section.profile-container-myarea {
         top: -150px;
         left: 0;
         z-index: 2;
-        background-color: rgba(0, 0, 0, 0.94);
+        background-color: $bgOthers2;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -267,7 +267,7 @@ section.profile-container-myarea {
                     height: 20px;
                     border: none;
                     outline: none;
-                    background-color: black;
+                    background-color: transparent;
                     color: white;
                     border-bottom: 1px solid white;
                 }

@@ -321,7 +321,6 @@ const FigureComponent = ({ isLogged }) => {
             </div>
             <div id="html" className="html">
               <span>{`<${template.elementType}>`}</span>
-              <br></br>
               <span>
                 {`<${template.defaultContent.children[0]} src="` +
                   imgUrl +
@@ -332,7 +331,6 @@ const FigureComponent = ({ isLogged }) => {
                   figcaption +
                   `</${template.defaultContent.children[1]}>`}
               </span>
-              <br></br>
               <span>{`</${template.elementType}>`}</span>
             </div>
           </div>

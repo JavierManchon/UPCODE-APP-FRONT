@@ -1,17 +1,33 @@
+@import '../../../css/variables';
+
+button.btn-save {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 150px;
+  padding: 5px 10px;
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: $bgButtonsSpecial;
+  color: $bgApp;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    filter: invert(1);
+  }
+}
+
 .centered-overlay {
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
     background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
-    
 
-    
     .overlay-content {
       background-color: white;
       padding: 20px;
@@ -48,4 +64,6 @@
       }
     }
   }
+
+  
   

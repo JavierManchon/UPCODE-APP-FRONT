@@ -67,9 +67,9 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
 
     return (
         <div className="button-save-designs-container">
-            <button type='button' onClick={postDesign}>Guardar Diseño</button>
+            <button type='button' onClick={postDesign} className='btn-save'>Guardar diseño</button>
             {showForm && (
-                <div className="centered-overlay" style={{ height: innerHeight, width: windowWidth }}>
+                <div className="centered-overlay" style={{ height: windowWidth > 576 ? innerHeight - 160 : innerHeight - 120, width: windowWidth }}>
                     <div className="overlay-content" ref={overlayRef}>
                         <h2>Ponle un nombre a tu diseño</h2>
                         <input
