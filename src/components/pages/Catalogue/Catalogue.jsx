@@ -91,7 +91,7 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
                         </div>
                 </section>
             ))}
-            {isLogged ? <AsideTickets setIsLogged={setIsLogged}/> : null};
+            {isLogged ? <AsideTickets setIsLogged={setIsLogged}/> : null}
         </main>
     );
 };
