@@ -92,27 +92,32 @@ const NavMobile = () => {
         </ul>
       </nav>
       {showTickets ? <InfoTicketArea/> : null}
-      {showDesigns 
-      ? (
-          <div className='container-designs-my-area-mobile'>
-            {designs.slice().reverse().map((template, index) => (
-            template.template === false ?
+      {showDesigns && (
+        <div className='container-designs-my-area-mobile'>
+          {designs.length > 0 ? (
+            designs.slice().reverse().map((template, index) => (
+              //se quita el componente button porque da fallo de seguridad
+              template.template === false && template.elementType !== 'button' ? (
+                <div className='container-link' key={index}>
+                  <Link to={`/catalogue/template-${template.elementType}s/${template._id}`} state={{ templateData: template }} className={`template ${template.elementType}`}>
+                    <div className='line-top'></div>
+                    <h4>{template.nameDesign}</h4>
+                    <p>{'<'}{template.elementType}{'>'}</p>  
+                  </Link>
+                  <button onClick={() => handleDeleteDesign(template._id)}>Eliminar</button>
+                </div>
+              ) : null
+            ))
+          ) : (
             <>
-            <div className='container-link'>
-              <Link key={index} to={`/catalogue/template-${template.elementType}s/${template._id}`} state={{ templateData:  template }} className={`template ${template.elementType}`}>
-                  <div className='line-top'></div>
-                  <h4>{template.nameDesign}</h4>
-                  <p>{'<'}{template.elementType}{'>'}</p>  
-              </Link>
-              <button onClick={() => handleDeleteDesign(template._id)}>Eliminar</button>
-            </div>
+              <h2 className='h2-designs-area'>¡UPS!</h2>
+              <h3 className='h3-designs-area'>Todavía no tienes diseños guardados</h3>
+              <p className='p-designs-area'>Crea tu primer diseño aquí:</p>
+              <Link to="/catalogue" className="btn-catalogo">Ir al Catálogo</Link>
             </>
-            : null
-            ))}
-          </div>
-        )
-      : null
-      }
+          )}
+        </div>
+      )}
     </>
   )
 }

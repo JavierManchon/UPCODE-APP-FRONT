@@ -76,10 +76,12 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
             <h2>Catálogo de Diseños</h2>
             {Object.entries(groupedTemplates).map(([elementType, templates]) => (
                 <section key={elementType} className={`container-packs ${elementType}`}>
-                    <h3>{`Packs de ${capitalizeFirstLetter(elementType)}`}</h3>
+                    {/* se quita el componente button porque da fallo de seguridad */}
+                    {elementType !== 'button' && <h3>{`Packs de ${capitalizeFirstLetter(elementType)}`}</h3>}
                         <div className='packs'>
                             {templates.map((template, index) => (
-                                template.template 
+                                //se quita el componente button porque da fallo de seguridad
+                                template.template && template.elementType !== 'button'
                                 ? (
                                     <Link key={index} className={`pack ${elementType}`} to={`/catalogue/template-${elementType}s/${template._id}`} state={{ templateData: templateToDesign(template), url: previousRoute }}>
                                         <h4>{template.nameDesign}</h4>
