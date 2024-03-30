@@ -30,6 +30,7 @@ import TicketsManagement from "./pages/Admins/TicketsManagement/TicketsManagemen
 import { useAuth } from "./context/AuthContext";
 import AdminMiddleware from "./middlewares/AdminMiddleware";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
+import NotFoundPage from "./pages/NotFound/NotFoundPage";
 
 function App() {
   const { isAdmin, isLogged } = useAuth();
@@ -75,6 +76,7 @@ function App() {
         />
         <Route path="/login" element={<LoginForm setIsLogged={setLogged} />} />
 
+        <Route path="*" element={<NotFoundPage />} />
         <Route
           path="/admins"
           element={

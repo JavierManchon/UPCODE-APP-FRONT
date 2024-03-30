@@ -7,7 +7,7 @@
   flex-direction: wrap;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(34, 152, 170);
+  background-color:$bgApp;
   padding: 40px;
 
  
@@ -18,12 +18,13 @@
     width: 40%;
     height: 80%;
     max-width: 700px;
-    background-color: rgb(0, 0, 0);
+    background-color:$bgOthers2;
     border: 1px solid black;
     border-radius: 15px;
 
   
     > div.image-container {
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -31,10 +32,8 @@
       gap: 5px;
 
       > h2.username {
-        color: white;
         text-align: center;
-        font-size: 40px;
-        font-family:"Retro Gaming" ;
+        font-size: 30px;
         overflow: hidden;
         transition: color 0.5s ease, font-size 0.5s ease;
       }
@@ -42,7 +41,8 @@
       > img.AvatarImg {
         width: 300px;
         border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        height: 80%;
+        
         
      
       }
@@ -55,7 +55,7 @@
         flex-direction: column;
         gap: 20px;
         color: white;
-        font-family:"Retro Gaming" ;
+        
       
         > h3.title {
           font-size: 25px;
@@ -82,10 +82,20 @@
           padding: 0;
           margin: 0;
           text-align: center;
+          overflow: hidden;
         }
       }
 
   }
-
-
-}      
+  @media only screen and (max-width: 800px) {
+      flex-direction: column;
+      justify-content: space-between;
+    
+    > div.content1, div.content2{
+      width: 120%;
+      height: 120%;
+      margin-top: 20px;
+      
+}
+  }
+}
