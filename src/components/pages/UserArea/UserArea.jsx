@@ -90,7 +90,7 @@ const UserArea = () => {
           </div>
         ) : (
           <div className='container-mydesigns'>
-            {designs.map((design, index) => (
+            {designs.slice().reverse().map((design, index) => (
               design.template === false ? (
                 <div key={`my-design-${index}`} className={`design ${design.elementType}`}>
                   <Link key={index} to={`/catalogue/template-${design.elementType}s/${design._id}`} state={{ templateData: design }}>
@@ -155,7 +155,7 @@ const UserArea = () => {
                       )}
                       {design.elementType === "div" && (
                         <div className={design.defaultStyles[0]} style={{ backgroundColor: `${design.edit.bgColorDiv}` }}>
-                          {Array.from({ length: 1 }).map((_, index) => (
+                          {Array.from({ length: design.defaultContent.countChildren }).map((_, index) => (
                             <p className={design.defaultStyles[1]} key={index} style={{ color: `${design.edit.colorText}`, fontSize: `${design.edit.fontSizeText}`, fontWeight: `${design.edit.fontWeightText}` }}>{design.edit.textArray[index]}</p>
                           ))}
                         </div>
@@ -173,7 +173,7 @@ const UserArea = () => {
                               color: `${design.edit.colorText}`,
                               fontSize: `${design.edit.fontSizeText}`,
                               fontWeight: `${design.edit.fontWeightText}`,
-                              textDecoration: `${design.edit.textDecoration}`,
+                              textDecoration: `${design.edit.textDecorationText}`,
                             }}
                           >
                             {design.edit.text}

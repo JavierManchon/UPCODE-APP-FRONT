@@ -116,7 +116,7 @@ const FooterComponent = ({ isLogged }) => {
   };
 
   const handleFontWeight = (newValue) => {
-    updateTemplate("edit.fontWeigthText", newValue);
+    updateTemplate("edit.fontWeightText", newValue);
     setFontWeight(newValue);
   };
 
