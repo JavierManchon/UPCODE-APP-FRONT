@@ -168,7 +168,7 @@ section.profile-container {
 section.profile-container-myarea {
     width: 80%;
     max-width: 400px;
-    height: 250px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -215,6 +215,7 @@ section.profile-container-myarea {
         > h3.profile-id-username {
             font-size: 25px;
             color: $bgApp;
+            text-align: right;
         }
 
         > h4.profile-id-name,

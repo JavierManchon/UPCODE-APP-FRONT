@@ -6,6 +6,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { removeDesignReq } from '../../../../api/axios/designs';
 import { getOneUserReq } from '../../../../api/axios/auth';
+import Loading from '../../../utils/Loading/Loading';
 
 const NavMobile = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const NavMobile = () => {
   const [showDesigns, setShowDesigns] = useState(true);
   const { authState, setAuthState, patchUser } = useAuth();
   const [designs, setDesigns] = useState([]);
+  const [loading, setLoading] = useState(true); 
   console.log(!authState.user.designs ? authState.user.designs : null);
   const handleTickets = () => {
     setShowTickets(true);
@@ -30,7 +32,10 @@ const NavMobile = () => {
         try {
           const response = await getOneUserReq(authState.user._id);
           if (response && response.data) {
-            setDesigns(response.data.designs || []);
+            setTimeout(() => {
+              setDesigns(response.data.designs || []);
+              setLoading(false); 
+            }, 1500); 
           }
         } catch (error) {
           console.error("Error fetching designs:", error);
@@ -94,7 +99,18 @@ const NavMobile = () => {
       {showTickets ? <InfoTicketArea/> : null}
       {showDesigns && (
         <div className='container-designs-my-area-mobile'>
-          {designs.length > 0 ? (
+          {loading ? (
+            <div className='container-mydesigns loading'>
+              <Loading/>
+            </div>
+          ) : !designs.length > 0 ? (
+            <>
+              <h2 className='h2-designs-area'>¡UPS!</h2>
+              <h3 className='h3-designs-area'>Todavía no tienes diseños guardados</h3>
+              <p className='p-designs-area'>Crea tu primer diseño aquí:</p>
+              <Link to="/catalogue" className="btn-catalogo">Ir al Catálogo</Link>
+            </>
+          ) : (
             designs.slice().reverse().map((template, index) => (
               //se quita el componente button porque da fallo de seguridad
               template.template === false && template.elementType !== 'button' ? (
@@ -108,13 +124,6 @@ const NavMobile = () => {
                 </div>
               ) : null
             ))
-          ) : (
-            <>
-              <h2 className='h2-designs-area'>¡UPS!</h2>
-              <h3 className='h3-designs-area'>Todavía no tienes diseños guardados</h3>
-              <p className='p-designs-area'>Crea tu primer diseño aquí:</p>
-              <Link to="/catalogue" className="btn-catalogo">Ir al Catálogo</Link>
-            </>
           )}
         </div>
       )}

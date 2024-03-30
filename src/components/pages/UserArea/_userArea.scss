@@ -20,7 +20,7 @@ section.my-area {
 
     > button {
       margin-bottom: 30px;
-      padding: 5px 10px;
+      padding: 10px 10px;
       overflow: hidden;
       width: 216px;
       border-radius: 15px;
@@ -617,7 +617,7 @@ section.my-area-mobile {
       > div.profile-id-image-container {
         width: 70px;
         height: 70px;
-        top: 100px;
+        top: 80px;
       }
   
       > div.profile-info {
@@ -630,7 +630,7 @@ section.my-area-mobile {
           font-size: 16px;
   
           &.profile-id-email {
-            font-size: 10px;
+            font-size: 12px;
           }
         }
   

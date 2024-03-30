@@ -80,6 +80,7 @@ const Profile = () => {
               name="newUsername"
               value={newUsername}
               onChange={handleChangeUsername}
+              maxLength={10}
             />
           </div>
           <div className="input-area">

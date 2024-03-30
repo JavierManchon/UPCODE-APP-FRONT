@@ -8,10 +8,12 @@ import { useAuth } from '../../context/AuthContext';
 import { removeDesignReq } from '../../../api/axios/designs';
 import { getOneUserReq } from '../../../api/axios/auth';
 import MyAreaMobile from './NavMobile/MyAreaMobile';
+import Loading from '../../utils/Loading/Loading';
 
 const UserArea = () => {
   const { authState, setAuthState, patchUser } = useAuth();
   const [designs, setDesigns] = useState([]);
+  const [loading, setLoading] = useState(true); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +22,10 @@ const UserArea = () => {
         try {
           const response = await getOneUserReq(authState.user._id);
           if (response && response.data) {
-            setDesigns(response.data.designs || []);
+            setTimeout(() => {
+              setDesigns(response.data.designs || []);
+              setLoading(false); 
+            }, 1500); 
           }
         } catch (error) {
           console.error("Error fetching designs:", error);
@@ -30,14 +35,6 @@ const UserArea = () => {
 
     fetchData();
   }, [authState.user]);
-
-  // function capitalizeFirstLetter(text) {
-  //   if (!text) return '';
-  //   return text.charAt(0).toUpperCase() + text.slice(1);
-  // }
-
-  const hasDesigns = designs.length > 0;
-
   const handleDeleteDesign = async (designId) => {
     try {
       await removeDesignReq(designId);
@@ -85,30 +82,34 @@ const UserArea = () => {
   };
 
   return (
-  <>
-    {windowWidth > 1023 ? (
-      <section className='my-area'>
-        <aside className='container-aside-mydesigns'>
-          <Profile />
-          <button onClick={handlePremiumToggle} className="premium-toggle-btn">
-          {authState.user.isPremium ? "Cancelar Premium" : "Hazte Premium"}
-          </button>
-          <InfoTicketArea />
-        </aside>
-        {!hasDesigns ? (
-          <div className='container-mydesigns'>
-            <div className="designs-area">
-              <h2 className='h2-designs-area'>UPS!</h2>
-              <h3 className='h3-designs-area'>Todavía no tienes diseños guardados</h3>
-              <p className='p-designs-area'>Crea tu primer diseño aquí:</p>
-              <Link to="/catalogue" className="btn-catalogo">Ir al Catálogo</Link>
+    <>
+      {windowWidth > 1023 ? (
+        <section className='my-area'>
+          <aside className='container-aside-mydesigns'>
+            <Profile />
+            <button onClick={handlePremiumToggle} className="premium-toggle-btn">
+              {authState.user.isPremium ? "Cancelar Premium" : "Hazte Premium"}
+            </button>
+            <InfoTicketArea />
+          </aside>
+          {loading ? (
+            <div className='container-mydesigns'>
+            <Loading/>
             </div>
-          </div>
-        ) : (
-          <div className='container-mydesigns'>
-            {designs.slice().reverse().map((design, index) => (
-              design.template === false ? (
-                <div key={`my-design-${index}`} className={`design ${design.elementType}`}>
+          ) : !designs.length ? ( 
+            <div className='container-mydesigns'>
+              <div className="designs-area">
+                <h2 className='h2-designs-area'>UPS!</h2>
+                <h3 className='h3-designs-area'>Todavía no tienes diseños guardados</h3>
+                <p className='p-designs-area'>Crea tu primer diseño aquí:</p>
+                <Link to="/catalogue" className="btn-catalogo">Ir al Catálogo</Link>
+              </div>
+            </div>
+          ) : (
+            <div className='container-mydesigns'>
+              {designs.slice().reverse().map((design, index) => (
+                design.template === false ? (
+                  <div key={`my-design-${index}`} className={`design ${design.elementType}`}>
                   <Link key={index} to={`/catalogue/template-${design.elementType}s/${design._id}`} state={{ templateData: design }}>
                     <div className={`identifier ${design.elementType}`}></div>
                     <div className={`visualizer ${design.elementType}`}>
@@ -261,22 +262,21 @@ const UserArea = () => {
                     </div>
                     <h3>{design.nameDesign}</h3>
                   </Link>
-                <button className='deleteButton' onClick={() => handleDeleteDesign(design._id)} style={{ marginTop: '10px' }}>x</button>
-                </div>
-              ) : null
-            ))}
-          </div>
-        )}
-      </section>
-    ) : (
-      <section className='my-area-mobile'>
-        <Profile />
-        <MyAreaMobile />
-      </section>
-    )}
-  </>
-);
-
+                    <button className='deleteButton' onClick={() => handleDeleteDesign(design._id)} style={{ marginTop: '10px' }}>x</button>
+                  </div>
+                ) : null
+              ))}
+            </div>
+          )}
+        </section>
+      ) : (
+        <section className='my-area-mobile'>
+          <Profile />
+          <MyAreaMobile />
+        </section>
+      )}
+    </>
+  );
 };
 
 export default UserArea;
