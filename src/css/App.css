@@ -51,10 +51,14 @@ div.container-pages-default-styles > div.styles-editor > div.container-label {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  gap: 10px;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
   overflow: visible;
+}
+div.container-pages-default-styles > div.styles-editor > div.container-label input {
+  cursor: pointer;
+  width: 20px;
 }
 div.container-pages-default-styles > div.styles-editor > div.container-label > label {
   width: 120px;
@@ -70,6 +74,20 @@ div.container-pages-default-styles > div.styles-editor > div.container-label > l
   text-align: center;
   flex-shrink: 0;
   color: #d7dcdd;
+}
+div.container-pages-default-styles > div.styles-editor > div.container-label > label > input {
+  border: none;
+  border-bottom: 1px solid #d7dcdd;
+  outline: none;
+  background-color: transparent;
+  color: #d7dcdd;
+}
+div.container-pages-default-styles > div.styles-editor > div.container-label > label > input[type=color] {
+  border: none;
+}
+div.container-pages-default-styles > div.styles-editor > div.container-label > label > input > span {
+  color: #d7dcdd;
+  transform: translateY(4px);
 }
 div.container-pages-default-styles > div.styles-editor > div.container-label > label > div {
   display: flex;
@@ -97,9 +115,15 @@ div.container-pages-default-styles > div.styles-editor > span {
   max-width: 300px;
   padding: 5px;
   text-align: center;
-  background-color: #2facb2;
+  background-color: #166a8f;
   border-radius: 15px;
   color: #eff2f3;
+}
+div.container-pages-default-styles > div.styles-editor > span:hover {
+  cursor: pointer;
+  transition: all ease 0.5s;
+  background-color: #86b7cd;
+  color: #d7dcdd;
 }
 div.container-pages-default-styles > button.no-visual {
   width: 100%;
@@ -120,7 +144,7 @@ div.container-pages-default-styles > button.no-visual::after {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.764);
+  background-color: rgba(80, 80, 80, 0.764);
   transition: all ease 0.5s;
 }
 div.container-pages-default-styles > button.no-visual.btn-visual {
@@ -128,7 +152,7 @@ div.container-pages-default-styles > button.no-visual.btn-visual {
   max-width: 150px;
   padding: 5px 10px;
   text-align: center;
-  background-color: #2facb2;
+  background-color: #166a8f;
   border-radius: 15px;
   flex-shrink: 0;
   border: none;
@@ -139,6 +163,12 @@ div.container-pages-default-styles > button.no-visual.btn-visual::after {
   width: 100%;
   height: 0;
   transition: all ease 0.5s;
+}
+div.container-pages-default-styles > button.no-visual.btn-visual:hover {
+  cursor: pointer;
+  transition: all ease 0.5s;
+  background-color: #86b7cd;
+  color: #d7dcdd;
 }
 div.container-pages-default-styles > div.container-containers {
   width: 90%;
@@ -156,7 +186,7 @@ div.container-pages-default-styles > div.container-containers > div.container-ed
   flex-direction: column-reverse;
   justify-content: space-around;
   align-items: center;
-  gap: 3px;
+  gap: 10px;
   padding: 30px;
   background-color: #166a8f;
   border-radius: 15px;
@@ -166,6 +196,18 @@ div.container-pages-default-styles > div.container-containers > div.container-ed
   position: absolute;
   top: 10px;
   right: 10px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  background-color: #d7dcdd;
+  color: #3b4446;
+  border-radius: 50%;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor > button.btn-href:hover {
+  cursor: pointer;
+  transition: all ease 0.5s;
+  background-color: #3b4446;
+  color: #d7dcdd;
 }
 div.container-pages-default-styles > div.container-containers > div.container-editor > div {
   padding: 20px;
@@ -202,6 +244,12 @@ div.container-pages-default-styles > div.container-containers > div.container-ed
   border-radius: 15px;
   flex-shrink: 0;
   color: #eff2f3;
+}
+div.container-pages-default-styles > div.container-containers > div.container-editor > span:hover {
+  cursor: pointer;
+  transition: all ease 0.5s;
+  background-color: #d7dcdd;
+  color: #2facb2;
 }
 div.container-pages-default-styles > div.container-containers > div.container-render {
   width: 100%;
@@ -243,6 +291,12 @@ div.container-pages-default-styles > div.container-containers > div.container-re
   border: none;
   outline: none;
   color: #eff2f3;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.title-btn > button:hover {
+  cursor: pointer;
+  transition: all ease 0.5s;
+  background-color: #eff2f3;
+  color: #2facb2;
 }
 div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_html > div.title-btn > h4 {
   color: #eff2f3;
@@ -374,6 +428,23 @@ div.container-pages-default-styles > div.container-containers > div.container-re
   border: none;
   outline: none;
   color: #eff2f3;
+}
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-ul > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-li > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-fig > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-figcaption > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-img > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-div > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-section > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-article > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-h2 > div.title-btn > button:hover,
+div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-p > div.title-btn > button:hover {
+  cursor: pointer;
+  transition: all ease 0.5s;
+  background-color: #eff2f3;
+  color: #d7dcdd;
 }
 div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-nav > div.title-btn > h4,
 div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css > div.css-btn > div.title-btn > h4,
@@ -578,6 +649,9 @@ div.container-pages-default-styles > a.premiumsavedesign {
   }
 }
 @media screen and (max-width: 576px) {
+  body > div#root div.container-all {
+    padding: 60px 0;
+  }
   div.container-pages-default-styles {
     height: calc(100vh - 120px);
   }

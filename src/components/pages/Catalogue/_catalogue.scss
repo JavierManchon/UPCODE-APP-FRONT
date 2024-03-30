@@ -65,7 +65,7 @@ main.container-catalogue {
                 background-color: $bgOthers;
                 &:hover{
                     transition: all ease 0.5s;
-                    box-shadow: 4px 4px 5px 0 $bgOthers;
+                    box-shadow: 4px 4px 5px 0 $colorEffects;
                 }
                 >img{
                     width: 100%;

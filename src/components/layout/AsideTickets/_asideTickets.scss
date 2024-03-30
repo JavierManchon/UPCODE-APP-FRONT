@@ -13,6 +13,12 @@ img.user-image {
   z-index: 2;
   object-fit: cover;
 
+  &:hover {
+    cursor: pointer;
+    transition: all ease .5s;
+    box-shadow: 2px 2px 5px 0 $bgNavFooter, -2px -2px 5px 0 $bgNavFooter;
+  }
+
   &.hide {
     z-index: 0;
     visibility: hidden;
@@ -34,8 +40,9 @@ aside.user-data {
   right: -800px;
   // transform: translateY(-50%);
   z-index: 2;
-  border: 2px solid black;
+  border: 2px solid $bgOthers2;
   backdrop-filter: blur(20px);
+  background-color: #ffffff83;
   border-radius: 20px;
   overflow: hidden;
 
@@ -58,10 +65,10 @@ aside.user-data {
           width: 30px;
           height: 30px;
           border: none;
-          background-color: black;
+          background-color: $bgNavFooter;
           border-radius: 50%;
           flex-shrink: 0;
-          color: white;
+          color: $bgApp;
         }
 
         > div.form-user {
@@ -74,12 +81,11 @@ aside.user-data {
                 width: 20px;
                 height: 20px;
                 border: none;
-                background-color: transparent;
+                background-color: $bgNavFooter;
                 flex-shrink: 0;
-                background-color: black;
                 border-radius: 50%;
                 flex-shrink: 0;
-                color: white;
+                color: $bgApp;
               }
           
             > div.container-user {
@@ -128,13 +134,20 @@ aside.user-data {
                 height: 30px;
                 border: none;
                 text-decoration: none;
-                background-color: black;
+                background-color: $bgOthers2;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                color: white;
-                border-radius: 10px;
+                color: $bgApp;
+                border-radius: 15px;
                 overflow: hidden;
+
+                &:hover {
+                  cursor: pointer;
+                  transition: all ease .5s;
+                  background-color: $bgOthers2Hover;
+                  color: $bgNavFooter;
+                }
               }
             }
           
@@ -144,7 +157,7 @@ aside.user-data {
         > div.separator {
             width: 2px;
             height: 90%;
-            background-color: black;
+            background-color: $bgOthers2;
             align-self: flex-end;
         }
         
@@ -165,12 +178,19 @@ aside.user-data {
           height: 30px;
           border: none;
           text-decoration: none;
-          background-color: black;
+          background-color: $bgOthers2;
           display: flex;
           justify-content: center;
           align-items: center;
-          color: white;
-          border-radius: 10px;
+          color: $bgApp;
+          border-radius: 15px;
+
+          &:hover {
+            cursor: pointer;
+            transition: all ease .5s;
+            background-color: $bgOthers2Hover;
+            color: $bgNavFooter;
+          }
         }
       }
    
@@ -191,7 +211,7 @@ aside.user-data {
         justify-content: flex-start;
         align-items: center;
         overflow-y: hidden;
-        height: calc(100% - 130px);
+        // height: calc(100% - 130px);
 
         & > * {
           flex-shrink: 0;

@@ -182,12 +182,13 @@ const FigureComponent = ({ isLogged }) => {
       <div className="styles-editor">
         <div className="container-label">
           <label htmlFor="fontColor">
-            <p>Color de Letra</p>
+            <p>Color {"<figcaption>"}</p>
             <input type="color" id="fontColor" onChange={handleFontColor} />
           </label>
 
           <label htmlFor="fontSize">
-            <p>Tamaño de Letra</p>
+            <p>Fontsize</p>
+            <div>
             <input
               type="number"
               id="fontSize"
@@ -195,6 +196,8 @@ const FigureComponent = ({ isLogged }) => {
               max={30}
               onChange={handleFontSize}
             />
+            <span>px</span>
+            </div>
           </label>
 
           <label htmlFor="fontWeight">

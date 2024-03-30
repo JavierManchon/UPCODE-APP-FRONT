@@ -4,11 +4,16 @@ div.container-infoticket {
     width: 80%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    & > * {
+        flex-shrink: 0;
+    }
 
     > h4 {
         margin-bottom: 10px;
+        color: $colorText;
     }
 
     > form.infoticket {
@@ -19,17 +24,22 @@ div.container-infoticket {
         justify-content: center;
         gap: 10px;
 
+        & > * {
+            width: 100%;
+        }
+
         > span {
             margin-bottom: 10px;
+            color: $colorText;
         }
 
         > label {
             display: flex;
             flex-direction: column;
-            width: 47%;
 
             > span {
                 margin-bottom: 5px;
+                color: $colorText;
             }
 
             > input,
@@ -51,19 +61,23 @@ div.container-infoticket {
         }
 
         > button {
-            width: 50%;
-            height: 25px;
+            width: 100%;
+            padding: 5px;
             border: none;
             outline: none;
-            border-radius: 10px;
+            border-radius: 15px;
             flex-shrink: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            background-color: $bgOthers2;
+            color: $bgApp;
+            cursor: pointer;
 
             &:hover {
-                background-color: #333;
+                background-color: $bgOthers2Hover;
+                color: $bgNavFooter;
             }
         }
     }
