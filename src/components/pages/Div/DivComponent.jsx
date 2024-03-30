@@ -109,8 +109,7 @@ const DivComponent = ({ isLogged }) => {
   };
 
   const handleFontWeight = (newValue) => {
-    updateTemplate("edit.fontSizeText", newValue);
-    setFontWeight(event.target.value);
+    setFontWeight(newValue);
   };
 
   const handleNumP = (event) => {
@@ -200,6 +199,7 @@ const DivComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "bold" : "normal";
+                  updateTemplate("edit.fontWeightText", newValue);
                   handleFontWeight(newValue);
                 }}
               />

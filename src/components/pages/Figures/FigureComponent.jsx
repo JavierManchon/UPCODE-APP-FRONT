@@ -208,6 +208,7 @@ const FigureComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "bold" : "normal";
+                  updateTemplate("edit.fontWeightText", newValue);
                   setFontWeight(newValue);
                 }}
               />
@@ -225,6 +226,7 @@ const FigureComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "underline" : "none";
+                  updateTemplate("edit.textDecorationText", newValue);
                   setTextDecoration(newValue);
                 }}
               />

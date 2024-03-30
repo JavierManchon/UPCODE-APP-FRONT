@@ -199,7 +199,7 @@ const SectionComponent = ({ isLogged }) => {
   };
 
   const handlePTextDecorationChange = (newValue) => {
-    updateTemplate("edit.textDecorationItem", newValue);
+    updateTemplate("edit.textDecorationText", newValue);
     setPTextDecoration(newValue);
   };
 

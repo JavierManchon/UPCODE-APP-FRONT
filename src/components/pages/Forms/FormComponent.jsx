@@ -83,7 +83,7 @@ const FormComponent = ({ isLogged }) => {
         });
       }, [buttonValue]);
 
-    const [bgFormColor, setBgFormColor] = useState(template.edit.bgFormColor ? template.edit.bgFormColor : '');
+    const [bgFormColor, setBgFormColor] = useState(template.edit.bgColorForm ? template.edit.bgColorForm : '');
 
     const [labelFontColor, setLabelFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
 
@@ -286,6 +286,7 @@ const FormComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "bold" : "normal";
+                  updateTemplate('edit.fontWeightText', newValue);
                   setLabelFontWeight(newValue);
                 }}
               />
@@ -303,6 +304,7 @@ const FormComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "underline" : "none";
+                  updateTemplate('edit.textDecorationText', newValue);
                   setTextDecoration(newValue);
                 }}
               />
@@ -349,6 +351,7 @@ const FormComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "bold" : "normal";
+                  updateTemplate('edit.fontWeightItem', newValue);
                   setButtonFontWeight(newValue);
                 }}
               />
