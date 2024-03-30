@@ -79,13 +79,28 @@
     }
   }
 
+  @media (max-width: 1024px){
+    .description-container{
+      >div.text-content{
+
+        > h2 {
+          text-align: center;
+        }
+        
+        >p{
+          display: none;
+        }
+      }
+    }
+  }
+
   @media (max-width: 576px){
     .description-container{
       gap: 20px;
       >div.text-content{
 
         > h2.highlight {
-          text-align: right;
+          text-align: center;
         }
         
         >p{

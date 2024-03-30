@@ -1,14 +1,14 @@
 @import '../../../../css/variables';
 
 button.premium-toggle-btn {
-    background-color: #2dbe60;
+    background-color: $bgButtonsSpecial;
     text-decoration: none;
     border: none;
     outline: none;
     border-radius: 15px;
     padding: 10px 10px;
     line-height: 0%;
-    color: #d7dcdd;
+    color: $bgApp;
     overflow: hidden;
     cursor: pointer;
     transform: translateY(-20px);

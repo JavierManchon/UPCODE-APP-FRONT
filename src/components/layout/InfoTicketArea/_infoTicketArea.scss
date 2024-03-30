@@ -84,13 +84,19 @@ div.container-infoticket {
 
     > div.ticket-list {
         width: 100%;
-        max-width: 300px;
+
         height: 180px;
         margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         > ul {
             list-style: none;
             padding: 0;
+            width: 100%;
+            max-width: 300px;
+            cursor: pointer;
 
             > li {
 
@@ -162,7 +168,7 @@ div.container-infoticket {
                         &:hover {
                             transition: all ease .5s;
                             background-color: $bgButtonsSpecialHover;
-                            color: $bgNavFooter;
+                            color: $bgApp;
                         }
                     }
                 }

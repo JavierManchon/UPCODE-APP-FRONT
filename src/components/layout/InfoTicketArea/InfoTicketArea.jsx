@@ -156,7 +156,7 @@ const InfoTicketArea = () => {
                           onClick={() => handleStatusChange(ticket)}
                           className="complete-button"
                         >
-                          Completar
+                          Resuelto
                         </button>
                       )}
                     </div>

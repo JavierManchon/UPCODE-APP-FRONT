@@ -75,7 +75,7 @@ p.home-text{
     text-decoration: none;
     margin: 5px auto;
     text-align: center;
-    background-color: $bgOthers2;
+    background-color: $bgButtons;
     color: $bgApp;
     border: none;
     cursor: pointer;
@@ -83,7 +83,7 @@ p.home-text{
   
     &:hover {
       background-color: $bgApp;
-      color: $bgOthers2;
+      color: $bgButtons;
       transition: all ease 0.5s;
     }
   }
