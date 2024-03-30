@@ -73,8 +73,9 @@ const RegisterForm = () => {
           </div>
           <div>
             <input
-              type="text" className='input-login' placeholder='Nickname'
+              type="text" className='input-login' placeholder='Username'
               value={username}
+              maxLength={10}
               onChange={(e) => setUsername(e.target.value)}
               maxLength={10}
               required
@@ -97,7 +98,7 @@ const RegisterForm = () => {
             />
           </div>
           {error && <p className='msgerror' >{error}</p>}
-          {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+          {successMessage && <p className='msgsuccess'>{successMessage}</p>}
           <button type="submit">Register</button>
         </form>
          <span className='link-register' > Si ya está registrado , pulse 👉<Link to="/login">aquí</Link>👈</span>

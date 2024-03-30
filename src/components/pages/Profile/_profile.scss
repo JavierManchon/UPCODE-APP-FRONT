@@ -29,8 +29,8 @@ section.profile-container {
             flex-shrink: 0;
             border-radius: 50%;
             object-fit: cover;
-            background-color: grey;
-            border: 2px solid black;
+            background-color: $bgApp;
+            border: 2px solid $bgNavFooter;
         }
     }
 
@@ -81,7 +81,7 @@ section.profile-container {
             cursor: pointer;
             transition: all ease .5s;
             background-color: $bgOthers2Hover;
-            color: $bgNavFooter;
+            color: $bgOthers;
         }
     }
 
@@ -159,6 +159,7 @@ section.profile-container {
                     justify-content: center;
                     align-items: center;
                     overflow: hidden;
+                    cursor: pointer;
                 }
             }
         }
@@ -216,12 +217,15 @@ section.profile-container-myarea {
             font-size: 25px;
             color: $bgApp;
             text-align: right;
+            text-transform: capitalize;
+
         }
 
         > h4.profile-id-name,
         > h4.profile-id-surname {
             font-size: 14px;
             color: $bgApp;
+            text-transform: capitalize;
         }
 
         > h4.profile-id-email {
@@ -242,16 +246,16 @@ section.profile-container-myarea {
         transform: translateX(-50%);
         padding: 5px 10px;
 
-        background-color: $bgOthers2;
-        color: $colorText;
+        background-color: $bgButtons;
+        color: $bgApp;
         border-radius: 15px;
         cursor: pointer;
 
         &:hover {
             cursor: pointer;
             transition: all ease .5s;
-            background-color: $bgOthers2Hover;
-            color: $bgNavFooter;
+            background-color: $bgApp;
+            color: $bgButtons;
         }
     }
 
@@ -263,7 +267,8 @@ section.profile-container-myarea {
         top: -150px;
         left: 0;
         z-index: 2;
-        background-color: $bgOthers2;
+        background-color: $bgButtons;
+        color: $bgApp;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -329,6 +334,7 @@ section.profile-container-myarea {
                     justify-content: center;
                     align-items: center;
                     overflow: hidden;
+                    cursor: pointer;
                 }
             }
         }

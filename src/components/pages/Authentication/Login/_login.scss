@@ -67,7 +67,7 @@ div.container-login{
 
             button{
                 width: 50%;
-                background-color: $bgOthers2;
+                background-color: $bgButtons;
                 margin-top: 20px;
                 margin-bottom: 10px;
                 height: 30px;
@@ -78,9 +78,18 @@ div.container-login{
                 cursor: pointer;
             }
             button:hover {
-                background-color: $bgOthers2Hover;
-                color: $bgNavFooter;
+                background-color: $bgApp;
+                color: $bgButtons;
                 transition: all ease 0.5s;
+            }
+            p.msgsuccess{
+                padding-top: 10px;
+                text-align: center;
+                width: 60%;
+                display: flex;
+                justify-content: center;
+                color: rgb(241, 197, 52);
+                font-weight: bold;  
             }
             p.msgerror{
                 padding-top: 10px;

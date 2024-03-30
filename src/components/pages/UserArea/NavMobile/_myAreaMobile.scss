@@ -17,7 +17,7 @@ button.premium-toggle-btn {
 
     &:hover {
         background-color: $bgButtonsSpecialHover;
-        color: $bgNavFooter;
+        color: $bgApp;
     }
 }
 nav.nav-my-area {
@@ -75,6 +75,7 @@ div.container-designs-my-area-mobile {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    border-radius: 15px;
 
     padding: 0 20px;
 
@@ -82,6 +83,59 @@ div.container-designs-my-area-mobile {
         width: 100%;
         height: 100px;
         position: relative;
+        border-radius: 15px;
+
+        &.section {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorSection;
+            }
+        }
+        &.button {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorButton;
+            }
+        }
+        &.nav {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorNav;
+            }
+        }
+        &.footer {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorFooter;
+            }
+        }
+        &.form {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorForm;
+            }
+        }
+        &.figure {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorFigure;
+            }
+        }
+        &.div {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorDiv;
+            }
+        }
+
+        > div.line-top {
+            width: 100%;
+            height: 10px;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
         > a.template {
             width: 100%;
@@ -101,64 +155,43 @@ div.container-designs-my-area-mobile {
             gap: 20px;
     
             &.section {
-                &:hover {
-                    transition: all ease 0.5s;
-                    box-shadow: 3px 3px 10px 0 $colorSection;
-                }
+                
                 > div.line-top {
                     background-color: $colorSection;         
                 }
             }
             &.button {
-                &:hover {
-                    transition: all ease 0.5s;
-                    box-shadow: 3px 3px 5px 0 $colorButton;
-                }
+                
                 > div.line-top {
                     background-color: $colorButton;  
                 }
             }
             &.nav {
-                &:hover {
-                    transition: all ease 0.5s;
-                    box-shadow: 3px 3px 5px 0 $colorNav;
-                }
+                
                 > div.line-top {
                     background-color: $colorNav;             
                 }
             }
             &.footer {
-                &:hover {
-                    transition: all ease 0.5s;
-                    box-shadow: 3px 3px 5px 0 $colorFooter;
-                }
+                
                 > div.line-top {
                     background-color: $colorFooter;               
                 }
             }
             &.form {
-                &:hover {
-                    transition: all ease 0.5s;
-                    box-shadow: 3px 3px 5px 0 $colorForm;
-                }
+                
                 > div.line-top {
                     background-color: $colorForm;             
                 }
             }
             &.figure {
-                &:hover {
-                    transition: all ease 0.5s;
-                    box-shadow: 3px 3px 5px 0 $colorFigure;
-                }
+                
                 > div.line-top {
                     background-color: $colorFigure;                
                 }
             }
             &.div {
-                &:hover {
-                    transition: all ease 0.5s;
-                    box-shadow: 3px 3px 5px 0 $colorDiv;
-                }
+                
                 > div.line-top {
                     background-color: $colorDiv;               
                 }

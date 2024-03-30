@@ -260,7 +260,7 @@ const UserArea = () => {
                         </nav>
                       )}
                     </div>
-                    <h3>{design.nameDesign}</h3>
+                    <h3>{design.nameDesign.charAt(0).toUpperCase() + design.nameDesign.slice(1)}</h3>
                   </Link>
                     <button className='deleteButton' onClick={() => handleDeleteDesign(design._id)} style={{ marginTop: '10px' }}>x</button>
                   </div>

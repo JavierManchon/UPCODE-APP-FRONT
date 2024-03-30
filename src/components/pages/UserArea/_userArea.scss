@@ -33,10 +33,11 @@ section.my-area {
         cursor: pointer;
         transition: all ease .5s;
         background-color: $bgButtonsSpecialHover;
-        color: $bgNavFooter;
+        color: $bgApp;
       }
     }
   }
+
 
   div.container-mydesigns {
     display: flex;
@@ -95,31 +96,59 @@ section.my-area {
     }
 
     > div.nav {
-      border: 1px solid $colorNav;
+      border: 1px solid $bgNavFooter;
+        &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorNav;
+        }
     }
 
     > div.div {
-      border: 1px solid $colorDiv;
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorDiv;
+        }
     }
 
     > div.footer {
-      border: 1px solid $colorFooter;
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorFooter;
+        }
     }
 
     > div.form {
-      border: 1px solid $colorForm;
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorForm;
+        }
     }
 
     > div.section {
-      border: 1px solid $colorSection;
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorSection;
+        }
     }
 
     > div.figure {
-      border: 1px solid $colorFigure;
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorFigure;
+        }
     }
 
     > div.buton {
-      border: 1px solid $colorButton;
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorButton;
+        }
     }
 
     > div.design {
@@ -137,11 +166,13 @@ section.my-area {
         border-radius: 50%;
         background-color: red;
         color: white;
-        border: none;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
+        border: 1px solid white;
+        display: flex;
+        align-items: flex-start;
       }
 
       > button.deleteButton:hover {
@@ -553,8 +584,8 @@ section.my-area {
         // }
       }
 
-      > div.visualizer.div, > div.visualizer.form {
-        background-color: lightgrey;
+      > div.visualizer.div, > div.visualizer.form, > div.visualizer.nav, > div.visualizer.button, > div.visualizer.section, > div.visualizer.figure, > div.visualizer.footer {
+        background-color: $visualizerBack;
       }
     }
     
