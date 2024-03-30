@@ -68,7 +68,7 @@ p.home-text{
   
   a.suscribe-button {
     width: 90%;
-    max-width: 360px;
+    max-width: 300px;
     height: 30px;
     display: grid;
     place-items: center;    
@@ -79,11 +79,11 @@ p.home-text{
     color: $bgApp;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 15px;
   
     &:hover {
-      background-color: $bgOthers2Hover;
-      color: $bgNavFooter;
+      background-color: $bgApp;
+      color: $bgOthers2;
       transition: all ease 0.5s;
     }
   }
