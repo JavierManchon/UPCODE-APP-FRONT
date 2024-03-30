@@ -152,7 +152,8 @@ const UserArea = () => {
                           )}
                         </div>
                       )}
-                      {design.elementType === "button" && (
+                      {/*se quita el componente button porque da fallo de seguridad*/}
+                      {/* {design.elementType === "button" && (
                         <button
                           type={design.defaultContent.tagInfo}
                           className={design.defaultStyles[0]}
@@ -168,7 +169,7 @@ const UserArea = () => {
                         >
                           {design.edit.text}
                         </button>
-                      )}
+                      )} */}
                       {design.elementType === "div" && (
                         <div className={design.defaultStyles[0]} style={{ backgroundColor: `${design.edit.bgColorDiv}` }}>
                           {Array.from({ length: design.defaultContent.countChildren }).map((_, index) => (

@@ -234,6 +234,41 @@ div.container-designs-my-area-mobile {
     }
 
     
+    >h2.h2-designs-area{
+        color: $bgOthers2;
+        font-size: 3em;
+        width: 100%;
+        text-align: center;
+      }
+      >h3.h3-designs-area{
+        color: $bgButtons;
+        font-size: 1.5em;
+        width: 100%;
+        text-align: center;
+      }
+      >p.p-designs-area{
+        color: $bgButtons;
+        font-size: 1.5em;
+        width: 100%;
+        text-align: center;
+      }
+      >a.btn-catalogo{
+        text-decoration: none;
+        color : $bgApp;
+        border-radius: 15px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        background-color: $bgOthers2;
+        padding: 5px 10px;
+        width: 100%;
 
+        &:hover{
+            background-color: $bgOthers2Hover;
+            color: $bgNavFooter;
+            transition: all ease 0.5s;
+
+        }
+      }
     
 }

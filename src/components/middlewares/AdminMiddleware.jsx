@@ -4,10 +4,15 @@ import { Navigate } from "react-router-dom";
 
 function AdminMiddleware({ children }) {
   const { authState } = useAuth();
-  if (!authState || !authState.user || !authState.user.isAdmin) {
+  if (!authState.user) {
     return <Navigate to="/login" replace  />;
+  } else if (authState.user && !authState.user.isAdmin) {
+    return <Navigate to="/" replace  />;
+  } else {
+    return children;
   }
-  return children;
+  
+  
 }
 
 export default AdminMiddleware;
