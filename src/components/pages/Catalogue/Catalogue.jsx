@@ -82,8 +82,9 @@ const Catalogue = ({isLogged ,setIsLogged}) => {
                                 template.template 
                                 ? (
                                     <Link key={index} className={`pack ${elementType}`} to={`/catalogue/template-${elementType}s/${template._id}`} state={{ templateData: templateToDesign(template), url: previousRoute }}>
-                                        <h4>{template.nameDesign}</h4>
+                                        <div className={`identifier ${template.elementType}`}></div>
                                         <img src={template.image} alt={`imagen de ${template.nameDesign}`} />
+                                        <h4>{template.nameDesign}</h4>
                                     </Link>
                                 ) 
                                 : null
