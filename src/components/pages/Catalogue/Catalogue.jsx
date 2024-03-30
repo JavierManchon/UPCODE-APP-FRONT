@@ -68,6 +68,7 @@ const Catalogue = ({ isLogged, setIsLogged }) => {
     return modifiedTemplate;
   };
 
+
   return (
     <main className="container-catalogue">
       <h2>Catálogo de Diseños</h2>
@@ -98,11 +99,9 @@ const Catalogue = ({ isLogged, setIsLogged }) => {
                           url: previousRoute,
                         }}
                       >
-                        <h4>{template.nameDesign}</h4>
-                        <img
-                          src={template.image}
-                          alt={`imagen de ${template.nameDesign}`}
-                        />
+                       <div className={`identifier ${template.elementType}`}></div>
+                       <img src={template.image} alt={`imagen de ${template.nameDesign}`} />
+                       <h4>{template.nameDesign}</h4>
                       </Link>
                     )
                 )}
@@ -113,6 +112,7 @@ const Catalogue = ({ isLogged, setIsLogged }) => {
       {isLogged ? <AsideTickets setIsLogged={setIsLogged} /> : null}
     </main>
   );
+
 };
 
 export default Catalogue;

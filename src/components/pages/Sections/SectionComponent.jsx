@@ -322,6 +322,7 @@ const SectionComponent = ({ isLogged }) => {
               type="number"
               id="fontSizeTitle"
               onChange={handleH2FontSizeChange}
+              max={20} min={12}
             />
           </label>
 
@@ -331,6 +332,7 @@ const SectionComponent = ({ isLogged }) => {
               type="number"
               id="fontSizeItem"
               onChange={handlePFontSizeChange}
+              max={20} min={12}
             />
           </label>
 
