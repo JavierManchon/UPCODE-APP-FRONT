@@ -23,14 +23,14 @@ const TableComparationPremium = ({isLogged}) => {
           <h2 className='home-title'>Bienvenido a Nuestro Servicio</h2>
       <p className='home-text'>Compara las características de nuestras suscripciones y elige la que mejor se adapte a tus necesidades.</p>
       <table className="comparison-table">
-
+        <thead>
           <tr className='thead'>
             <th>Característica</th>
             <th>Free</th>
             <th>Premium</th>
           </tr>
-
-
+        </thead>
+        <tbody>
           {caracteristicas.map((caracteristica) => (
             <tr className={`tbody`} key={caracteristica.id}>
               <td>{caracteristica.feature}</td>
@@ -38,14 +38,11 @@ const TableComparationPremium = ({isLogged}) => {
               <td className={caracteristica.paid ? 'check' : 'cross'}>{caracteristica.paid ? '✓' : 'X'}</td>
             </tr>
           ))}
-
-
-
-
+        </tbody>
       </table>
-                  <Link to={isLogged ? '/payments' : '/register'} className="suscribe-button">
-                    {isLogged ? 'Hazte Premium' : 'Regístrate Aquí'}
-                  </Link>
+        <Link to={isLogged ? '/payments' : '/register'} className="suscribe-button">
+          {isLogged ? 'Hazte Premium' : 'Regístrate Aquí'}
+        </Link>
     </div>
     </>
   );

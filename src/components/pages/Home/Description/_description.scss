@@ -83,6 +83,10 @@
     .description-container{
       gap: 20px;
       >div.text-content{
+
+        > h2.highlight {
+          text-align: right;
+        }
         
         >p{
           display: none;

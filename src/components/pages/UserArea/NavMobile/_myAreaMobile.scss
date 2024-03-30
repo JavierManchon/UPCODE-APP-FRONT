@@ -26,7 +26,7 @@ nav.nav-my-area {
     display: grid;
     place-items: center;
     background-color: $bgOthers;
-    height: 50px;
+    min-height: 50px;
 
     box-shadow: 10px 0 20px 0 $colorEffects;
 
