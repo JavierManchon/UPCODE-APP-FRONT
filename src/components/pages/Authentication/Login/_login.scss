@@ -38,6 +38,7 @@ div.container-login{
         >h2.title-login{
             margin-bottom: 20px;
             color: $colorText;
+            font-size: 2em;
         }
 
         >form.form-login{
@@ -45,6 +46,7 @@ div.container-login{
             flex-direction: column;
             align-items: center;
             margin: 4PX;
+            gap: 5px;
             >div{
                 width: 100%;
                 max-width: 300px;
@@ -65,25 +67,52 @@ div.container-login{
 
             button{
                 width: 50%;
-                background-color: $bgButtons;
+                background-color: $bgOthers2;
                 margin-top: 20px;
                 margin-bottom: 10px;
                 height: 30px;
-                color: $colorText;
+                color: $bgApp;
                 border-radius: 15px;
                 border: none;
                 outline: none;
+                cursor: pointer;
             }
             button:hover {
-                background-color: $colorText;
-                color: $bgButtons;
+                background-color: $bgOthers2Hover;
+                color: $bgNavFooter;
+                transition: all ease 0.5s;
             }
             p.msgerror{
                 padding-top: 10px;
+                text-align: center;
+                width: 60%;
                 display: flex;
                 justify-content: center;
+                color: rgb(241, 197, 52);
+                font-weight: bold;
 
-        }
+            }
+            p.msgpasserror{
+                padding-top: 10px;
+                text-align: center;
+                width: 60%;
+                display: flex;
+                justify-content: center;
+                color: rgb(241, 197, 52);
+                font-weight: bold;
+
+            }
+            p.msgmailerror{
+                padding-top: 10px;
+                text-align: center;
+                width: 60%;
+                display: flex;
+                justify-content: center;
+                color: rgb(241, 197, 52);
+                font-weight: bold;
+
+            }
+        
     }
 
 
