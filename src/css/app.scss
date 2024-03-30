@@ -136,15 +136,15 @@ div.container-pages-default-styles {
       max-width: 300px;
       padding: 5px;
       text-align: center;
-      background-color: $bgOthers2;
+      background-color: $bgButtons;
       border-radius: 15px;
       color: $bgApp;
 
       &:hover {
         cursor: pointer;
         transition: all ease 0.5s;
-        background-color: $bgOthers2Hover;
-        color: $colorText;
+        background-color: $bgApp;
+        color: $bgButtons;
       }
     }
   }
@@ -196,7 +196,7 @@ div.container-pages-default-styles {
           cursor: pointer;
           transition: all ease 0.5s;
           background-color: $bgOthers2Hover;
-          color: $colorText;
+          color: $bgNavFooter;
         }
       }
   }
