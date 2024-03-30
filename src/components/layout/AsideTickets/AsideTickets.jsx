@@ -61,11 +61,11 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
           <aside className={`user-data ${showAside ? "show" : ""}`}>
             <div className="container-general">
               <button onClick={handleHideAside} className="close-symbol">
-                X
+                x
               </button>
               <div className="form-user">
                 <button onClick={handleHideAside} className="close-symbol">
-                  X
+                  x
                 </button>
 
                 <form action="" className="ticket" onSubmit={handleFormSubmit}>

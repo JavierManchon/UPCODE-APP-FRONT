@@ -23,6 +23,7 @@ main.container-catalogue {
         border-bottom: 1px solid $colorBorders;
         flex-shrink: 0;
         color: $bgOthers;
+        font-size: 30px;
     }
 
     >section.container-packs{
@@ -43,30 +44,62 @@ main.container-catalogue {
             text-align: left;
             border-bottom: 1px solid $bgOthers;
             flex-shrink: 0;
+            font-size: 20px;
         }
         >div.packs{
             display: flex;
-            flex-flow: row wrap;
+            flex-direction: row;
             gap: 20px;
             width: 100%;
             padding: 20px 10px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap; 
 
             >a.pack{
-                width: 100%;
-                max-width: 300px;
-                height: 240px;
-                overflow: hidden;
-                padding: 10px;
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
-                border-radius: 15px;
+                justify-content: space-between;
                 text-decoration: none;
-                background-color: $bgOthers;
-                &:hover{
-                    transition: all ease 0.5s;
-                    box-shadow: 4px 4px 5px 0 $colorEffects;
-                }
+                color: $bgNavFooter;
+                border: 1px solid $bgNavFooter;
+                border-radius: 15px;
+
+                height: 248px; 
+                width: 248px;
+
+                > div.identifier {
+                    height: 20px;
+                  }
+          
+                  > div.nav {
+                    background-color: $colorNav;
+                  }
+              
+                  > div.div {
+                    background-color: $colorDiv;
+                  }
+              
+                  > div.footer {
+                    background-color: $colorFooter;
+                  }
+              
+                  > div.form {
+                    background-color: $colorForm;
+                  }
+              
+                  > div.section {
+                    background-color: $colorSection;
+                  }
+              
+                  > div.figure {
+                    background-color: $colorFigure;
+                  }
+              
+                  > div.buton {
+                    background-color: $colorButton;
+                  }
+                
                 >img{
                     width: 100%;
                     height: calc(100% - 25px);
@@ -75,41 +108,62 @@ main.container-catalogue {
                     font-weight: bold;
                     width: 100%;
                     padding: 5px;
-                    padding-bottom: 1px;
+                    padding-left: 10px;
                     text-align: left;
-                    border-bottom: 1px solid $colorText;
                     height: 30px;
                     flex-shrink: 0;
-                    color: $colorText;
+                    color: $bgNavFooter;
                 }
 
-                &.nav{
-                    border: 1px solid $colorNav;
-                    
+                
+            }
+
+            > a.pack.nav {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorNav;
                 }
-                &.footer{
-                    border: 1px solid $colorFooter;
-                    
+            }
+
+            > a.pack.footer {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorFooter;
                 }
-                &.section{
-                    border: 1px solid $colorSection;
-                    
+            }
+
+            > a.pack.figure {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorFigure;
                 }
-                &.form{
-                    border: 1px solid $colorForm;
-                    
+            }
+
+            > a.pack.div {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorDiv;
                 }
-                &.div{
-                    border: 1px solid $colorDiv;
-                    
+            }
+
+            > a.pack.section {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorSection;
                 }
-                &.button{
-                    border: 1px solid $colorButton;
-                    
+            }
+
+            > a.pack.button {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorButton;
                 }
-                &.figure{
-                    border: 1px solid $colorFigure;
-                    
+            }
+
+            > a.pack.form {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorForm;
                 }
             }
 

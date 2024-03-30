@@ -98,10 +98,10 @@ const NavMobile = () => {
             {designs.slice().reverse().map((template, index) => (
             template.template === false ?
             <>
-            <div className='container-link'>
+            <div className={`container-link ${template.elementType}`}>
               <Link key={index} to={`/catalogue/template-${template.elementType}s/${template._id}`} state={{ templateData:  template }} className={`template ${template.elementType}`}>
                   <div className='line-top'></div>
-                  <h4>{template.nameDesign}</h4>
+                  <h4>{template.nameDesign.charAt(0).toUpperCase() + template.nameDesign.slice(1)}</h4>
                   <p>{'<'}{template.elementType}{'>'}</p>  
               </Link>
               <button onClick={() => handleDeleteDesign(template._id)}>Eliminar</button>

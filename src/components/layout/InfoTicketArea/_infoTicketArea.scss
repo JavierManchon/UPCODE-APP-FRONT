@@ -71,13 +71,13 @@ div.container-infoticket {
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-color: $bgOthers2;
+            background-color: $bgButtons;
             color: $bgApp;
             cursor: pointer;
 
             &:hover {
-                background-color: $bgOthers2Hover;
-                color: $bgNavFooter;
+                background-color: $bgApp;
+                color: $bgButtons;
             }
         }
     }
@@ -104,6 +104,10 @@ div.container-infoticket {
 
                 &:last-child {
                     border-bottom: none;
+                }
+
+                .item-resume-date {
+                    margin-left: auto;
                 }
 
                 .status-indicator {

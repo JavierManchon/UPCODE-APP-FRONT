@@ -119,7 +119,7 @@ const InfoTicketArea = () => {
                 >
                   <div className="ticket-list_item-resume">
                     <span>{ticket.title}</span>
-                    <span>
+                    <span className="item-resume-date">
                       {new Date(ticket.createdAt).toLocaleDateString()}
                     </span>
                     <div

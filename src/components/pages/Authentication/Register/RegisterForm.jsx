@@ -75,6 +75,7 @@ const RegisterForm = () => {
             <input
               type="text" className='input-login' placeholder='Username'
               value={username}
+              maxLength={10}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
