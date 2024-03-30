@@ -210,7 +210,7 @@ aside.user-data {
         justify-content: flex-start;
         align-items: center;
         overflow-y: hidden;
-        height: calc(100% - 130px);
+        // height: calc(100% - 130px);
 
         & > * {
           flex-shrink: 0;

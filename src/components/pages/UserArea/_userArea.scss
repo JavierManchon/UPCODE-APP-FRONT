@@ -541,10 +541,61 @@ section.my-area-mobile {
   align-items: center;
   gap: 20px;
 
-  > div.container-designs-my-area-mobile {
-    // max-height: 0vh;
+  section.profile-container-myarea {
+    div.profile-id-image-container {
+      top: 80px;
+      width: 100px;
+      height: 100px;
+    }
+
+    div.profile-info {
+      width: calc(100% - 100px);
+      justify-content: center;
+      >h3 {
+        font-size: 22px;
+      }
+      > h4 {
+        font-size: 20px;
+
+        &.profile-id-email {
+          font-size: 18px;
+        }
+      }
+
+    }
   }
 }
+
+@media (max-width: 768px) {
+  section.my-area-mobile {
+    
+    > section.profile-container-myarea {
+      > div.profile-id-image-container {
+        width: 70px;
+        height: 70px;
+        top: 100px;
+      }
+  
+      > div.profile-info {
+        width: calc(100% - 70px);
+        justify-content: flex-start;
+        >h3 {
+          font-size: 18px;
+        }
+        > h4 {
+          font-size: 16px;
+  
+          &.profile-id-email {
+            font-size: 12px;
+          }
+        }
+  
+      }
+    }
+  }
+  
+}
+
 
 @media (max-width: 576px) {
   section.my-area-mobile {

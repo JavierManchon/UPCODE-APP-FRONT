@@ -46,6 +46,19 @@ section.profile-container {
         & > *{
             flex-shrink: 0;
         }
+
+        > h3.profile-id-username {
+            font-size: 16px;
+        }
+
+        > h4.profile-id-name,
+        > h4.profile-id-surname {
+            font-size: 14px;
+        }
+
+        > h4.profile-id-email {
+            font-size: 10px;
+        }
     }
 
     > span.edit-span {
@@ -80,7 +93,7 @@ section.profile-container {
         top: -150px;
         left: 0;
         z-index: 2;
-        background-color: rgba(0, 0, 0, 0.94);
+        background-color: $bgOthers2;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -121,7 +134,7 @@ section.profile-container {
                     height: 20px;
                     border: none;
                     outline: none;
-                    background-color: black;
+                    background-color: transparent;
                     color: white;
                     border-bottom: 1px solid white;
                 }
@@ -155,7 +168,7 @@ section.profile-container {
 section.profile-container-myarea {
     width: 80%;
     max-width: 400px;
-    height: 200px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -204,10 +217,14 @@ section.profile-container-myarea {
             color: $bgApp;
         }
 
-        > h4.profile-id-email,
         > h4.profile-id-name,
         > h4.profile-id-surname {
             font-size: 14px;
+            color: $bgApp;
+        }
+
+        > h4.profile-id-email {
+            font-size: 12px;
             color: $bgApp;
         }
     }
