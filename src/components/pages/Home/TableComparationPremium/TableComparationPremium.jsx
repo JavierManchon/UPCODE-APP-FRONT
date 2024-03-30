@@ -10,9 +10,11 @@ const TableComparationPremium = ({isLogged}) => {
 
   const caracteristicas = [
     { id: 1, feature: 'Contenido premium', free: false, paid: true },
-    { id: 2, feature: 'Soporte técnico 24/7', free: true, paid: true },
+    { id: 2, feature: 'Soporte técnico 24/7', free: false, paid: true },
     { id: 3, feature: 'Guarda tus diseños', free: false, paid: true },
     { id: 4, feature: 'Diseños ilimitados', free: false, paid: true },
+    { id: 5, feature: 'Personalizar diseños', free: true, paid: true },
+    { id: 6, feature: 'Importar código', free: true, paid: true },
   ];
 
   return (
