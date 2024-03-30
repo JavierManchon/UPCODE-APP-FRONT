@@ -13,7 +13,7 @@ div.container-infoticket {
 
     > h4 {
         margin-bottom: 10px;
-        color: $colorText;
+        color: $bgNavFooter;
     }
 
     > form.infoticket {
@@ -30,7 +30,7 @@ div.container-infoticket {
 
         > span {
             margin-bottom: 10px;
-            color: $colorText;
+            color: $bgNavFooter;
         }
 
         > label {
@@ -39,7 +39,7 @@ div.container-infoticket {
 
             > span {
                 margin-bottom: 5px;
-                color: $colorText;
+                color: $bgNavFooter;
             }
 
             > input,

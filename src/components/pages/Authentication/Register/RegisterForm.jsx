@@ -77,7 +77,6 @@ const RegisterForm = () => {
               value={username}
               maxLength={10}
               onChange={(e) => setUsername(e.target.value)}
-              maxLength={10}
               required
             />
           </div>
