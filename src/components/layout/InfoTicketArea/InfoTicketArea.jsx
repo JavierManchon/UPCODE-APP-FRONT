@@ -9,6 +9,10 @@ const InfoTicketArea = () => {
   const [user, setUser] = useState(null);
   const [selectedTicket, setSelectedTicket] = useState(null);
 
+  const [showTicketAlert, setShowTicketAlert] = useState(false);
+  const [ticketAlertMessage, setTicketAlertMessage] = useState('');
+
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -37,10 +41,11 @@ const InfoTicketArea = () => {
         };
       });
       e.target.reset();
-      alert("¡El ticket se ha enviado correctamente!");
+      setTicketAlertMessage("Ticket enviado con éxito!");
+      setShowTicketAlert(true);
     } catch (error) {
-      console.error("Error al enviar el ticket:", error);
-      alert("Ha ocurrido un error al enviar el ticket...");
+      setTicketAlertMessage("Ha ocurrido un error al enviar el ticket...");
+      setShowTicketAlert(true);
     }
   };
 
@@ -63,6 +68,9 @@ const InfoTicketArea = () => {
       }
     }
   };
+  const handleCloseAlert = () => {
+    setShowTicketAlert(false);
+  };
 
   return (
     <>
@@ -76,6 +84,7 @@ const InfoTicketArea = () => {
               type="text"
               name="title"
               id="title"
+
               maxLength={20}
               placeholder=" Máximo 20 caracteres"
             />
@@ -160,6 +169,12 @@ const InfoTicketArea = () => {
           </ul>
         </div>
       </div>
+      {showTicketAlert && (
+        <div className="ticket-alert-overlay">
+          {ticketAlertMessage}
+          <button onClick={handleCloseAlert} className="close-alert">x</button>
+        </div>
+      )}
     </>
   );
 };

@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./_asideTickets.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Profile from "../../pages/Profile/Profile";
 import { useAuth } from "../../context/AuthContext";
 import { postTicketReq } from "../../../api/axios/tickets";
-import Default from '../../../images/default-user.png';
+
+import  Default  from '../../../images/default-user.png';
+
 
 const AsideTickets = ({ isLogged, setIsLogged }) => {
-  const {authState} = useAuth();
+  const {authState, isAdmin} = useAuth();
 
   const navigate = useNavigate();
+
+  const [showTicketAlert, setShowTicketAlert] = useState(false);
+  const [ticketAlertMessage, setTicketAlertMessage] = useState('');
 
   const [showAside, setShowAside] = useState(false);
   const handleShowAside = () => {
@@ -34,13 +39,14 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
     try {
       await postTicketReq(formDataObject);
       e.target.reset();
-      alert("¡El ticket se ha enviado correctamente!");
+      setTicketAlertMessage("¡El ticket se ha enviado correctamente!");
+      setShowTicketAlert(true);
     } catch (error) {
       console.error("Error al enviar el ticket:", error);
-      alert("Ha ocurrido un error al enviar el ticket...");
+      setTicketAlertMessage("Ha ocurrido un error al enviar el ticket...");
+      setShowTicketAlert(true);
     }
   };
-  
 
   return (
     <>
@@ -71,8 +77,8 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
                       type="text"
                       name="title"
                       id="title"
-                      maxLength={10}
-                      placeholder="Máximo 10 caracteres"
+                      maxLength={25}
+                      placeholder="Máximo 25 caracteres"
                     />
                   </label>
 
@@ -98,6 +104,12 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
 
                   <button type="submit">Enviar</button>
                 </form>
+                {showTicketAlert && (
+                      <div className="aside-ticket-alert">
+                        {ticketAlertMessage}
+                        <button onClick={() => setShowTicketAlert(false)} className="close-alerte">x</button>
+                      </div>
+                    )}
               </div>
               <div className="separator"></div>
               <Profile />
@@ -109,7 +121,7 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
                   Logout
                 </button>
               ) : null}
-              <Link to="">Mi área</Link>
+              {isAdmin ? <Link to="/admins">Panel Administración</Link> :<Link to="/user-area">Mi área</Link> }
             </div>
           </aside>
         </>
