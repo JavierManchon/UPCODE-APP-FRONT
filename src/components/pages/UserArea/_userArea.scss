@@ -50,6 +50,50 @@ section.my-area {
     padding: 50px 50px;
     gap: 100px;
 
+    >div.designs-area{
+      background-color: $bgApp;
+      width: 600px;
+      height: 600px;
+      border: 2px solid $bgButtons;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+        >h2.h2-designs-area{
+          color: $bgOthers2;
+          font-size: 3em;
+
+        }
+        >h3.h3-designs-area{
+          color: $bgButtons;
+          font-size: 1.5em;
+          
+        }
+        >p.p-designs-area{
+          color: $bgButtons;
+          font-size: 1.5em;
+          
+        }
+        >a.btn-catalogo{
+          text-decoration: none;
+          color : $bgApp;
+          border-radius: 15px;
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          background-color: $bgOthers2;
+          width: 20%;
+          height: 7%;
+          &:hover{
+              background-color: $bgOthers2Hover;
+              color: $bgNavFooter;
+              transition: all ease 0.5s;
+
+          }
+        }
+    }
+
     > div.nav {
       border: 1px solid $colorNav;
     }
@@ -514,22 +558,22 @@ section.my-area {
       }
     }
     
-    .btn-catalogo {
-      text-decoration: none;
-      color: $colorText; 
-      background-color: $bgButtons; 
-      padding: 15px 30px; 
-      font-size: 18px; 
-      border: 1px solid transparent; 
-      border-radius: 5px; 
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
+    // .btn-catalogo {
+    //   text-decoration: none;
+    //   color: $colorText; 
+    //   background-color: $bgButtons; 
+    //   padding: 15px 30px; 
+    //   font-size: 18px; 
+    //   border: 1px solid transparent; 
+    //   border-radius: 5px; 
+    //   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
       
-      &:hover {
-        background-color: white; 
-        color: turquoise; 
-        border-color: turquoise; 
-      }
-    }
+    //   &:hover {
+    //     background-color: white; 
+    //     color: turquoise; 
+    //     border-color: turquoise; 
+    //   }
+    // }
   }
 }
 }

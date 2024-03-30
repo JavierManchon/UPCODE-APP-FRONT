@@ -3,19 +3,27 @@ import "./_description.scss"; // Importa el archivo de estilos
 import { Link } from "react-router-dom";
 
 const Description = ({ isLogged }) => {
+
+  const token = sessionStorage.getItem("token");
+
   return (
     <div className="description-container">
       <div className="text-content">
-        <h2 className="title">Pensado para los desarrolladores</h2>
-        <h2>Creado para la productividad</h2>
+        <h2>Pensado para los desarrolladores</h2>
+        <h2 className="highlight">Creado para la productividad</h2>
         <p>¡Bienvenido a nuestra plataforma diseñada para impulsar tu productividad como desarrollador! Ya sea que estés construyendo una página web, una aplicación móvil o cualquier otro proyecto digital, nuestro conjunto de herramientas está aquí para simplificar tu flujo de trabajo y acelerar tus resultados.</p>
-        <h2>Diseña Tu Código HTML y CSS y Ahorra Trabajo</h2>
-        <p>Con nuestras herramientas intuitivas y potentes, puedes crear y diseñar tu código HTML y CSS de manera eficiente y efectiva. Desde plantillas predefinidas hasta funciones avanzadas de personalización, te ofrecemos todo lo que necesitas para llevar tus proyectos al siguiente nivel. ¡Ahorra tiempo y esfuerzo mientras alcanzas tus metas de desarrollo!
-
-</p>
-        <Link to={isLogged ? "/user-area" : "/register"}>
-          {isLogged ? "Mis Diseños" : "Registrate aquí"}
-        </Link>
+        <div className="home-button-area">
+          <button className="button-user">
+            <Link to={token ? "/user-area" : "/register"}>
+              {token ? "Mis Diseños" : "Registrate aquí"}
+            </Link>
+          </button>
+          <button className="button-catalogue">
+            <Link to={"/catalogue"}>
+              {"Templates"}
+            </Link>
+          </button>
+        </div>
       </div>
       <div className="video-content">
         <video className="video-content" autoPlay muted loop>

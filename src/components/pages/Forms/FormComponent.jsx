@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./_formComponent.scss";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
 import { useAuth } from "../../context/AuthContext";
 import _ from "lodash";
@@ -83,7 +83,7 @@ const FormComponent = ({ isLogged }) => {
         });
       }, [buttonValue]);
 
-    const [bgFormColor, setBgFormColor] = useState(template.edit.bgFormColor ? template.edit.bgFormColor : '');
+    const [bgFormColor, setBgFormColor] = useState(template.edit.bgColorForm ? template.edit.bgColorForm : '');
 
     const [labelFontColor, setLabelFontColor] = useState(template.edit.colorText ? template.edit.colorText : '');
 
@@ -289,6 +289,7 @@ const FormComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "bold" : "normal";
+                  updateTemplate('edit.fontWeightText', newValue);
                   setLabelFontWeight(newValue);
                 }}
               />
@@ -306,6 +307,7 @@ const FormComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "underline" : "none";
+                  updateTemplate('edit.textDecorationText', newValue);
                   setTextDecoration(newValue);
                 }}
               />
@@ -355,6 +357,7 @@ const FormComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "bold" : "normal";
+                  updateTemplate('edit.fontWeightItem', newValue);
                   setButtonFontWeight(newValue);
                 }}
               />
@@ -675,12 +678,16 @@ const FormComponent = ({ isLogged }) => {
 
       <button ref={visualButtonRef} className={`no-visual ${!showVisual ? 'btn-visual' : ''}`} onClick={handleVisual}>Mostrar visualizado</button>
 
-      {isLogged && previousRoute === "/catalogue" ? (
+      {isLogged && authState.user.isPremium && previousRoute === "/catalogue" ? (
         <ButtonSaveDesigns
           designToSave={designToSave}
           setDesignToSave={setDesignToSave}
         />
       ) : null}
+      {isLogged && (!authState.user.isPremium) && previousRoute === "/catalogue" ? (
+          <Link className="premiumsavedesign" to='/payments'>Hazte Premium</Link>
+      ) : null}
+
     </div>
   );
 };

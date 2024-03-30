@@ -62,13 +62,13 @@ const LoginForm = ({ setIsLogged }) => {
         <form className='form-login' onSubmit={handleLogin}>
           <div>
             <input type="email" className='input-login' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
-            {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
+            {emailError && <p className='msgmailerror'>{emailError}</p>}
           </div>
           <div>
-            <input className='input-login' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required />
-            {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+            <input className='input-login' type="password" placeholder='Contraseña' value={password} onChange={(e) => setPassword(e.target.value)} required />
+            {passwordError && <p className='msgpasserror'>{passwordError}</p>}
           </div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {error && <p className='msgerror'>{error}</p>}
           <button type="submit">Login</button>
         </form>
         <span className='linki-register'>¿Aún no estás registrado? 👉<Link className='link-register' to="/register">¡Pincha aquí!</Link>

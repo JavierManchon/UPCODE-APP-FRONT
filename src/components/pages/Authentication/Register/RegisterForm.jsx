@@ -57,7 +57,7 @@ const RegisterForm = () => {
         <form className='form-login' onSubmit={handleSubmit}>
           <div>
             <input
-              type="text" placeholder='Name' className='input-login'
+              type="text" placeholder='Nombre' className='input-login'
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -65,7 +65,7 @@ const RegisterForm = () => {
           </div>
           <div>
             <input
-              type="text" className='input-login' placeholder='Surmane'
+              type="text" className='input-login' placeholder='Apellidos'
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
               required
@@ -73,7 +73,7 @@ const RegisterForm = () => {
           </div>
           <div>
             <input
-              type="text" className='input-login' placeholder='Username'
+              type="text" className='input-login' placeholder='Nickname'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -89,13 +89,13 @@ const RegisterForm = () => {
           </div>
           <div>
             <input
-              type="password" className='input-login' placeholder='Password'
+              type="password" className='input-login' placeholder='Contraseña'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-          {error && <p className='msgerror' style={{ color: 'red' }}>{error}</p>}
+          {error && <p className='msgerror' >{error}</p>}
           {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
           <button type="submit">Register</button>
         </form>

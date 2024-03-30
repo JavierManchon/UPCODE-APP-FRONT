@@ -77,6 +77,7 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
                             placeholder="Nombre del diseño"
                             value={designName}
                             onChange={(e) => setDesignName(e.target.value)}
+                            maxLength={20} 
                         />
                         <button onClick={handleSaveDesign}>Guardar</button>
                     </div>

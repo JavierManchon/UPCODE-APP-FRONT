@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./_divComponent.scss";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns";
 import { useAuth } from "../../context/AuthContext";
 import _ from "lodash";
@@ -109,8 +109,7 @@ const DivComponent = ({ isLogged }) => {
   };
 
   const handleFontWeight = (newValue) => {
-    updateTemplate("edit.fontSizeText", newValue);
-    setFontWeight(event.target.value);
+    setFontWeight(newValue);
   };
 
   const handleNumP = (event) => {
@@ -200,6 +199,7 @@ const DivComponent = ({ isLogged }) => {
                 onChange={(event) => {
                   const isChecked = event.target.checked;
                   const newValue = isChecked ? "bold" : "normal";
+                  updateTemplate("edit.fontWeightText", newValue);
                   handleFontWeight(newValue);
                 }}
               />
@@ -374,12 +374,16 @@ const DivComponent = ({ isLogged }) => {
 
       <button ref={visualButtonRef} className={`no-visual ${!showVisual ? 'btn-visual' : ''}`} onClick={handleVisual}>Mostrar visualizado</button>
 
-      {isLogged && previousRoute === "/catalogue" ? (
+      {isLogged && authState.user.isPremium && previousRoute === "/catalogue" ? (
         <ButtonSaveDesigns
           designToSave={designToSave}
           setDesignToSave={setDesignToSave}
         />
       ) : null}
+      {isLogged && (!authState.user.isPremium) && previousRoute === "/catalogue" ? (
+          <Link className="premiumsavedesign" to='/payments'>Hazte Premium</Link>
+      ) : null}
+
     </div>
   );
 };
