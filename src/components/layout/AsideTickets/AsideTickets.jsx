@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import "./_asideTickets.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Profile from "../../pages/Profile/Profile";
@@ -12,6 +13,20 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
   const {authState, isAdmin} = useAuth();
 
   const navigate = useNavigate();
+  const asideRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (asideRef.current && !asideRef.current.contains(event.target)) {
+        setShowAside(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const [showTicketAlert, setShowTicketAlert] = useState(false);
   const [ticketAlertMessage, setTicketAlertMessage] = useState('');
@@ -58,7 +73,7 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
             className={`user-image ${showAside ? "hide" : ""}`}
             onClick={handleShowAside}
           />
-          <aside className={`user-data ${showAside ? "show" : ""}`}>
+          <aside className={`user-data ${showAside ? "show" : ""}`} ref={asideRef}>
             <div className="container-general">
               <button onClick={handleHideAside} className="close-symbol">
                 x

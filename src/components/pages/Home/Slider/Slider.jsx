@@ -1,18 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import './_slider.scss';
+import { Link } from 'react-router-dom';
 
 const Slider = () => {
 
     const slides = [
-        'https://images.pexels.com/photos/6272/wood-free-wooden-home.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        'https://images.pexels.com/photos/19035715/pexels-photo-19035715/free-photo-of-francia-campo-verano-jardin.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        'https://images.pexels.com/photos/10434596/pexels-photo-10434596.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        'https://images.pexels.com/photos/18874829/pexels-photo-18874829/free-photo-of-ciudad-cielo-punto-de-referencia-calle.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        'https://res.cloudinary.com/dtsp1wfry/image/upload/v1711110900/lmconhq5hl1t9efxcqaz.jpg',
-      ];
-    
-      const slideImages = slides.map((url, index) => (
-        <img key={index} src={url} alt={`Slide ${index}`} style={{ width: '30%', height: '300px' }} />
+        {
+            title: 'Section',
+            description: 'Podrás hacer <section> con <article> dentro y editar su texto.',
+            picture: 'https://res.cloudinary.com/dtsp1wfry/image/upload/v1711803061/Captura_de_pantalla_2024-03-30_a_las_13.35.56_qjxph7.png',
+        },
+        {
+            title: 'Nav/Footer',
+            description: 'Crea tu propio <nav> con una <ul> de elementos y enlaces.',
+            picture: 'https://res.cloudinary.com/dtsp1wfry/image/upload/v1711812936/Captura_de_pantalla_2024-03-30_a_las_16.35.10_es74aa.png',
+        },
+        {
+            title: 'Div',
+            description: 'Añade tantos <p> como quieras a tu <div> y edita su texto.',
+            picture: 'https://res.cloudinary.com/dtsp1wfry/image/upload/v1711803022/Captura_de_pantalla_2024-03-30_a_las_13.32.15_a3uzjm.png',
+        },
+        {
+            title: 'Figure',
+            description: 'Añade tu propia url de <img> y tu <figcaption> a una <figure>.',
+            picture: 'https://res.cloudinary.com/dtsp1wfry/image/upload/v1711803432/Captura_de_pantalla_2024-03-30_a_las_13.41.57_rjm7hp.png',
+        },
+        {
+            title: 'Form',
+            description: 'Crea tu propio <form> con varios <input> y <label>.',
+            picture: 'https://res.cloudinary.com/dtsp1wfry/image/upload/v1711803012/Captura_de_pantalla_2024-03-30_a_las_13.29.59_u8ib6i.png',
+        }
+    ];
+
+    const slideImages = slides.map((slide, index) => (
+        <>
+            <h3>{slide.title}</h3>
+            <p>{slide.description}</p>
+            <div className='picture'>
+                <img src={slide.picture} alt={`Slide ${index}`} />
+            </div>
+            
+        </>
     ));
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,7 +65,15 @@ const Slider = () => {
         <div className="slider">
             <button onClick={goToPrevious} className="prev">&#10094;</button>
             <button onClick={goToNext} className="next">&#10095;</button>
-            {slideImages[currentIndex]}
+            <div className="container-link-img">
+                <div className='content-link'>
+                    <Link to='/catalogue'>Ir al catálogo de componentes</Link>
+                </div>
+                <div className='content-pictures'>
+                    {slideImages[currentIndex]}
+                </div>
+            </div>
+            
         </div>
     );
 };

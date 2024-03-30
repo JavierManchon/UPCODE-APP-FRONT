@@ -10,7 +10,7 @@ const ButtonComponent = ({ isLogged }) => {
   const location = useLocation();
   const previousRoute = location.state.url;
   const template = location.state.templateData;
-  console.log(template)
+  //console.log(template)
   const [designToSave, setDesignToSave] = useState();
 
   const [showCss, setShowCss] = useState(false);
@@ -128,7 +128,7 @@ const ButtonComponent = ({ isLogged }) => {
     return styles;
   }
 
-  console.log(hoverStyles);
+  //console.log(hoverStyles);
 
   const visualButton = useRef(null);
   useEffect(() => {

@@ -1,16 +1,19 @@
 @import '../../../../css/variables';
 
 button.premium-toggle-btn {
-    background-color: $bgButtonsSpecial;
+    background-color: #2dbe60;
     text-decoration: none;
     border: none;
     outline: none;
     border-radius: 15px;
-    text-align: center;
-    padding: 5px 10px;
-    color: $colorText;
+    padding: 10px 10px;
+    line-height: 0%;
+    color: #d7dcdd;
     overflow: hidden;
     cursor: pointer;
+    transform: translateY(-20px);
+    display: grid;
+    place-items: center;
 
     &:hover {
         background-color: $bgButtonsSpecialHover;
@@ -23,7 +26,7 @@ nav.nav-my-area {
     display: grid;
     place-items: center;
     background-color: $bgOthers;
-    height: 50px;
+    min-height: 50px;
 
     box-shadow: 10px 0 20px 0 $colorEffects;
 

@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       sessionStorage.setItem('token', token);
       sessionStorage.setItem('user', JSON.stringify(data));
       sessionStorage.setItem('isAdmin', isAdmin);
-      console.log(sessionStorage.getItem('isAdmin'));
+      //console.log(sessionStorage.getItem('isAdmin'));
       setAuthState({ token: token, user: data });
       setIsAdmin(isAdmin || false);
       API.defaults.headers.common['Authorization'] = token;
@@ -94,7 +94,7 @@ export const AuthProvider = ({ children }) => {
         ...prevState,
         user: response.data,
       }));
-      console.log(id , userData)
+      //console.log(id , userData)
       sessionStorage.setItem('user', JSON.stringify(response.data));
     } catch (error) {
       console.error('Error updating user:', error);

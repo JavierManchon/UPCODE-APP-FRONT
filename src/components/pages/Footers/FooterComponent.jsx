@@ -9,7 +9,7 @@ const FooterComponent = ({ isLogged }) => {
   const { authState } = useAuth();
   const location = useLocation();
   const previousRoute = location.state.url;
-  console.log(previousRoute);
+  //console.log(previousRoute);
   const template = location.state.templateData;
   const [designToSave, setDesignToSave] = useState();
 

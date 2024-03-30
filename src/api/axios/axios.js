@@ -1,5 +1,5 @@
 import axios from "axios";
-console.log(sessionStorage.getItem('token'))
+
 export const APIHeader = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',

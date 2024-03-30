@@ -273,7 +273,7 @@
 //       if (formattedValue.length > 2) {
 //         formattedValue = formattedValue.replace(/(\d{2})(\d{2})/, "$1/$2");
 //       }
-//       console.log(formData);
+//       //console.log(formData);
 //     }
 
 //     setFormData({
@@ -687,7 +687,7 @@ function Payments() {
 
   useEffect(() => {
     if (authState.user && authState.user.isPremium) {
-      console.log("El usuario ahora es premium:", authState.user);
+      //console.log("El usuario ahora es premium:", authState.user);
     }
   }, [authState.user]);
 
@@ -706,7 +706,7 @@ function Payments() {
       if (formattedValue.length > 2) {
         formattedValue = formattedValue.replace(/(\d{2})(\d{2})/, "$1/$2");
       }
-      console.log(formData);
+      //console.log(formData);
     }
 
     setFormData({
@@ -738,9 +738,9 @@ function Payments() {
         try {
           // Simula un proceso de pago exitoso y actualiza el usuario a premium
           await patchUser(authState.user._id, { isPremium: true });
-          console.log("Actualización a premium exitosa.");
+          //console.log("Actualización a premium exitosa.");
           setPaymentStatus(true); // Actualiza el estado de pago a true para mostrar la confirmación
-          console.log("Usuario después de la actualización:", authState.user);
+          //console.log("Usuario después de la actualización:", authState.user);
 
         } catch (error) {
           console.error("Error al actualizar el usuario a premium:", error);
