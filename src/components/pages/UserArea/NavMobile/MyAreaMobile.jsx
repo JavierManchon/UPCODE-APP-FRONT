@@ -15,7 +15,7 @@ const NavMobile = () => {
   const { authState, setAuthState, patchUser } = useAuth();
   const [designs, setDesigns] = useState([]);
   const [loading, setLoading] = useState(true); 
-  console.log(!authState.user.designs ? authState.user.designs : null);
+  //console.log(!authState.user.designs ? authState.user.designs : null);
   const handleTickets = () => {
     setShowTickets(true);
     setShowDesigns(false);
