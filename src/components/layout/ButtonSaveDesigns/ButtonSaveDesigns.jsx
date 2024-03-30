@@ -10,6 +10,8 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
     const [designName, setDesignName] = useState('');
     const [innerHeight, setInnerHeight] = useState(window.innerHeight);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
     const overlayRef = useRef(null);
 
     const handleResize = () => {
@@ -46,11 +48,15 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
                     ...prevState,
                     user: updatedUser.data
                 }));
+                    setAlertMessage('Diseño guardado con éxito');
+                    setShowAlert(true);
             } catch (error) {
-                console.error('Error saving design:', error);
+            console.error('Error saving design:', error);
+            setAlertMessage('Error al guardar el diseño');
+            setShowAlert(true);
             }
-        }
     }
+};
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -64,6 +70,17 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+    
+    useEffect(() => {
+        if (showAlert) {
+            const timer = setTimeout(() => {
+                setShowAlert(false);
+            }, 3000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [showAlert]);
 
     return (
         <div className="button-save-designs-container">
@@ -82,6 +99,9 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
                         <button onClick={handleSaveDesign}>Guardar</button>
                     </div>
                 </div>
+            )}
+            {showAlert && (
+                <div className="alert-overlay">{alertMessage}</div>
             )}
         </div>
     );

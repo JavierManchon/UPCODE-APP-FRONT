@@ -26,6 +26,9 @@ function UserManagement() {
   };
 
   const handleDeleteUser = async (userId) => {
+    const isConfirmed = window.confirm("¿Estás seguro de que quieres borrar al usuario?");
+
+    if(isConfirmed){
     try {
       await deleteUserReq(userId);
       // Actualizar la lista de usuarios después de eliminar uno
@@ -35,7 +38,8 @@ function UserManagement() {
     } catch (error) {
       console.error("Error al eliminar usuario:", error);
     }
-  };
+  }
+};
 
   const filteredUsers = usersState.filter((user) => {
     const searchTerm = searchUsers.toLowerCase();

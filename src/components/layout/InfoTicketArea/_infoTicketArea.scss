@@ -154,3 +154,34 @@ div.container-infoticket {
         }
     }
 }
+.ticket-alert-overlay {
+    position: fixed;
+    //top: 50%;
+    left:6px;
+    bottom: 90px;
+    //transform: translate(-50%, -50%);
+    background-color: $bgButtonsSpecial;
+    color: $bgApp;
+    font-size: 1.5em;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 100;
+    // La animación se omite ya que el cierre es manual
+  
+    .close-alert {
+      position: absolute;
+      top:5px;
+      right: 5px;
+      background-color:transparent;
+      color:$bgApp;
+      border: none;
+      font-size: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 2px 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;// Ajusta este valor según sea necesario
+    }
+  }
