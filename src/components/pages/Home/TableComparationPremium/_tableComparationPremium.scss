@@ -2,11 +2,9 @@
 
 
 div.container-table{
+  padding: 20px 0;
   background-color: $bgOthers;
   width: 100%;
-
-  border: 2px solid $colorBorders;
-
 }
 
 
@@ -15,6 +13,7 @@ h2.home-title{
   text-align: center;
   padding: 0 20px;
   color: $colorText;
+  font-size: 2em;
 }
 p.home-text{
   margin: 5px auto 20px;
@@ -76,15 +75,16 @@ p.home-text{
     text-decoration: none;
     margin: 5px auto;
     text-align: center;
-    background-color: $bgButtons;
-    color: $colorText;
+    background-color: $bgOthers2;
+    color: $bgApp;
     border: none;
     cursor: pointer;
     border-radius: 5px;
   
     &:hover {
-      background-color: $colorText; 
-      color: $bgButtons;
+      background-color: $bgOthers2Hover;
+      color: $bgNavFooter;
+      transition: all ease 0.5s;
     }
   }
   

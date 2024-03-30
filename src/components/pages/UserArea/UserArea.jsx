@@ -82,10 +82,10 @@ const UserArea = () => {
         {!hasDesigns ? (
           <div className='container-mydesigns'>
             <div className="designs-area">
-              <h2>UPS!</h2>
-              <h3>todavía no tienes diseños guardados</h3>
-              <p>Crea tu primer diseño aquí:</p>
-              <Link to="/catalogue" className="btn-catalogo">Catálogo</Link>
+              <h2 className='h2-designs-area'>UPS!</h2>
+              <h3 className='h3-designs-area'>Todavía no tienes diseños guardados</h3>
+              <p className='p-designs-area'>Crea tu primer diseño aquí:</p>
+              <Link to="/catalogue" className="btn-catalogo">Ir al Catálogo</Link>
             </div>
           </div>
         ) : (

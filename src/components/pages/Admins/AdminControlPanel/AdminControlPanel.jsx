@@ -23,17 +23,15 @@ function AdminControlPanel() {
     return () => clearInterval(intervalId);
   }, [authState.user.username]);
 
-  const handleButtonClick = () => {
-    navigate('/user-area'); 
-};
+
   return (
     <div className="container">
       <div className="content1">
         <div className="image-container">
-          <h2 className="username">Bienvenido {dynamicText} </h2>
+          <h2 className="username">Bienvenido {dynamicText} a : </h2>
           <img
             className="AvatarImg"
-            src={"/src/images/upcode.png"}
+            src={"/src/images/Up_C0deTeam.png"}
             alt="User Avatar"
           />
         </div>

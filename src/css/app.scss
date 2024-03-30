@@ -475,6 +475,19 @@ div.container-pages-default-styles {
     place-items: center;
     width: 100%;
   }
+  >a.premiumsavedesign{
+    background-color: transparent;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    outline: none;
+    width: 150px;
+    padding: 5px 10px;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: $bgButtonsSpecial;
+    color: $bgApp;
+  }
 }
 
 @media screen and (max-width: 1023px) {
