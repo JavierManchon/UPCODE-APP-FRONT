@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Profile from "../../pages/Profile/Profile";
 import { useAuth } from "../../context/AuthContext";
 import { postTicketReq } from "../../../api/axios/tickets";
-import { Default } from '../../../images/default-user.png';
+import Default from '../../../images/default-user.png';
 
 const AsideTickets = ({ isLogged, setIsLogged }) => {
   const {authState} = useAuth();

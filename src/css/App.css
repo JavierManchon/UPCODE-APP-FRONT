@@ -115,15 +115,15 @@ div.container-pages-default-styles > div.styles-editor > span {
   max-width: 300px;
   padding: 5px;
   text-align: center;
-  background-color: #166a8f;
+  background-color: #2facb2;
   border-radius: 15px;
   color: #eff2f3;
 }
 div.container-pages-default-styles > div.styles-editor > span:hover {
   cursor: pointer;
   transition: all ease 0.5s;
-  background-color: #86b7cd;
-  color: #d7dcdd;
+  background-color: #eff2f3;
+  color: #2facb2;
 }
 div.container-pages-default-styles > button.no-visual {
   width: 100%;
@@ -168,7 +168,7 @@ div.container-pages-default-styles > button.no-visual.btn-visual:hover {
   cursor: pointer;
   transition: all ease 0.5s;
   background-color: #86b7cd;
-  color: #d7dcdd;
+  color: #3b4446;
 }
 div.container-pages-default-styles > div.container-containers {
   width: 90%;

@@ -76,8 +76,8 @@ const InfoTicketArea = () => {
               type="text"
               name="title"
               id="title"
-              maxLength={10}
-              placeholder="Máximo 10 caracteres"
+              maxLength={20}
+              placeholder=" Máximo 20 caracteres"
             />
           </label>
 
@@ -93,7 +93,7 @@ const InfoTicketArea = () => {
               id="description"
               cols="30"
               rows="10"
-              placeholder="Máximo 300 caracteres"
+              placeholder=" Máximo 300 caracteres"
             ></textarea>
           </label>
 
