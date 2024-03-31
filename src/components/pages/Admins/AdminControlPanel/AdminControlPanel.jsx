@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import "./_adminControlPanel.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function AdminControlPanel() {
   const { authState } = useAuth();
   const [dynamicText, setDynamicText] = useState("");
@@ -23,36 +23,19 @@ function AdminControlPanel() {
     return () => clearInterval(intervalId);
   }, [authState.user.username]);
 
+  return <div className="container-admin">
+  <div className="text-container">
+  <h2>Hola {dynamicText}</h2>
+        <h2 className="highlight">Te damos la Bienvenida a nuestro Panel de Administración</h2>
+        <h3>Como administrador, tu papel es fundamental para garantizar el funcionamiento óptimo de nuestra plataforma y mantenerla en constante evolución. Entre tus responsabilidades se encuentran:</h3>
+        <Link className="link" to="/adminDesignsManagement">Gestión de Diseños</Link>
+        <Link to="/adminUserManagement">Gestión de Usuarios</Link>
 
-  return (
-    <div className="container">
-      <div className="content1">
-        <div className="image-container">
-          <h2 className="username">Bienvenido {dynamicText} a : </h2>
-          <img
-            className="AvatarImg"
-            src={"/src/images/Up_C0deTeam.png"}
-            alt="User Avatar"
-          />
-        </div>
-      </div>
-      <div className="content2">
-        <div className="text-container">
-          <h3 className="title">
-            Esta es tu zona de administración de usuarios y diseños
-          </h3>
-          <h4 className="subtitle">Desde este área podrás:</h4>
-          <ul className="list-container">
-            <li>Borrar diseños y usuarios.</li>
-            <li>Gestionar tickets de usuarios.</li>
-            <li>Enviar notificaciones a usuarios.</li>
-            <li>Actualizar información de usuarios.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    
-  );
+</div>
+<div className="image-container">
+  <img className="imageAdmin" src="/src/images/adminEffect.png" alt="adminEffect"/>
+  </div>
+  </div>
 }
 
 export default AdminControlPanel;
