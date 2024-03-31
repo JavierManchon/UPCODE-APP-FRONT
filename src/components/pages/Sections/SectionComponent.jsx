@@ -228,6 +228,8 @@ const SectionComponent = ({ isLogged }) => {
         justifyContent: computedSectionStyles.justifyContent,
         alignItems: computedSectionStyles.alignItems,
         gap: computedSectionStyles.gap,
+        gridTemplateColums: computedSectionStyles.gridTemplateColumns,
+        gridTemplateRows: computedSectionStyles.gridTemplateRows
       });
     }
   }, [SectionBgColor]);
@@ -615,9 +617,22 @@ const SectionComponent = ({ isLogged }) => {
                 <span>width: {sectionStyles.width};</span>
                 <span>padding: {sectionStyles.padding};</span>
                 <span>display: {sectionStyles.display};</span>
-                <span>flex-flow: {sectionStyles.flexFlow};</span>
-                <span>justify-content: {sectionStyles.justifyContent};</span>
-                <span>align-items: {sectionStyles.alignItems};</span>
+                {sectionStyles.display === 'flex' 
+                  ? <>
+                    <span>flex-flow: {sectionStyles.flexFlow};</span>
+                    <span>justify-content: {sectionStyles.justifyContent};</span>
+                    <span>align-items: {sectionStyles.alignItems};</span>
+                    <span>align-items: {sectionStyles.alignItems};</span>
+                    </>
+                  : null
+                }
+                {sectionStyles.display === 'grid' 
+                  ? <>
+                    <span>grid-template-columns: {sectionStyles.gridTemplateColums};</span>
+                    <span>grid-template-rows: {sectionStyles.gridTemplateRows};</span>
+                    </>
+                  : null
+                }
                 <span>{"}"}</span>
               </div>
             </div>

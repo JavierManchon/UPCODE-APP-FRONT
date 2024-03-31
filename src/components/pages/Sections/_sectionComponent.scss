@@ -86,28 +86,28 @@
     }
   }
   
-  // .SectionGrid {
-  //   background-color: $bgNavFooter;
-  //   width: 100%;
-  //   height: 400px;
-  //   padding: 6px;
-  //   display: grid;
-  //   grid-template-columns: repeat(3, 1fr);
-  //   grid-template-rows: repeat(3, 1fr);
-  //   grid-column-gap: 0px;
-  //   grid-row-gap: 0px;  
-  //   .article {
-  //     display: grid;
-  //     place-items: center;
-  //     border: 2px solid $colorBorders;  
-  //     .h2 {
-  //       color: $bgApp;
-  //     }
-  //     .p {
-  //       color: $bgApp;
-  //     }
-  //   }
-  // } 
+  .sectionGrid {
+    background-color: $bgNavFooter;
+    width: 300px;
+    height: 280px;
+    padding: 6px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    .article {
+      display: grid; 
+      place-items: center;
+      border: 2px solid $colorBorders;
+      .h2 {
+        color: $bgApp;
+      }
+      .p {
+        color: $bgApp;
+      }
+    }
+  }
 //estilos predeterminados
 div.container-pages-default-styles {
   div.container-editor {

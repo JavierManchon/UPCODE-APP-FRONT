@@ -345,8 +345,6 @@ div.container-pages-default-styles > div.container-containers > div.container-re
 }
 div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_visual > figure.figure {
   background-color: #eff2f3;
-  display: grid;
-  place-items: center;
   gap: 20px;
 }
 div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_visual > figure.figure > img {

@@ -27,7 +27,7 @@ const Description = ({ isLogged }) => {
       </div>
       <div className="video-content">
         <video className="video-content" autoPlay muted loop>
-          <source src="/src/images/the best app for Developers 2024.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dtsp1wfry/video/upload/v1711904422/Grabaci%C3%B3n_de_pantalla_2024-03-31_a_las_18.56.55_hudqyg.mov" type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
       </div>
