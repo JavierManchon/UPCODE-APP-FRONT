@@ -1,18 +1,17 @@
 
 
 import './_home.scss';
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import TableComparationPremium from './TableComparationPremium/TableComparationPremium'; 
 import Slider from './Slider/Slider';
 import Description from './Description/Description';
 import PremiumContent from './PremiumContent/PremiumContent';
 import { useAuth } from '../../context/AuthContext';
 
-const Home = ({isLogged ,setIsLogged}) => {
+const Home = ({setIsLogged}) => {
 
     const [isPremium, setIsPremium] = useState(false);
-    const { authState} = useAuth();
+    const { authState, isLogged} = useAuth();
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');

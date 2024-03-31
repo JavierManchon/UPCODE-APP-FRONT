@@ -4,10 +4,6 @@ import './_tableComparationPremium.scss';
 
 const TableComparationPremium = ({isLogged}) => {
 
-  const navigate = useNavigate();
-
-
-
   const caracteristicas = [
     { id: 1, feature: 'Contenido premium', free: false, paid: true },
     { id: 2, feature: 'Consultas prioritarias', free: false, paid: true },

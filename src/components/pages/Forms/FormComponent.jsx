@@ -244,6 +244,7 @@ const FormComponent = ({ isLogged }) => {
       setSpanStyles({
         color: computedSpanStyles.color,
       });
+      console.log(computedSpanStyles.color)
     }
   }, [spanColor]);
 
@@ -420,9 +421,7 @@ const FormComponent = ({ isLogged }) => {
             {Array.from({ length: template.defaultContent.countChildren }).map(
               (_, index) => (
                 <React.Fragment key={`editor_${index}`}>
-                  <p className="padding-left-10">{"<span>"}</p>
-                  <p className="padding-left-10">{`Bloque ${index}:`}</p>
-                  <p className="padding-left-10">{"</span>"}</p>
+                  <p className="padding-left-10">{"<span>"}{`Bloque ${index + 1}:`}{"</span>"}</p>
                   <p className="padding-left-10">{"<div>"}</p>
                   {Array.from({
                     length: template.defaultContent.countGrandson,
@@ -497,7 +496,7 @@ const FormComponent = ({ isLogged }) => {
                 length: template.defaultContent.countChildren,
               }).map((_, index) => (
                 <React.Fragment key={`renderized_${index}`}>
-                  <span key={`span-child-${index}`} className="span" style={{color: spanColor}} ref={visualSpan}></span>
+                  <span key={`span-child-${index}`} className="span" style={{color: spanColor}} ref={visualSpan}>Bloque {index + 1}:</span>
                   <div
                     key={`child_${index}`}
                     className="form-div"
@@ -544,6 +543,7 @@ const FormComponent = ({ isLogged }) => {
                       ? `${buttonBorderRadius}px`
                       : buttonBorderRadius,
                 }}
+                disabled
                 ref={visualButton}
               >
                 {buttonValue}
@@ -566,9 +566,7 @@ const FormComponent = ({ isLogged }) => {
                 length: template.defaultContent.countChildren,
               }).map((_, index) => (
                 <React.Fragment key={`html_${index}`}>
-                  <p className="padding-left-10">{"<span>"}</p>
-                  <p className="padding-left-10">{`Bloque ${index}:`}</p>
-                  <p className="padding-left-10">{"</span>"}</p>
+                  <span className="padding-left-10">{"<span>"}{`Bloque ${index + 1}:`}{"</span>"}</span>
                   <span>{"<div>"}</span>
                   {Array.from({
                     length: template.defaultContent.countGrandson,
@@ -659,7 +657,7 @@ const FormComponent = ({ isLogged }) => {
                   .{template.defaultStyles[5]}
                   {" {"}
                 </span>
-                <span>color: {spanStyles.display}</span>
+                <span>color: {spanStyles.color}</span>
                 <span>{"}"}</span>
               </div>
             </div>
