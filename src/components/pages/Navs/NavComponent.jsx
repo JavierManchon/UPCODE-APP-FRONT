@@ -248,7 +248,7 @@ const FooterComponent = ({ isLogged }) => {
           </div>
         </label>
         </div>
-        <span onClick={handleCss}>Mostrar código</span>
+        <span onClick={handleCss}>Mostrar código CSS</span>
       </div>
 
       <div className="container-containers">
@@ -306,7 +306,7 @@ const FooterComponent = ({ isLogged }) => {
             {">"}
           </p>
           </div>
-          <span onClick={handleHtml}>Mostrar código</span>
+          <span onClick={handleHtml}>Mostrar código HTML</span>
         </div>
 
         <div className="container-render">
