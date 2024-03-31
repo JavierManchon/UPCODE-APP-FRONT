@@ -415,7 +415,7 @@ const SectionComponent = ({ isLogged }) => {
             {template.elementType}
             {">"}
             </p>
-            {Array.from({ length: template.defaultContent.  countChildren }).map(
+            {Array.from({ length: template.defaultContent.countChildren }).map(
             (_, index) => (
               <React.Fragment key={index}>
                 <div className={`${template.defaultContent.children[0]}`}>

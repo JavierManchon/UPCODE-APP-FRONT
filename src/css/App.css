@@ -228,6 +228,7 @@ div.container-pages-default-styles > div.container-containers > div.container-ed
 div.container-pages-default-styles > div.container-containers > div.container-editor > div p > input {
   border: none;
   outline: none;
+  color: #eff2f3;
   padding: 3px 3px 1px;
   background-color: transparent;
   border-bottom: 1px solid #d7dcdd;
@@ -343,13 +344,14 @@ div.container-pages-default-styles > div.container-containers > div.container-re
   visibility: hidden;
 }
 div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_visual > figure.figure {
+  background-color: #eff2f3;
   display: grid;
   place-items: center;
   gap: 20px;
 }
 div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_visual > figure.figure > img {
-  width: 250px;
-  height: 250px;
+  width: 220px;
+  height: 220px;
 }
 div.container-pages-default-styles > div.container-containers > div.container-render > div.container-renderized_css {
   width: 100%;
