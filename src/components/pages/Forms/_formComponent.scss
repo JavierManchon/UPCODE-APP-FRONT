@@ -1,6 +1,7 @@
-//clases de la informacion que damos al usuario
-.formVerticalText, .formVerticalCheckbox, .formVerticalRadio, .formVerticalColor  {
-    background-color: rgb(99, 247, 188);
+@import "../../../css/variables";
+
+.formVerticalText  {
+    background-color: $bgNavFooter;
     width: 200px;
     padding: 6px;
     display: flex;
@@ -8,18 +9,88 @@
     justify-content: center;
     gap: 5px;
 
+
+    .span {
+        color: $colorText;
+    }
+
     .form-div{
         display: flex;
         flex-direction: column;
-        margin-bottom: 10px;
+        margin-bottom: 10px
+
     }
 
     .label {
-        color: #f7639e;
+        color: $bgApp;
     }
 
     .button {
-        color: rgb(99, 247, 188);
-        background-color: white;
+        color: $bgApp;
+        background-color: $bgButtons;
+    }
+}
+
+.formVerticalCheckbox, .formVerticalRadio {
+    background-color: $bgNavFooter;
+    width: 200px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+
+    .span {
+        color: $colorText;
+    }
+
+    .form-div{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+
+    }
+
+    .label {
+        color: $bgApp;
+    }
+
+    .button {
+        color: $bgApp;
+        background-color: $bgButtons;
+        width: 100%;
+    }
+}
+
+.formVerticalColor {
+    background-color: $bgNavFooter;
+    width: 200px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+
+    .span {
+        color: $colorText;
+    }
+
+    .form-div{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+
+    }
+
+    .label {
+        color: $bgApp;
+    }
+
+    .button {
+        color: $bgApp;
+        background-color: $bgButtons;
+        width: 100%;
     }
 }
