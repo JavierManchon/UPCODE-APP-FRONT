@@ -71,7 +71,7 @@ const FigureComponent = ({ isLogged }) => {
   const [imgUrl, setImgUrl] = useState(
     template.edit.textItem
       ? template.edit.textItem
-      : "https://free4kwallpapers.com/uploads/originals/2020/08/15/-programming-wallpaper.png"
+      : "https://images.wikidexcdn.net/mwuploads/esssbwiki/thumb/c/c0/latest/20201213230418/Sefirot_SSBU.png/1200px-Sefirot_SSBU.png"
   );
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const FigureComponent = ({ isLogged }) => {
   }, [imgUrl]);
 
   const [figcaption, setFigcaption] = useState(
-    template.edit.text ? template.edit.text : "imagen de una closeTag"
+    template.edit.text ? template.edit.text : "TheRealJefry"
   );
 
   useEffect(() => {

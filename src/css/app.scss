@@ -264,6 +264,7 @@ div.container-pages-default-styles {
           > input {
             border: none;
             outline: none;
+            color: $bgApp;
             padding: 3px 3px 1px;
             background-color: transparent;
             border-bottom: 1px solid $colorText;
@@ -406,12 +407,11 @@ div.container-pages-default-styles {
         }
 
         > figure.figure {
-          display: grid;
-          place-items: center;
+          background-color: $bgApp;
           gap: 20px;
           > img {
-            width: 250px;
-            height: 250px;
+            width: 220px;
+            height: 220px;
           }
         }
       }
