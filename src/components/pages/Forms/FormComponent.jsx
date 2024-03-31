@@ -103,10 +103,13 @@ const FormComponent = ({ isLogged }) => {
 
     const [buttonBorderRadius, setButtonBorderRadius] = useState(template.edit.borderRadius ? template.edit.borderRadius : '');
 
+    const [spanColor, setSpanColor] = useState(template.edit.colorTitle ? template.edit.colorTitle : '');
+
     const [formStyles, setFormStyles] = useState({});
     const [labelStyles, setLabelStyles] = useState({});
     const [buttonStyles, setButtonStyles] = useState({});
     const [divStyles, setDivStyles] = useState({});
+    const [spanStyles, setSpanStyles] = useState({});
 
     const handleLabelChange = (index, childIndex) => (event) => {
         if (index >= 0 && index < labelValues.length && childIndex >= 0 && childIndex < labelValues[index].length) {
@@ -156,6 +159,11 @@ const FormComponent = ({ isLogged }) => {
     setButtonFontSize(`${event.target.value}px`);
   };
 
+  const handleSpanColor = (event) => {
+    updateTemplate("edit.colorTitle", event.target.value);
+    setSpanColor(event.target.value);
+  };
+
   const handleButtonBorderRadius = (event) => {
     updateTemplate("edit.borderRadius", event.target.value);
     setButtonBorderRadius(Number(event.target.value));
@@ -173,6 +181,7 @@ const FormComponent = ({ isLogged }) => {
         display: computedFormStyles.display,
         flexDirection: computedFormStyles.flexDirection,
         justifyContent: computedFormStyles.justifyContent,
+        alignItems: computedFormStyles.alignItems,
         gap: computedFormStyles.gap,
       });
     }
@@ -198,6 +207,7 @@ const FormComponent = ({ isLogged }) => {
         visualButton.current
       );
       setButtonStyles({
+        width: computedButtonStyles.width,
         color: computedButtonStyles.color,
         fontSize: computedButtonStyles.fontSize,
         fontWeight: computedButtonStyles.fontWeight,
@@ -226,6 +236,17 @@ const FormComponent = ({ isLogged }) => {
     }
   }, []);
 
+  const visualSpan = useRef(null);
+  useEffect(() => {
+    if (visualSpan.current) {
+      const computedSpanStyles = window.getComputedStyle(visualSpan.current);
+
+      setSpanStyles({
+        color: computedSpanStyles.color,
+      });
+    }
+  }, [spanColor]);
+
   const getFirstWord = (text) => {
     if (text) {
       const words = text.split(" ");
@@ -253,6 +274,15 @@ const FormComponent = ({ isLogged }) => {
           <label htmlFor="bgFormColor">
             <p>Color bg</p>
             <input type="color" id="bgFormColor" onChange={handleBgFormColor} />
+          </label>
+
+          <label htmlFor="spanColor">
+            <p>Color {'<span>'}</p>
+            <input
+              type="color"
+              id="spanColor"
+              onChange={handleSpanColor}
+            />
           </label>
 
           <label htmlFor="labelFontColor">
@@ -390,6 +420,9 @@ const FormComponent = ({ isLogged }) => {
             {Array.from({ length: template.defaultContent.countChildren }).map(
               (_, index) => (
                 <React.Fragment key={`editor_${index}`}>
+                  <p className="padding-left-10">{"<span>"}</p>
+                  <p className="padding-left-10">{`Bloque ${index}:`}</p>
+                  <p className="padding-left-10">{"</span>"}</p>
                   <p className="padding-left-10">{"<div>"}</p>
                   {Array.from({
                     length: template.defaultContent.countGrandson,
@@ -464,6 +497,7 @@ const FormComponent = ({ isLogged }) => {
                 length: template.defaultContent.countChildren,
               }).map((_, index) => (
                 <React.Fragment key={`renderized_${index}`}>
+                  <span key={`span-child-${index}`} className="span" style={{color: spanColor}} ref={visualSpan}></span>
                   <div
                     key={`child_${index}`}
                     className="form-div"
@@ -532,6 +566,9 @@ const FormComponent = ({ isLogged }) => {
                 length: template.defaultContent.countChildren,
               }).map((_, index) => (
                 <React.Fragment key={`html_${index}`}>
+                  <p className="padding-left-10">{"<span>"}</p>
+                  <p className="padding-left-10">{`Bloque ${index}:`}</p>
+                  <p className="padding-left-10">{"</span>"}</p>
                   <span>{"<div>"}</span>
                   {Array.from({
                     length: template.defaultContent.countGrandson,
@@ -604,7 +641,25 @@ const FormComponent = ({ isLogged }) => {
                 <span>display: {formStyles.display};</span>
                 <span>flex-direction: {formStyles.flexDirection};</span>
                 <span>justify-content: {formStyles.justifyContent};</span>
+                <span>align-items: {formStyles.alignItems}</span>
                 <span>gap: {formStyles.gap};</span>
+                <span>{"}"}</span>
+              </div>
+            </div>
+
+            <div className="css-li">
+              <div className="title-btn">
+                <h4>Estilos de la {"<span>"}</h4>
+                <button onClick={() => copyToClipboard("css-button")}>
+                  Copiar
+                </button>
+              </div>
+              <div className="css" id="css-button">
+                <span>
+                  .{template.defaultStyles[5]}
+                  {" {"}
+                </span>
+                <span>color: {spanStyles.display}</span>
                 <span>{"}"}</span>
               </div>
             </div>
@@ -662,6 +717,7 @@ const FormComponent = ({ isLogged }) => {
                   .{template.defaultStyles[3]}
                   {" {"}
                 </span>
+                <span>width: 100%</span>
                 <span>background-color: {buttonStyles.backgroundColor};</span>
                 <span>color: {buttonStyles.color};</span>
                 <span>font-size: {buttonStyles.fontSize};</span>
