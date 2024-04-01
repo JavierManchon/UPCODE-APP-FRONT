@@ -99,7 +99,7 @@ form.form-payment {
         justify-content: space-between;
         align-items: center;   
         >label{
-            width: 250px;
+            width: 200px;
         }
         input.expiry {
             width: 100%; 
@@ -116,28 +116,37 @@ form.form-payment {
           } 
     }
     .location-container {
+        width: 100%;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
         justify-content: space-between;
-        .country-selector {
-            border: none;
-            outline: none;
-            padding: 10px;
-            font-size: 16px;
-            border-bottom: 2px solid black;
-        
-        }
-        
-        
-        .postal-code {
-            width: 250px;
-            padding: 10px;
-            font-size: 16px;
-            >option{
-                width: 250px;
+        > label {
+            width: 100%;
+            max-width: 250px;
+            
+            .country-selector {
+                border: none;
+                outline: none;
+                padding: 10px;
+                font-size: 16px;
+                border-bottom: 2px solid black;
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            
+            .postal-code {
+                width: 100%;
+                max-width: 250px;
+                padding: 10px;
+                font-size: 16px;
+                >option{
+                    width: 250px;
+                }
             }
         }
+        
     }
  
 }
@@ -145,8 +154,19 @@ form.form-payment {
 
 /* Media queries for responsiveness */
 @media only screen and (max-width: 600px) {
+    form.form-payment {
+        .location-container {
+            flex-flow: row wrap;
+            
+            > label {
+                max-width: none;
+                .country-selector, .postal-code {
+                    max-width: none;
+                }
+            }
+        }
+    }
     .payments-container {
-        width: 75%;
         padding: 10px;
         margin: auto;
     }
