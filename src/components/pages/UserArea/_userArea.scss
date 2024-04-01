@@ -164,6 +164,21 @@ section.my-area {
       border-radius: 15px;
       position: relative;
 
+      >div.likes-section {
+        position: absolute;
+        bottom: 1px;
+        right: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+
+        > img {
+          width: 30px;
+        }
+      }
+
       > button.deleteButton {
         position: absolute;
         top: -5px;
@@ -244,6 +259,7 @@ section.my-area {
 
         > div.visualizer.div, > div.visualizer.form, > div.visualizer.nav, > div.visualizer.button, > div.visualizer.section, > div.visualizer.figure, > div.visualizer.footer {
           background-color: $visualizerBack;
+
         }
     }
   }

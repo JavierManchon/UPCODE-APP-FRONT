@@ -1,97 +1,70 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import InfoTicketArea from "../../layout/InfoTicketArea/InfoTicketArea";
-import Profile from "../../pages/Profile/Profile";
-import './_userArea.scss';
+import React, { useEffect, useState } from 'react';
+import './_community.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { removeDesignReq } from '../../../api/axios/designs';
-import { getOneUserReq } from '../../../api/axios/auth';
-import MyAreaMobile from './NavMobile/MyAreaMobile';
+import { likesSystemReq, getDesigns, getDesignById } from '../../../api/axios/designs';
 import Loading from '../../utils/Loading/Loading';
+import Liked from '../../../images/liked.png';
+import Unliked from '../../../images/unliked.png';
 
-const UserArea = () => {
-  const { authState, setAuthState, patchUser } = useAuth();
+const Community = () => {
+  const { authState } = useAuth();
   const [designs, setDesigns] = useState([]);
   const [loading, setLoading] = useState(true); 
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      if (authState.user && authState.user._id) {
-        try {
-          const response = await getOneUserReq(authState.user._id);
-          if (response && response.data) {
-            setTimeout(() => {
-              setDesigns(response.data.designs || []);
-              setLoading(false); 
-            }, 1500); 
-          }
-        } catch (error) {
-          console.error("Error fetching designs:", error);
+      try {
+        const response = await getDesigns();
+        if (response && response.data) {
+          setTimeout(() => {
+            const sortedDesigns = response.data.sort((a, b) => b.likes.length - a.likes.length);
+            setDesigns(sortedDesigns);
+            setLoading(false); 
+          }, 1500); 
         }
+      } catch (error) {
+        console.error("Error fetching designs:", error);
       }
     };
 
     fetchData();
-  }, [authState.user]);
-  const handleDeleteDesign = async (designId) => {
-    try {
-      await removeDesignReq(designId);
-      
-      const updatedDesigns = designs.filter(design => design._id !== designId);
-      setDesigns(updatedDesigns);
-      
-      const response = await getOneUserReq(authState.user._id);
-      setAuthState(prevState => ({
-        ...prevState,
-        user: {
-          ...prevState.user,
-          designs: response.data.designs,
-        },
-      }));
-    } catch (error) {
-      console.error('Error deleting:', error);
-    }
-  };
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, []);
 
-  const handlePremiumToggle = async () => {
-    if (authState.user.isPremium) {
-      try {
-        await patchUser(authState.user._id, { isPremium: false });
-        alert("Tu suscripción premium ha sido cancelada.");
-      } catch (error) {
-        console.error("Error al cancelar la suscripción premium:", error);
+  const handleLike = async (designId, userId) => {
+    try {
+      const response = await likesSystemReq(designId, userId);
+
+      if (response) {
+        const updatedDesignResponse = await getDesignById(designId);
+        
+        if (updatedDesignResponse && updatedDesignResponse.data) {
+          const updatedDesign = updatedDesignResponse.data;
+
+          setDesigns(prevDesigns => {
+            return prevDesigns.map(design => {
+              if (design._id === designId) {
+                return {
+                  ...design,
+                  likes: updatedDesign.likes
+                };
+              }
+              return design;
+            });
+          });
+        }
       }
-    } else {
-      navigate("/payments");
+    } catch (error) {
+      console.error("Error handling like:", error);
     }
   };
+  
+
+
 
   return (
     <>
-      {windowWidth > 1023 ? (
         <section className='my-area'>
-          <aside className='container-aside-mydesigns'>
-            <Profile />
-            <button onClick={handlePremiumToggle} className="premium-toggle-btn">
-              {authState.user.isPremium ? "Cancelar Premium" : "Hazte Premium"}
-            </button>
-            <InfoTicketArea />
-          </aside>
           {loading ? (
             <div className='container-mydesigns'>
             <Loading/>
@@ -107,7 +80,7 @@ const UserArea = () => {
             </div>
           ) : (
             <div className='container-mydesigns'>
-              {designs.slice().reverse().map((design, index) => (
+              {designs.map((design, index) => (
                 design.template === false ? (
                   <div key={`my-design-${index}`} className={`design ${design.elementType}`}>
                   <Link key={index} to={`/catalogue/template-${design.elementType}s/${design._id}`} state={{ templateData: design }}>
@@ -226,7 +199,7 @@ const UserArea = () => {
                         <form className={design.defaultStyles[0]} style={{ backgroundColor: design.edit.bgColorForm }}>
                           {Array.from({ length: design.defaultContent.countChildren }).map((_, index) => (
                             <React.Fragment key={`renderized_${index}`}>
-                              <span className='span' style={{color: design.edit.colorTitle}}>{`Bloque  ${index + 1}:`}</span>
+                            <span className='span' style={{color: design.edit.colorTitle}}>{`Bloque  ${index + 1}:`}</span>
                               <div key={`child_${index}`} className='form-div'>
                                 {Array.from({ length: design.defaultContent.countGrandson }).map((_, i) => (
                                   <React.Fragment key={`visual_${index}_${i}`}>
@@ -262,22 +235,23 @@ const UserArea = () => {
                       )}
                     </div>
                     <h3>{design.nameDesign.charAt(0).toUpperCase() + design.nameDesign.slice(1)}</h3>
-                  </Link>
-                    <button className='deleteButton' onClick={() => handleDeleteDesign(design._id)} style={{ marginTop: '10px' }}>x</button>
+                    </Link>
+                    <div key={`my-likes-${index}`} className='likes-section' onClick={() => handleLike(design._id, authState.user._id)}>
+                        <span className='likesNum'>{design.likes.length}</span>
+                        {design.likes.includes(authState.user._id) ? (
+                            <img src={Liked} alt="Corazón rojo" />
+                            ) : (
+                            <img src={Unliked} alt="Corazón con borde rojo" />
+                        )}
+                    </div>
                   </div>
                 ) : null
               ))}
             </div>
           )}
         </section>
-      ) : (
-        <section className='my-area-mobile'>
-          <Profile />
-          <MyAreaMobile />
-        </section>
-      )}
     </>
   );
 };
 
-export default UserArea;
+export default Community;

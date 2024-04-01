@@ -31,6 +31,7 @@ import { useAuth } from "./context/AuthContext";
 import AdminMiddleware from "./middlewares/AdminMiddleware";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import Community from "./pages/Community/Community";
 
 
 function App() {
@@ -109,6 +110,14 @@ function App() {
             <AdminMiddleware>
               <TicketsManagement />
             </AdminMiddleware>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <AuthMiddleware>
+              <Community isLogged={logged} setIsLogged={setLogged} />
+            </AuthMiddleware>
           }
         />
         <Route path="/register" element={<RegisterForm />} />

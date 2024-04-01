@@ -29,8 +29,8 @@ const Header = () => {
                         <>
                             <li><Link to="/user-area">Mis Diseños</Link></li>
                             <li><Link to='/community'>Comunidad</Link></li>
-                            
                             <li><Link to="/catalogue">Catálogo</Link></li>
+                            <li><Link to="/user-area">Mis Diseños</Link></li>
                             <li onClick={handleLogout}>Logout</li>
                             <li className={`toggle-menu ${openToggle ? 'open' : ''}`} onClick={handleOpenToggle}>
                                 <div></div>
