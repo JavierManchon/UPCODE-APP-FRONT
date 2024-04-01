@@ -101,7 +101,7 @@ const FormComponent = ({ isLogged }) => {
 
     const [buttonFontWeight, setButtonFontWeight] = useState(template.edit.fontWeightItem ? template.edit.fontWeightItem : '');
 
-    const [buttonBorderRadius, setButtonBorderRadius] = useState(template.edit.borderRadius ? template.edit.borderRadius : '');
+    const [buttonBorderRadius, setButtonBorderRadius] = useState(template.edit.borderRadius ? `${template.edit.borderRadius}px` : '');
 
     const [spanColor, setSpanColor] = useState(template.edit.colorTitle ? template.edit.colorTitle : '');
 
@@ -166,7 +166,7 @@ const FormComponent = ({ isLogged }) => {
 
   const handleButtonBorderRadius = (event) => {
     updateTemplate("edit.borderRadius", event.target.value);
-    setButtonBorderRadius(Number(event.target.value));
+    setButtonBorderRadius(`${event.target.value}px`);
   };
 
   const visualForm = useRef(null);
@@ -244,7 +244,6 @@ const FormComponent = ({ isLogged }) => {
       setSpanStyles({
         color: computedSpanStyles.color,
       });
-      console.log(computedSpanStyles.color)
     }
   }, [spanColor]);
 
@@ -538,10 +537,7 @@ const FormComponent = ({ isLogged }) => {
                   fontSize: buttonFontSize,
                   color: buttonFontColor,
                   fontWeight: buttonFontWeight,
-                  borderRadius:
-                    typeof buttonBorderRadius === "number"
-                      ? `${buttonBorderRadius}px`
-                      : buttonBorderRadius,
+                  borderRadius: buttonBorderRadius
                 }}
                 disabled
                 ref={visualButton}

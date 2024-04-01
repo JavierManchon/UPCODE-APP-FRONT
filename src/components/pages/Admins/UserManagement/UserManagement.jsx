@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./_userManagement.scss";
 import { getAllUsersReq, deleteUserReq } from "../../../../api/axios/auth";
+import { useAuth } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
 
 function UserManagement() {
+
+  const { getAllUsers } = useAuth();
+
   const [usersState, setUsersState] = useState([]);
   const [searchUsers, setSearchUsers] = useState("");
 
@@ -11,15 +15,15 @@ function UserManagement() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await getAllUsersReq();
-        const users = response.data;
-        setUsersState(users);
+        const users = await getAllUsers();
+        const nonAdminUsers = users.filter(user => !user.isAdmin);
+        setUsersState(nonAdminUsers);
       } catch (error) {
         console.error("Error al obtener usuarios:", error);
       }
     }
     fetchData();
-  }, []);
+  }, [getAllUsers]);
 
   const handleSearchChange = (e) => {
     setSearchUsers(e.target.value);
