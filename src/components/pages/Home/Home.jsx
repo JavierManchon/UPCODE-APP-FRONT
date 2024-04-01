@@ -28,12 +28,9 @@ const Home = ({setIsLogged}) => {
     
   return (
     <div className="home-container">
-      <Description isLogged={isLogged}/>
-      {isLogged && isPremium 
-        ? ( <PremiumContent /> ) 
-        : ( <TableComparationPremium isLogged={isLogged} /> )
-      }
-      <Slider />
+        <Description isLogged={isLogged}/>
+        <TableComparationPremium isLogged={isLogged} /> 
+        <Slider />
     </div>            
   );
 }
