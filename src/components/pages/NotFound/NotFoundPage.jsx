@@ -3,7 +3,7 @@ import "./_notFoundPage.scss"
 
 function NotFoundPage() {
   return (
-    <div className='container'>
+    <div className='container404'>
       <img src='/src/images/NotFound.png' alt='NotFound'/>
     </div>
   )

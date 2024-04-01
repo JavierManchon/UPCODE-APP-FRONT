@@ -142,20 +142,13 @@ form.form-payment {
  
 }
 
-  
-
-
-
-
-
-
-
 
 /* Media queries for responsiveness */
 @media only screen and (max-width: 600px) {
     .payments-container {
         width: 75%;
         padding: 10px;
+        margin: auto;
     }
 }
 

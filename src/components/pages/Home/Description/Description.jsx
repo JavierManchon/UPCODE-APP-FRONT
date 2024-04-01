@@ -20,7 +20,7 @@ const Description = ({ isLogged }) => {
           </button>
           <button className="button-catalogue">
             <Link to={"/catalogue"}>
-              {"Templates"}
+              {"Catálogo"}
             </Link>
           </button>
         </div>
