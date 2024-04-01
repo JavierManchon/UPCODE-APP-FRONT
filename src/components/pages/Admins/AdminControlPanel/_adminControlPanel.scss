@@ -1,0 +1,105 @@
+@import "../../../../css/variables";
+
+.container-admin {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;
+  height: calc(100vh - 160px);
+  background-color: $bgOthers2;
+  padding: 20px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  > div.text-container {
+    width: 100%; 
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+    flex: 1;
+
+    > h2 {
+      font-size: 30px;
+      color: $colorText;
+    }
+
+    > h2.highlight {
+      color: $bgButtonsSpecial;
+    }
+
+    > h3 {
+      color:$bgApp;
+    }
+
+    > a {
+      color: $bgApp;
+      text-decoration: none;
+      transition: 1s;
+
+      &:hover {
+        text-decoration: underline;
+        color: $bgButtonsSpecial;
+        cursor: pointer;
+
+      }
+      
+  }
+  }
+
+  .image-container {
+    width: 50%;
+    height: auto;
+    max-width: 500px; 
+    overflow: hidden;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+  }
+
+  > div.text-container,
+  .image-container {
+    margin: 20px; 
+  }
+
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .container-admin {
+    flex-direction: column;
+    height: calc(100vh - 120px);
+    padding: 10px;
+  }
+
+  .container-admin > div.text-container,
+  .container-admin .image-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .container-admin .image-container {
+    order: 1; 
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .container-admin > div.text-container {
+    max-width: 700px;
+  }
+
+  .container-admin .image-container {
+    max-width: 700px;
+  }
+
+  .container-admin > div.text-container h2 {
+    font-size: 36px;
+  }
+
+  .container-admin > div.text-container p {
+    font-size: 18px;
+  }
+}

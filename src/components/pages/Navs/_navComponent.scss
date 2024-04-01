@@ -1,0 +1,89 @@
+//clases de la informacion que damos al usuario
+
+@import '../../../css/_variables.scss';
+
+
+.navBarVertical {
+    background-color: $bgOthers2;
+    width: 100px;
+    padding: 6px;
+  
+    .ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        list-style: none;
+  
+        .li {
+            color: $bgApp;
+  
+        }
+    }
+  }
+  
+  .navBarHorizontalStart {
+    background-color: $bgOthers2;
+    width: 100%;
+    padding: 6px;
+  
+    .ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 5px;
+        list-style: none;
+        align-items: center;
+  
+        .li {
+            color: $bgApp;
+        }
+    }
+  }
+  
+  .navBarHorizontalCenter {
+    background-color: $bgOthers2;
+    width: 100%;
+    padding: 6px;
+  
+    .ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        gap: 5px;
+        list-style: none;
+        align-items: center;
+  
+        .li {
+            color: $bgApp;
+        }
+    }
+  }
+  ul{
+    height: 100%;
+  }
+  .navBarHorizontalEnd {
+    background-color: $bgOthers2;
+    width: 100%;
+    padding: 6px;
+  
+    .ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+        gap: 5px;
+        list-style: none;   
+        align-items: center;
+  
+        .li {
+            color: $bgApp;
+        }
+    }
+  }
+
+  

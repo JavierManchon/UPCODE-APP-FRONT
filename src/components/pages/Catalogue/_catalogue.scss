@@ -1,0 +1,183 @@
+@import '../../../css/_variables.scss';
+
+
+
+main.container-catalogue {
+    width: 100%;
+    height: calc(100vh - 160px);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 30px;
+    position: relative;
+
+    >h2{
+        font-weight: bold;
+        width: 100%;
+        padding: 5px 0 0 10px;
+        padding-bottom: 1px;
+        text-align: left;
+        border-bottom: 1px solid $colorBorders;
+        flex-shrink: 0;
+        color: $bgOthers;
+        font-size: 30px;
+    }
+
+    >section.container-packs{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        flex-shrink: 0;
+        color: $bgOthers; 
+        padding: 5px 0 0 10px;
+        >h3{
+            font-weight: bold;
+            width: 100%;
+            padding: 5px;
+            padding-bottom: 1px;
+            text-align: left;
+            border-bottom: 1px solid $bgOthers;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+        >div.packs{
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            width: 100%;
+            padding: 20px 10px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap; 
+
+            >a.pack{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-decoration: none;
+                color: $bgNavFooter;
+                border: 1px solid $bgNavFooter;
+                border-radius: 15px;
+                flex-shrink: 0;
+
+                height: 248px; 
+                width: 248px;
+
+                > div.identifier {
+                    height: 20px;
+                  }
+          
+                  > div.nav {
+                    background-color: $colorNav;
+                  }
+              
+                  > div.div {
+                    background-color: $colorDiv;
+                  }
+              
+                  > div.footer {
+                    background-color: $colorFooter;
+                  }
+              
+                  > div.form {
+                    background-color: $colorForm;
+                  }
+              
+                  > div.section {
+                    background-color: $colorSection;
+                  }
+              
+                  > div.figure {
+                    background-color: $colorFigure;
+                  }
+              
+                  > div.buton {
+                    background-color: $colorButton;
+                  }
+                
+                >img{
+                    width: 100%;
+                    height: calc(100% - 25px);
+                }
+                >h4{
+                    font-weight: bold;
+                    width: 100%;
+                    padding: 5px;
+                    padding-left: 10px;
+                    text-align: left;
+                    height: 30px;
+                    flex-shrink: 0;
+                    color: $bgNavFooter;
+                }
+
+                
+            }
+
+            > a.pack.nav {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorNav;
+                }
+            }
+
+            > a.pack.footer {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorFooter;
+                }
+            }
+
+            > a.pack.figure {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorFigure;
+                }
+            }
+
+            > a.pack.div {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorDiv;
+                }
+            }
+
+            > a.pack.section {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorSection;
+                }
+            }
+
+            > a.pack.button {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorButton;
+                }
+            }
+
+            > a.pack.form {
+                &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorForm;
+                }
+            }
+
+        }
+
+    }
+
+}
+
+@media (max-width: 575.98px) {
+    main.container-catalogue {
+        height: calc(100vh - 120px);
+        padding: 10px;
+    }
+}
+

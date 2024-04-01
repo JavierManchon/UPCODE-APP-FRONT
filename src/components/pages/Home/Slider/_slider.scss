@@ -1,0 +1,114 @@
+@import '../../../../css/variables';
+
+.slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 20px 5px;
+    background-color: $bgApp;
+
+    > button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      padding: 10px;
+      font-size: 24px;
+
+      &.prev {
+        left: 10px;
+      }
+
+      &.next {
+        right: 10px;
+      }
+    }
+
+    > div.container-link-img {
+      width: 300px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
+
+      > div.content-link {
+        width: 100%;
+        display: grid;
+        place-items: center;
+
+        > a {
+          width: 100%;
+          max-width: 300px;
+          height: 30px;
+          text-decoration: none;
+          padding: 5px 10px;
+          background-color: $bgButtonsSpecial;
+          color: $bgApp;
+          border-radius: 15px;
+          display: grid;
+          place-items: center;
+
+          &:hover {
+            transition: all ease .5s;
+            cursor: pointer;
+            background-color: $bgButtonsSpecialHover;
+            color: $bgApp;
+          }
+        }
+      }
+
+      > div.content-pictures {
+        width: 100%;
+        height: calc(100% - 30px);
+
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+
+        > h3 {
+          width: 100%;
+          font-size: 20px;
+          display: grid;
+          place-items: center;
+          padding: 5px 5px 0;
+          border-bottom: 1px solid $bgNavFooter;
+        }
+
+        > p {
+          width: 100%;
+          display: grid;
+          place-items: center;
+          padding: 5px;
+        }
+
+        >div.picture {
+          width: 100%;
+          padding: 10px;
+          display: grid;
+          place-items: center;
+
+          > img {
+            width: 200px;
+            height: 200px;
+            //object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 3px 3px 5px 0 $bgNavFooter;
+            margin-bottom: 20px;
+            align-self: center;
+          }
+        }
+      }
+    }
+  }
+
+  

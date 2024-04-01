@@ -1,0 +1,30 @@
+
+@import '../../../css/_variables.scss';
+
+
+div.home-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    >div.links{
+        background-color: $bgOthers;
+        border-radius: 15px;
+        width: 320px;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        >p{
+            width: 300px;
+            color:$colorText;
+            >a{
+                text-decoration: none;
+                color: $colorText;
+            }
+        }
+
+    }
+}

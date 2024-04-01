@@ -1,0 +1,110 @@
+@import '../../../css/_variables.scss';
+
+
+
+.figureUpText{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  margin: 0 auto;
+
+
+.img {
+  width: 300px;
+  align-self: center;
+  background-color: $bgOthers2Hover;
+  
+}
+
+.figcaption {
+  color: $bgNavFooter;
+  font-size: 1.5em;
+}
+
+}
+
+.figureUpImg{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  margin: 0 auto;
+
+
+.img {
+  width: 300px;
+  align-self: center;
+  background-color: $bgOthers2Hover;
+  
+}
+
+.figcaption {
+  color: $bgNavFooter;
+  font-size: 1.5em;
+}
+
+}
+
+.figureTextOverImgUp{
+  width: 220px;
+  height: 220px;
+  position: relative;
+  padding: 6px;
+  margin: 0 auto;
+
+
+.img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $bgNavFooter;
+
+  
+}
+
+.figcaption {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $bgApp;
+  font-size: 1.5em;
+  backdrop-filter: blur(40px);
+}
+
+}
+.figureTextOverImgDown{
+  width: 220px;
+  height: 220px;
+  position: relative;
+  padding: 6px;
+  margin: 0 auto;
+
+
+.img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $bgNavFooter;
+
+  
+}
+
+.figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $bgApp;
+  backdrop-filter: blur(40px);
+  font-size: 1.5em;
+}
+
+}

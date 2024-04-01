@@ -1,0 +1,151 @@
+.tickets-title-container {
+  width: 100%;
+  background-color: #29319e;
+
+  > .tickets-title-management {
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-align: center;
+    font-family: system-ui;
+  }
+}
+
+.tickets-containerAll {
+  background-color: #f2f2f2;
+  width: 100%;
+  border: 1px solid #dddddd;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+
+  > h2.username,
+  > p.user_id,
+  > p.email {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .tickets-table__head {
+      background-color: #f2f2f2;
+      color: #333333;
+      font-weight: bold;
+
+      .tickets-table__head__tr {
+        font-size: 16px;
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #dddddd;
+
+        &:hover {
+          background-color: #e2e2e2;
+        }
+
+        > th.table-header {
+          padding: 12px;
+          text-align: center;
+          border: 1px solid #dddddd;
+        }
+
+        > th.table-header-img {
+          width: 20%;
+          padding: 12px;
+          text-align: center;
+          border: 1px solid #dddddd;
+        }
+      }
+    }
+
+    .table-data {
+      font-size: large;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #dddddd;
+      max-width: 120px;
+
+      > .ticket-Img-data {
+        width: 100%;
+        cursor: pointer;
+      }
+      > span.no-image{
+        font-size: large;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 12px;
+        text-align: center;
+        
+      }
+      > .status-indicator {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid #dddddd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      }
+    }
+
+  }
+}
+
+.email-button {
+  width: 20%;
+  background-color: rgb(87, 186, 220);
+  border: 0;
+  cursor: pointer;
+  margin-left: 2%;
+}
+
+.send-button {
+  width: 50%;
+}
+
+.in-process-button {
+  width: 50%;
+}
+
+.status-indicator .sr-only {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.enviado {
+  background-color: orange;
+}
+
+.en-proceso {
+  background-color: green;
+}
+.completado {
+  background-color: gray;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  > .lightboxImg {
+    max-width: 70%;
+  }
+}

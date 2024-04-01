@@ -1,0 +1,209 @@
+@import "../../../css/variables";
+
+div.container-infoticket {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    & > * {
+        flex-shrink: 0;
+    }
+
+    > h4 {
+        margin-bottom: 10px;
+        color: $bgNavFooter;
+    }
+
+    > form.infoticket {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        & > * {
+            width: 100%;
+        }
+
+        > span {
+            margin-bottom: 10px;
+            color: $bgNavFooter;
+        }
+
+        > label {
+            display: flex;
+            flex-direction: column;
+
+            > span {
+                margin-bottom: 5px;
+                color: $bgNavFooter;
+            }
+
+            > input,
+            > textarea {
+                width: 100%;
+                border: none;
+                outline: none;
+                border-bottom: 1px solid #ccc;
+                padding: 5px 0;
+            }
+
+            > textarea {
+                height: 60px;
+            }
+        }
+
+        > label.ticket-description {
+            width: 100%;
+        }
+
+        > button {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            outline: none;
+            border-radius: 15px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: $bgButtons;
+            color: $bgApp;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $bgApp;
+                color: $bgButtons;
+            }
+        }
+    }
+
+    > div.ticket-list {
+        width: 100%;
+
+        height: 180px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            max-width: 300px;
+            cursor: pointer;
+
+            > li {
+
+                > div.ticket-list_item-resume {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .item-resume-date {
+                    margin-left: auto;
+                }
+
+                .status-indicator {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    margin-left: 10px;
+                }
+
+                .enviado {
+                    background-color: orange;
+                }
+
+                .en-proceso {
+                    background-color: green;
+                }
+
+                .completado {
+                    background-color: gray;
+                }
+
+                > div.ticket-details {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    padding-top: 5px;
+                    gap: 5px;
+                    height: 100%;
+            
+                    > h2 {
+                        margin-bottom: 10px;
+                    }
+            
+                    > p {
+                        margin-bottom: 5px;
+                    }
+
+                    > img {
+                        width: 100%;
+                    }
+
+                    > button {
+                        // align-self: center;
+                        border: none;
+                        outline: none;
+                        border-radius: 15px;
+                        background-color: $bgButtonsSpecial;
+                        color: $bgApp;
+                        padding: 5px 10px;
+
+                        &:hover {
+                            transition: all ease .5s;
+                            background-color: $bgButtonsSpecialHover;
+                            color: $bgApp;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.ticket-alert-overlay {
+    position: fixed;
+    //top: 50%;
+    left:6px;
+    bottom: 90px;
+    //transform: translate(-50%, -50%);
+    background-color: $bgButtonsSpecial;
+    color: $bgApp;
+    font-size: 1.5em;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 100;
+    // La animación se omite ya que el cierre es manual
+  
+    .close-alert {
+      position: absolute;
+      top:5px;
+      right: 5px;
+      background-color:transparent;
+      color:$bgApp;
+      border: none;
+      font-size: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 2px 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;// Ajusta este valor según sea necesario
+    }
+  }

@@ -1,0 +1,92 @@
+@import '../../../../css/variables.scss';
+
+
+div.container-table{
+  padding: 20px 0;
+  background-color: $bgOthers;
+  width: 100%;
+}
+
+
+h2.home-title{
+  margin: 5px auto;
+  text-align: center;
+  padding: 0 20px;
+  color: $colorText;
+  font-size: 2em;
+}
+p.home-text{
+  margin: 5px auto 20px;
+  text-align: center;
+  padding: 0 20px 2px;
+  color: $colorText;
+}
+.comparison-table {
+    width: 360px;
+    border: none;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border-collapse: separate; 
+    border-spacing: 10px; 
+
+    tr.thead{
+      width: 350px;
+      >th{
+        width: 100px;
+        text-align: center;
+        border-radius: 15px;
+        border-bottom: 1px solid $colorText;
+        color: $colorText;
+        &:first-child{
+          width:200px ;
+        }
+      }
+      
+    }
+    tr.tbody {
+      width: 350px;
+      >td{
+        width: 100px;
+        text-align: center;
+        border-radius: 15px;
+        color: $colorText;
+      }
+    }  
+    .check {
+      background-color: $colorBorders; 
+    }
+  
+    .cross {
+      background-color: $bgNavFooter; 
+    }
+  
+    .suscribe-button-container {
+      padding: 10px;
+      text-align: center;
+    }
+  }
+  
+  a.suscribe-button {
+    width: 90%;
+    max-width: 300px;
+    height: 30px;
+    display: grid;
+    place-items: center;    
+    text-decoration: none;
+    margin: 5px auto;
+    text-align: center;
+    background-color: $bgButtons;
+    color: $bgApp;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+  
+    &:hover {
+      background-color: $bgApp;
+      color: $bgButtons;
+      transition: all ease 0.5s;
+    }
+  }
+  
+
+

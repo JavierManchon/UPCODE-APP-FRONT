@@ -1,0 +1,99 @@
+@import "../../../css/variables";
+
+.formVerticalText  {
+    background-color: $bgNavFooter;
+    width: 200px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+
+    .span {
+        color: $colorText;
+    }
+
+    .form-div{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px
+
+    }
+
+    .label {
+        color: $bgApp;
+    }
+
+    .button {
+        color: $bgApp;
+        background-color: $bgButtons;
+        cursor: pointer;
+    }
+}
+
+.formVerticalCheckbox, .formVerticalRadio {
+    background-color: $bgNavFooter;
+    width: 200px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+
+    .span {
+        color: $colorText;
+    }
+
+    .form-div{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+
+    }
+
+    .label {
+        color: $bgApp;
+    }
+
+    .button {
+        color: $bgApp;
+        background-color: $bgButtons;
+        width: 100%;
+        cursor: pointer;
+    }
+}
+
+.formVerticalColor {
+    background-color: $bgNavFooter;
+    width: 200px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+
+    .span {
+        color: $colorText;
+    }
+
+    .form-div{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+
+    }
+
+    .label {
+        color: $bgApp;
+    }
+
+    .button {
+        color: $bgApp;
+        background-color: $bgButtons;
+        width: 100%;
+        cursor: pointer;
+    }
+}

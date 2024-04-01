@@ -1,0 +1,339 @@
+@import "../../../css/_variables.scss";
+@import "../../../components/pages/Buttons/buttonComponent";
+@import "../../../components/pages/Div/divComponent";
+@import "../../../components/pages/Figures/figureComponent";
+@import "../../../components/pages/Footers/footerComponent";
+@import "../../../components/pages/Forms/formComponent";
+@import "../../../components/pages/Navs/navComponent";
+@import "../../../components/pages/Sections/sectionComponent";
+
+section.my-area {
+  width: 100%;
+  height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  aside.container-aside-mydesigns {
+    display: flex;
+    width: 350px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: $colorEffects;
+    height: 100%;
+    padding-top: 20px;
+
+    > button {
+      margin-bottom: 30px;
+      padding: 10px 10px;
+      overflow: hidden;
+      width: 216px;
+      border-radius: 15px;
+      background-color: $bgButtonsSpecial;
+      border: none;
+      outline: none;
+      color: $bgApp;
+
+      &:hover {
+        cursor: pointer;
+        transition: all ease .5s;
+        background-color: $bgButtonsSpecialHover;
+        color: $bgApp;
+      }
+    }
+  }
+
+
+  div.container-mydesigns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 50px 50px;
+    gap: 50px;
+
+    >div.designs-area{
+      background-color: $bgApp;
+      width: 450px;
+      height: 450px;
+      border: 2px solid $bgButtons;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+        >h2.h2-designs-area{
+          color: $bgOthers2;
+          font-size: 3em;
+
+        }
+        >h3.h3-designs-area{
+          color: $bgButtons;
+          font-size: 1.5em;
+          
+        }
+        >p.p-designs-area{
+          color: $bgButtons;
+          font-size: 1.5em;
+          
+        }
+        >a.btn-catalogo{
+          text-decoration: none;
+          color : $bgApp;
+          border-radius: 15px;
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          background-color: $bgOthers2;
+          width: 20%;
+          height: 7%;
+          &:hover{
+              background-color: $bgOthers2Hover;
+              color: $bgNavFooter;
+              transition: all ease 0.5s;
+
+          }
+        }
+    }
+
+    > div.nav {
+      border: 1px solid $bgNavFooter;
+        &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorNav;
+        }
+    }
+
+    > div.div {
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorDiv;
+        }
+    }
+
+    > div.footer {
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorFooter;
+        }
+    }
+
+    > div.form {
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorForm;
+        }
+    }
+
+    > div.section {
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorSection;
+        }
+    }
+
+    > div.figure {
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorFigure;
+        }
+    }
+
+    > div.buton {
+      border: 1px solid $bgNavFooter;
+      &:hover {
+        transition: all ease 0.5s;
+        box-shadow: 3px 3px 10px 0 $colorButton;
+        }
+    }
+
+    > div.design {
+      width: 250px;
+      height: 250px;
+      border-radius: 15px;
+      position: relative;
+
+      >div.likes-section {
+        position: absolute;
+        bottom: 1px;
+        right: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+
+        > img {
+          width: 30px;
+        }
+      }
+
+      > button.deleteButton {
+        position: absolute;
+        top: -5px;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      > button.deleteButton:hover {
+        background-color: darkred;
+      }
+
+      > a {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-decoration: none;
+        color: $bgNavFooter;
+
+        height: 100%;
+
+        > h3 {
+          padding: 10px;
+          overflow: hidden;
+        }
+
+        > div.identifier {
+          height: 20px;
+        }
+
+        > div.nav {
+          background-color: $colorNav;
+        }
+    
+        > div.div {
+          background-color: $colorDiv;
+        }
+    
+        > div.footer {
+          background-color: $colorFooter;
+        }
+    
+        > div.form {
+          background-color: $colorForm;
+        }
+    
+        > div.section {
+          background-color: $colorSection;
+        }
+    
+        > div.figure {
+          background-color: $colorFigure;
+        }
+    
+        > div.buton {
+          background-color: $colorButton;
+        }
+
+        > div.visualizer {
+          width: 100%;
+          height: 250px;
+          overflow-y: hidden;
+          overflow-x: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        > div.visualizer.div, > div.visualizer.form, > div.visualizer.nav, > div.visualizer.button, > div.visualizer.section, > div.visualizer.figure, > div.visualizer.footer {
+          background-color: $visualizerBack;
+
+        }
+    }
+  }
+}
+}
+
+section.my-area-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+
+  section.profile-container-myarea {
+    div.profile-id-image-container {
+      top: 80px;
+      width: 100px;
+      height: 100px;
+    }
+
+    div.profile-info {
+      width: calc(100% - 100px);
+      justify-content: center;
+      >h3 {
+        font-size: 22px;
+      }
+      > h4 {
+        font-size: 20px;
+
+        &.profile-id-email {
+          font-size: 18px;
+        }
+      }
+
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  section.my-area-mobile {
+    
+    > section.profile-container-myarea {
+      > div.profile-id-image-container {
+        width: 70px;
+        height: 70px;
+        top: 80px;
+      }
+  
+      > div.profile-info {
+        width: calc(100% - 70px);
+        justify-content: flex-start;
+        >h3 {
+          font-size: 18px;
+        }
+        > h4 {
+          font-size: 16px;
+  
+          &.profile-id-email {
+            font-size: 12px;
+          }
+        }
+  
+      }
+    }
+  }
+  
+}
+
+
+@media (max-width: 576px) {
+  section.my-area-mobile {
+    height: calc(100vh - 120px)
+  }
+}
+
+
+  

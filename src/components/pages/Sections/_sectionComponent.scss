@@ -1,0 +1,146 @@
+@import '../../../css/_variables.scss';
+
+
+
+.sectionColumn {
+    background-color: #525e61;
+    width: 100%;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 30px;
+  
+  
+    .article {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $colorBorders;
+      background-color:  $colorBorders;
+      gap: 10px;
+  
+      .h2 {
+        color: $bgApp;
+      }
+      .p {
+        color: $bgApp;
+      }
+    }
+  }
+
+
+   .sectionRowWrap {
+    background-color: $bgNavFooter;
+    padding: 6px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 50px;
+  
+    .article {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      border: 2px solid $colorBorders;
+      gap: 5px;
+      padding: 5px;
+      width: 150px;
+  
+      .h2 {
+        color: $bgApp;
+      }
+      .p {
+        color: $bgApp;
+      }
+    }
+  }
+
+  
+  .sectionRowNoSpace {
+    background-color: $bgNavFooter;
+    width: 100%;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+  
+    .article {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid $colorBorders;
+  
+      width: 100%;
+      gap: 5px;
+  
+      .h2 {
+        color: $bgApp;
+      }
+      .p {
+        color:$bgApp;
+      }
+    }
+  }
+  
+  .sectionGrid {
+    background-color: $bgNavFooter;
+    width: 300px;
+    height: 280px;
+    padding: 6px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    .article {
+      display: grid; 
+      place-items: center;
+      border: 2px solid $colorBorders;
+      .h2 {
+        color: $bgApp;
+      }
+      .p {
+        color: $bgApp;
+      }
+    }
+  }
+//estilos predeterminados
+div.container-pages-default-styles {
+  div.container-editor {
+    > div.article {
+        padding-left: 10px;
+        width: 100%;
+
+        > p {
+          font-weight: bold;
+        }
+
+        > p:nth-child(2), > p:nth-child(3) {
+          padding-left: 20px;
+        }
+
+        > p:nth-child(3) {
+          > input {
+            margin-left: 8px;
+          }
+        }
+      }
+  }
+
+  div.styles-editor {
+  }
+
+  div.container-renderized_html {
+  }
+
+  div.container-renderized_visual {
+  }
+
+  div.container-renderized_css {
+  }
+    
+}

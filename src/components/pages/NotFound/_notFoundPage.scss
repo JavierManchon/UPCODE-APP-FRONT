@@ -1,0 +1,15 @@
+@import '../../../css/variables';
+
+.container404{
+background-color: $bgApp;
+width: 100%;
+height: calc(100vh - 160px);
+overflow: hidden;
+display: flex; 
+justify-content: center; 
+align-items: center; 
+
+> img {
+    width: 100%;
+}
+}

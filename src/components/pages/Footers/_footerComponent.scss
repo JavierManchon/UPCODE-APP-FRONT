@@ -1,0 +1,59 @@
+//clases de la informacion que damos al usuario
+@import '../../../css/_variables.scss';
+
+.footerHorizontalStart {
+  background-color: $bgOthers2;
+  width: 100%;
+  padding: 6px;
+
+  .ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    list-style: none;
+    gap: 5px;
+    align-items: center;
+
+    .li {
+      color: $bgApp;
+    }
+  }
+}
+.footerHorizontalAround {
+  background-color: $bgOthers2;
+  width: 100%;
+  padding: 6px;
+
+  .ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    list-style: none;
+    align-items: center;
+
+    .li {
+      color: $bgApp;
+    }
+  }
+}
+.footerHorizontalEnd {
+  background-color: $bgOthers2;
+  width: 100%;
+  padding: 6px;
+
+  .ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    list-style: none;
+    gap: 5px;
+    align-items: center;
+
+    .li {
+      color: $bgApp;
+    }
+  }
+}

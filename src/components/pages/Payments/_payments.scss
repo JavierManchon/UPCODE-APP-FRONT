@@ -1,0 +1,188 @@
+/* Default styles */
+.payments-container {
+width: 100%;
+height: calc(100vh - 160px);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+       
+}
+  
+
+.container-logoPremium{
+    width: 100%;
+    height: 200px;
+    max-width: 600px;
+    display: flex;
+
+    
+
+    
+
+    img {
+        
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        
+        
+    }
+}
+
+
+form.form-payment {
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    width: 100%;
+    max-width: 600px;
+    >button[type="submit"] {
+        background-color: #252729;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    >button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    >p.payment{
+        margin-top: 20px;
+        color:#555;
+        text-align: center;
+    }
+    label {
+        margin-bottom: 10px;
+    }
+    input {
+        border: none;
+        outline: none;
+        border-bottom: 2px solid black;
+    }
+    input.Name {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+    input.card {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;   
+    }
+    input[type="text"] {
+        padding-right: 40px; 
+    }
+    .input-card-container {
+        position: relative;
+        display: inline-block;
+        .icons {
+            position: absolute;
+            top: 50%;
+            right: 10px; 
+            transform: translateY(-50%);
+        }
+          
+        .icons i {
+            margin-left: 5px;
+            font-size: 18px; 
+        }
+    }
+    .form-row {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;   
+        >label{
+            width: 200px;
+        }
+        input.expiry {
+            width: 100%; 
+            padding: 10px;
+            font-size: 16px;
+          }
+        
+        
+        
+          input.cvc {
+            width: 100%; 
+            padding: 10px;
+            font-size: 16px;
+          } 
+    }
+    .location-container {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+        > label {
+            width: 100%;
+            max-width: 250px;
+            
+            .country-selector {
+                border: none;
+                outline: none;
+                padding: 10px;
+                font-size: 16px;
+                border-bottom: 2px solid black;
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            
+            .postal-code {
+                width: 100%;
+                max-width: 250px;
+                padding: 10px;
+                font-size: 16px;
+                >option{
+                    width: 250px;
+                }
+            }
+        }
+        
+    }
+ 
+}
+
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 600px) {
+    form.form-payment {
+        .location-container {
+            flex-flow: row wrap;
+            
+            > label {
+                max-width: none;
+                .country-selector, .postal-code {
+                    max-width: none;
+                }
+            }
+        }
+    }
+    .payments-container {
+        padding: 10px;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    input {
+        font-size: 14px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+
+
+

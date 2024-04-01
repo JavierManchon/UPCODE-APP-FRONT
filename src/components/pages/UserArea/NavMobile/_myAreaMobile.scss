@@ -1,0 +1,277 @@
+@import '../../../../css/variables';
+
+button.premium-toggle-btn {
+    background-color: $bgButtonsSpecial;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 10px 10px;
+    line-height: 0%;
+    color: $bgApp;
+    overflow: hidden;
+    cursor: pointer;
+    transform: translateY(-20px);
+    display: grid;
+    place-items: center;
+
+    &:hover {
+        background-color: $bgButtonsSpecialHover;
+        color: $bgApp;
+    }
+}
+nav.nav-my-area {
+    width: 100%;
+
+    display: grid;
+    place-items: center;
+    background-color: $bgOthers;
+    min-height: 50px;
+
+    box-shadow: 10px 0 20px 0 $colorEffects;
+
+    > ul {
+        width: 90%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+
+        > li {
+            color: $colorText;
+            cursor: pointer;
+
+            &::before {
+                content: "";
+
+                width: 0px;
+                height: 1px;
+
+                background-color: #fff;
+
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+
+            &:hover {
+                transition: all ease .5s;
+                transform: scale(1);
+                
+                &::before {
+                    transition: all ease .5s;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+div.container-designs-my-area-mobile {
+    width: 80%;
+    max-width: 450px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 15px;
+
+    padding: 0 20px;
+
+    > div.container-link {
+        width: 100%;
+        height: 100px;
+        position: relative;
+        border-radius: 15px;
+
+        &.section {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 10px 0 $colorSection;
+            }
+        }
+        &.button {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorButton;
+            }
+        }
+        &.nav {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorNav;
+            }
+        }
+        &.footer {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorFooter;
+            }
+        }
+        &.form {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorForm;
+            }
+        }
+        &.figure {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorFigure;
+            }
+        }
+        &.div {
+            &:hover {
+                transition: all ease 0.5s;
+                box-shadow: 3px 3px 5px 0 $colorDiv;
+            }
+        }
+
+        > div.line-top {
+            width: 100%;
+            height: 10px;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        > a.template {
+            width: 100%;
+            height: 100px;
+            position: relative;
+    
+            border-radius: 15px;
+            padding: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            border: 1px solid $colorBorders;
+    
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+    
+            &.section {
+                
+                > div.line-top {
+                    background-color: $colorSection;         
+                }
+            }
+            &.button {
+                
+                > div.line-top {
+                    background-color: $colorButton;  
+                }
+            }
+            &.nav {
+                
+                > div.line-top {
+                    background-color: $colorNav;             
+                }
+            }
+            &.footer {
+                
+                > div.line-top {
+                    background-color: $colorFooter;               
+                }
+            }
+            &.form {
+                
+                > div.line-top {
+                    background-color: $colorForm;             
+                }
+            }
+            &.figure {
+                
+                > div.line-top {
+                    background-color: $colorFigure;                
+                }
+            }
+            &.div {
+                
+                > div.line-top {
+                    background-color: $colorDiv;               
+                }
+            }
+    
+            > div.line-top {
+                width: 100%;
+                height: 10px;
+    
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+    
+            > h4, > p {
+                font-weight: bold;
+                text-decoration: none;
+                color: $bgNavFooter;
+            }
+        }
+
+        > button {
+            width: 70px;
+            height: 20px;
+    
+            border: none;
+            outline: none;
+            background-color: $bgButtonsDelete;
+            border-radius: 15px;
+            color: $colorText;
+    
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            cursor: pointer;
+    
+            &:hover {
+                transition: all ease 0.5s;
+                background-color: $bgButtonsDeleteHover;
+            }
+        }
+    }
+
+    
+    >h2.h2-designs-area{
+        color: $bgOthers2;
+        font-size: 3em;
+        width: 100%;
+        text-align: center;
+      }
+      >h3.h3-designs-area{
+        color: $bgButtons;
+        font-size: 1.5em;
+        width: 100%;
+        text-align: center;
+      }
+      >p.p-designs-area{
+        color: $bgButtons;
+        font-size: 1.5em;
+        width: 100%;
+        text-align: center;
+      }
+      >a.btn-catalogo{
+        text-decoration: none;
+        color : $bgApp;
+        border-radius: 15px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        background-color: $bgOthers2;
+        padding: 5px 10px;
+        width: 100%;
+
+        &:hover{
+            background-color: $bgOthers2Hover;
+            color: $bgNavFooter;
+            transition: all ease 0.5s;
+
+        }
+      }
+    
+}
