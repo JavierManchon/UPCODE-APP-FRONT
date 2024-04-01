@@ -31,6 +31,22 @@ const Community = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getDesigns();
+        if (response && response.data) {
+          const sortedDesigns = response.data.sort((a, b) => b.likes.length - a.likes.length);
+          setDesigns(sortedDesigns);
+        }
+      } catch (error) {
+        console.error("Error fetching designs:", error);
+      }
+    };
+
+    fetchData();
+  }, [designs]);
+
   const handleLike = async (designId, userId) => {
     try {
       const response = await likesSystemReq(designId, userId);
