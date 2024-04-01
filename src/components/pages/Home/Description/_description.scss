@@ -52,6 +52,8 @@
           cursor: pointer;
           
           > a {
+            display:block;
+            width: 100%;
             text-decoration: none;
             color: $bgApp;
             font-size: 20px;

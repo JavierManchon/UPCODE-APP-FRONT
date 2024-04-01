@@ -41,8 +41,7 @@ const Header = () => {
                     ) : (
                         <>
                         <li><Link to="/catalogue">Catálogo</Link></li>
-                        <li><Link to='/community'>Comunidad</Link></li>
-                        
+                        <li><Link to='/community'>Comunidad</Link></li>                       
                         <li><Link to="/login">Login</Link></li>
                         <li><Link to="/register">Register</Link></li>
                         <li className={`toggle-menu ${openToggle ? 'open' : ''}`} onClick={handleOpenToggle}>

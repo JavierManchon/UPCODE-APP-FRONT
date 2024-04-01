@@ -127,6 +127,7 @@ const FigureComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
         maxWidth: "350px",
         padding: computedFigureStyles.padding,
         flexDirection: computedFigureStyles.flexDirection,
+        position: computedFigureStyles.position
       });
     }
   }, [figcaption]);
@@ -137,7 +138,10 @@ const FigureComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
       const computedImgStyles = window.getComputedStyle(visualImg.current);
       setImgStyles({
         width: "100%",
-        flexDirection: computedImgStyles.flexDirection,
+        position: computedImgStyles.position,
+        top: computedImgStyles.top,
+        left: computedImgStyles.left,
+        transform: computedImgStyles.transform,
       });
     }
   }, [imgUrl]);
@@ -153,6 +157,10 @@ const FigureComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
         fontSize: computedFigcaptionStyles.fontSize,
         fontWeight: computedFigcaptionStyles.fontWeight,
         textDecoration: computedFigcaptionStyles.textDecoration,
+        position: computedFigcaptionStyles.position,
+        top: computedFigcaptionStyles.top,
+        left: computedFigcaptionStyles.left,
+        backdropFilter: computedFigcaptionStyles.backdropFilter
       });
     }
   }, [colorText, fontSize, fontWeight, textDecoration]);
@@ -236,7 +244,7 @@ const FigureComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
             </div>
           </label>
         </div>
-        <span onClick={handleCss}>Mostrar código</span>
+        <span onClick={handleCss}>Mostrar código CSS</span>
       </div>
 
       <div className="container-containers">
@@ -284,7 +292,7 @@ const FigureComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
               {">"}
             </p>
           </div>
-          <span onClick={handleHtml}>Mostrar código</span>
+          <span onClick={handleHtml}>Mostrar código HTML</span>
         </div>
         <div className="container-render">
           <div
@@ -356,6 +364,7 @@ const FigureComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
                 <span>width: {figureStyles.width};</span>
                 <span>maxWidth: {figureStyles.maxWidth};</span>
                 <span>padding: {figureStyles.padding};</span>
+                <span>position: {figureStyles.position};</span>
                 <span>{"}"}</span>
               </div>
             </div>
@@ -372,7 +381,9 @@ const FigureComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
                   {" {"}
                 </span>
                 <span>width: {imgStyles.width};</span>
-
+                <span>position: {imgStyles.position};</span>
+                <span>top: {imgStyles.top};</span>
+                <span>left: {imgStyles.left};</span>
                 <span>{"}"}</span>
               </div>
             </div>
@@ -388,6 +399,11 @@ const FigureComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
                 <span>{`color: ${figcaptionStyles.color};`}</span>
                 <span>{`font-size: ${figcaptionStyles.fontSize};`}</span>
                 <span>{`font-weight: ${figcaptionStyles.fontWeight};`}</span>
+                <span>{`position: ${figcaptionStyles.position};`}</span>
+                <span>{`top: ${figcaptionStyles.top};`}</span>
+                <span>{`left: ${figcaptionStyles.left};`}</span>
+                <span>{`backdrop-filter: ${figcaptionStyles.backdropFilter};`}</span>
+                <span>{`transform: translateX(-50%);`}</span>
                 <span>{`text-decoration: ${getFirstWord(
                   figcaptionStyles.textDecoration
                 )};`}</span>

@@ -251,7 +251,7 @@ const FooterComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
           </div>
         </label>
         </div>
-        <span onClick={handleCss}>Mostrar código</span>
+        <span onClick={handleCss}>Mostrar código CSS</span>
       </div>
 
       <div className="container-containers">
@@ -309,7 +309,7 @@ const FooterComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
             {">"}
           </p>
           </div>
-          <span onClick={handleHtml}>Mostrar código</span>
+          <span onClick={handleHtml}>Mostrar código HTML</span>
         </div>
 
         <div className="container-render">
