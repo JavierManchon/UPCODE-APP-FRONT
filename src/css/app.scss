@@ -46,6 +46,10 @@ div.container-pages-default-styles {
 
   padding: 30px;
 
+  &.hidden {
+    overflow: hidden;
+  }
+
   > div.styles-editor {
     width: 90%;
     display: flex;

@@ -33,10 +33,12 @@ import AuthMiddleware from "./middlewares/AuthMiddleware";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import Community from "./pages/Community/Community";
 
+
 function App() {
   const { isAdmin, isLogged } = useAuth();
   const [logged, setLogged] = useState(isLogged);
   const location = useLocation();
+  const [overflowHidden, setOverflowHidden] = useState(false);
 
   const showAsideTickets = () => {
     return isLogged && location.pathname !== "/user-area";
@@ -67,7 +69,7 @@ function App() {
           path="/user-area"
           element={
             <AuthMiddleware>
-              <UserArea isLogged={logged} setIsLogged={setLogged} />
+              <UserArea overflowHidden={overflowHidden} setOverflowHidden={setOverflowHidden}/>
             </AuthMiddleware>
           }
         />
@@ -122,37 +124,37 @@ function App() {
         <Route
           path="/catalogue/template-buttons/:designId"
           element={
-            <ButtonComponent isLogged={logged} setIsLogged={setLogged} />
+            <ButtonComponent isLogged={logged} setIsLogged={setLogged} overflowHidden={overflowHidden} setOverflowHidden={setOverflowHidden}/>
           }
         />
         <Route
           path="/catalogue/template-divs/:designId"
-          element={<DivComponent isLogged={logged} setIsLogged={setLogged} />}
+          element={<DivComponent isLogged={logged} setIsLogged={setLogged}overflowHidden={overflowHidden} setOverflowHidden={setOverflowHidden} />}
         />
         <Route
           path="/catalogue/template-figures/:designId"
           element={
-            <FigureComponent isLogged={logged} setIsLogged={setLogged} />
+            <FigureComponent isLogged={logged} setIsLogged={setLogged} overflowHidden={overflowHidden} setOverflowHidden={setOverflowHidden}/>
           }
         />
         <Route
           path="/catalogue/template-footers/:designId"
           element={
-            <FooterComponent isLogged={logged} setIsLogged={setLogged} />
+            <FooterComponent isLogged={logged} setIsLogged={setLogged} overflowHidden={overflowHidden} setOverflowHidden={setOverflowHidden}/>
           }
         />
         <Route
           path="/catalogue/template-forms/:designId"
-          element={<FormComponent isLogged={logged} setIsLogged={setLogged} />}
+          element={<FormComponent isLogged={logged} setIsLogged={setLogged} overflowHidden={overflowHidden} setOverflowHidden={setOverflowHidden}/>}
         />
         <Route
           path="/catalogue/template-navs/:designId"
-          element={<NavComponent isLogged={logged} setIsLogged={setLogged} />}
+          element={<NavComponent isLogged={logged} setIsLogged={setLogged} overflowHidden={overflowHidden} setOverflowHidden={setOverflowHidden}/>}
         />
         <Route
           path="/catalogue/template-sections/:designId"
           element={
-            <SectionComponent isLogged={logged} setIsLogged={setLogged} />
+            <SectionComponent isLogged={logged} setIsLogged={setLogged} overflowHidden={overflowHidden} setOverflowHidden={setOverflowHidden}/>
           }
         />
       </Routes>

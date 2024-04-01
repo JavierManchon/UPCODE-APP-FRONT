@@ -5,7 +5,7 @@ import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns"
 import { useAuth } from "../../context/AuthContext";
 import _ from "lodash";
 
-const SectionComponent = ({ isLogged }) => {
+const SectionComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
   const { authState } = useAuth();
   const location = useLocation();
   const previousRoute = location.state.url;
@@ -294,7 +294,7 @@ const SectionComponent = ({ isLogged }) => {
   };
 
   return (
-    <div className="container-pages-default-styles">
+    <div className={`container-pages-default-styles ${overflowHidden ? 'hidden' : ''}`}>
 
       <div className="styles-editor">
         <div className="container-label">
@@ -708,6 +708,8 @@ const SectionComponent = ({ isLogged }) => {
         <ButtonSaveDesigns
           designToSave={designToSave}
           setDesignToSave={setDesignToSave}
+          overflowHidden={overflowHidden} 
+          setOverflowHidden={setOverflowHidden}
         />
       ) : null}
       {isLogged && (!authState.user.isPremium) && previousRoute === "/catalogue" ? (

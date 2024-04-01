@@ -36,6 +36,9 @@ div.container-pages-default-styles {
   transform: translate(-50%, -50%);
   padding: 30px;
 }
+div.container-pages-default-styles.hidden {
+  overflow: hidden;
+}
 div.container-pages-default-styles > div.styles-editor {
   width: 90%;
   display: flex;
