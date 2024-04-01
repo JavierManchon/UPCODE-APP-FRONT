@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./_catalogue.scss";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import DesignsController from "../../../middlewares/DesignsController/DesignsController";
-import AsideTickets from "../../layout/AsideTickets/AsideTickets";
 import { getDesigns } from "../../../api/axios/designs";
+import gsap from 'gsap';
 
-const Catalogue = ({ isLogged, setIsLogged }) => {
-  const [templates, setTemplates] = useState([]);
+const Catalogue = ({ setIsLogged }) => {
   const [groupedTemplates, setGroupedTemplates] = useState({});
-  const [previousRoute, setPreviousRoute] = useState("");
-
-  useEffect(() => {
-    // Almacenar la ruta actual antes de que cambie
-    const currentRoute = sessionStorage.getItem("currentPath");
-    // Actualizar la ruta previa basada en la actual antes de cambiar
-    setPreviousRoute(currentRoute);
-    // Establecer la nueva ruta actual en sessionStorage
-    sessionStorage.setItem("currentPath", location.pathname);
-  }, [location.pathname]);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getDesigns();
         const fetchedTemplates = response.data;
-        setTemplates(fetchedTemplates);
         setGroupedTemplates(groupByElementType(fetchedTemplates));
+        setDataLoaded(true);
       } catch (error) {
         console.error("Error fetching designs:", error);
       }
@@ -35,30 +23,37 @@ const Catalogue = ({ isLogged, setIsLogged }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    setIsLogged(!!token);
+  }, [setIsLogged]);
+
   const groupByElementType = (designsToGroup) => {
     return designsToGroup.reduce((grouped, template) => {
-      (grouped[template.elementType] =
-        grouped[template.elementType] || []).push(template);
+      (grouped[template.elementType] = grouped[template.elementType] || []).push(template);
       return grouped;
     }, {});
   };
 
+  const animatedCatalogue = useRef(null);
+
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      setIsLogged(true);
-    } else {
-      setIsLogged(false);
+    if (dataLoaded && animatedCatalogue.current) {
+      const elementsToAnimate = animatedCatalogue.current.querySelectorAll(".pack");
+      console.log(elementsToAnimate)
+      gsap.from(elementsToAnimate, {
+        scale: 0,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power3.out",
+      });
     }
-  }, [setIsLogged]);
+  }, [dataLoaded]);
 
   function capitalizeFirstLetter(text) {
-    // Verificar si el texto está vacío
     if (!text) {
       return "";
     }
-
-    // Convertir la primera letra a mayúscula y concatenar con el resto del texto
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
@@ -68,26 +63,22 @@ const Catalogue = ({ isLogged, setIsLogged }) => {
     return modifiedTemplate;
   };
 
-
   return (
-    <main className="container-catalogue">
+    <main className="container-catalogue" ref={animatedCatalogue}>
       <h2>Catálogo de Diseños</h2>
       {Object.entries(groupedTemplates).map(
         ([elementType, templates]) =>
-          // Verificar si el elementType no es igual a "button"
           elementType !== "button" && (
             <section
               key={elementType}
               className={`container-packs ${elementType}`}
             >
-              {/* Verificar de nuevo si el elementType no es igual a "button" para el título */}
               {elementType !== "button" && (
                 <h3>{`Packs de ${capitalizeFirstLetter(elementType)}`}</h3>
               )}
               <div className="packs">
                 {templates.map(
                   (template, index) =>
-                    // Verificar si el template no es un botón
                     template.template &&
                     template.elementType !== "button" && (
                       <Link
@@ -96,12 +87,12 @@ const Catalogue = ({ isLogged, setIsLogged }) => {
                         to={`/catalogue/template-${elementType}s/${template._id}`}
                         state={{
                           templateData: templateToDesign(template),
-                          url: previousRoute,
+                          url: window.location.pathname
                         }}
                       >
-                       <div className={`identifier ${template.elementType}`}></div>
-                       <img src={template.image} alt={`imagen de ${template.nameDesign}`} />
-                       <h4>{template.nameDesign}</h4>
+                        <div className={`identifier ${template.elementType}`}></div>
+                        <img src={template.image} alt={`imagen de ${template.nameDesign}`} />
+                        <h4>{template.nameDesign}</h4>
                       </Link>
                     )
                 )}
@@ -109,10 +100,8 @@ const Catalogue = ({ isLogged, setIsLogged }) => {
             </section>
           )
       )}
-      {isLogged ? <AsideTickets setIsLogged={setIsLogged} /> : null}
     </main>
   );
-
 };
 
 export default Catalogue;

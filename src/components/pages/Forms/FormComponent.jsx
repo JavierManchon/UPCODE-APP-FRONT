@@ -5,10 +5,12 @@ import ButtonSaveDesigns from "../../layout/ButtonSaveDesigns/ButtonSaveDesigns"
 import { useAuth } from "../../context/AuthContext";
 import _ from "lodash";
 
-const FormComponent = ({ isLogged }) => {
+const FormComponent = ({ isLogged,  overflowHidden, setOverflowHidden }) => {
     const { authState } = useAuth();
+    console.log(authState)
     const location = useLocation();
     const previousRoute = location.state.url;
+    console.log(previousRoute)
     const template = location.state.templateData;
     const [designToSave, setDesignToSave]=useState();
     const [showCss, setShowCss] = useState(false);
@@ -244,7 +246,6 @@ const FormComponent = ({ isLogged }) => {
       setSpanStyles({
         color: computedSpanStyles.color,
       });
-      console.log(computedSpanStyles.color)
     }
   }, [spanColor]);
 
@@ -268,7 +269,7 @@ const FormComponent = ({ isLogged }) => {
   };
 
   return (
-    <div className="container-pages-default-styles">
+    <div className={`container-pages-default-styles ${overflowHidden ? 'hidden' : ''}`}>
        
       <div className="styles-editor">
         <div className="container-label">
@@ -732,13 +733,18 @@ const FormComponent = ({ isLogged }) => {
 
       <button ref={visualButtonRef} className={`no-visual ${!showVisual ? 'btn-visual' : ''}`} onClick={handleVisual}>Mostrar visualizado</button>
 
-      {isLogged && authState.user.isPremium && previousRoute === "/catalogue" ? (
+      {authState.user.isPremium && previousRoute === "/catalogue" ? (
+        <>
+        {console.log(authState.user)}
         <ButtonSaveDesigns
           designToSave={designToSave}
           setDesignToSave={setDesignToSave}
+          overflowHidden={overflowHidden} 
+          setOverflowHidden={setOverflowHidden}
         />
+        </>
       ) : null}
-      {isLogged && (!authState.user.isPremium) && previousRoute === "/catalogue" ? (
+      {!authState.user.isPremium && previousRoute === "/catalogue" ? (
           <Link className="premiumsavedesign" to='/payments'>Hazte Premium</Link>
       ) : null}
 

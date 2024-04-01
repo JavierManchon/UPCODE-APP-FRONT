@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InfoTicketArea from "../../layout/InfoTicketArea/InfoTicketArea";
 import Profile from "../../pages/Profile/Profile";

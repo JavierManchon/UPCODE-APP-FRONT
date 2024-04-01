@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { createDesign, patchDesignReq } from '../../../api/axios/designs';
 import { getUserLogged } from '../../../api/axios/auth';
 
-const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
+const ButtonSaveDesigns = ({ designToSave, setDesignToSave, overflowHidden, setOverflowHidden }) => {
     const { authState, setAuthState } = useAuth();
     const [showForm, setShowForm] = useState(false);
     const [designName, setDesignName] = useState('');
@@ -32,6 +32,7 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
             template: false 
         }));
         setShowForm(true);
+        setOverflowHidden(true);
     };
 
     const handleSaveDesign = async () => {
@@ -55,22 +56,31 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
             setAlertMessage('Error al guardar el diseño');
             setShowAlert(true);
             }
-    }
-};
+        }
+        setOverflowHidden(false)
+    };
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (overlayRef.current && !overlayRef.current.contains(event.target)) {
-                setShowForm(false);
-            }
-        };
+    const handleClickOutside = (event) => {
+        if (overlayRef.current && !overlayRef.current.contains(event.target)) {
+            setShowForm(false);
+            setOverflowHidden(false);
+        }
+    };
 
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    if (overflowHidden) {
+        const centeredOverlay = document.querySelector('.centered-overlay');
+        if (centeredOverlay) {
+            centeredOverlay.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+    }
 
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+}, [overflowHidden]);
     
     useEffect(() => {
         if (showAlert) {
@@ -86,7 +96,7 @@ const ButtonSaveDesigns = ({ designToSave, setDesignToSave }) => {
         <div className="button-save-designs-container">
             <button type='button' onClick={postDesign} className='btn-save'>Guardar diseño</button>
             {showForm && (
-                <div className="centered-overlay" style={{ height: windowWidth > 576 ? innerHeight - 160 : innerHeight - 120, width: windowWidth }}>
+                <div className="centered-overlay" style={{ height: innerHeight, width: windowWidth }}>
                     <div className="overlay-content" ref={overlayRef}>
                         <h2>Ponle un nombre a tu diseño</h2>
                         <input

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './_slider.scss';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
 
 const Slider = () => {
 
@@ -61,8 +62,18 @@ const Slider = () => {
         setCurrentIndex((currentIndex - 1 + slides.length) % slideImages.length);
     };
 
+    const animatedHomeRef = useRef(null);
+
+    useEffect(() => {
+        gsap.fromTo(
+        animatedHomeRef.current,
+        { y: 200, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 1.5 }
+        );
+    }, []);
+
     return (
-        <div className="slider">
+        <div className="slider" ref={animatedHomeRef}>
             <button onClick={goToPrevious} className="prev">&#10094;</button>
             <button onClick={goToNext} className="next">&#10095;</button>
             <div className="container-link-img">
