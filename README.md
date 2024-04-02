@@ -340,7 +340,7 @@ const DivComponent = ({ isLogged }) => {
 
 
 
-//En esta parte del código, el componente DivComponent maneje dinámicamente los estilos de un div
+//En esta parte del código, el componente DivComponent maneja dinámicamente los estilos de un div
  y sus párrafos internos (elementos <p>), reflejando los cambios en tiempo real según las interacciones del usuario.
 
   const visualDiv = useRef(null); //useRef es útil cuando necesitas acceder directamente a un nodo del DOM para leer valores o invocar métodos imperativos sobre el elemento.

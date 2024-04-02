@@ -128,10 +128,12 @@ ul.container-items-responsive {
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+    pointer-events: none;
 
     position: absolute;
+    visibility: hidden;
     top: 60px;
-    right: -500px;
+    right: -600px;
     z-index: 10;
 
     background-color: $bgApp;
@@ -145,7 +147,8 @@ ul.container-items-responsive {
     border-bottom-left-radius: 15px;
 
     &.show {
-        
+        visibility: visible;
+        pointer-events: auto;
         right: 0px;
     }
 

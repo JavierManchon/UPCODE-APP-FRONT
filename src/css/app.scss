@@ -9,6 +9,8 @@
   color: $bgNavFooter;
   font-size: $sizeText;
 }
+::-webkit-scrollbar{width: 0px}
+  ::-webkit-scrollbar-thumb{background: transparent;}
 
 //estilos de la pagina
 
@@ -23,6 +25,7 @@ body {
       position: relative;
       padding: 80px 0;
       height: 100vh;
+      overflow-y: hidden;
     }
   }
 }
