@@ -35,19 +35,13 @@ const LoginForm = ({ setIsLogged }) => {
     }
 
     if (!validatePassword(password)) {
-      setPasswordError('La contraseña no cumple con los requisitos mínimos de seguridad: debe tener de 8 a 12 caracteres, al menos una letra mayúscula, una letra minúscula y un número.');
+      setPasswordError('De 8 a 12 caracteres, una letra mayúscula, una letra minúscula y un número.');
       return;
     }
 
     try {
       const user = { email, password };
       await login(user);
-      // habilitar cuando este hecho el componente admins
-      // if(authState.user.isAdmin) {
-      //   navigate('/admins')
-      // } else {
-      //   navigate('/catalogue')
-      // }
       
     } catch (error) {
       setError(error.message);

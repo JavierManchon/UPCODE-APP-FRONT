@@ -1,29 +1,26 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { registerReq, loginReq, patchUserReq, getAllUsersReq } from '../../api/axios/auth';
 import { API } from '../../api/axios/axios';
 import { useNavigate } from 'react-router-dom';
 
-
-
+//creamos contexto de usuario cada vez que hace login
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
-
+//esto lo utilizamos para poder pasar la informacion de autenticacion a cualquier componente hijo que necesite los datos del usuario
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(!!sessionStorage.getItem('token'));
 
   const [isAdmin, setIsAdmin] = useState(sessionStorage.getItem('isAdmin') === 'true');
-
-
-
+// los datos que manejamos son que el usuario este logado , sea admin y luego su información del objeto user
   const [authState, setAuthState] = useState({
     token: sessionStorage.getItem('token') ||  null,
     user: JSON.parse(sessionStorage.getItem('user')) || null,
     isAdmin:sessionStorage.getItem('isAdmin') || null
   });
   const [usersState, setUsersState] = useState([]);
-
+//carga la informacion del usuario en base al token
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {

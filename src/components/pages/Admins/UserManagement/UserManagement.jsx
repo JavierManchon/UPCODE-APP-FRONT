@@ -35,7 +35,6 @@ function UserManagement() {
     if(isConfirmed){
     try {
       await deleteUserReq(userId);
-      // Actualizar la lista de usuarios después de eliminar uno
       const response = await getAllUsersReq();
       const users = response.data;
       setUsersState(users);

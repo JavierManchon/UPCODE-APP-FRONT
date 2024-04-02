@@ -9,7 +9,6 @@ const FooterComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
   const { authState } = useAuth();
   const location = useLocation();
   const previousRoute = location.state.url;
-  //console.log(previousRoute);
   const template = location.state.templateData;
   const [designToSave, setDesignToSave] = useState();
 

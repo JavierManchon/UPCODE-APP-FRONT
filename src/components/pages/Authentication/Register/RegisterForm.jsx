@@ -16,13 +16,11 @@ const RegisterForm = () => {
     e.preventDefault();
 
     try {
-      // Validación de campos
       if (!name || !surname || !email || !username || !password) {
         setError('¡No puedes dejar campos vacíos!');
         return;
       }
 
-      // Validación de la contraseña
       if (password.length < 8) {
         setError('¡La contraseña es demasiado corta! Debe tener al menos 8 caracteres.');
         return;
@@ -33,11 +31,9 @@ const RegisterForm = () => {
         return;
       }
 
-      // Registro del usuario
       const user = { name, surname, email, username, password };
       await registerReq(user);
       
-      // Mensaje de éxito y limpieza de campos
       setSuccessMessage('Se ha enviado un email de confirmación de registro a tu correo electrónico.');
       setName('');
       setSurname('');

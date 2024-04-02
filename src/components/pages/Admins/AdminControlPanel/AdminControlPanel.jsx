@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import "./_adminControlPanel.scss";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../../../../images/Up_C0deTeam.png";
 function AdminControlPanel() {
   const { authState } = useAuth();
   const [dynamicText, setDynamicText] = useState("");
@@ -33,7 +34,7 @@ function AdminControlPanel() {
 
 </div>
 <div className="image-container">
-  <img className="imageAdmin" src="/src/images/adminEffect.png" alt="adminEffect"/>
+  <img className="imageAdmin" src={logo} alt="adminEffect"/>
   </div>
   </div>
 }

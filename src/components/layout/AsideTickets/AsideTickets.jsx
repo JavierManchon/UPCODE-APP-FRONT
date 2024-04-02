@@ -10,7 +10,7 @@ import  Default  from '../../../images/default-user.png';
 
 
 const AsideTickets = ({ isLogged, setIsLogged }) => {
-  const {authState, isAdmin} = useAuth();
+  const {authState, isAdmin, logout} = useAuth();
 
   const navigate = useNavigate();
   const asideRef = useRef(null);
@@ -42,7 +42,8 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
   const handleLogout = () => {
     navigate("/");
     sessionStorage.clear();
-    setIsLogged(false);
+    logout();
+    setShowAside(false)
   };
 
   const handleFormSubmit = async (e) => {
@@ -65,7 +66,7 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
 
   return (
     <>
-      {isLogged ? (
+      {authState.user ? (
         <>
         <img
             src={authState.user.image ? authState.user.image : Default} 
@@ -131,7 +132,7 @@ const AsideTickets = ({ isLogged, setIsLogged }) => {
             </div>
 
             <div className="container-buttons">
-              {isLogged ? (
+              {authState.user ? (
                 <button onClick={handleLogout} className="logout-btn">
                   Logout
                 </button>

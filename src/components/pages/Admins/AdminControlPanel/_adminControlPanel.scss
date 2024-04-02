@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center; 
   align-items: center; 
+  flex-wrap: wrap;
   width: 100%;
   height: calc(100vh - 160px);
   background-color: $bgOthers2;
@@ -21,6 +22,10 @@
     padding: 10px;
     gap: 10px;
     flex: 1;
+    &>*{
+      overflow: visible;
+      flex-shrink: 0;
+    }
 
     > h2 {
       font-size: 30px;
@@ -51,22 +56,17 @@
   }
 
   .image-container {
-    width: 50%;
-    height: auto;
-    max-width: 500px; 
+    width: 100%;
     overflow: hidden;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     display: flex;
+    >img.imageAdmin{
+      width: 100%;
+      max-width: 450px;
+    }
   }
-
-  > div.text-container,
-  .image-container {
-    margin: 20px; 
-  }
-
 }
-
 
 
 @media only screen and (max-width: 600px) {
