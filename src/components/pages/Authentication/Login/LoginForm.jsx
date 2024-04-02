@@ -11,6 +11,7 @@ const LoginForm = ({ setIsLogged }) => {
   const [error, setError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,18 +36,28 @@ const LoginForm = ({ setIsLogged }) => {
     }
 
     if (!validatePassword(password)) {
-      setPasswordError('De 8 a 12 caracteres, una letra mayúscula, una letra minúscula y un número.');
+      setPasswordError('La contraseña no cumple con los requisitos mínimos de seguridad: debe tener de 8 a 12 caracteres, al menos una letra mayúscula, una letra minúscula y un número.');
       return;
     }
 
     try {
       const user = { email, password };
       await login(user);
+      // habilitar cuando este hecho el componente admins
+      // if(authState.user.isAdmin) {
+      //   navigate('/admins')
+      // } else {
+      //   navigate('/catalogue')
+      // }
       
     } catch (error) {
       setError(error.message);
     }
   };
+
+  const handlePassword = () => {
+    setShowPassword(!showPassword)
+  }
 
   return (
     <div className='container-login'>
@@ -59,7 +70,8 @@ const LoginForm = ({ setIsLogged }) => {
             {emailError && <p className='msgmailerror'>{emailError}</p>}
           </div>
           <div>
-            <input className='input-login' type="password" placeholder='Contraseña' value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <input className='input-login' type={showPassword ? 'text' : 'password'} placeholder='Contraseña' value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <span onClick={handlePassword}>{showPassword ? 'Ocultar' : 'Mostrar'} contraseña</span>
             {passwordError && <p className='msgpasserror'>{passwordError}</p>}
           </div>
           {error && <p className='msgerror'>{error}</p>}

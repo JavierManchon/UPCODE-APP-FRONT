@@ -63,6 +63,14 @@ div.container-login{
                 >p{
                     width: 100%;
                 }
+                >span {
+                    width: 100%;
+                    padding: 2px 0;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    color: $bgApp;
+                    font-size: 12px;
+                }
             }
 
             button{
