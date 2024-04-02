@@ -9,7 +9,6 @@ const SectionComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
   const { authState } = useAuth();
   const location = useLocation();
   const previousRoute = location.state.url;
-  //console.log(previousRoute);
   const template = location.state.templateData;
   const [designToSave, setDesignToSave] = useState();
   const [showCss, setShowCss] = useState(false);
@@ -428,7 +427,6 @@ const SectionComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
                       : null}
                     {">"}
                   </p>
-                  {/* Aquí asumimos que querías un h2 basado en tu función handleH2Change */}
                   <p className={`padding-left-20 ${template.defaultContent.children[1]}`}>
                     {"<"}
                     {template.defaultContent

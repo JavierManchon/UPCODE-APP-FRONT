@@ -10,7 +10,6 @@ const DivComponent = ({ isLogged,  overflowHidden, setOverflowHidden }) => {
   const location = useLocation();
   const previousRoute = location.state.url;
   const template = location.state.templateData;
-  //console.log(template);
   const [designToSave, setDesignToSave] = useState();
   const [showCss, setShowCss] = useState(false);
   const [showHtml, setShowHtml] = useState(false);

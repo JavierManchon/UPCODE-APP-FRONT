@@ -10,7 +10,6 @@ const ButtonComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
   const location = useLocation();
   const previousRoute = location.state.url;
   const template = location.state.templateData;
-  //console.log(template)
   const [designToSave, setDesignToSave] = useState();
 
   const [showCss, setShowCss] = useState(false);
@@ -128,7 +127,6 @@ const ButtonComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
     return styles;
   }
 
-  //console.log(hoverStyles);
 
   const visualButton = useRef(null);
   useEffect(() => {
@@ -205,11 +203,11 @@ const ButtonComponent = ({ isLogged, overflowHidden, setOverflowHidden }) => {
               type="checkbox"
               name="fontWeight"
               value="bold"
-              checked={fontWeight === "bold"} // Verifica si el estado local es "bold"
+              checked={fontWeight === "bold"} 
               onChange={(event) => {
                 const isChecked = event.target.checked;
                 const newValue = isChecked ? "bold" : "normal";
-                handleFontWeight(newValue); // Actualiza el estado local
+                handleFontWeight(newValue); 
               }}
             />
           </div>

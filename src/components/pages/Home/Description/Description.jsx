@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "./_description.scss"; // Importa el archivo de estilos
+import "./_description.scss";
 import { Link } from "react-router-dom";
 import gsap from 'gsap';
 

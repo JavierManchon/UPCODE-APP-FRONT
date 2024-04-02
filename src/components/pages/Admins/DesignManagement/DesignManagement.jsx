@@ -23,7 +23,6 @@ function DesignManagement() {
         setFilteredDesigns(designsData);
         setUsers(usersData);
 
-        // Mapear los usuarios a un objeto donde las claves son los _id de los usuarios
         const mappedUsers = {};
         usersData.forEach(user => {
           mappedUsers[user._id] = user;

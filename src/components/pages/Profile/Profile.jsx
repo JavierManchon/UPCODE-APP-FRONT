@@ -6,7 +6,6 @@ import defaultUser from '../../../images/default-user.png';
 
 const Profile = () => {
   const { authState, patchUser, setAuthState } = useAuth();
-  //const userInfo = authState.user;
   
   const location = useLocation();
   const isUserArea = location.pathname === "/user-area";

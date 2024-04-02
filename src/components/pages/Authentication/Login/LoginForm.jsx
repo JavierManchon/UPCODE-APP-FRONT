@@ -42,12 +42,6 @@ const LoginForm = ({ setIsLogged }) => {
     try {
       const user = { email, password };
       await login(user);
-      // habilitar cuando este hecho el componente admins
-      // if(authState.user.isAdmin) {
-      //   navigate('/admins')
-      // } else {
-      //   navigate('/catalogue')
-      // }
       
     } catch (error) {
       setError(error.message);
