@@ -1,5 +1,7 @@
+//rutas para la api de usuarios
 import { API as axios } from './axios';
-import { headersWithFormDataContentType } from './axios';
+
+import { headersWithFormDataContentType } from './axios'; //cambiar formulario para admitir fotos
 
 export const registerReq = (user) => axios.post('/users/register', user);
 

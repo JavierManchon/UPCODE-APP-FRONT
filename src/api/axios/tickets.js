@@ -1,3 +1,4 @@
+//rutas para la api de tickets
 import { API as axios } from './axios';
 import { headersWithFormDataContentType } from './axios';
 
