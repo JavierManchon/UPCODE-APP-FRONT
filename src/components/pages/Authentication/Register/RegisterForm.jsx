@@ -11,16 +11,19 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      // Validación de campos
       if (!name || !surname || !email || !username || !password) {
         setError('¡No puedes dejar campos vacíos!');
         return;
       }
 
+      // Validación de la contraseña
       if (password.length < 8) {
         setError('¡La contraseña es demasiado corta! Debe tener al menos 8 caracteres.');
         return;
@@ -31,9 +34,11 @@ const RegisterForm = () => {
         return;
       }
 
+      // Registro del usuario
       const user = { name, surname, email, username, password };
       await registerReq(user);
       
+      // Mensaje de éxito y limpieza de campos
       setSuccessMessage('Se ha enviado un email de confirmación de registro a tu correo electrónico.');
       setName('');
       setSurname('');
@@ -45,6 +50,10 @@ const RegisterForm = () => {
       setError('Error registering: ' + error.message);
     }
   };
+
+  const handlePassword = () => {
+    setShowPassword(!showPassword)
+  }
 
   return (
     <div className='container-login'>
@@ -86,11 +95,13 @@ const RegisterForm = () => {
           </div>
           <div>
             <input
-              type="password" className='input-login' placeholder='Contraseña'
+              type={showPassword ? 'text' : 'password'}
+              className='input-login' placeholder='Contraseña'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <span onClick={handlePassword}>{showPassword ? 'Ocultar' : 'Mostrar'} contraseña</span>
           </div>
           {error && <p className='msgerror' >{error}</p>}
           {successMessage && <p className='msgsuccess'>{successMessage}</p>}
