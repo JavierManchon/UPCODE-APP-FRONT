@@ -27,7 +27,6 @@ body > div#root div.container-all {
   position: relative;
   padding: 80px 0;
   height: 100vh;
-  overflow-y: hidden;
 }
 
 div.container-pages-default-styles {
