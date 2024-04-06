@@ -730,7 +730,7 @@ const FormComponent = ({ isLogged,  overflowHidden, setOverflowHidden }) => {
 
       <button ref={visualButtonRef} className={`no-visual ${!showVisual ? 'btn-visual' : ''}`} onClick={handleVisual}>Mostrar visualizado</button>
 
-      {authState.user.isPremium && previousRoute === "/catalogue" ? (
+      {isLogged && authState.user.isPremium && previousRoute === "/catalogue" ? (
         <>
         {console.log(authState.user)}
         <ButtonSaveDesigns
@@ -741,7 +741,7 @@ const FormComponent = ({ isLogged,  overflowHidden, setOverflowHidden }) => {
         />
         </>
       ) : null}
-      {!authState.user.isPremium && previousRoute === "/catalogue" ? (
+      {isLogged && (!authState.user.isPremium) && previousRoute === "/catalogue" ? (
           <Link className="premiumsavedesign" to='/payments'>Hazte Premium</Link>
       ) : null}
 
