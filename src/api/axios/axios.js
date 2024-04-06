@@ -8,7 +8,7 @@ export const APIHeader = {
 
 export const API = axios.create({
     headers: APIHeader,
-    baseURL: 'http://localhost:8084/api',
+    baseURL: 'https://back-proyecto-final-a8x6.onrender.com/api',
 });
 //actualizar el authorization con cada login cogiendo el token que da como respuesta el servidor
 API.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
