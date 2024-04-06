@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./_payments.scss";
-import Loading from "../../utils/loading/Loading";
+import Loading from "../../utils/Loading/Loading";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
