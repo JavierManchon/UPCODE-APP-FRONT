@@ -335,7 +335,7 @@ function Payments() {
         <div className="container-logoPremium">
           <img
             className="logoPremium"
-            src={"/src/images/UP_C0DE._PREMIUM_PACKpng.png"}
+            src={"https://res.cloudinary.com/dtsp1wfry/image/upload/v1712575273/PremiumLogo.png"}
           />
         </div>
           {authState.user.isPremium 
